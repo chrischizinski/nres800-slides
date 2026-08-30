@@ -1,0 +1,1444 @@
+[
+  {
+    "objectID": "slides/16-capstone-showcase.html#slide-accessibility-note",
+    "href": "slides/16-capstone-showcase.html#slide-accessibility-note",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A mosaic of data visualizations, R code, and a GitHub repository structure, representing the complete reproducible data science workflow built over 16 weeks.\nSpeaker Notes: These slides guide the capstone showcase session, which includes a course retrospective, student presentations, an independent reproducibility check, and a closing reflection.\n\n\nSpeaker Notes: Welcome to the last class. There is no new code today. Instead, we are doing something harder — we are going to prove that the work we produced actually does what we claim it does, on a machine we have never touched."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#capstone-showcase-map",
+    "href": "slides/16-capstone-showcase.html#capstone-showcase-map",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Capstone Showcase Map",
+    "text": "Capstone Showcase Map\n\n\nResearch question\n\n\n-&gt;\n\n\nData evidence\n\n\n-&gt;\n\n\nKey figure\n\n\n-&gt;\n\n\nLimitation\n\n\n-&gt;\n\n\nNext step\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#how-to-use-today",
+    "href": "slides/16-capstone-showcase.html#how-to-use-today",
+    "title": "Week 16: Capstone Showcase",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nTreat the showcase like a reproducibility audit, not a performance.\nCheck that the repo works from a fresh clone before you present.\nUse the reflection to name one concrete improvement you would make next time."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#where-we-started",
+    "href": "slides/16-capstone-showcase.html#where-we-started",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Where We Started",
+    "text": "Where We Started\n\nWeek 1: Loading one CSV without crashing R.\nWeek 2: Understanding what your data actually contains.\nWeek 3: Reading messy files into a tidy format.\nWeek 4: Building a plot that tells a story.\n\n\nSpeaker Notes: Take a moment to think back to Week 1. Most of you had never used a project-relative path. Some of you had never used R at all. The gap between where you started and where you are today is real — and it is worth naming before we move on."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#the-middle-arc",
+    "href": "slides/16-capstone-showcase.html#the-middle-arc",
+    "title": "Week 16: Capstone Showcase",
+    "section": "The Middle Arc",
+    "text": "The Middle Arc\n\nWeek 5–6: Transforming and summarizing data with dplyr.\nWeek 7–8: Reshaping and joining datasets.\nWeek 9: Integrating multiple tools into one workflow.\nWeek 10–11: Working with strings and dates.\n\n\nSpeaker Notes: The middle weeks were about precision — learning that raw data almost never arrives in the shape you need it. dplyr, tidyr, and the string/date tools are what let you go from “I have data” to “I have the right data in the right format.”"
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#the-advanced-arc",
+    "href": "slides/16-capstone-showcase.html#the-advanced-arc",
+    "title": "Week 16: Capstone Showcase",
+    "section": "The Advanced Arc",
+    "text": "The Advanced Arc\n\nWeek 12: Importing complex and multi-sheet data.\nWeek 13: Writing your own functions.\nWeek 14: Building reproducible reports with Quarto.\nWeek 15: Iteration and automation with purrr.\n\n\nSpeaker Notes: The back half of the semester was about scale and robustness. Functions and iteration mean you never write the same transformation twice. Quarto means your analysis and your report are the same document — there is no copy-paste gap where errors hide."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#today-the-capstone",
+    "href": "slides/16-capstone-showcase.html#today-the-capstone",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Today: The Capstone",
+    "text": "Today: The Capstone\n\nCourse retrospective — 10 minutes\nStudent presentations — ~10 minutes each\nIndependent reproducibility check — 20 minutes\nReflection and close — 20 minutes\n\n\nSpeaker Notes: The structure today is designed so that the reproducibility check is not just a formality — it is the proof of concept. Someone who was not in this class should be able to clone your repo and reproduce your results without asking you a single question."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#showcase-format",
+    "href": "slides/16-capstone-showcase.html#showcase-format",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Showcase Format",
+    "text": "Showcase Format\nEach presenter has 10 minutes:\n\n3 min: Research question and dataset overview\n3 min: Walk through one key result or visualization\n2 min: Walk through the repo structure (README, file paths, data)\n2 min: Peer Q&A\n\n\nSpeaker Notes: The three-minute limit on the repo walk-through is intentional. If a colleague cannot understand your repo structure in three minutes, the README needs work. The peer Q&A should focus on one of these two questions: “What does this analysis do well?” and “What question can the data not answer?”"
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#reproducibility-check-protocol",
+    "href": "slides/16-capstone-showcase.html#reproducibility-check-protocol",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Reproducibility Check Protocol",
+    "text": "Reproducibility Check Protocol\nThe reproducer (not the presenter) runs these steps:\n\ngit clone [repo URL] — clone to a new folder\nOpen the .Rproj file (not the .qmd directly)\nRun renv::restore() if applicable\nRender: quarto::quarto_render(\"report.qmd\")\nVerify: do figures match? any path errors?\n\n\nSpeaker Notes: Emphasize Step 2 — opening the .Rproj file is what sets the working directory correctly. Students who skip this step and open the .qmd directly from Finder or Windows Explorer are the ones who hit “file not found” errors even on their own machine. The reproducer should narrate what they see as they go so the presenter can take notes."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#what-we-are-looking-for",
+    "href": "slides/16-capstone-showcase.html#what-we-are-looking-for",
+    "title": "Week 16: Capstone Showcase",
+    "section": "What We Are Looking For",
+    "text": "What We Are Looking For\n\n\n\nCheck\nPass\nFlag\n\n\n\n\nRenders without edits\nNo errors\nAny error\n\n\nFile paths\nhere::here() used\nAbsolute paths\n\n\nData present\nAll files tracked\nMissing CSVs\n\n\nFigures match\nIdentical to slides\nDifferent outputs\n\n\n\n\nSpeaker Notes: An error during the reproducibility check is not a failure of the presenter as a person — it is a gap in the workflow. The goal is to name it precisely so it can be fixed before the Dec 14 submission. Common causes: absolute path, missing data file, package installed locally but not declared."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#final-submission-checklist",
+    "href": "slides/16-capstone-showcase.html#final-submission-checklist",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Final Submission Checklist",
+    "text": "Final Submission Checklist\n\nRenders clean from a fresh clone\nAll data files are in the repo\nNo absolute paths — here::here() throughout\nREADME explains the project and how to reproduce it\nEvery figure has a fig-cap that describes the pattern\nInterpretations match what the figures show\nAI use documented if applicable\nYou can describe one decision you would change in a future version\n\n\nSpeaker Notes: Go through this checklist out loud with the class. Ask for a show of hands on each item — not to shame anyone, but to help students self-triage before the final push. The most common last-minute fix is adding or updating the README."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#reflection-prompt",
+    "href": "slides/16-capstone-showcase.html#reflection-prompt",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Reflection Prompt",
+    "text": "Reflection Prompt\n“What would you do differently?”\nThink about: - A skill you wish you had learned earlier - A decision in your project you would change - A question your data raised that you cannot yet answer\n\nSpeaker Notes: Give students two minutes of quiet to write before opening this to discussion. The “what would you do differently” question is more productive than “what went wrong” — it is forward-facing and normalizes iteration. There is no analysis that could not be improved with more time. The skill is knowing how you would improve it."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#what-comes-next",
+    "href": "slides/16-capstone-showcase.html#what-comes-next",
+    "title": "Week 16: Capstone Showcase",
+    "section": "What Comes Next",
+    "text": "What Comes Next\n\nDec 14: Final submission due (11:59 PM)\nPush rendered .html and .qmd to GitHub Classroom\nGrading rubric: Reproducibility (50), Data Management (40), Visualization (40), Communication (40), Code Quality (30)\n\n\nSpeaker Notes: The grading rubric weights reproducibility highest because it is the foundation of everything else. A beautiful visualization that cannot be recreated is anecdote, not analysis. Remind students that the rendered HTML must be pushed — not just the .qmd — because the grader will check the rendered output as well as the code."
+  },
+  {
+    "objectID": "slides/16-capstone-showcase.html#thank-you",
+    "href": "slides/16-capstone-showcase.html#thank-you",
+    "title": "Week 16: Capstone Showcase",
+    "section": "Thank You",
+    "text": "Thank You\n\nYou came in with a dataset and a question.\nYou leave with a reproducible, documented, shareable analysis.\nThat is not a small thing.\n\n\nSpeaker Notes: Close by naming something concrete the cohort improved on over the semester. Examples: “In September, half your repos had absolute paths. Today, every single one uses here().” Or: “The figure captions in your final projects are more precise than the ones in published papers I reviewed this year.” Specific praise lands harder than general praise."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#slide-accessibility-note",
+    "href": "slides/14-polished-reporting.html#slide-accessibility-note",
+    "title": "Week 14: Polished Reporting",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A side-by-side comparison of a raw Quarto document output and a polished, formatted report with a table of contents, numbered sections, and captioned figures.\nSpeaker Notes: These slides guide students through progressively polishing a Quarto document from a functional draft to a reader-facing report suitable for a thesis chapter or technical memo."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#quarto-reporting-map",
+    "href": "slides/14-polished-reporting.html#quarto-reporting-map",
+    "title": "Week 14: Polished Reporting",
+    "section": "Quarto Reporting Map",
+    "text": "Quarto Reporting Map\n\n\nAnalysis code\n\n\n-&gt;\n\n\nNarrative text\n\n\n-&gt;\n\n\nFigures and tables\n\n\n-&gt;\n\n\nRender report\n\n\n-&gt;\n\n\nReview output\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#learning-objectives",
+    "href": "slides/14-polished-reporting.html#learning-objectives",
+    "title": "Week 14: Polished Reporting",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nSet document-level YAML options that control structure and code visibility.\nAdd figure and table captions with cross-references (@fig-, @tbl-).\nEmbed live data summaries using inline R expressions.\nCreate a parameterized report that can be rerun for different subgroups.\nFormat tables with knitr::kable() or gt().\n\n\nSpeaker Notes: This is Week 14 — the capstone week for reproducible workflows. Students have been writing Quarto documents all semester, but mostly for their own use. Today the audience shifts: we are writing for a reader who does not see the code. Every decision — hiding code, numbering sections, captioning figures — serves that reader."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#the-problem-with-drafts",
+    "href": "slides/14-polished-reporting.html#the-problem-with-drafts",
+    "title": "Week 14: Polished Reporting",
+    "section": "The Problem with Drafts",
+    "text": "The Problem with Drafts\n\nRaw output: code visible, figures unnumbered, tables print as tibbles.\nA reader cannot find Figure 3 if there is no Figure 3.\nHard-coded numbers break the moment data changes.\n\nToday’s goal: make the document do the bookkeeping so you don’t have to."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#how-to-use-today",
+    "href": "slides/14-polished-reporting.html#how-to-use-today",
+    "title": "Week 14: Polished Reporting",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nStart with a document that renders, then polish the reader experience.\nLet Quarto number and reference figures and tables for you.\nUse inline R for values that should stay in sync with the data.\n\n\nSpeaker Notes: Open a “before” document on the projector — one that renders but is clearly not ready for a reader. Ask students what they notice. Common answers: you can see all the R warnings, the figure is just floating there with no number, the table is just a tibble dump. Use this as the motivation for every YAML option we add today."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#document-level-yaml-the-foundation",
+    "href": "slides/14-polished-reporting.html#document-level-yaml-the-foundation",
+    "title": "Week 14: Polished Reporting",
+    "section": "Document-Level YAML: The Foundation",
+    "text": "Document-Level YAML: The Foundation\n---\ntitle: \"Nebraska Deer Harvest Report\"\nauthor: \"Chris Chizinski\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 3\n    number-sections: true\n    fig-width: 7\n    fig-height: 4.5\n    embed-resources: true\nexecute:\n  echo: false\n  warning: false\n  message: false\n---\n\nSpeaker Notes: Walk through each option. toc: true adds the sidebar navigation — readers can jump to a section. number-sections: true auto-numbers headings. embed-resources: true is critical: without it, sharing the HTML file means sharing a folder of assets too. echo: false at the document level means no code chunks appear in the output unless a specific chunk overrides with echo: true."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#yaml-options-at-a-glance",
+    "href": "slides/14-polished-reporting.html#yaml-options-at-a-glance",
+    "title": "Week 14: Polished Reporting",
+    "section": "YAML Options at a Glance",
+    "text": "YAML Options at a Glance\n\n\n\n\n\n\n\n\nOption\nWhere\nEffect\n\n\n\n\ntoc: true\nformat: html:\nAdds sidebar navigation\n\n\nnumber-sections: true\nformat: html:\nAuto-numbers headings\n\n\nfig-width / fig-height\nformat: html:\nDefault figure dimensions\n\n\nembed-resources: true\nformat: html:\nSingle portable file\n\n\necho: false\nexecute:\nHides code globally\n\n\nwarning: false\nexecute:\nSuppresses warnings\n\n\nmessage: false\nexecute:\nSuppresses messages\n\n\necho: true\nindividual chunk #|\nOverride: show this chunk\n\n\n\n\nSpeaker Notes: Stress the two-level hierarchy: document-level execute: options set the default; individual chunk #| options override. This is how you hide data-loading code but show a key analysis chunk in a methods section."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#figure-captions-and-cross-references",
+    "href": "slides/14-polished-reporting.html#figure-captions-and-cross-references",
+    "title": "Week 14: Polished Reporting",
+    "section": "Figure Captions and Cross-References",
+    "text": "Figure Captions and Cross-References\n```{r}\n#| label: fig-harvest-trend\n#| fig-cap: \"Total Nebraska deer harvest by year across all seasons.\"\n#| fig-alt: \"Line chart of deer harvest 2018–present with increasing trend.\"\n\ndeer |&gt;\n  group_by(year) |&gt;\n  summarize(total = sum(harvest_count, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = year, y = total)) +\n  geom_line(linewidth = 1, color = \"steelblue\") +\n  geom_point(size = 2.5) +\n  labs(x = \"Year\", y = \"Total Harvest\") +\n  theme_minimal()\n```\nIn prose: \"As shown in @fig-harvest-trend, harvest increased...\"\n\nSpeaker Notes: The label must start with fig- for figure cross-references to work. The ?@fig-harvest-trend in prose renders as “Figure 1” — or whatever number the figure actually ends up being. The payoff: if you insert a new figure earlier in the document, all the downstream numbers update automatically. You never touch the prose. This is the core value of cross-referencing."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#why-cross-references-matter",
+    "href": "slides/14-polished-reporting.html#why-cross-references-matter",
+    "title": "Week 14: Polished Reporting",
+    "section": "Why Cross-References Matter",
+    "text": "Why Cross-References Matter\n\nHard-coded: “As shown in Figure 3…” → You add a figure → now it’s Figure 4 → your prose is wrong.\nCross-reference: “As shown in ?@fig-harvest-trend…” → Quarto handles the number → always correct.\n\nSame logic applies to tables with @tbl-.\n\nSpeaker Notes: Ask students how many times they have had to manually renumber figures in a Word document. The groan is universal. This is the exact problem cross-references solve. It is not a cosmetic feature — it is a correctness feature."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#formatted-tables-knitrkable",
+    "href": "slides/14-polished-reporting.html#formatted-tables-knitrkable",
+    "title": "Week 14: Polished Reporting",
+    "section": "Formatted Tables: knitr::kable()",
+    "text": "Formatted Tables: knitr::kable()\n```{r}\n#| label: tbl-top-counties\n#| tbl-cap: \"Top 10 county-season combinations by total deer harvest.\"\n\ndeer |&gt;\n  group_by(county, season) |&gt;\n  summarize(total = sum(harvest_count, na.rm = TRUE), .groups = \"drop\") |&gt;\n  slice_max(total, n = 10) |&gt;\n  rename(County = county, Season = season, `Total Harvest` = total) |&gt;\n  knitr::kable()\n```\nIn prose: \"County leaders are listed in @tbl-top-counties.\"\n\nSpeaker Notes: kable() is the simplest path to a formatted HTML table. It respects column names, so rename() before kable() is good practice. The label must start with tbl- for table cross-references. Show the rendered output side by side with the raw tibble print — the difference is obvious. If students want more control over column formatting, cell colors, or footnotes, point them toward gt() as an extension."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#inline-r-let-the-data-write-the-numbers",
+    "href": "slides/14-polished-reporting.html#inline-r-let-the-data-write-the-numbers",
+    "title": "Week 14: Polished Reporting",
+    "section": "Inline R: Let the Data Write the Numbers",
+    "text": "Inline R: Let the Data Write the Numbers\nIn your .qmd prose:\nThe dataset covers `r n_distinct(deer$county)` counties and\n`r n_distinct(deer$year)` harvest years, totalling\n`r format(sum(deer$harvest_count, na.rm = TRUE), big.mark = \",\")`\nindividual deer harvested.\nRenders as:\n\nThe dataset covers 12 counties and 5 harvest years, totalling 48,302 individual deer harvested.\n\n\nSpeaker Notes: The backtick-r syntax is how Quarto evaluates R code inline inside prose. Everything between the backticks runs as R. The result is inserted as plain text. Key point: when the data is updated next year, the numbers update automatically on the next render. No search-and-replace, no copy-paste errors. Ask students: “When would hard-coding the number be safer?” Answer: when the calculation is complex enough that an error would go unnoticed — then you want to compute it once, assign it to a named object, and reference the object inline."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#parameterized-reports",
+    "href": "slides/14-polished-reporting.html#parameterized-reports",
+    "title": "Week 14: Polished Reporting",
+    "section": "Parameterized Reports",
+    "text": "Parameterized Reports\nparams:\n  county: \"Lancaster\"\n  season: \"archery\"\ndeer_sub &lt;- deer |&gt;\n  filter(county == params$county,\n         season == params$season)\nRerun for a different county at the terminal:\nquarto render report.qmd -P county:Douglas -P season:firearm\n\nSpeaker Notes: Ask: how many Nebraska counties are there? 93. If you needed a harvest report for every county, the copy-paste approach means 93 files with duplicated code, all of which drift out of sync. With params, you write one document and render it 93 times — or use a loop in a separate script to do it automatically. This is the gateway concept to literate programming at scale."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#the-challenge-45-mins",
+    "href": "slides/14-polished-reporting.html#the-challenge-45-mins",
+    "title": "Week 14: Polished Reporting",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nThe Report Polish Challenge\n\nTake your capstone analysis draft (or the deer harvest starter).\nAdd: toc, number-sections, echo: false.\nAdd one figure with fig-cap and reference it with @fig- in prose.\nAdd one table using knitr::kable() with tbl-cap and @tbl- cross-reference.\nAdd two inline R expressions reporting summary values.\nAdd a params: block with one parameter.\n\nBase goal: Make the draft readable and correctly referenced.\nExtension goal: Parameterize the report so it can be rerun for different subgroups.\n\nSpeaker Notes: Students who do not have a capstone draft ready should use the provided deer harvest starter .qmd. The challenge is designed to be completed in one session — the pieces are all covered in today’s demo. Circulate and watch for the two most common errors: (1) labels that don’t start with fig- or tbl-, and (2) inline expressions that fail because the object isn’t defined earlier in the document."
+  },
+  {
+    "objectID": "slides/14-polished-reporting.html#verification",
+    "href": "slides/14-polished-reporting.html#verification",
+    "title": "Week 14: Polished Reporting",
+    "section": "Verification",
+    "text": "Verification\n\nRender from a fresh R session (Session &gt; Restart R &gt; Render).\nAll @fig- and @tbl- references resolve — no ?fig- in the output.\nInline R values match what you see in the console.\nThe TOC has at least three entries.\nparams block is tested with at least two different values.\nCan you explain why hard-coded figure numbers are a maintenance problem?\n\n\nSpeaker Notes: The restart-and-render test is the gold standard for reproducibility. If the document only renders when your environment is already populated, it is not reproducible — it just looks like it is. Emphasize this before students submit their assignments: render from a clean session, not from the comfort of an open session where everything is already loaded."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#slide-accessibility-note",
+    "href": "slides/12-scaling-up.html#slide-accessibility-note",
+    "title": "Week 12: Scaling Up",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A branching diagram showing three separate CSV files converging into a single unified data frame, representing the programmatic reading of multiple files.\nSpeaker Notes: These slides teach students to replace repetitive file-reading code with a functional iteration pattern using purrr::map() and fs::dir_ls()."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#repeated-file-import-map",
+    "href": "slides/12-scaling-up.html#repeated-file-import-map",
+    "title": "Week 12: Scaling Up",
+    "section": "Repeated File Import Map",
+    "text": "Repeated File Import Map\n\n\nList files\n\n\n-&gt;\n\n\nRead one file\n\n\n-&gt;\n\n\nMap over files\n\n\n-&gt;\n\n\nBind rows\n\n\n-&gt;\n\n\nCheck source column\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#the-copy-paste-trap",
+    "href": "slides/12-scaling-up.html#the-copy-paste-trap",
+    "title": "Week 12: Scaling Up",
+    "section": "The Copy-Paste Trap",
+    "text": "The Copy-Paste Trap\n\nYear 1: you copy one read_csv() call.\nYear 2: you paste and change “2021” to “2022”.\nYear 3: you do it again.\nYear 4: a colleague adds a file. You forget to update the script.\n\nThis is the copy-paste anti-pattern. It scales badly and breaks silently."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#how-to-use-today",
+    "href": "slides/12-scaling-up.html#how-to-use-today",
+    "title": "Week 12: Scaling Up",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nReplace repetition with a pattern that adapts to new files.\nKeep track of where each row came from.\nInspect mismatched columns before you drop or rename anything.\n\n\nSpeaker Notes: Ask: “How many of you have done this?” Almost everyone will raise a hand. The key insight is that copying code isn’t just an aesthetic problem — it’s a correctness problem. When the folder gains a new file, the manually-maintained script is instantly out of date. The goal today is to make the script adapt automatically."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#learning-objectives",
+    "href": "slides/12-scaling-up.html#learning-objectives",
+    "title": "Week 12: Scaling Up",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUse fs::dir_ls() to list files programmatically.\nUse purrr::map() + list_rbind() to read multiple files without copy-paste.\nTrack the source file name with the .id argument.\nDetect and handle column mismatches across files.\nRead specific sheets from Excel workbooks with readxl::read_excel().\n\n\nSpeaker Notes: These five skills are what separate a script that runs once from a pipeline that keeps running as data accumulates. By the end of class, students should be able to drop a new CSV in the data folder and re-run the script with zero code changes."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#the-anti-pattern-vs-the-pattern",
+    "href": "slides/12-scaling-up.html#the-anti-pattern-vs-the-pattern",
+    "title": "Week 12: Scaling Up",
+    "section": "The Anti-Pattern vs The Pattern",
+    "text": "The Anti-Pattern vs The Pattern\n\n\nAnti-pattern (copy-paste)\nd21 &lt;- read_csv(\"counts_2021.csv\")\nd22 &lt;- read_csv(\"counts_2022.csv\")\nd23 &lt;- read_csv(\"counts_2023.csv\")\nall &lt;- bind_rows(d21, d22, d23)\nAdding year 4 = editing 2 lines.\n\nPattern (iterate)\nfiles &lt;- dir_ls(\"data\", glob = \"*.csv\")\nall   &lt;- files |&gt;\n  map(read_csv) |&gt;\n  list_rbind(names_to = \"source_file\")\nAdding year 4 = zero code changes.\n\n\nSpeaker Notes: Put both blocks on screen at the same time so students can compare them side by side. The left is familiar; the right is unfamiliar but shorter. Emphasize that the right side is not shorter because it is clever — it is shorter because it describes the pattern rather than the instances. Ask: “What has to be true about the files for the right-hand pattern to work?” Answer: they must live in the same folder and have the same naming convention."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#fsdir_ls-file-discovery",
+    "href": "slides/12-scaling-up.html#fsdir_ls-file-discovery",
+    "title": "Week 12: Scaling Up",
+    "section": "fs::dir_ls() — File Discovery",
+    "text": "fs::dir_ls() — File Discovery\nlibrary(fs)\n\ncsv_files &lt;- dir_ls(here(\"data\"), glob = \"*.csv\")\ncsv_files\n#&gt; data/annual_counts_2021.csv\n#&gt; data/annual_counts_2022.csv\n#&gt; data/annual_counts_2023.csv\n\nglob = \"*.csv\" filters by file pattern (shell-style wildcard).\nReturns an fs_path vector — works like a character vector, prints cleanly.\nChange the glob and the rest of the pipeline updates automatically.\n\n\nSpeaker Notes: Run this live. Students often think of file-listing as something you do in Finder or the terminal. Show them that R can see the filesystem too. Emphasize the glob argument — this is how they would limit to a specific pattern like “raptor_*.csv” if the folder contained mixed file types."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#purrrmap-applying-a-function-to-every-element",
+    "href": "slides/12-scaling-up.html#purrrmap-applying-a-function-to-every-element",
+    "title": "Week 12: Scaling Up",
+    "section": "purrr::map() — Applying a Function to Every Element",
+    "text": "purrr::map() — Applying a Function to Every Element\nlibrary(purrr)\n\n# map() returns a *list* — one data frame per file\nlist_of_dfs &lt;- map(csv_files, read_csv)\nlength(list_of_dfs)   # 3\nclass(list_of_dfs)    # \"list\"\n\n# list_rbind() collapses the list into one data frame\nall_counts &lt;- list_rbind(list_of_dfs, names_to = \"source_file\")\nnrow(all_counts)      # 90\n\nSpeaker Notes: Slow down here. Students who have not seen functional programming before will find this abstract. The key mental model: map() is a loop that saves the output. Ask: “What would you have to do with a for-loop to get the same result?” Then show them that map() + list_rbind() does the same thing in two lines. The names_to argument is critical — if you skip it, you lose the information about which file each row came from."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#tracking-the-source-file-with-.id",
+    "href": "slides/12-scaling-up.html#tracking-the-source-file-with-.id",
+    "title": "Week 12: Scaling Up",
+    "section": "Tracking the Source File with .id",
+    "text": "Tracking the Source File with .id\nall_counts &lt;- csv_files |&gt;\n  map(read_csv) |&gt;\n  list_rbind(names_to = \"source_file\")\n\n# Extract the year from the file path\nall_counts &lt;- all_counts |&gt;\n  mutate(year = str_extract(source_file, \"\\\\d{4}\") |&gt; as.integer())\n\nnames_to = \"source_file\" stores the file path in a new column.\nstr_extract() pulls the 4-digit year from the path string.\nWithout this step: all your rows look identical and the year is lost.\n\n\nSpeaker Notes: This is a step students frequently skip because they think they can infer the year from the data itself. But survey_date only tells you when the survey happened — not which file it came from. What if you had a bug that read the wrong file? The source_file column is your audit trail. Make the habit explicit."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#column-mismatches-happen",
+    "href": "slides/12-scaling-up.html#column-mismatches-happen",
+    "title": "Week 12: Scaling Up",
+    "section": "Column Mismatches Happen",
+    "text": "Column Mismatches Happen\nThe 2023 file has a notes column. The 2021 and 2022 files do not.\nall_counts |&gt; count(source_file, is.na(notes))\n#&gt; annual_counts_2021.csv  TRUE   30\n#&gt; annual_counts_2022.csv  TRUE   30\n#&gt; annual_counts_2023.csv  FALSE  30\nlist_rbind() fills missing columns with NA — this is correct behavior.\nYour job: understand the NAs before you drop or ignore them.\n\nSpeaker Notes: Students often panic when they see a column of NAs. Teach them the diagnostic reflex: count(source_file, is.na(column)) before making any decisions. In this case the NAs are completely explainable — 2021 and 2022 didn’t record observer notes. The next question is whether notes matters for the analysis. Since we are summarizing counts, we can safely drop it. But we document why."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#reading-excel-readxlread_excel",
+    "href": "slides/12-scaling-up.html#reading-excel-readxlread_excel",
+    "title": "Week 12: Scaling Up",
+    "section": "Reading Excel: readxl::read_excel()",
+    "text": "Reading Excel: readxl::read_excel()\nlibrary(readxl)\n\n# ALWAYS inspect sheet names first\nexcel_sheets(here(\"data\", \"monitoring_workbook.xlsx\"))\n#&gt; [1] \"Cover\"            \"Raptor Survey\"\n#&gt; [3] \"Waterfowl Survey\" \"Metadata\"\n\n# Read a specific sheet by name\nraptors &lt;- read_excel(\n  here(\"data\", \"monitoring_workbook.xlsx\"),\n  sheet = \"Raptor Survey\"\n)\nOmitting sheet = reads the first sheet only — which is often a cover page.\n\nSpeaker Notes: Ask: “Has anyone ever opened an Excel file in R and wondered why there was no data?” This is almost always the cause. The default reads sheet 1, which in monitoring workbooks is often a title or cover sheet with no data. Show excel_sheets() as the first thing to run whenever you receive a new workbook. It is cheap — it just reads the sheet names, not the data."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#reading-all-excel-sheets-at-once",
+    "href": "slides/12-scaling-up.html#reading-all-excel-sheets-at-once",
+    "title": "Week 12: Scaling Up",
+    "section": "Reading All Excel Sheets at Once",
+    "text": "Reading All Excel Sheets at Once\npath &lt;- here(\"data\", \"monitoring_workbook.xlsx\")\n\nall_sheets &lt;- excel_sheets(path) |&gt;\n  map(\\(s) read_excel(path, sheet = s)) |&gt;\n  set_names(excel_sheets(path))\n\n# Access by name\nall_sheets[[\"Raptor Survey\"]]\nSame map() pattern — now applied to sheet names instead of file paths.\n\nSpeaker Notes: Point out the parallel structure: in one case we mapped over file paths; here we map over sheet names. The function we apply is different but the pattern is identical. This is why learning map() once pays dividends — it generalizes to any situation where you want to apply the same function to a list of inputs."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#the-challenge-45-mins",
+    "href": "slides/12-scaling-up.html#the-challenge-45-mins",
+    "title": "Week 12: Scaling Up",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Three-Year Monitoring Audit\nYou have three years of annual wildlife count CSV files.\nQuestion: How has total species count changed across sites from 2021 to 2023?\nMust use: dir_ls(), map(), list_rbind(), year extraction, and a trend plot.\nBase goal: Read all three files and produce one combined table.\nExtension goal: Add the source file or year to your plot and explain the trend.\n\nSpeaker Notes: Remind students that the 2023 file has the extra notes column — this is intentional. They need to detect it, understand it, and handle it before summarizing. The plot should show year on the x-axis, total count on the y-axis, and lines colored by site. Students who finish early can add n_species as a secondary facet or extend with error bars."
+  },
+  {
+    "objectID": "slides/12-scaling-up.html#verification",
+    "href": "slides/12-scaling-up.html#verification",
+    "title": "Week 12: Scaling Up",
+    "section": "Verification",
+    "text": "Verification\n\nDoes your combined data frame have exactly 90 rows and rows from all 3 years?\nDid you check for NAs in the notes column and document where they came from?\nDoes your trend plot have axis labels, a title, and theme_minimal()?\nIf a annual_counts_2024.csv appeared in the folder tomorrow, how many lines of your script would you need to change?\nCan you explain why map() is better than copy-paste here?\n\n\nSpeaker Notes: The last question is the key verification. The answer should be zero — if they have to change even one line, their pipeline is not fully generalized. Go around the room and have each student answer it aloud. This reinforces the central lesson: we write code that adapts, not code that we maintain by hand."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#slide-accessibility-note",
+    "href": "slides/10-string-cleaning-categorical-control.html#slide-accessibility-note",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A screenshot of a messy CSV file with inconsistent capitalization and extra spaces in a state code column, beside a clean version of the same table after string standardization.\nSpeaker Notes: These slides introduce systematic text cleaning using stringr functions, janitor column name normalization, and factor reordering with forcats."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#string-cleaning-map",
+    "href": "slides/10-string-cleaning-categorical-control.html#string-cleaning-map",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "String Cleaning Map",
+    "text": "String Cleaning Map\n\n\nRaw labels\n\n\n-&gt;\n\n\nStandardize strings\n\n\n-&gt;\n\n\nClean names\n\n\n-&gt;\n\n\nSet factor order\n\n\n-&gt;\n\n\nVerify counts\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#where-we-are",
+    "href": "slides/10-string-cleaning-categorical-control.html#where-we-are",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Where We Are",
+    "text": "Where We Are\n\nWeek 09: You tackled your first fully messy dataset — end to end.\nThis week: We name the specific tools for the most common mess.\nThe trio: stringr (text), janitor (column names), forcats (categories)."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#how-to-use-today",
+    "href": "slides/10-string-cleaning-categorical-control.html#how-to-use-today",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nClean column names first so the rest of the script stays readable.\nStandardize text before grouping or plotting.\nReorder factors when the default alphabetical order would mislead.\n\n\nSpeaker Notes: Last week you encountered messy data for the first time in a systematic way. You probably noticed that a lot of the mess was text — inconsistent capitalization, extra spaces, abbreviated versus spelled-out values. This week we put names on those problems and give you a repeatable toolkit. These three packages together handle the vast majority of text and categorical cleanup you will encounter in ecological and agricultural data."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#learning-objectives",
+    "href": "slides/10-string-cleaning-categorical-control.html#learning-objectives",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUse janitor::clean_names() to normalize column names on import.\nApply str_trim(), str_to_lower(), and str_to_upper() to standardize text fields.\nUse str_detect() for partial-match filtering and str_replace() for targeted recoding.\nControl factor level order in plots using fct_reorder() and fct_relevel().\n\n\nSpeaker Notes: Four objectives, roughly one per 30-minute block of live coding today. Objective 4 — factor reordering — is the one that immediately improves the quality of every visualization they make, so it tends to get the most audible reaction in class. Let students work through the alphabetical-order plot first, then show the reordered version."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#the-problem-text-columns-are-liars",
+    "href": "slides/10-string-cleaning-categorical-control.html#the-problem-text-columns-are-liars",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "The Problem: Text Columns Are Liars",
+    "text": "The Problem: Text Columns Are Liars\ncount(crop_raw, state)\n# A tibble: 4 × 2\n#   state        n\n#   &lt;chr&gt;    &lt;int&gt;\n# 1 NE          20\n# 2 ne          20\n# 3 Nebraska    20\n# 4 NEBRASKA    20\nOne state. Four representations. Every group_by() will treat them as four groups.\n\nSpeaker Notes: Pull this up in the console and run it live. Ask the class: if we group_by(state) right now and calculate a mean, how many rows will we get? They will say four. Then ask: how many should we get? One. That’s the whole problem — and it’s invisible unless you look. This slide exists to make them paranoid. Good paranoid."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#tool-1-janitorclean_names",
+    "href": "slides/10-string-cleaning-categorical-control.html#tool-1-janitorclean_names",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Tool 1: janitor::clean_names()",
+    "text": "Tool 1: janitor::clean_names()\nlibrary(janitor)\n\ncrop_raw &lt;- read_csv(here(\"data\", \"crop_survey_messy.csv\")) |&gt;\n  clean_names()\n\nConverts Reported Yield Bu/Ac → reported_yield_bu_ac\nNo more backtick-quoting column names in your pipeline.\nAlways do this on import.\n\n\nSpeaker Notes: clean_names() is a one-line, no-brainer addition to every import. It handles spaces, special characters, and mixed case in column headers. The rule of thumb I give students: if the column name would need backticks in R, clean_names() would have fixed it. Make it a habit — add it to your import template."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#tool-2-str_trim-and-str_to_lower",
+    "href": "slides/10-string-cleaning-categorical-control.html#tool-2-str_trim-and-str_to_lower",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Tool 2: str_trim() and str_to_lower()",
+    "text": "Tool 2: str_trim() and str_to_lower()\nlibrary(stringr)\n\ncrop_clean &lt;- crop_raw |&gt;\n  mutate(\n    state = str_trim(state) |&gt; str_to_lower(),\n    crop_type = str_trim(crop_type) |&gt; str_to_lower()\n  )\nOrder matters: trim whitespace FIRST, then change case.\n\nSpeaker Notes: Ask the class: why does order matter here? If you lower-case first, you still have “corn” with a trailing space. When you group by it, “corn” and “corn” are different values. Trim first eliminates the space, then lower-case standardizes capitalization. The trailing space is especially insidious because it is invisible in the output — you have to count characters or look at the raw CSV to find it. That’s the kind of bug that costs an afternoon."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#tool-3-str_replace",
+    "href": "slides/10-string-cleaning-categorical-control.html#tool-3-str_replace",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Tool 3: str_replace()",
+    "text": "Tool 3: str_replace()\ncrop_clean &lt;- crop_clean |&gt;\n  mutate(\n    state = str_replace(state, \"nebraska\", \"ne\"),\n    crop_type = str_replace(crop_type, \"^soy$\", \"soybean\"),\n    crop_type = str_replace(crop_type, \"soybeans\", \"soybean\")\n  )\n\n^soy$ anchors the pattern — matches the whole word only.\nWithout anchors, str_replace(\"soybean\", \"soy\", \"X\") → \"Xbean\".\n\n\nSpeaker Notes: The regex anchors ^ and $ are the most important thing to explain here. Write “soy” on the board or slide, then show what happens if you replace “soy” inside “soybean” without anchors. The result is “Xbean”, which is wrong. The anchors say “only match if soy is the entire string.” This is a common mistake. You can also show str_replace_all() versus str_replace() — the former replaces every match in the string, the latter only the first. For cleaning categorical labels we almost always want str_replace()."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#tool-4-str_detect-for-filtering",
+    "href": "slides/10-string-cleaning-categorical-control.html#tool-4-str_detect-for-filtering",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Tool 4: str_detect() for Filtering",
+    "text": "Tool 4: str_detect() for Filtering\n# Filter rows where notes mention irrigation\ncrop_clean |&gt;\n  filter(str_detect(notes, \"irrigat\")) |&gt;\n  select(county, crop_type, notes)\n\nReturns TRUE/FALSE — works inside filter() naturally.\nPattern is a regular expression — \"irrigat\" matches “irrigated”, “irrigation”, etc.\n\n\nSpeaker Notes: str_detect() is the partial-match filter. Contrast it with the equality filter: filter(state == “ne”) only matches exact strings. str_detect() matches substrings or patterns. The notes column in today’s dataset is a good example — no two notes are identical, but you can still find rows mentioning irrigation, drought, or flood damage. This is also useful for sanity checking: str_detect(crop_type, ” “) will catch any values that still have spaces in them after cleaning."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#tool-5-fct_reorder-and-fct_relevel",
+    "href": "slides/10-string-cleaning-categorical-control.html#tool-5-fct_reorder-and-fct_relevel",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Tool 5: fct_reorder() and fct_relevel()",
+    "text": "Tool 5: fct_reorder() and fct_relevel()\nlibrary(forcats)\n\n# Logical order: small -&gt; medium -&gt; large\ncrop_summary &lt;- crop_summary |&gt;\n  mutate(\n    farm_size_category = fct_relevel(farm_size_category,\n                                     \"small\", \"medium\", \"large\")\n  )\n\nfct_relevel(): set an explicit, meaningful order.\nfct_reorder(): sort by a numeric variable (e.g., mean yield, descending).\n\n\nSpeaker Notes: ggplot defaults to alphabetical factor order. For farm size, alphabetical gives you “large, medium, small” — the reverse of what anyone expects. fct_relevel() lets you specify exactly what order the levels appear. fct_reorder() is used when the order should be driven by a numeric value, like ranking crop types from highest to lowest yield. Show both: fct_relevel for ordinal categories with a natural order, fct_reorder for nominal categories ranked by a statistic."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#before-and-after-factor-order",
+    "href": "slides/10-string-cleaning-categorical-control.html#before-and-after-factor-order",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Before and After: Factor Order",
+    "text": "Before and After: Factor Order\n# Before: alphabetical (confusing)\nggplot(crop_summary, aes(x = farm_size_category, y = mean_yield)) +\n  geom_col()\n\n# After: logical order (clear)\ncrop_summary |&gt;\n  mutate(farm_size_category = fct_relevel(farm_size_category,\n                                          \"small\", \"medium\", \"large\")) |&gt;\n  ggplot(aes(x = farm_size_category, y = mean_yield)) +\n  geom_col()\n\nSpeaker Notes: Run both plots side by side if you can. The alphabetical version reads “large, medium, small” which forces the audience to mentally reorder while reading. The reordered version reads left to right in the natural direction. This is a small change with a large communication payoff. Make the point that factor reordering is not cosmetic — it changes what conclusions readers draw from the chart."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#the-challenge-45-mins",
+    "href": "slides/10-string-cleaning-categorical-control.html#the-challenge-45-mins",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Crop Yield Audit\n\nClean the crop_survey_messy.csv dataset end to end.\nBase goal: Which crop type has the highest average yield in Nebraska?\nExtension goal: Does farm size matter once the categories are ordered clearly?\nRequired: clean text columns, filter to NE, summarize, plot with reordered factors.\n\n\nSpeaker Notes: Students should be able to complete this independently now — they have all four tools. The challenge is intentionally structured so that cleaning must happen before the analysis makes sense. If they skip cleaning and go straight to group_by(), they will get four state groups instead of one and their results will be wrong. That is the lesson. Walk the room during the 45 minutes and look for students who are still getting four crop_type values after their clean step — that means they missed either str_trim() or the anchored str_replace()."
+  },
+  {
+    "objectID": "slides/10-string-cleaning-categorical-control.html#verification",
+    "href": "slides/10-string-cleaning-categorical-control.html#verification",
+    "title": "Week 10: String Cleaning and Categorical Control",
+    "section": "Verification",
+    "text": "Verification\n\nDoes count(crop_clean, state) show exactly one value?\nDoes count(crop_clean, crop_type) show exactly two values?\nIs your x-axis ordered small → medium → large (not alphabetical)?\nCan you articulate why str_trim() must run before str_to_lower()?\nCan you explain why clean_names() belongs at the start of the pipeline?\n\n\nSpeaker Notes: Go through each verification check with the class before they commit. The count checks are pass/fail — if they have more than one state value, their pipeline has a bug. The ordering check is about communication quality. The articulation question is the metacognitive exit ticket: if they can explain the order-of-operations logic, they will apply it correctly to future datasets without needing to be reminded."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#slide-accessibility-note",
+    "href": "slides/08-joining-tables.html#slide-accessibility-note",
+    "title": "Week 08: Joining Tables",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A two-table diagram showing an observations table on the left and a site metadata table on the right, connected by a shared site_id key column, representing the concept of relational data joining.\nSpeaker Notes: These slides introduce the three core join operations in dplyr — left_join, inner_join, and anti_join — using bird observation data joined to site metadata."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#join-planning-map",
+    "href": "slides/08-joining-tables.html#join-planning-map",
+    "title": "Week 08: Joining Tables",
+    "section": "Join Planning Map",
+    "text": "Join Planning Map\n\n\nIdentify keys\n\n\n-&gt;\n\n\nCheck uniqueness\n\n\n-&gt;\n\n\nChoose join\n\n\n-&gt;\n\n\nInspect unmatched rows\n\n\n-&gt;\n\n\nVerify result\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#how-to-use-today",
+    "href": "slides/08-joining-tables.html#how-to-use-today",
+    "title": "Week 08: Joining Tables",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nIdentify the key column before you join anything.\nCheck row counts immediately after each join.\nUse anti_join() when the output looks suspicious or incomplete."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#why-joins-exist",
+    "href": "slides/08-joining-tables.html#why-joins-exist",
+    "title": "Week 08: Joining Tables",
+    "section": "Why Joins Exist",
+    "text": "Why Joins Exist\n\nEcological data rarely lives in one table.\nObservations tell you what was seen and where.\nSite metadata tells you what that place is like.\nJoins link tables by a shared key column.\n\n\nSpeaker Notes: Think about how you would collect field data. You record species observations in one notebook. Site characteristics — habitat type, area, land use — are in a separate site registry. Keeping them separate is the right design: it avoids repeating site information on every observation row. But to answer questions like ‘which habitat type has the most species?’, you need to link those two tables together. That is exactly what a join does."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#learning-objectives",
+    "href": "slides/08-joining-tables.html#learning-objectives",
+    "title": "Week 08: Joining Tables",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nExplain what a key column is and why it must match exactly.\nUse left_join() to add site context to observation records.\nUse inner_join() and explain when rows are dropped.\nUse anti_join() to audit unmatched records.\nVerify row counts before and after every join.\n\n\nSpeaker Notes: By the end of today you will have a toolkit for combining any two related tables in R. More importantly, you will have the habit of checking row counts and auditing unmatched records — skills that catch data problems before they silently corrupt your analysis."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#the-key-column",
+    "href": "slides/08-joining-tables.html#the-key-column",
+    "title": "Week 08: Joining Tables",
+    "section": "The Key Column",
+    "text": "The Key Column\n# Both tables must have a column with matching values\nobs   |&gt; distinct(site_id)   # e.g., SITE001, SITE002, ...\nsites |&gt; distinct(site_id)   # e.g., SITE001, SITE002, ...\n\nThe key must be the same type in both tables (character = character).\nValues must match exactly — \"SITE001\" ≠ \"site001\".\nCheck for duplicates in the right-hand table before joining.\n\n\nSpeaker Notes: Before you ever run a join, ask yourself: what is the key? In our dataset it is site_id. Now ask: does site_id appear in both tables, and do the values match exactly? A trailing space or a case difference will silently cause a row to go unmatched. This is one of the most common join bugs in practice."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#left_join-the-safe-join",
+    "href": "slides/08-joining-tables.html#left_join-the-safe-join",
+    "title": "Week 08: Joining Tables",
+    "section": "left_join: The Safe Join",
+    "text": "left_join: The Safe Join\nVisual concept (describe aloud):\n\nImagine two tables side by side. The left table — your observations — is the anchor. Every row in the left table is kept. Matching rows from the right table slide in alongside. Where no match exists, the right-side columns fill with NA.\n\nobs_with_sites &lt;- obs |&gt;\n  left_join(sites, by = \"site_id\")\n\nnrow(obs)            # e.g., 80\nnrow(obs_with_sites) # still 80 — left table is preserved\n\nSpeaker Notes: The left join is your default join for ecological analysis. It says: ‘I want to keep all of my observation records, and I will add whatever site information I can find. If a site has no metadata, I get NA — and that NA is a signal to investigate, not a reason to lose the record.’ The key insight is that the row count of the result equals the row count of the left table, assuming no duplicate keys in the right table."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#inner_join-only-matched-rows",
+    "href": "slides/08-joining-tables.html#inner_join-only-matched-rows",
+    "title": "Week 08: Joining Tables",
+    "section": "inner_join: Only Matched Rows",
+    "text": "inner_join: Only Matched Rows\nobs_inner &lt;- obs |&gt;\n  inner_join(sites, by = \"site_id\")\n\nnrow(obs_inner)  # fewer rows — unmatched obs are dropped\n\nRows from obs with no matching site_id in sites are silently dropped.\nUse when you need complete cases for a model or calculation.\nAlways compare nrow() before and after.\n\n\nSpeaker Notes: The inner join is stricter. It only keeps rows where the key exists in both tables. This can be the right choice — if you are fitting a model that requires habitat type, you cannot include sites with missing metadata. But the danger is that rows disappear silently. You must check the row count. If you expected 80 rows and got 76, ask: which 4 observations were dropped, and why?"
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#anti_join-the-data-audit-tool",
+    "href": "slides/08-joining-tables.html#anti_join-the-data-audit-tool",
+    "title": "Week 08: Joining Tables",
+    "section": "anti_join: The Data Audit Tool",
+    "text": "anti_join: The Data Audit Tool\nunmatched &lt;- obs |&gt;\n  anti_join(sites, by = \"site_id\")\n\n# Shows obs rows with no matching site in the registry\nunmatched |&gt; select(obs_id, site_id, species, date)\n\nReturns rows from the left table that have no match in the right table.\nThis is your primary tool for finding data quality problems.\nAsk: were these sites omitted from the registry by mistake?\n\n\nSpeaker Notes: The anti_join is the most underused of the three joins, and arguably the most important for data quality. Before you do any analysis, run an anti_join to find out which records have no metadata. In our dataset, SITE016 and SITE017 appear in observations but not in the site registry. Is that a data entry error? A site that was surveyed but never formally registered? You need to know before you proceed."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#row-count-verification",
+    "href": "slides/08-joining-tables.html#row-count-verification",
+    "title": "Week 08: Joining Tables",
+    "section": "Row Count Verification",
+    "text": "Row Count Verification\ncat(\"Original observations:          \", nrow(obs), \"\\n\")\ncat(\"After left_join (with sites):   \", nrow(obs_with_sites), \"\\n\")\ncat(\"After inner_join (only matched):\", nrow(obs_inner), \"\\n\")\ncat(\"Unmatched observations:         \", nrow(unmatched), \"\\n\")\n\nleft_join row count = original obs count (assuming no duplicate keys in right table).\ninner_join row count &lt;= left_join count.\nunmatched count = left_join count - inner_join count.\n\n\nSpeaker Notes: Make this a reflex: every time you join two tables, print the row counts of the input and output. If left_join produces MORE rows than your left table, you have duplicate keys in the right table — one input row matched multiple right-side rows and got duplicated. If inner_join produces fewer rows, rows were silently dropped. These are the two most common join surprises."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#live-coding-section-1",
+    "href": "slides/08-joining-tables.html#live-coding-section-1",
+    "title": "Week 08: Joining Tables",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nLoad both tables and inspect dimensions.\nCompare site_id values across tables.\nleft_join(), inner_join(), anti_join() in sequence.\nVerify row counts at each step.\n\n\nSpeaker Notes: We will work through all three joins on the bird observation dataset. For each join, we will check the row count immediately after. I will also show you how to use filter(is.na(habitat_type)) after a left_join to locate the unmatched rows — which gives you the same information as anti_join but from the joined table perspective."
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#the-challenge-45-mins",
+    "href": "slides/08-joining-tables.html#the-challenge-45-mins",
+    "title": "Week 08: Joining Tables",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: Habitat Richness and the Missing Registry\n\nBase goal: Join bird observations to site metadata and audit unmatched sites using anti_join().\nExtension goal: Summarize species richness by habitat type using group_by() + summarize() and visualize the distribution.\n\n\nSpeaker Notes: The challenge today has two parts that must be done in order. First, audit the data — find and document the sites that have observations but no registry entry. Second, join and analyze. You will calculate species richness (number of unique species) per site, then average that by habitat type. The goal is to answer the question: which habitat types support the most diverse bird communities?"
+  },
+  {
+    "objectID": "slides/08-joining-tables.html#verification",
+    "href": "slides/08-joining-tables.html#verification",
+    "title": "Week 08: Joining Tables",
+    "section": "Verification",
+    "text": "Verification\n\nDoes your left_join result have the same row count as the original obs?\nDid anti_join reveal any unmatched site_id values?\nDoes your richness summary group correctly by habitat_type?\nDoes your plot have a title, axis labels, and a color scale?\nCan you explain why left_join() is the safest default for this task?\n\n\nSpeaker Notes: Before you commit, run through this checklist out loud. The row count check is non-negotiable — if you cannot confirm the join preserved or intentionally reduced your rows, you do not know what you joined. The audit question is the analytical equivalent: if you skipped the anti_join, you do not know whether your richness estimates are based on complete data."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#slide-accessibility-note",
+    "href": "slides/06-grouped-summaries.html#slide-accessibility-note",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A field notebook showing a tally of bird species counts next to a laptop screen with an R console, representing the shift from raw observations to grouped summaries.\nSpeaker Notes: These slides introduce group_by() and summarize() as the core dplyr tools for collapsing raw data into group-level answers.\n\n\nSpeaker Notes: Welcome to Week 06. Today we move from row-level transformations — which we did with filter, mutate, and arrange — to group-level summaries. This is one of the most powerful shifts in data analysis: going from “what do individual observations say?” to “what does each group tell us?”"
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#grouped-summary-map",
+    "href": "slides/06-grouped-summaries.html#grouped-summary-map",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Grouped Summary Map",
+    "text": "Grouped Summary Map\n\n\nQuestion by group\n\n\n-&gt;\n\n\nGroup data\n\n\n-&gt;\n\n\nSummarize metric\n\n\n-&gt;\n\n\nCompare groups\n\n\n-&gt;\n\n\nInterpret pattern\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#how-to-use-today",
+    "href": "slides/06-grouped-summaries.html#how-to-use-today",
+    "title": "Week 06: Grouped Summaries",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nTreat each summary as a question about a group, not a row.\nPredict the row count before you run summarize().\nCheck whether NA means missing information or a true zero."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#learning-objectives",
+    "href": "slides/06-grouped-summaries.html#learning-objectives",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUse group_by() to define analysis groups.\nUse summarize() to collapse groups into summary statistics.\nApply n(), n_distinct(), sum(), and mean() inside summarize().\nHandle missing values (NA) deliberately before summarizing.\nCombine arrange(desc()) to rank grouped results.\n\n\nSpeaker Notes: By the end of today you should be able to take a raw dataset of thousands of rows and produce a clean ranked summary table in a single pipe chain. These five functions — group_by, summarize, n, n_distinct, and arrange — will appear in almost every data analysis project you do."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#where-we-are-in-the-pipeline",
+    "href": "slides/06-grouped-summaries.html#where-we-are-in-the-pipeline",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Where We Are in the Pipeline",
+    "text": "Where We Are in the Pipeline\nread_csv() → glimpse() → filter() → mutate() → group_by() → summarize()\n\nLast week: filter(), select(), arrange(), mutate() — row-level operations.\nThis week: group_by() + summarize() — group-level operations.\nKey shift: The output has fewer rows than the input.\n\n\nSpeaker Notes: This is the most important conceptual shift of today. Every function we’ve learned so far — filter, mutate, arrange — returns the same number of rows (or fewer via filter). Summarize intentionally collapses rows. One row per group, no matter how many observations were in that group. If this feels surprising, that’s exactly the right reaction — pause and think about it."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#the-mental-model-split-apply-combine",
+    "href": "slides/06-grouped-summaries.html#the-mental-model-split-apply-combine",
+    "title": "Week 06: Grouped Summaries",
+    "section": "The Mental Model: Split → Apply → Combine",
+    "text": "The Mental Model: Split → Apply → Combine\n\nSplit: group_by(species_code) divides the data into one “chunk” per species.\nApply: summarize() runs a calculation on each chunk independently.\nCombine: The results are reassembled into one tidy output table.\n\n\nSpeaker Notes: “Split, apply, combine” is a phrase from statistics that predates R. The idea is ancient: separate your data by group, do the math on each group, then stack the results back together. group_by does the split, summarize does the apply and combine. This mental model will help you debug when results look wrong."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#group_by-summarize-side-by-side",
+    "href": "slides/06-grouped-summaries.html#group_by-summarize-side-by-side",
+    "title": "Week 06: Grouped Summaries",
+    "section": "group_by() + summarize() Side by Side",
+    "text": "group_by() + summarize() Side by Side\nNo grouping — one global row:\nbirds |&gt;\n  summarize(total_obs = sum(how_many, na.rm = TRUE))\nWith grouping — one row per state:\nbirds |&gt;\n  group_by(state) |&gt;\n  summarize(total_obs = sum(how_many, na.rm = TRUE))\n\nSpeaker Notes: Run both of these live and have students predict the number of rows before you run them. The first returns one row — the global total. The second returns one row per unique state value. The only difference is the addition of group_by(). This contrast is the core demo of the day. Do not rush past it."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#multiple-summaries-in-one-call",
+    "href": "slides/06-grouped-summaries.html#multiple-summaries-in-one-call",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Multiple Summaries in One Call",
+    "text": "Multiple Summaries in One Call\nbirds |&gt;\n  group_by(state) |&gt;\n  summarize(\n    total_obs  = sum(how_many, na.rm = TRUE),\n    n_records  = n(),\n    n_sites    = n_distinct(site_id),\n    mean_count = mean(how_many, na.rm = TRUE)\n  )\n\nn() counts rows in the group.\nn_distinct(site_id) counts unique values of site_id in the group.\n\n\nSpeaker Notes: You can put as many summary expressions as you want inside a single summarize() call — each becomes one new column. Emphasize the difference between n() and n_distinct(): n() asks “how many rows?” while n_distinct() asks “how many unique values?” If site NE001 appears five times in January, n() counts 5 but n_distinct(site_id) still counts 1."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#the-na-problem-in-summarize",
+    "href": "slides/06-grouped-summaries.html#the-na-problem-in-summarize",
+    "title": "Week 06: Grouped Summaries",
+    "section": "The NA Problem in Summarize",
+    "text": "The NA Problem in Summarize\n# One NA poisons the whole group sum:\nbirds |&gt;\n  group_by(state) |&gt;\n  summarize(\n    sum_with_na    = sum(how_many),              # returns NA\n    sum_without_na = sum(how_many, na.rm = TRUE) # returns a number\n  )\nQuestion: Does NA in how_many mean zero birds, or was the count not recorded?\n\nSpeaker Notes: This is a deliberate teaching moment. Run the code live and let students see the NA in the first column. Then ask the question on the slide. The answer depends on your domain knowledge. In FeederWatch data, a missing count typically means the observer didn’t submit a count — not that they saw zero birds. This is different from a true zero count. Students must be able to articulate this distinction before removing NAs. na.rm = TRUE is not automatically correct — it’s a decision that must be documented."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#handling-nas-a-decision-not-a-default",
+    "href": "slides/06-grouped-summaries.html#handling-nas-a-decision-not-a-default",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Handling NAs: A Decision, Not a Default",
+    "text": "Handling NAs: A Decision, Not a Default\nBefore summarizing, filter intentionally:\nbirds |&gt;\n  filter(!is.na(how_many), how_many &gt; 0) |&gt;\n  group_by(species_code) |&gt;\n  summarize(total_obs = sum(how_many))\nOr use na.rm = TRUE inside the summary function and document why.\n\nSpeaker Notes: There are two defensible strategies: filter NAs out before grouping, or use na.rm = TRUE inside sum() or mean(). The filter approach is often cleaner because it makes the decision explicit and visible at the top of the pipeline. Either way, you must write a comment explaining what NA means in this context and why you chose to remove it. Silently dropping NAs without documentation is the kind of mistake that causes retractions in published research."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#grouping-by-multiple-columns",
+    "href": "slides/06-grouped-summaries.html#grouping-by-multiple-columns",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Grouping by Multiple Columns",
+    "text": "Grouping by Multiple Columns\nbirds |&gt;\n  group_by(state, month) |&gt;\n  summarize(\n    total_obs = sum(how_many, na.rm = TRUE),\n    n_sites   = n_distinct(site_id),\n    .groups   = \"drop\"\n  )\n\nResult has one row per unique combination of state and month.\n.groups = \"drop\" removes the grouping structure after summarizing.\n\n\nSpeaker Notes: You can group by any number of columns. The result always has one row per unique combination of the grouping variables. Mention .groups = “drop” — without it, dplyr retains a residual grouping on all but the last variable, which can produce unexpected behavior in downstream pipes. Using drop is the safer default in most workflows."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#ranking-results-with-arrangedesc",
+    "href": "slides/06-grouped-summaries.html#ranking-results-with-arrangedesc",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Ranking Results with arrange(desc())",
+    "text": "Ranking Results with arrange(desc())\nbirds |&gt;\n  group_by(species_code) |&gt;\n  summarize(\n    total_obs = sum(how_many, na.rm = TRUE),\n    n_sites   = n_distinct(site_id)\n  ) |&gt;\n  arrange(desc(total_obs))\n\narrange(desc(...)) sorts from highest to lowest.\nChain it after summarize() in the same pipe.\n\n\nSpeaker Notes: After we summarize, we almost always want to rank the results. arrange(desc()) is the tool for that. Point out that arrange() comes after summarize() in the pipe — not before. Order matters in a pipe: each step receives the output of the previous step."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#live-coding-section-1",
+    "href": "slides/06-grouped-summaries.html#live-coding-section-1",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nLoad feeder_watch_raw.csv and inspect with glimpse().\nRun a global summarize() — predict the row count first.\nAdd group_by(state) and observe the change.\nBuild a multi-column summarize() with n(), n_distinct(), and mean().\n\n\nSpeaker Notes: Open week_06_instructor.R. Walk through sections 3a through 3d at a teaching pace — pause after each code chunk and ask students to predict the output before running it. The goal is to build intuition for what group_by does to the data, not to move through the code quickly."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#live-coding-section-2",
+    "href": "slides/06-grouped-summaries.html#live-coding-section-2",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Live Coding: Section 2",
+    "text": "Live Coding: Section 2\n\nDemonstrate multi-column group_by().\nAdd .groups = \"drop\".\nRank species by total observations with arrange(desc()).\nShow the NA comparison side by side.\n\n\nSpeaker Notes: This section reinforces the concepts with practical ranking. The NA comparison (sum with vs without na.rm) is the single most important live demo of the day — do not skip it. Ask students to explain, in plain English, why one column is NA and the other is not."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#the-challenge-45-mins",
+    "href": "slides/06-grouped-summaries.html#the-challenge-45-mins",
+    "title": "Week 06: Grouped Summaries",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nThe Wildlife Survey Audit\n\nDataset: feeder_watch_raw.csv\nBase goal: Identify the Top 5 species observed in Nebraska during January.\nExtension goal: Compare the top species by total observations and number of sites.\n\nSteps: 1. filter() to Nebraska, January. 2. Remove NA and zero-count rows. 3. group_by() species code. 4. summarize() — create total_obs and n_sites. 5. arrange(desc()) and keep top 5.\nConstraint: Use |&gt; at least once. summarize() must produce at least 2 columns.\n\nSpeaker Notes: Release the follow-along script. Students have 45 minutes. Circulate and watch for two common errors: forgetting group_by before summarize (results in one row), and not using na.rm = TRUE (results in NA in total_obs). The verification question is on the next slide — remind students to check it before they commit."
+  },
+  {
+    "objectID": "slides/06-grouped-summaries.html#verification",
+    "href": "slides/06-grouped-summaries.html#verification",
+    "title": "Week 06: Grouped Summaries",
+    "section": "Verification",
+    "text": "Verification\n\nDoes your final table have exactly 5 rows?\nIs total_obs a number (not NA) for every row?\nDid you write a comment explaining your NA decision?\nCan you explain in one sentence why group_by() changed the output shape?\nCompare your top species with your neighbor — do they match?\n\n\nSpeaker Notes: Walk around and look at screens before class ends. The most common failure mode is a table with more than 5 rows (forgot slice_head) or NA in total_obs (forgot na.rm or forgot to filter NAs first). If two neighbors get different answers, that’s a great signal to debug together — ask them to read each other’s filter conditions out loud."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#slide-accessibility-note",
+    "href": "slides/04-viz-foundations.html#slide-accessibility-note",
+    "title": "Week 04: Viz Foundations",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A vibrant collage of various data visualizations, including scatterplots, bar charts, and heatmaps, representing the diversity of the Grammar of Graphics.\nSpeaker Notes: These slides introduce the core concepts of ggplot2, focusing on mapping variables to aesthetics and faceting."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#grammar-of-graphics-map",
+    "href": "slides/04-viz-foundations.html#grammar-of-graphics-map",
+    "title": "Week 04: Viz Foundations",
+    "section": "Grammar of Graphics Map",
+    "text": "Grammar of Graphics Map\n\n\nData\n\n\n-&gt;\n\n\nAesthetic mapping\n\n\n-&gt;\n\n\nGeometries\n\n\n-&gt;\n\n\nScales and facets\n\n\n-&gt;\n\n\nReadable plot\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#how-to-use-today",
+    "href": "slides/04-viz-foundations.html#how-to-use-today",
+    "title": "Week 04: Viz Foundations",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nDecide what the plot needs to say before choosing the geom.\nUse color only when it helps the reader.\nPrefer clear labels and a clean theme over decoration.\n\n\nSpeaker Notes: The question for today is not “What looks pretty?” It is “What helps the reader understand the data fastest?”"
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#mapping-vs-setting",
+    "href": "slides/04-viz-foundations.html#mapping-vs-setting",
+    "title": "Week 04: Viz Foundations",
+    "section": "Mapping vs Setting",
+    "text": "Mapping vs Setting\n\nMapping: Linking data to a visual trait (inside aes()).\nSetting: Assigning a fixed visual trait (outside aes()).\nThis is the #1 source of ggplot confusion!\n\n\nSpeaker Notes: If you remember only one thing from today, let it be the difference between ‘mapping’ and ‘setting’. Mapping is when you want the color to change based on the data (like species). Setting is when you just want all the points to be blue. Mixing these up is the most common error in ggplot2."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#learning-objectives",
+    "href": "slides/04-viz-foundations.html#learning-objectives",
+    "title": "Week 04: Viz Foundations",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nMap variables to aesthetics.\nChoose geoms for different data types.\nUse facets to split plots by category.\nAdd professional labels and themes.\n\n\nSpeaker Notes: Today we move from simple plots to ‘publication-ready’ visualizations. We’ll learn how to choose the right ‘geom’ for your data and how to use ‘facets’ to tell a story across different categories."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#live-coding-section-1",
+    "href": "slides/04-viz-foundations.html#live-coding-section-1",
+    "title": "Week 04: Viz Foundations",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nLayers of a ggplot.\nHistograms, Boxplots, and Scatterplots.\nFaceting and Themes.\n\n\nSpeaker Notes: We’ll build our plots layer-by-layer. Think of it like an onion—we start with the data, then add the mapping, then the geom, then the labels, and finally the theme."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#the-challenge-45-mins",
+    "href": "slides/04-viz-foundations.html#the-challenge-45-mins",
+    "title": "Week 04: Viz Foundations",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Visualization Architect\n\nBuild a multi-layer plot of prairie restoration.\nUse facets to compare soil types.\nApply a clean theme and informative labels.\nBase goal: Make the plot communicate the trend clearly.\nExtension goal: Add a facet-based version and compare it to the colored version.\n\n\nSpeaker Notes: You are now the ‘Architect’. You have a dataset of prairie restoration plots. Your goal is to build a visualization that clearly shows how species richness changes over time across different soil types."
+  },
+  {
+    "objectID": "slides/04-viz-foundations.html#verification",
+    "href": "slides/04-viz-foundations.html#verification",
+    "title": "Week 04: Viz Foundations",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the plot clearly show the trend?\nAre the axis labels readable and informative?\nDid you use a professional theme and a color-blind-safe palette?\n\n\nSpeaker Notes: If the plot needs a long explanation to make sense, the design needs work. The final check is whether a first-time reader can understand it quickly.\n\n\nSpeaker Notes: Before you commit, look at your plot with fresh eyes. Are the axis labels large enough? Does the title actually describe what’s happening? Did you remember to use a theme like ‘theme_minimal’ to remove the default gray background?"
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#slide-accessibility-note",
+    "href": "slides/02-objects-debugging.html#slide-accessibility-note",
+    "title": "Week 02: Objects & Debugging",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A close-up image of a computer screen displaying multiple R error messages in red text, symbolizing the debugging process.\nSpeaker Notes: These slides explain the fundamental nature of R objects and how to diagnose errors."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#debugging-loop",
+    "href": "slides/02-objects-debugging.html#debugging-loop",
+    "title": "Week 02: Objects & Debugging",
+    "section": "Debugging Loop",
+    "text": "Debugging Loop\n\n\nSymptom\n\n\n-&gt;\n\n\nInspect object\n\n\n-&gt;\n\n\nRead the error\n\n\n-&gt;\n\n\nChange one thing\n\n\n-&gt;\n\n\nRun again\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#how-to-use-today",
+    "href": "slides/02-objects-debugging.html#how-to-use-today",
+    "title": "Week 02: Objects & Debugging",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nRead the error message before touching the code.\nUse the Environment pane as a diagnostic tool.\nFix the cause, not just the symptom.\n\n\nSpeaker Notes: This week is about developing a debugging habit. The slides should help students remember the flow: inspect, diagnose, fix, verify."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#r-is-for-objects",
+    "href": "slides/02-objects-debugging.html#r-is-for-objects",
+    "title": "Week 02: Objects & Debugging",
+    "section": "R is for Objects",
+    "text": "R is for Objects\n\nEverything that exists in R is an object.\nEverything that happens is a function.\nObjects have types (numeric, character, logical).\n\n\nSpeaker Notes: In R, everything you create—a single number, a list of names, or a giant dataset—is an ‘object’. We interact with these objects using ‘functions’. Today we learn how to see inside these objects and understand their ‘type’."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#learning-objectives",
+    "href": "slides/02-objects-debugging.html#learning-objectives",
+    "title": "Week 02: Objects & Debugging",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nCreate and name R objects.\nIdentify common data types.\nInspect data frames in the Environment.\nInterpret and fix common R errors.\n\n\nSpeaker Notes: Our goal is to move from being ‘scared’ of error messages to ‘reading’ them. By the end of today, you should be able to identify why a function fails based on the data type you give it."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#live-coding-section-1",
+    "href": "slides/02-objects-debugging.html#live-coding-section-1",
+    "title": "Week 02: Objects & Debugging",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nCreating vectors and data frames.\nBreaking R on purpose.\nInterpreting error messages.\n\n\nSpeaker Notes: We’ll start by building vectors. Then, I’m going to ask you to try and ‘break’ your code. Intentionally causing errors is one of the best ways to learn how R thinks."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#the-challenge-45-mins",
+    "href": "slides/02-objects-debugging.html#the-challenge-45-mins",
+    "title": "Week 02: Objects & Debugging",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Debugging Clinic\n\nFix 3 intentional errors in a provided script.\nIdentify the data types of a new dataset.\nExtension: Fix a column type mismatch.\nBase goal: Get the script running from top to bottom.\nExtension goal: Explain each fix in plain language.\n\n\nSpeaker Notes: In this challenge, you are playing the role of a ‘Code Doctor’. I’ve provided a script that is sick—it won’t run. Your job is to diagnose the 3 main bugs and get it back to healthy, runnable status."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#verification",
+    "href": "slides/02-objects-debugging.html#verification",
+    "title": "Week 02: Objects & Debugging",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the script run without errors from top to bottom?\nAre the objects the lengths you expected?\nDid you push a clear commit message that names what changed?\n\n\nSpeaker Notes: If they can explain the error in one sentence and show the fix in the script, they have met the goal for the day.\n\n\nSpeaker Notes: Verification check: Run your script from top to bottom. If it stops at line 10, it’s not ready. Check your row counts. When you push, use a descriptive commit message like ‘Fix: changed character to numeric’."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NRES 800",
+    "section": "",
+    "text": "Welcome to the lecture slides for NRES 800: Data Management and Visualization.\nCanvas remains the course home for assignments, deadlines, grades, announcements, and submissions. This site provides the HTML lecture slides released for the course."
+  },
+  {
+    "objectID": "index.html#weekly-lecture-slides",
+    "href": "index.html#weekly-lecture-slides",
+    "title": "NRES 800",
+    "section": "Weekly lecture slides",
+    "text": "Weekly lecture slides\n\nWeek 01 — The Whole Game\nWeek 02 — Objects and Debugging\nWeek 03 — Importing Data\nWeek 04 — Visualization Foundations\nWeek 05 — Rows, Columns, and New Variables\nWeek 06 — Grouped Summaries\nWeek 07 — Tidying Data\nWeek 08 — Joining Tables\nWeek 09 — Integrated Challenge I\nWeek 10 — String Cleaning and Categorical Control\nWeek 11 — Dates and Time Series\nWeek 12 — Scaling Up\nWeek 13 — Functions for Repeated Work\nWeek 14 — Polished Reporting\nWeek 15 — Code Review and Revision\nWeek 16 — Capstone Showcase\n\nNew lectures appear here only after they are ready for students."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#slide-accessibility-note",
+    "href": "slides/01-the-whole-game.html#slide-accessibility-note",
+    "title": "Week 01: The Whole Game",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A scenic photograph of three different penguin species (Adelie, Chinstrap, Gentoo) standing on ice in the Palmer Archipelago, Antarctica.\nSpeaker Notes: These slides are designed to be read alongside the live-coding script."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#the-whole-game-map",
+    "href": "slides/01-the-whole-game.html#the-whole-game-map",
+    "title": "Week 01: The Whole Game",
+    "section": "The Whole Game Map",
+    "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRender and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#how-to-use-today",
+    "href": "slides/01-the-whole-game.html#how-to-use-today",
+    "title": "Week 01: The Whole Game",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#why-the-whole-game",
+    "href": "slides/01-the-whole-game.html#why-the-whole-game",
+    "title": "Week 01: The Whole Game",
+    "section": "Why the “Whole Game”?",
+    "text": "Why the “Whole Game”?\n\nWe start by doing, not just installing.\nYou will load data, make a plot, and interpret it TODAY.\nWe will spend the rest of the semester unpacking HOW it works.\n\n\nSpeaker Notes: Welcome to NRES 800. We use a ‘Whole Game’ approach, inspired by David Perkins. Instead of spending weeks learning about file types and syntax, we are going to build a full analysis today. This gives you the ‘big picture’ context for everything else we’ll learn."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#learning-objectives",
+    "href": "slides/01-the-whole-game.html#learning-objectives",
+    "title": "Week 01: The Whole Game",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nNavigate RStudio’s four main panes.\nRender a Quarto document (.qmd).\nCreate a scatterplot using ggplot2.\nPush your work to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
+    "href": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
+    "title": "Week 01: The Whole Game",
+    "section": "Today’s Dataset: Palmer Penguins",
+    "text": "Today’s Dataset: Palmer Penguins\n\nData on three penguin species in Antarctica.\nVariables: bill length, flipper length, body mass, sex.\nA classic dataset for learning visualization.\n\n\nSpeaker Notes: The palmerpenguins dataset is a modern alternative to the classic ‘iris’ dataset. It’s real ecological data collected by Dr. Kristen Gorman at the Palmer Station."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#live-coding-section-1",
+    "href": "slides/01-the-whole-game.html#live-coding-section-1",
+    "title": "Week 01: The Whole Game",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nOpen your project in RStudio.\nOpen scripts/week_01_follow_along.R.\nType along as we build the plot.\n\n\nSpeaker Notes: Now, please switch over to RStudio. We are going to build our first plot. Remember: don’t just watch me—type the code yourself. The muscle memory of typing is how you learn the syntax."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#the-challenge-45-mins",
+    "href": "slides/01-the-whole-game.html#the-challenge-45-mins",
+    "title": "Week 01: The Whole Game",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The 30-Minute Analyst\n\nLoad the palmerpenguins data.\nCreate a scatterplot of body mass vs flipper length.\nColor the points by species.\nExtension: Add professional labels and a theme.\nBase goal: Make the plot work and make the mapping correct.\nExtension goal: Make the plot readable without explanation.\n\n\nSpeaker Notes: You have 45 minutes to work on this challenge. If you finish the base goal early, try the extension. The extension asks you to add labels like title, x-axis, and y-axis."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#verification",
+    "href": "slides/01-the-whole-game.html#verification",
+    "title": "Week 01: The Whole Game",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the Quarto document render to HTML?\nCan you explain why species belongs inside aes()?\nDid you commit and push the rendered result?\n\n\nSpeaker Notes: Before you leave, verify three things: render, explanation, and GitHub push. If one of those is missing, the assignment is not done yet.\n\n\nSpeaker Notes: Before you leave, you must verify your work. Render the document. If it doesn’t render, we need to fix it before you go. Finally, push to GitHub. If it’s not on GitHub, it doesn’t exist for grading!"
+  },
+  {
+    "objectID": "slides/03-importing-data.html#slide-accessibility-note",
+    "href": "slides/03-importing-data.html#slide-accessibility-note",
+    "title": "Week 03: Importing Data",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A photograph of organized filing cabinets and stacks of papers, representing the transition from physical data storage to organized digital project folders.\nSpeaker Notes: These slides cover the critical concepts of project-relative paths and data import strategies."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#reproducible-path-map",
+    "href": "slides/03-importing-data.html#reproducible-path-map",
+    "title": "Week 03: Importing Data",
+    "section": "Reproducible Path Map",
+    "text": "Reproducible Path Map\n\n\nProject folder\n\n\n-&gt;\n\n\nRelative path\n\n\n-&gt;\n\n\nImport data\n\n\n-&gt;\n\n\nRender result\n\n\n-&gt;\n\n\nShare repository\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#how-to-use-today",
+    "href": "slides/03-importing-data.html#how-to-use-today",
+    "title": "Week 03: Importing Data",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nFind the project root first.\nUse here() before you type a path by hand.\nVerify that the raw data is still unchanged after import.\n\n\nSpeaker Notes: The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#the-path-to-reproducibility",
+    "href": "slides/03-importing-data.html#the-path-to-reproducibility",
+    "title": "Week 03: Importing Data",
+    "section": "The Path to Reproducibility",
+    "text": "The Path to Reproducibility\n\nAvoid absolute paths like C:/Users/Chris/Downloads.\nUse the here package to find files relative to your project.\nKeep your raw data “read-only”.\n\n\nSpeaker Notes: One of the most common reasons code fails when shared is that it uses ‘absolute paths’. If your script starts with ‘C:/Users/YourName’, it will NEVER work on my machine. We’re going to use a package called ‘here’ that builds paths relative to your project file, making your code portable and reproducible."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#learning-objectives",
+    "href": "slides/03-importing-data.html#learning-objectives",
+    "title": "Week 03: Importing Data",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nExplain the value of relative paths.\nUse here::here() to find files.\nImport CSVs with read_csv().\nSkip metadata rows during import.\n\n\nSpeaker Notes: By the end of today, you’ll be able to move your project folder to any computer, or even share it on GitHub, and have the data load perfectly every time. We’ll also learn how to handle those annoying extra rows at the top of many CSV files."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#live-coding-section-1",
+    "href": "slides/03-importing-data.html#live-coding-section-1",
+    "title": "Week 03: Importing Data",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nSetting up the data/ folder.\nImporting weather data.\nHandling messy headers.\nChecking the imported types and row count.\n\n\nSpeaker Notes: First, we’re going to create a standard ‘data’ folder. Then we’ll practice importing a weather dataset. We’ll look at the console output to see how R ‘guesses’ what kind of data is in each column."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#the-challenge-45-mins",
+    "href": "slides/03-importing-data.html#the-challenge-45-mins",
+    "title": "Week 03: Importing Data",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Import Audit\n\nImport stream_gauge_messy.csv with 5 rows of metadata.\nRename the discharge column so it is easier to read.\nIdentify missing values or suspicious values in the imported data.\nConfirm that the row count changes the way you expect after skipping metadata.\n\n\nSpeaker Notes: Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You’ll need to use the ‘skip’ argument to get to the real data. Then, you’ll audit the data for missing values."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#verification",
+    "href": "slides/03-importing-data.html#verification",
+    "title": "Week 03: Importing Data",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the script run on your neighbor’s machine?\nAre you using here() and not setwd()?\nIs your raw data still in the right folder and unchanged?\nCan you explain why skipping the correct number of rows matters?\n\n\nSpeaker Notes: The import is not finished until you know where the file lives, how many rows came in, and whether the headers are correct.\n\n\nSpeaker Notes: The ultimate test of reproducibility: can your neighbor run your script? If you used ‘here()’, the answer should be yes. Check your ‘data’ folder—did you include the raw CSV?"
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#slide-accessibility-note",
+    "href": "slides/05-rows-columns-new-variables.html#slide-accessibility-note",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A map of Nebraska counties overlaid with colored circles representing deer harvest counts by region and year, illustrating spatial and temporal variation in wildlife data.\nSpeaker Notes: These slides introduce the four core dplyr verbs — filter, select, arrange, and mutate — using Nebraska deer harvest records as the working dataset."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#wrangling-decision-map",
+    "href": "slides/05-rows-columns-new-variables.html#wrangling-decision-map",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "Wrangling Decision Map",
+    "text": "Wrangling Decision Map\n\n\nChoose rows\n\n\n-&gt;\n\n\nChoose columns\n\n\n-&gt;\n\n\nCreate variables\n\n\n-&gt;\n\n\nCheck result\n\n\n-&gt;\n\n\nUse downstream\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#how-to-use-today",
+    "href": "slides/05-rows-columns-new-variables.html#how-to-use-today",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nTreat each verb as a tool with one job.\nAsk which rows or columns should change before typing.\nCheck the row count after every major filter.\n\n\nSpeaker Notes: This week is about changing the shape of the data without losing track of what each step does. Keep the verbs separate in your mind: filter for rows, select for columns, arrange for order, mutate for new variables.\n\n\nSpeaker Notes: Welcome to Week 05. This week we shift from visualization to transformation. Before you can build a meaningful plot, you usually have to reshape your data. The four verbs we learn today — filter, select, arrange, and mutate — will handle the vast majority of data wrangling tasks you encounter in graduate research."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#learning-objectives",
+    "href": "slides/05-rows-columns-new-variables.html#learning-objectives",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUse filter() to subset rows by one or more conditions.\nUse select() to keep or rename columns.\nUse arrange() to sort rows by one or more variables.\nUse mutate() to create new columns from existing ones, including case_when().\n\n\nSpeaker Notes: These four verbs follow a consistent pattern: the first argument is always the data frame, and the output is always a new data frame. This makes them pipe-friendly. Each verb does exactly one thing — that predictability is what makes dplyr so powerful for teaching."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#the-dataset-nebraska-deer-harvest",
+    "href": "slides/05-rows-columns-new-variables.html#the-dataset-nebraska-deer-harvest",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "The Dataset: Nebraska Deer Harvest",
+    "text": "The Dataset: Nebraska Deer Harvest\n\nSource: Simulated from Nebraska Game and Parks Commission harvest structure.\nUnit of observation: One row = one county × year × season × sex × age class combination.\nKey variables: county, year, season, sex, age_class, harvest_count, hunter_days.\nTeaching features: Includes NA values in harvest_count and hunter_days — real decisions required.\n\n\nSpeaker Notes: This dataset mirrors the structure of real state wildlife harvest reports. Each row is not an individual deer — it is an aggregate record for a county-season-sex-age combination. That distinction matters when students start summarizing. Point out the NA values early: they are deliberate and will force students to think about missing data decisions before they can calculate rates."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#the-four-dplyr-verbs",
+    "href": "slides/05-rows-columns-new-variables.html#the-four-dplyr-verbs",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "The Four dplyr Verbs",
+    "text": "The Four dplyr Verbs\n\n\n\nVerb\nOperation\nThink of it as…\n\n\n\n\nfilter()\nRows\nKeep only certain rows\n\n\nselect()\nColumns\nKeep only certain columns\n\n\narrange()\nOrder\nSort the table\n\n\nmutate()\nNew columns\nAdd a calculated variable\n\n\n\n\nSpeaker Notes: Show this table and ask students: ‘If I want only bucks from Lancaster County, which verb do I use?’ If I want only the county and harvest columns, which verb? If I want to rank by harvest count, which verb? If I want to calculate harvest per hunter day, which verb? These four questions map cleanly to the four verbs."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#live-coding-section-1",
+    "href": "slides/05-rows-columns-new-variables.html#live-coding-section-1",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nLoad ne_deer_harvest.csv with here().\nfilter(): single condition, multiple conditions, !is.na().\nselect() and rename columns.\narrange() with desc().\nmutate() for arithmetic and case_when().\n\n\nSpeaker Notes: During live coding, make the == mistake on purpose when writing filter(season = “rifle”) and let R throw the error. This is the most common mistake and seeing it in context is more memorable than being warned about it. After fixing it, say: ‘In R, = means assignment; == means comparison.’"
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#the-challenge-45-mins",
+    "href": "slides/05-rows-columns-new-variables.html#the-challenge-45-mins",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Harvest Analyst\n\nQuestion: Which NE county had the largest increase in doe harvest from 2020 to 2022?\nRequired verbs: filter(), select(), mutate(), arrange()\nHint: You will also need pivot_wider() to put each year in its own column before you can subtract.\nBase goal: A county comparison table with the numeric change.\nExtension goal: Add a percent change column and explain whether the biggest absolute change is also the biggest relative change.\n\n\nSpeaker Notes: Remind students of the constraints: they must use the native pipe |&gt; at least once, and they must use mutate() to compute the difference — not do it by hand. The pivot_wider step is a preview of next week. Give a 2-minute explanation of pivot_wider before releasing them. The goal is not to memorize the syntax but to understand why reshaping is necessary to do column arithmetic."
+  },
+  {
+    "objectID": "slides/05-rows-columns-new-variables.html#verification",
+    "href": "slides/05-rows-columns-new-variables.html#verification",
+    "title": "Week 05: Rows, Columns, and New Variables",
+    "section": "Verification",
+    "text": "Verification\n\nDoes filter() return the number of rows you expected? Check with nrow().\nDid you account for missing values before calculating the comparison?\nDoes your final challenge table include the numeric change and the year labels?\nCan you explain the difference between filter() (rows) and select() (columns) in one sentence?\n\n\nSpeaker Notes: The quickest way to catch a broken pipeline this week is to check the row count after filtering and before computing the final change. Students should be able to say, in one sentence, what each verb did to the data.\n\n\nSpeaker Notes: Before students commit and push, have them answer the last bullet point out loud to a neighbor. If they cannot produce a one-sentence answer distinguishing filter from select, they need to revisit the code. The nrow() check is a quick diagnostic habit that catches silent filter errors — rows that disappear because a condition was mis-specified."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#slide-accessibility-note",
+    "href": "slides/07-tidying-data.html#slide-accessibility-note",
+    "title": "Week 07: Tidying Data",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A split-screen diagram showing the same water quality data arranged in wide format on the left (many columns, few rows) and long format on the right (few columns, many rows), with an arrow labeled pivot_longer() pointing from left to right.\nSpeaker Notes: These slides introduce the concept of tidy data and the two primary reshaping functions in tidyr: pivot_longer() and pivot_wider()."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#wide-to-long-map",
+    "href": "slides/07-tidying-data.html#wide-to-long-map",
+    "title": "Week 07: Tidying Data",
+    "section": "Wide-to-Long Map",
+    "text": "Wide-to-Long Map\n\n\nWide columns\n\n\n-&gt;\n\n\nName variable\n\n\n-&gt;\n\n\nValue variable\n\n\n-&gt;\n\n\nLong table\n\n\n-&gt;\n\n\nPlot or summarize\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#how-to-use-today",
+    "href": "slides/07-tidying-data.html#how-to-use-today",
+    "title": "Week 07: Tidying Data",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nAsk whether a variable is hiding in column names.\nCount rows before and after every reshape.\nMatch the data shape to the task: plot, summarize, or present."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#learning-objectives",
+    "href": "slides/07-tidying-data.html#learning-objectives",
+    "title": "Week 07: Tidying Data",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nExplain why wide-format data is difficult to plot in ggplot2.\nUse pivot_longer() to reshape wide data into long (tidy) format.\nUse pivot_wider() to reshape long data into a wide summary table.\nConnect reshaping to downstream plotting and summarization.\n\n\nSpeaker Notes: By the end of today, students will have a concrete mental model: ggplot needs a column of values to map to an aesthetic. Wide format hides values inside column names. pivot_longer() fixes that. Emphasize that this is not an abstract tidyverse concept — it is a practical requirement for making any plot that uses month or parameter as a visual channel."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#the-problem-wide-data",
+    "href": "slides/07-tidying-data.html#the-problem-wide-data",
+    "title": "Week 07: Tidying Data",
+    "section": "The Problem: Wide Data",
+    "text": "The Problem: Wide Data\nWhat is wrong with this?\n\n\n\nsite_id\nnitrate_may\nnitrate_jul\nnitrate_sep\n\n\n\n\nWQ01\n8.4\n12.1\n9.7\n\n\nWQ02\n7.9\n11.3\n8.8\n\n\n\n\nMonths live in column names, not in a column.\nYou cannot write aes(x = month) — there is no month column.\nAdding a new sampling date means adding new columns, not new rows.\n\n\nSpeaker Notes: Ask students: “If I hand you this table and say ‘make a boxplot of nitrate by month,’ what do you type for x?” Pause. Wait. Let them feel stuck. That discomfort is the exact motivation for pivot_longer(). The problem is not the data values — it is the data shape. ggplot2 maps columns to aesthetics. If months are column names, they cannot be aesthetics."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#the-solution-long-tidy-data",
+    "href": "slides/07-tidying-data.html#the-solution-long-tidy-data",
+    "title": "Week 07: Tidying Data",
+    "section": "The Solution: Long (Tidy) Data",
+    "text": "The Solution: Long (Tidy) Data\nAfter pivot_longer():\n\n\n\nsite_id\nparameter\nmonth\nvalue\n\n\n\n\nWQ01\nnitrate\nmay\n8.4\n\n\nWQ01\nnitrate\njul\n12.1\n\n\nWQ01\nnitrate\nsep\n9.7\n\n\n\n\nNow month is a column — it can be an axis or a fill color.\nEach row is one observation.\nAdding new dates = new rows, not new columns.\n\n\nSpeaker Notes: This is the tidy data principle from Hadley Wickham’s paper: each variable is a column, each observation is a row, each value is a cell. Wide format violates the “each variable is a column” rule because it stores month as a variable across multiple columns. Walk through the table row by row: WQ01 now has three rows — one for each month. The total rows after pivoting will be 25 sites * 9 measurement columns = 225 rows."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#pivot_longer-syntax",
+    "href": "slides/07-tidying-data.html#pivot_longer-syntax",
+    "title": "Week 07: Tidying Data",
+    "section": "pivot_longer() Syntax",
+    "text": "pivot_longer() Syntax\nwq_long &lt;- wq_wide |&gt;\n  pivot_longer(\n    cols      = nitrate_may:turbidity_sep,  # which columns to stack\n    names_to  = \"measurement\",              # new column for old names\n    values_to = \"value\"                     # new column for values\n  )\n\ncols: the columns being collapsed (use a range or starts_with())\nnames_to: what to call the column that stores the old column names\nvalues_to: what to call the column that stores the values\n\n\nSpeaker Notes: The argument names trip students up. A memory trick: names_to is where the NAMES go (the old column headers become values in this new column). values_to is where the VALUES go (the actual numbers). Walk through the mapping slowly: “nitrate_may” is a column header in the wide data. After pivoting, it becomes a VALUE in the “measurement” column. The number 8.4 stays a value — it moves into the “value” column."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#row-count-checkpoint",
+    "href": "slides/07-tidying-data.html#row-count-checkpoint",
+    "title": "Week 07: Tidying Data",
+    "section": "Row Count Checkpoint",
+    "text": "Row Count Checkpoint\nnrow(wq_wide)   # 25 rows\nnrow(wq_long)   # 225 rows\nWhy 225?\n\n25 sites × 9 measurement columns = 225 rows\n\n\nSpeaker Notes: This is the single most important checkpoint of the day. Many students panic when they see 225 rows and think something went wrong. Walk through the math explicitly: we had 25 sites. Each site had 9 measurement columns (nitrate in 3 months + phosphorus in 3 months + turbidity in 3 months = 9). After pivoting, each site contributes 9 rows — one per measurement. 25 × 9 = 225. No data was lost or duplicated. It was just reshaped. Ask: “Is this more or less data than we started with? (Same amount — different shape.)”"
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#separating-a-combined-column",
+    "href": "slides/07-tidying-data.html#separating-a-combined-column",
+    "title": "Week 07: Tidying Data",
+    "section": "Separating a Combined Column",
+    "text": "Separating a Combined Column\nAfter pivot_longer(), the measurement column holds values like \"nitrate_may\".\nwq_long &lt;- wq_long |&gt;\n  separate(measurement, into = c(\"parameter\", \"month\"), sep = \"_\")\nResult:\n\n\n\nmeasurement\n→\nparameter\nmonth\n\n\n\n\nnitrate_may\n→\nnitrate\nmay\n\n\nphosphorus_jul\n→\nphosphorus\njul\n\n\nturbidity_sep\n→\nturbidity\nsep\n\n\n\n\nSpeaker Notes: The column naming convention in the dataset (parameter_month) was intentional — it makes this separate() step clean. In real-world data, column names are often inconsistent or ambiguous. This is a good moment to discuss naming conventions in data collection: if you collect data yourself, build the separator into your column names from the start so that pivot + separate works automatically. Ask: “Why did I use underscore as the separator and not a space or a period?”"
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#pivot_wider-syntax",
+    "href": "slides/07-tidying-data.html#pivot_wider-syntax",
+    "title": "Week 07: Tidying Data",
+    "section": "pivot_wider() Syntax",
+    "text": "pivot_wider() Syntax\nwq_summary |&gt;\n  pivot_wider(\n    names_from  = month,        # column whose values become new column names\n    values_from = mean_value    # column whose values fill the table\n  )\nUseful for: summary tables, not raw analysis.\n\nSpeaker Notes: pivot_wider() is the inverse of pivot_longer(). It is most useful when you want to make a readable summary table — for example, showing mean nitrate in each month as side-by-side columns for easy visual comparison. Emphasize that pivot_wider() on raw data often creates problems (like multiple values mapping to one cell), so it is safest to use it after summarizing. The mnemonic: longer = more rows, wider = more columns."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#live-coding-section-1",
+    "href": "slides/07-tidying-data.html#live-coding-section-1",
+    "title": "Week 07: Tidying Data",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nLoad water_quality_wide.csv and inspect structure.\nTry (and fail) to plot all three months from wide data.\nUse pivot_longer() and separate() to create tidy long format.\nBuild a boxplot: nitrate by month, filled by land use.\n\n\nSpeaker Notes: The “fail first” moment at the start of live coding is intentional pedagogy. Students should try to construct the ggplot from wide data and hit the wall. This creates motivation before the solution is revealed. Do not skip this step — it is the most important teaching moment of the day. After building the working plot from long data, ask: “Which code was harder to write — the failed attempt or this one? Which plot is more informative?”"
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#live-coding-section-2",
+    "href": "slides/07-tidying-data.html#live-coding-section-2",
+    "title": "Week 07: Tidying Data",
+    "section": "Live Coding: Section 2",
+    "text": "Live Coding: Section 2\n\nUse group_by() + summarize() on long data to get mean values.\nUse pivot_wider() to turn the summary into a readable table.\nDiscuss: when is wide format useful?\n\n\nSpeaker Notes: This section connects today’s content back to Week 06 (dplyr). Long format is what dplyr wants for grouped summaries. After summarizing, pivot_wider() can make the result presentable. Reinforce that there is no single “correct” shape for data — the right shape depends on what you are doing with it. Summarizing: long. Plotting: long. Reading a table: sometimes wide. Storing raw data: depends on collection design."
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#the-challenge-45-mins",
+    "href": "slides/07-tidying-data.html#the-challenge-45-mins",
+    "title": "Week 07: Tidying Data",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Watershed Nitrate Audit\n\nDataset: water_quality_wide.csv\nBase goal: Do agricultural watersheds have higher nitrate than forested ones across all three sampling months?\nExtension goal: Show the seasonal pattern by month and explain whether the gap changes over time.\nMust: pivot to long, group and summarize, then plot.\n\n\nSpeaker Notes: The research question is one that ecologists and regulators actually ask about agricultural watersheds in Nebraska. Nitrate runoff from row crops is a documented water quality concern for the Platte, Elkhorn, and Loup river systems. Students should feel like they are doing real science. The technical requirement — pivot first, then summarize, then plot — mirrors the actual workflow they will use in their own research. Circulate while students work. The most common sticking point is month ordering: students will often get months alphabetically (jul, may, sep) instead of chronologically (may, jul, sep). Ask them: “Does the order on your x-axis tell a true seasonal story?”"
+  },
+  {
+    "objectID": "slides/07-tidying-data.html#verification",
+    "href": "slides/07-tidying-data.html#verification",
+    "title": "Week 07: Tidying Data",
+    "section": "Verification",
+    "text": "Verification\n\nDoes your long-format data have 225 rows?\nDid you use na.rm = TRUE when summarizing?\nAre months displayed in seasonal order (May → Jul → Sep)?\nCan you state in one sentence why pivot_longer() was necessary?\nCan you state in one sentence when pivot_wider() would be useful?\n\n\nSpeaker Notes: Walk through each verification item with the class before they commit. The 225-row check is the most important — it confirms the pivot ran correctly. The na.rm check catches a common mistake that produces NA means silently. The month ordering check is a data communication issue: a plot that shows months alphabetically misrepresents the seasonal trend. The one-sentence explanation forces students to verbalize the core concept, which is the best test of whether they actually understood it."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#slide-accessibility-note",
+    "href": "slides/09-integrated-challenge-i.html#slide-accessibility-note",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A diagram showing the data science pipeline as a river flowing from raw field data through cleaning and wrangling to a final visualization, representing the integration of skills learned in Weeks 03-08.\nSpeaker Notes: These slides frame Week 09 as a capstone synthesis session. No new R syntax is introduced. Students apply everything they have learned in a single integrated workflow on a realistic, messy dataset."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#integrated-analysis-map",
+    "href": "slides/09-integrated-challenge-i.html#integrated-analysis-map",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Integrated Analysis Map",
+    "text": "Integrated Analysis Map\n\n\nImport raw data\n\n\n-&gt;\n\n\nClean variables\n\n\n-&gt;\n\n\nSummarize pattern\n\n\n-&gt;\n\n\nBuild plot\n\n\n-&gt;\n\n\nExplain evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#what-we-are-doing-today",
+    "href": "slides/09-integrated-challenge-i.html#what-we-are-doing-today",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "What We Are Doing Today",
+    "text": "What We Are Doing Today\n\nNo new syntax. Everything you need, you already know.\nOne realistic messy dataset. One scientific question.\nOne complete pipeline: import → clean → wrangle → summarize → visualize → interpret."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#how-to-use-today",
+    "href": "slides/09-integrated-challenge-i.html#how-to-use-today",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nTreat the workflow as one connected pipeline, not separate tricks.\nVerify row counts and key values at every step.\nIf a result looks odd, stop and inspect the data before changing code.\n\n\nSpeaker Notes: This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#learning-objectives",
+    "href": "slides/09-integrated-challenge-i.html#learning-objectives",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nDiagnose and describe problems in a raw dataset before writing any cleaning code.\nStandardize inconsistent identifiers and categorical values using stringr.\nFilter invalid or missing records and track row-count changes at each step.\nSummarize EPT richness by site using group_by() and summarize().\nJoin a site-level lookup table to an analytical summary.\nProduce a labeled, publication-ready visualization and interpret the result.\n\n\nSpeaker Notes: Read these objectives out loud with students and ask them to identify which week each skill came from. Objective 2 is Week 05 (strings). Objectives 3 and 4 are Week 06 (dplyr). Objective 5 is Week 07 (joins). Objectives 1 and 6 span everything. This exercise makes students aware of their own accumulated competency."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#the-data-pipeline-a-recap",
+    "href": "slides/09-integrated-challenge-i.html#the-data-pipeline-a-recap",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "The Data Pipeline — A Recap",
+    "text": "The Data Pipeline — A Recap\nRaw Data → Import → Inspect → Clean → Wrangle → Summarize → Visualize → Interpret\n\nEach step has a verification check.\nNever move to the next step until you can describe what the current step produced.\nRow counts are your first diagnostic tool.\n\n\nSpeaker Notes: Draw this pipeline on the whiteboard before opening R. Ask students to tell you what R functions belong in each stage. Import: read_csv(). Inspect: nrow(), str(), head(). Clean: mutate(), str_to_lower(), filter(). Wrangle: group_by(), summarize(). Visualize: ggplot(). The pipeline is not unique to this dataset — it is the template they will use for the rest of their careers."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#todays-scientific-question",
+    "href": "slides/09-integrated-challenge-i.html#todays-scientific-question",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Today’s Scientific Question",
+    "text": "Today’s Scientific Question\n\nWhich Nebraska stream sites show the highest EPT richness, and does richness increase with stream order?\n\n\nEPT = Ephemeroptera + Plecoptera + Trichoptera\nEPT richness is a standard bio-assessment metric: more EPT orders = cleaner water\nDataset: macroinvertebrate field surveys from 10 Nebraska sites, 2022\n\n\nSpeaker Notes: Briefly explain EPT to students who may not have a stream ecology background. Ephemeroptera (mayflies), Plecoptera (stoneflies), and Trichoptera (caddisflies) are pollution-sensitive invertebrate orders. Sites with high EPT richness are generally in better ecological condition. Stream order is a measure of stream size: first-order streams are headwater tributaries; higher-order streams are larger, potentially more disturbed by agriculture and channelization."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#the-raw-data-what-could-go-wrong",
+    "href": "slides/09-integrated-challenge-i.html#the-raw-data-what-could-go-wrong",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "The Raw Data: What Could Go Wrong?",
+    "text": "The Raw Data: What Could Go Wrong?\n\nSiteID has three formats: \"NE01\", \"ne01\", \"NE-01\"\norder_name has three cases: \"Ephemeroptera\", \"ephemeroptera\", \"EPHEMEROPTERA\"\nSome count values are NA (not recorded)\nSome count values are 0 (recorded absence)\nSome dates are YYYY-MM-DD, others are M/D/YYYY\n\n\nSpeaker Notes: Ask students: “Before I write a single line of cleaning code, what would happen if I tried to group_by(SiteID) on the raw data?” They would get 30 groups instead of 10, because ‘NE01’, ‘ne01’, and ‘NE-01’ would each be treated as a distinct site. This is the diagnosis-before-cleaning mindset. Spend 5 minutes on this slide. The skill of noticing problems in data before touching it is underrated and worth emphasizing."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#step-1-import-inspect",
+    "href": "slides/09-integrated-challenge-i.html#step-1-import-inspect",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Step 1: Import & Inspect",
+    "text": "Step 1: Import & Inspect\nlibrary(tidyverse)\nlibrary(here)\nlibrary(lubridate)\n\nraw &lt;- read_csv(here(\"data\", \"macroinvertebrate_raw.csv\"))\n\nnrow(raw)\nnames(raw)\nhead(raw, 10)\nstr(raw)\nCheckpoint: How many rows? How many unique SiteID values in the raw data?\n\nSpeaker Notes: Have students run this code and call out what they see. Expected: 104 rows. If they run count(SiteID) on the raw data they should see 30 groups instead of 10. This is the “aha” moment that motivates the cleaning step. Remind them that str() is their first friend — it tells you the data type of every column, which determines what cleaning functions to use."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#step-2-standardize-identifiers",
+    "href": "slides/09-integrated-challenge-i.html#step-2-standardize-identifiers",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Step 2: Standardize Identifiers",
+    "text": "Step 2: Standardize Identifiers\ncleaned &lt;- raw |&gt;\n  mutate(\n    SiteID     = str_to_upper(SiteID),\n    SiteID     = str_remove_all(SiteID, \"-\"),\n    SiteID     = str_trim(SiteID),\n    order_name = str_to_lower(str_trim(order_name))\n  )\n\ncleaned |&gt; count(SiteID)\ncleaned |&gt; count(order_name)\nCheckpoint: How many unique SiteID values now? How many unique order_name values?\n\nSpeaker Notes: Walk through each mutate line deliberately. str_to_upper() handles case. str_remove_all() with pattern “-” removes the dash. str_trim() removes any stray whitespace. Repeat the same logic for order_name with str_to_lower(). After this step, count(SiteID) should show exactly 10 groups and count(order_name) should show exactly 6 groups. Ask students: ‘What would str_squish() do differently from str_trim()?’ This is a good moment to reinforce that cleaning functions are composable."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#step-3-filter-invalid-records",
+    "href": "slides/09-integrated-challenge-i.html#step-3-filter-invalid-records",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Step 3: Filter Invalid Records",
+    "text": "Step 3: Filter Invalid Records\nfiltered &lt;- cleaned |&gt;\n  filter(!is.na(count), count &gt; 0)\n\nnrow(filtered)\nnrow(cleaned) - nrow(filtered)  # rows removed\nCheckpoint: How many rows were removed? What do the removed rows represent?\n\nSpeaker Notes: Ask students to decide BEFORE running the code: should we keep zero counts or drop them? There is no universally correct answer. For EPT richness, a count of 0 means the order was not detected — we drop it because we want presence only. For abundance models, zeros are meaningful and must be retained. The point is that this is a scientific decision, not a coding decision. The code just implements the decision."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#step-4-summarize-ept-richness",
+    "href": "slides/09-integrated-challenge-i.html#step-4-summarize-ept-richness",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Step 4: Summarize EPT Richness",
+    "text": "Step 4: Summarize EPT Richness\nept_summary &lt;- filtered |&gt;\n  filter(order_name %in% c(\"ephemeroptera\", \"plecoptera\", \"trichoptera\")) |&gt;\n  group_by(SiteID) |&gt;\n  summarize(\n    ept_richness  = n_distinct(order_name),\n    ept_abundance = sum(count),\n    stream_order  = first(stream_order),\n    .groups = \"drop\"\n  )\nCheckpoint: Which site has the highest EPT richness?\n\nSpeaker Notes: The key conceptual question here is: why n_distinct(order_name) and not n()? n() counts rows. n_distinct(order_name) counts how many of the three EPT orders are actually represented. A site with 100 mayflies but no stoneflies or caddisflies has EPT richness of 1, not 100. This distinction between richness (diversity) and abundance (quantity) is fundamental in ecology and worth spending 3-4 minutes on."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#step-5-join-to-site-lookup",
+    "href": "slides/09-integrated-challenge-i.html#step-5-join-to-site-lookup",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Step 5: Join to Site Lookup",
+    "text": "Step 5: Join to Site Lookup\nsite_lookup &lt;- tibble(\n  SiteID    = c(\"NE01\", \"NE02\", \"NE03\", \"NE04\", \"NE05\",\n                \"NE06\", \"NE07\", \"NE08\", \"NE09\", \"NE10\"),\n  watershed = c(\"Platte\", \"Platte\", \"Loup\", \"Loup\", \"Elkhorn\",\n                \"Elkhorn\", \"Platte\", \"Loup\", \"Elkhorn\", \"Platte\")\n)\n\nept_joined &lt;- ept_summary |&gt;\n  left_join(site_lookup, by = \"SiteID\")\n\nept_joined |&gt; filter(is.na(watershed))\nCheckpoint: Did every site get a watershed? Why use left_join and not inner_join?\n\nSpeaker Notes: The inline tibble is intentional — no extra file to track, no path issues. Ask students why left_join was chosen. A left_join keeps all rows from the left table (ept_summary) and adds matching columns from the right (site_lookup). If any SiteID in ept_summary was missing from site_lookup, that row would have NA in the watershed column — and the filter() check at the end would expose it. inner_join would silently drop unmatched sites, which is usually more dangerous."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#step-6-visualize",
+    "href": "slides/09-integrated-challenge-i.html#step-6-visualize",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Step 6: Visualize",
+    "text": "Step 6: Visualize\nggplot(ept_joined, aes(x = factor(stream_order), y = ept_richness)) +\n  geom_point(aes(color = watershed), size = 4, alpha = 0.85) +\n  scale_color_brewer(palette = \"Set2\") +\n  labs(\n    title    = \"EPT Richness by Stream Order\",\n    subtitle = \"Nebraska macroinvertebrate sites, 2022\",\n    x        = \"Stream Order\",\n    y        = \"EPT Richness (# of EPT orders present)\",\n    color    = \"Watershed\"\n  ) +\n  theme_minimal(base_size = 14)\n\nSpeaker Notes: Before they run the code, ask: “Should stream_order be numeric or a factor on the x-axis?” As numeric, ggplot would draw a continuous axis and might try to fit a smooth line — misleading because stream order is an ordinal categorical variable, not truly continuous. factor() forces a discrete axis. Also point out scale_color_brewer() — this is from Week 04. Color-blind safe palettes should be the default, not the exception."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#interpretation",
+    "href": "slides/09-integrated-challenge-i.html#interpretation",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Interpretation",
+    "text": "Interpretation\n\nDoes EPT richness increase with stream order?\nWhich watershed has the most consistently high EPT richness?\nWhat caveats would you include in a figure caption?\n\n\nSpeaker Notes: Push students to interpret, not just describe. ‘The plot shows points’ is description. ‘Sites with higher stream order tend to have higher EPT richness, suggesting larger streams in this dataset support more pollution-sensitive taxa — though sample size per stream order is small’ is interpretation with appropriate epistemic humility. Remind them that any claim should be proportional to the sample size and design of the data."
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#the-weekly-challenge-45-mins",
+    "href": "slides/09-integrated-challenge-i.html#the-weekly-challenge-45-mins",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "The Weekly Challenge [45 mins]",
+    "text": "The Weekly Challenge [45 mins]\nYour Task\nUsing macroinvertebrate_raw.csv:\n\nImport and diagnose the data (5 min)\nStandardize SiteID and order_name (10 min)\nFilter zeros and NAs (5 min)\nSummarize EPT richness by site (10 min)\nJoin to the site lookup (5 min)\nPlot and interpret (10 min)\n\nBase goal: Produce a correct site-level EPT summary and plot.\nExtension goal: Compare richness and abundance as separate stories.\nVerification: Check row counts at every step. Do not skip.\n\nSpeaker Notes: Give students the time budget out loud and post it on the screen. Walk the room during Steps 2 and 4 — those are where most students will need support. Students who finish early should try the extension: replace ept_richness with ept_abundance as the y-axis and compare the two plots. Do they tell the same story?"
+  },
+  {
+    "objectID": "slides/09-integrated-challenge-i.html#verification-before-you-commit",
+    "href": "slides/09-integrated-challenge-i.html#verification-before-you-commit",
+    "title": "Week 09: Integrated Challenge I",
+    "section": "Verification Before You Commit",
+    "text": "Verification Before You Commit\n\nRaw data: 104 rows, 7 columns\nAfter standardization: still 104 rows, 10 unique SiteIDs, 6 unique order_names\nAfter filtering: fewer rows (check: how many removed?)\nEPT summary: 10 rows, one per site\nJoin: 0 NAs in watershed column\nPlot renders with labeled axes and a professional theme\nYou can explain why each step belongs in the order shown\n\n\nSpeaker Notes: Read through this checklist with students before they close their laptops. This verification pattern — state your expectations first, then check — is what separates professional-grade analysis from student-grade analysis. If any check fails, that is not a problem; it is information. The goal is to never let a mistake pass silently."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#slide-accessibility-note",
+    "href": "slides/11-dates-time-series.html#slide-accessibility-note",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A time-series line chart showing stream discharge measurements across multiple river monitoring sites over the course of a calendar year, with peaks visible in spring months.\nSpeaker Notes: These slides introduce lubridate for parsing mixed-format date strings and ggplot2 for visualizing time-series data from environmental sensors."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#date-workflow-map",
+    "href": "slides/11-dates-time-series.html#date-workflow-map",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Date Workflow Map",
+    "text": "Date Workflow Map\n\n\nRaw date text\n\n\n-&gt;\n\n\nParse date\n\n\n-&gt;\n\n\nCheck failures\n\n\n-&gt;\n\n\nAggregate by time\n\n\n-&gt;\n\n\nPlot trend\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#why-dates-are-harder-than-they-look",
+    "href": "slides/11-dates-time-series.html#why-dates-are-harder-than-they-look",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Why Dates Are Harder Than They Look",
+    "text": "Why Dates Are Harder Than They Look\n\nDate strings look simple — they are not.\nR reads date_recorded as character when formats are mixed.\nSilent failures: as.Date(\"May 15, 2023\") returns NA with no error.\nToday: tools that handle the mess."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#how-to-use-today",
+    "href": "slides/11-dates-time-series.html#how-to-use-today",
+    "title": "Week 11: Dates and Time Series",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nParse first, then summarize or plot.\nCheck for NA immediately after parsing.\nUse ordered date components when the chart needs calendar meaning.\n\n\nSpeaker Notes: Open with this question: “Has anyone ever loaded a date column and gotten NAs they didn’t expect?” Almost every student will raise their hand. That’s the point — the default tools fail silently on mixed formats. lubridate’s parse_date_time() is the fix, and today we’ll understand why."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#learning-objectives",
+    "href": "slides/11-dates-time-series.html#learning-objectives",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nRecognize and name common date string formats (ISO 8601, US slash, spelled month).\nUse parse_date_time() to handle mixed-format date columns.\nExtract components: year(), month(), yday().\nAggregate time series with floor_date().\nBuild and interpret time-series line plots in ggplot2.\n\n\nSpeaker Notes: These five objectives form a complete workflow — you cannot plot a time series correctly until you have parsed the dates correctly, and you cannot aggregate sensibly without floor_date. Emphasize that parsing is the foundation; everything else sits on top of it."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#common-date-formats",
+    "href": "slides/11-dates-time-series.html#common-date-formats",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Common Date Formats",
+    "text": "Common Date Formats\n\n\n\nFormat Name\nExample\nlubridate order\n\n\n\n\nISO 8601\n2023-05-15\n\"ymd\"\n\n\nUS slash\n05/15/2023\n\"mdy\"\n\n\nSpelled month\nMay 15, 2023\n\"BdY\"\n\n\nSpelled compact\nMay 15 2023\n\"BdY\"\n\n\nEuropean\n15/05/2023\n\"dmy\"\n\n\n\nMixed formats in one column are the norm in sensor data, not the exception.\n\nSpeaker Notes: Walk through each row in the table. Point out the ISO 8601 standard specifically — it is unambiguous (year always first, largest unit to smallest) and is the preferred format for any data you create. US slash format is the most dangerous because “05/06/2023” could be May 6 or June 5 depending on locale. Spelled month is verbose but unambiguous."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#parse_date_time-vs-as.date",
+    "href": "slides/11-dates-time-series.html#parse_date_time-vs-as.date",
+    "title": "Week 11: Dates and Time Series",
+    "section": "parse_date_time() vs as.Date()",
+    "text": "parse_date_time() vs as.Date()\n# as.Date() fails silently on unrecognized formats\nas.Date(\"May 15, 2023\")   # returns NA — no warning by default\n\n# parse_date_time() tries multiple formats in order\nparse_date_time(\n  \"May 15, 2023\",\n  orders = c(\"ymd\", \"mdy\", \"BdY\")\n)\n# [1] \"2023-05-15 UTC\"\nAlways check: sum(is.na(date_parsed)) after parsing.\n\nSpeaker Notes: Live-type the as.Date() example first and show the NA. Then show parse_date_time(). Pause and ask: “What would happen to your analysis if 15 out of 120 rows silently became NA and you didn’t check?” That’s a missing-data problem that masquerades as a date problem. The check — sum(is.na()) — is the safety net."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#extracting-date-components",
+    "href": "slides/11-dates-time-series.html#extracting-date-components",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Extracting Date Components",
+    "text": "Extracting Date Components\nlibrary(lubridate)\n\ndischarge &lt;- discharge |&gt;\n  mutate(\n    yr     = year(date_parsed),\n    mo     = month(date_parsed, label = TRUE, abbr = TRUE),\n    mo_num = month(date_parsed),\n    doy    = yday(date_parsed)\n  )\n\nmonth(label = TRUE) returns an ordered factor — plots sort correctly.\nyday() is useful for phenology and day-of-year comparisons across years.\n\n\nSpeaker Notes: Ask students: “Why do we want month as an ordered factor instead of a character string?” The answer is that ggplot2 will sort character strings alphabetically — so April comes before August comes before February. An ordered factor with levels Jan-Dec plots in calendar order automatically. This is a common bug students hit when they forget label = TRUE."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#floor_date-snapping-to-periods",
+    "href": "slides/11-dates-time-series.html#floor_date-snapping-to-periods",
+    "title": "Week 11: Dates and Time Series",
+    "section": "floor_date: Snapping to Periods",
+    "text": "floor_date: Snapping to Periods\nfloor_date(as.Date(\"2023-05-15\"), unit = \"month\")\n# [1] \"2023-05-01\"\n\nfloor_date(as.Date(\"2023-05-15\"), unit = \"week\")\n# [1] \"2023-05-14\"  (snaps to Sunday by default)\nUse floor_date() as the x-axis grouping key for aggregated time series.\ndischarge |&gt;\n  mutate(month_floor = floor_date(date_parsed, unit = \"month\")) |&gt;\n  group_by(site_id, month_floor) |&gt;\n  summarise(mean_q = mean(discharge_cfs, na.rm = TRUE))\n\nSpeaker Notes: The key mental model: floor_date does for dates what floor() does for numbers — it rounds down to the nearest period boundary. Show on the board: if you have readings on May 3, May 17, and May 29, floor_date maps all three to May 1. Now you can group by that “May 1” key and get a true monthly average. Without this, group_by(date) would give you one row per date, not per month."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#plotting-time-series-with-ggplot2",
+    "href": "slides/11-dates-time-series.html#plotting-time-series-with-ggplot2",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Plotting Time Series with ggplot2",
+    "text": "Plotting Time Series with ggplot2\nggplot(monthly_discharge,\n       aes(x = month_floor, y = mean_discharge, color = site_id)) +\n  geom_line(linewidth = 0.8) +\n  geom_point(size = 2) +\n  scale_x_datetime(\n    date_breaks  = \"2 months\",\n    date_labels  = \"%b %Y\"\n  ) +\n  labs(title = \"Monthly Mean Discharge — Platte River Sites\",\n       x = \"Month\", y = \"Mean Discharge (cfs)\") +\n  theme_minimal()\n\nSpeaker Notes: Point out scale_x_datetime() specifically — this is the scale for POSIXct columns (what parse_date_time returns). If the column were a Date (not POSIXct), you would use scale_x_date() instead. The date_labels argument uses strftime format codes: %b = abbreviated month name, %Y = 4-digit year. A gap in a geom_line means missing data — lines do not connect across NAs. Ask students to look for gaps as a data-quality check."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#live-coding-section-1",
+    "href": "slides/11-dates-time-series.html#live-coding-section-1",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nLoad stream_discharge.csv and inspect the date column.\nIdentify the three date formats across sites.\nParse with parse_date_time() and verify no NAs.\nExtract year(), month(), yday().\nCreate month_floor with floor_date().\n\n\nSpeaker Notes: Before opening RStudio, have students predict: how many rows will have date parse failures? Take a show of hands for different guesses. Then run the code and check together. The goal is to build the habit of verifying before moving on — not assuming the parse worked."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#live-coding-section-2",
+    "href": "slides/11-dates-time-series.html#live-coding-section-2",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Live Coding: Section 2",
+    "text": "Live Coding: Section 2\n\nAggregate to monthly mean discharge by site.\nPlot the time series — identify the seasonal peak.\nCompute a seasonal summary across all sites.\nDiscuss: which site shows the most flow variability?\n\n\nSpeaker Notes: When the plot renders, give students 60 seconds to silently look at it before asking questions. Then ask: “Which month appears to be peak discharge?” and “Are all six sites synchronized, or do some peak earlier?” These questions prepare them for the challenge."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#the-challenge-45-mins",
+    "href": "slides/11-dates-time-series.html#the-challenge-45-mins",
+    "title": "Week 11: Dates and Time Series",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Platte River Pulse\n\n“Does discharge peak in spring across all monitoring sites, and which site has the most variable flow?”\n\nSteps Required: 1. Parse all dates (use the script from the demo). 2. Extract month and calculate monthly mean and SD by site. 3. Calculate coefficient of variation (CV = SD / mean) per site. 4. Identify the highest-CV site. 5. Plot seasonal pattern by site — colored or faceted.\nBase goal: Build the monthly summary and identify the peak discharge month.\nExtension goal: Compare variability across sites with CV and explain the pattern.\n\nSpeaker Notes: The coefficient of variation is new to some students — define it: it is the standard deviation expressed as a proportion of the mean. A high CV means the flow varies a lot relative to its average level. Sites near reservoirs or regulated reaches tend to have lower CV; unregulated streams have higher CV. Students should interpret their result in that ecological context."
+  },
+  {
+    "objectID": "slides/11-dates-time-series.html#verification",
+    "href": "slides/11-dates-time-series.html#verification",
+    "title": "Week 11: Dates and Time Series",
+    "section": "Verification",
+    "text": "Verification\n\nDoes sum(is.na(date_parsed)) equal 0?\nDoes the line plot x-axis show month names in calendar order?\nCan you identify the peak discharge month from the plot?\nWhich site has the highest coefficient of variation?\nDid you use na.rm = TRUE in all summary calculations?\nCan you explain why floor_date() is the grouping key for monthly summaries?\n\n\nSpeaker Notes: Walk through each bullet as a class. For the third bullet, ask a student to name the peak month without looking at the data summary — they should be able to read it from the plot. If they cannot, the plot labels need work. For the last bullet, remind students that discharge_cfs has 5 NAs — forgetting na.rm = TRUE will propagate those NAs into every group containing a missing value."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#slide-accessibility-note",
+    "href": "slides/13-functions-repeated-work.html#slide-accessibility-note",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A diagram showing a single labeled box labeled “function” receiving two arrows on the left (inputs) and producing one arrow on the right (output), representing the abstraction of repeated logic.\nSpeaker Notes: These slides introduce writing R functions as a tool for eliminating repeated pipeline code, with a direct connection to capstone project reproducibility."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#function-design-map",
+    "href": "slides/13-functions-repeated-work.html#function-design-map",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Function Design Map",
+    "text": "Function Design Map\n\n\nFind repetition\n\n\n-&gt;\n\n\nName inputs\n\n\n-&gt;\n\n\nWrite function\n\n\n-&gt;\n\n\nTest examples\n\n\n-&gt;\n\n\nReuse safely\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#where-we-are",
+    "href": "slides/13-functions-repeated-work.html#where-we-are",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Where We Are",
+    "text": "Where We Are\n\nWe have now filtered, summarized, visualized, and iterated over data.\nWe have used purrr::map() to apply operations across lists.\nToday: We wrap those operations into named, testable, reusable functions."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#how-to-use-today",
+    "href": "slides/13-functions-repeated-work.html#how-to-use-today",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nWrite the function once, then test it on more than one input.\nKeep the body readable by reusing the pipelines you already know.\nAdd a check that fails early if the inputs are wrong.\n\n\nSpeaker Notes: Take 2 minutes to orient the class. We are at Week 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#learning-objectives",
+    "href": "slides/13-functions-repeated-work.html#learning-objectives",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nWrite a function with function(), arguments, a body, and return().\nApply the DRY principle to eliminate copy-pasted pipeline code.\nValidate function inputs with stopifnot().\nUse a function inside map() and mutate().\n\n\nSpeaker Notes: Read these aloud and ask students to keep them in mind. By the end of today, they should be able to do all four. The assignment will ask them to demonstrate 1 through 4 using their own capstone data. That connection — today’s skill, their real data — is the through-line for the session."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#the-dry-principle",
+    "href": "slides/13-functions-repeated-work.html#the-dry-principle",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "The DRY Principle",
+    "text": "The DRY Principle\nDon’t Repeat Yourself\n# Copy-pasted code: 3 places to break\nfw |&gt; filter(state == \"NE\") |&gt; group_by(species_code) |&gt; summarize(...)\nfw |&gt; filter(state == \"IA\") |&gt; group_by(species_code) |&gt; summarize(...)\nfw |&gt; filter(state == \"KS\") |&gt; group_by(species_code) |&gt; summarize(...)\n\n# DRY: one place to maintain\nsummarize_species(fw, \"NE\")\nsummarize_species(fw, \"IA\")\nsummarize_species(fw, \"KS\")\n\nSpeaker Notes: Ask the class: “If I need to change the filter from January to February, how many lines do I edit in the top version? In the bottom version?” The answer — three versus one — is the entire argument for functions in one question. Copy-paste is not a strategy; it is deferred debt. Every duplicated block is a bug waiting to happen during the capstone crunch week."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#anatomy-of-a-function",
+    "href": "slides/13-functions-repeated-work.html#anatomy-of-a-function",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Anatomy of a Function",
+    "text": "Anatomy of a Function\n# 1. Name      2. Arguments\nsummarize_species &lt;- function(data, state_filter, n_top = 5) {\n\n  # 3. Body\n  result &lt;- data |&gt;\n    filter(state == state_filter) |&gt;\n    group_by(species_code) |&gt;\n    summarize(total_obs = sum(how_many, na.rm = TRUE), .groups = \"drop\") |&gt;\n    slice_max(total_obs, n = n_top)\n\n  # 4. Return value\n  return(result)\n}\n\nSpeaker Notes: Walk through each numbered comment in the code. Emphasize: (1) name is how you call it — use snake_case; (2) arguments are the “knobs” the caller controls — n_top = 5 gives a default so the argument is optional; (3) the body is just the same pipeline they already know; (4) return() makes the output explicit. Ask: “What would the function return if I removed return(result)?” Answer: R returns the last evaluated expression, so it would still work — but explicit return() is a best practice for readability."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#default-arguments",
+    "href": "slides/13-functions-repeated-work.html#default-arguments",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Default Arguments",
+    "text": "Default Arguments\n# n_top = 5 is the default — caller does not have to pass it\nsummarize_species(fw, \"NE\")        # returns top 5\nsummarize_species(fw, \"NE\", n_top = 3)  # overrides default\n\nDefault arguments make a function flexible and easy to call.\nPut defaults on arguments that have a sensible “most common” value.\nArguments without defaults must be supplied by the caller.\n\n\nSpeaker Notes: Live-code both calls so students see the output change when n_top is overridden. Then ask: “What happens if I don’t pass data?” They should predict an error. Run it to confirm. The lesson: arguments without defaults are required; arguments with defaults are optional. This is a design decision — think about what the caller will need most of the time."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#validate-inputs-with-stopifnot",
+    "href": "slides/13-functions-repeated-work.html#validate-inputs-with-stopifnot",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Validate Inputs with stopifnot()",
+    "text": "Validate Inputs with stopifnot()\nsummarize_species &lt;- function(data, state_filter, n_top = 5) {\n\n  stopifnot(\n    \"data must be a data frame\" = is.data.frame(data),\n    \"state_filter must be a single string\" =\n      is.character(state_filter) && length(state_filter) == 1\n  )\n\n  # ... rest of body\n}\n\nA bad input should fail loudly and immediately, not silently downstream.\nThe named form \"message\" = condition gives the caller a helpful error.\n\n\nSpeaker Notes: Run the function with a bad argument — e.g., pass 42 as state_filter — and show the error message. Then ask: “Without stopifnot(), what would the filter() call return? Would it be an error or an empty tibble?” It would likely be a silent empty tibble — which is far harder to debug. The principle: fail early with a clear message, not late with a confusing result. This is especially important for capstone code that others (or future-you) will run."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#functions-map",
+    "href": "slides/13-functions-repeated-work.html#functions-map",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Functions + map()",
+    "text": "Functions + map()\n# Week 12 recap: map() applies a function to each element\nstates &lt;- c(\"NE\", \"IA\", \"KS\")\n\n# Apply our function to each state\nresult_list &lt;- map(states, \\(s) summarize_species(fw, s))\n\n# Bind list of tibbles into one data frame\nall_results &lt;- list_rbind(result_list)\n\nmap() replaces a for-loop with a cleaner, functional pattern.\nlist_rbind() stacks the list of tibbles into a single data frame.\n\n\nSpeaker Notes: This is the payoff slide — the function we wrote drops directly into the map() pattern from Week 12. Ask: “How many lines of code would this have been if we had copied the pipeline three times?” Then contrast with 3 lines using map(). Run this live so students see the list_rbind() output. Point out that adding a fourth state requires changing only the states vector — nothing else in the pipeline changes."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#functions-inside-mutate",
+    "href": "slides/13-functions-repeated-work.html#functions-inside-mutate",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Functions Inside mutate()",
+    "text": "Functions Inside mutate()\n# A helper function\nclassify_abundance &lt;- function(total) {\n  if (total &gt;= 500) return(\"High\")\n  if (total &gt;= 100) return(\"Medium\")\n  return(\"Low\")\n}\n\n# Apply it to every row via map_chr() inside mutate()\nall_results |&gt;\n  mutate(abundance_class = map_chr(total_obs, classify_abundance))\n\nSpeaker Notes: Point out that classify_abundance() works on a single number, not a whole vector. That is why we need map_chr() inside mutate() — it applies the function row-by-row and collects the character results. Ask: “Why map_chr and not map?” Answer: map() returns a list; map_chr() returns a character vector, which is what mutate() expects for a new column. If students are fuzzy on this, connect it to Week 12’s map_dbl() and map_chr() examples."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#the-challenge-45-mins",
+    "href": "slides/13-functions-repeated-work.html#the-challenge-45-mins",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The State Species Auditor\nWrite a top_n_species() function that:\n\nTakes data, state_filter, and n (default 5).\nReturns a ranked species summary with total_obs, n_sites, and rank.\nIncludes at least one input validation (stopifnot or if/stop).\n\nThen: - Test it on NE and IA individually. - Apply it via map() to a list of at least 3 states. - Bind results and make a faceted bar plot.\nBase goal: Get the function working for one state with one clear output.\nExtension goal: Generalize it cleanly enough to map across multiple states.\n\nSpeaker Notes: Read the three requirements aloud before students start. Emphasize constraint 3 — the validation — because it is easy to skip under time pressure and it is the hardest habit to build. Walk the room during the 45 minutes. When students finish the base goal, push them toward the extension: add a month_filter argument that defaults to NULL (all months) but can be set to a single month number."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#verification",
+    "href": "slides/13-functions-repeated-work.html#verification",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Verification",
+    "text": "Verification\n\nDoes your function return the right number of rows when n = 5? n = 3?\nDoes it fail with a clear error when you pass 42 as state_filter?\nDoes map() return a list of the correct length?\nCan you explain what return() does without using the word “return”?\nCan you point to the one line that makes the function reusable?\n\n\nSpeaker Notes: Work through these questions as a class. The last question — explain return() without using the word return — is a good comprehension check. A strong answer: “It hands a value back to whoever called the function so they can store it or use it.” Before closing, connect to the assignment: students will write a function for their OWN capstone data. Ask 2-3 students to name one pipeline step in their project that they have repeated. Those are tomorrow’s functions."
+  },
+  {
+    "objectID": "slides/13-functions-repeated-work.html#capstone-connection",
+    "href": "slides/13-functions-repeated-work.html#capstone-connection",
+    "title": "Week 13: Functions for Repeated Work",
+    "section": "Capstone Connection",
+    "text": "Capstone Connection\n\n“Every pipeline step you have copy-pasted more than once is a function waiting to be written.”\n\n\nAssignment 13: Write one cleaning or summarization function for your capstone dataset.\nTest it on two different inputs.\nRender a Quarto report showing the function and its outputs.\nDue: Sunday, Nov 22, 11:59 PM\n\n\nSpeaker Notes: End on this framing. Students are 2 weeks from capstone submissions. The assignment is not busywork — it is the first step of their final cleanup. Encourage them to use a real piece of their capstone pipeline, not a toy example. The function they write this week may end up in their final report."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#slide-accessibility-note",
+    "href": "slides/15-code-review-revision.html#slide-accessibility-note",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A GitHub Pull Request interface showing review comments anchored to specific lines of code, representing the professional peer review workflow.\nSpeaker Notes: These slides guide students through the GitHub Pull Request review workflow, covering how to write actionable review comments, open methodological Issues, and respond to feedback with traceable commits."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#review-and-revision-map",
+    "href": "slides/15-code-review-revision.html#review-and-revision-map",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Review and Revision Map",
+    "text": "Review and Revision Map\n\n\nOpen issue\n\n\n-&gt;\n\n\nCreate branch\n\n\n-&gt;\n\n\nRevise with evidence\n\n\n-&gt;\n\n\nOpen pull request\n\n\n-&gt;\n\n\nDocument verification\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#where-we-are",
+    "href": "slides/15-code-review-revision.html#where-we-are",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Where We Are",
+    "text": "Where We Are\n\nWeek 15 of 16 — your capstone drafts are in.\nToday: you review a classmate’s draft; a classmate reviews yours.\nSkill being practiced: professional code review — a core workflow in data science, government agencies, and academic research teams."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#how-to-use-today",
+    "href": "slides/15-code-review-revision.html#how-to-use-today",
+    "title": "Week 15: Code Review and Revision",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nReview the draft as if you were trying to reproduce it from scratch.\nMake comments specific enough that the author can act on them immediately.\nSeparate required fixes from open discussion.\n\n\nSpeaker Notes: Remind students that code review is not grading each other. The goal is to help the author make the project more reproducible, clearer, and analytically sound. Frame it as a collaboration, not a critique. Many students have never seen a professional pull request workflow; today normalizes it."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#learning-objectives",
+    "href": "slides/15-code-review-revision.html#learning-objectives",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nWrite a PR description that makes a reviewer’s job tractable.\nPost review comments that are specific, located, and actionable.\nDistinguish between a PR comment (must fix) and a GitHub Issue (must discuss).\nRespond to received feedback with a commit that explains what changed and why.\n\n\nSpeaker Notes: These four objectives map directly to the assignment rubric. Walk through each one briefly before diving into the demo. Emphasize that objective 3 — the PR vs Issue distinction — is the subtlest and the one students most often get wrong."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#why-code-review-exists",
+    "href": "slides/15-code-review-revision.html#why-code-review-exists",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Why Code Review Exists",
+    "text": "Why Code Review Exists\n\nIn industry: No code ships without a second pair of eyes.\nIn science: Reproducibility requires that someone else can run your code.\nFor you: The review process catches errors that familiarity blinds you to.\n\n\n“Code is read far more often than it is written.” — Guido van Rossum\n\n\nSpeaker Notes: Students sometimes feel that review is adversarial. Share the van Rossum quote and follow up: “Your code will be read by future-you, by your advisor, by collaborators, and now by a classmate. Writing for a reader is a professional skill.” Ask if anyone has returned to their own code after six months and not understood it."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#the-pull-request-workflow",
+    "href": "slides/15-code-review-revision.html#the-pull-request-workflow",
+    "title": "Week 15: Code Review and Revision",
+    "section": "The Pull Request Workflow",
+    "text": "The Pull Request Workflow\n\nAuthor pushes a branch and opens a PR with a clear description.\nReviewer reads the description, clones/renders, and posts line-level comments.\nAuthor responds to each comment with a commit (or a reply explaining why not).\nReviewer confirms changes and approves or requests another round.\nAuthor (or instructor) merges.\n\n\nSpeaker Notes: Draw this as a loop on the whiteboard: Author → PR → Reviewer → Comments → Author (commits) → Reviewer (approves) → Merge. Stress that step 3 is where most students stall. Responding to every comment — even to say “I disagree, and here is why” — is required professional behavior. Silence is not a valid response to a review comment."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#anatomy-of-a-good-pr-description",
+    "href": "slides/15-code-review-revision.html#anatomy-of-a-good-pr-description",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Anatomy of a Good PR Description",
+    "text": "Anatomy of a Good PR Description\nA PR description must answer three questions:\n\nWhat changed? — What will the reviewer see in the diff?\nWhy? — The scientific or analytical reason for the change.\nHow do I verify it? — Step-by-step reproduction instructions.\n\n\nSpeaker Notes: Show the bad example first on GitHub: “Fixed some stuff. Should work now.” Ask the class: “If you were reviewing this, where would you even start?” Then show the good template. The key insight is that a PR description is written for the reviewer, not for the author. The author already knows what changed."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#good-pr-description-vs-bad",
+    "href": "slides/15-code-review-revision.html#good-pr-description-vs-bad",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Good PR Description vs Bad",
+    "text": "Good PR Description vs Bad\n\n\nBad\n\nFixed some stuff. Should work now.\n\n\nGood\n\nWhat changed: Replaced setwd() on line 14 with here::here().\nWhy: The old path only ran on my machine.\nVerify: Clone fresh → open .Rproj → knit → confirm all figures appear.\n\n\n\nSpeaker Notes: Ask the class to identify why the bad version fails before revealing the good version. Common student answers: “we don’t know what ‘stuff’ means,” “we can’t verify anything.” Push further: “What does ‘should work now’ tell the reviewer about scientific validity?” Answer: nothing."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#writing-a-review-comment-the-formula",
+    "href": "slides/15-code-review-revision.html#writing-a-review-comment-the-formula",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Writing a Review Comment: The Formula",
+    "text": "Writing a Review Comment: The Formula\nEvery substantive comment should contain:\n\nLocation — file name and line number (GitHub anchors this automatically)\nObservation — what you actually see in the code or output\nConcern — why it matters (reproducibility, inference, clarity)\nSuggestion — a concrete alternative, ideally as a code snippet\n\n\nSpeaker Notes: Walk through this formula on the demo repo. Show students how to click a line number in GitHub’s “Files Changed” tab to open a comment box anchored to that line. Emphasize that “Suggestion” is where students often write vague advice instead of a concrete fix. If you can write the replacement code in four lines, write it."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#good-comment-vs-bad-comment",
+    "href": "slides/15-code-review-revision.html#good-comment-vs-bad-comment",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Good Comment vs Bad Comment",
+    "text": "Good Comment vs Bad Comment\n\n\nBad\n\nThis looks wrong.\n\n\nI think you should reorganize this.\n\n\nWhy did you do it this way?\n\n\nGood\n\nLine 47 — hard-coded path read_csv('/Users/student/Desktop/...') will not run on another machine. Replace with here('data', 'fish.csv'). This is required for reproducibility.\n\n\n\nSpeaker Notes: Show the bad comments on screen and ask: “What would you do with this feedback as an author?” The answer is usually “not much — I don’t know what to fix.” Then show the good comment and ask: “How long would it take to act on this?” Usually under two minutes. That specificity is the point. Also note that “Why did you do it this way?” is not inherently bad — it belongs in a GitHub Issue, not a PR comment, because it opens a discussion rather than identifying a required fix."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#pr-comment-vs-github-issue",
+    "href": "slides/15-code-review-revision.html#pr-comment-vs-github-issue",
+    "title": "Week 15: Code Review and Revision",
+    "section": "PR Comment vs GitHub Issue",
+    "text": "PR Comment vs GitHub Issue\n\n\n\n\n\n\n\n\n\nPR Comment\nGitHub Issue\n\n\n\n\nUse when\nSomething must change\nSomething must be discussed\n\n\nTone\n“Please fix X”\n“I have a question about decision Y”\n\n\nResolves when\nAuthor pushes a fix\nParties agree on an approach\n\n\nExample\nHard-coded path\nWhether to exclude outlier year\n\n\n\n\nSpeaker Notes: The hardest part of this distinction is that methodological questions often FEEL like they should be PR comments. Walk through the outlier example: if you write “Remove the 2019 data” as a PR comment, you are making the decision for the author. Opening an Issue says “I noticed this — let’s discuss.” The author may have a good reason for including 2019. Issues preserve the conversation and the decision rationale, which is good for the scientific record."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#the-reproducibility-checklist",
+    "href": "slides/15-code-review-revision.html#the-reproducibility-checklist",
+    "title": "Week 15: Code Review and Revision",
+    "section": "The Reproducibility Checklist",
+    "text": "The Reproducibility Checklist\nBefore posting any review comment, verify:\n\nCan you clone and render without editing anything?\nAre all file paths project-relative (no setwd(), no absolute paths)?\nAre missing data decisions documented (how many rows, which column, why)?\nDoes every figure have a caption describing the trend?\nAre conclusions supported by visible output in the rendered document?\nIs the README clear enough for a new reader to start?\n\n\nSpeaker Notes: Walk through the checklist item by item. For item 1, remind students that “renders on my machine” is not the same as “reproducible.” They need to actually clone to a new directory and try. For item 3, emphasize that na.omit() is the silent killer — it removes rows without telling the reader how many or from where. For item 5, tell students to cover the prose and look only at the figures and tables — can they reconstruct the conclusions?"
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#responding-to-review-the-authors-role",
+    "href": "slides/15-code-review-revision.html#responding-to-review-the-authors-role",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Responding to Review: The Author’s Role",
+    "text": "Responding to Review: The Author’s Role\nWhen you receive comments on your PR:\n\nRead all comments before responding — some may be related.\nFor each comment: push a fix OR reply explaining why you disagree.\nCommit messages matter: say WHAT changed and WHY, reference the comment.\nAfter pushing: resolve the conversation and @mention the reviewer.\n\n\nSpeaker Notes: Students often address comments one at a time and push after each fix, which creates a noisy commit history. Recommend batching related fixes into one commit. The commit message is a permanent record of the decision. Show on the demo repo: “fix: replace hard-coded path with here() — addresses review comment #3 in PR #7” vs “addressed comments.” Future-you will thank you for the first version."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#good-commit-message-vs-bad",
+    "href": "slides/15-code-review-revision.html#good-commit-message-vs-bad",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Good Commit Message vs Bad",
+    "text": "Good Commit Message vs Bad\n\n\nBad\n\naddressed comments\n\n\nfixed it\n\n\nupdate\n\n\nGood\n\nfix: replace hard-coded path with here() on line 47\nReviewer flagged that the absolute path broke on other machines. Also updated README to note the here() convention. Resolves review comment #3 in PR #7.\n\n\n\nSpeaker Notes: Run git log --oneline on the demo repo and show what a history of “addressed comments / fixed it / update” looks like — three identical-looking commits with no information. Then show a clean history. Ask students: “If your advisor asked you in six months what you changed between draft 1 and draft 2, which history would help you answer?” The good history is also evidence of responsiveness, which matters for the assignment rubric."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#peer-review-rubric",
+    "href": "slides/15-code-review-revision.html#peer-review-rubric",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Peer Review Rubric",
+    "text": "Peer Review Rubric\n\n\n\n\n\n\n\n\nCriterion\nPoints\nWhat earns full marks\n\n\n\n\nReproducibility check\n3\nAll checklist items evaluated; clone-and-render tested\n\n\nComment quality\n4\n3+ comments with location, observation, concern, and suggestion\n\n\nGitHub Issue\n2\n1+ issue with context, question, and proposed next steps\n\n\nRevision commits\n3\n2+ commits responding to received feedback with clear messages\n\n\nTotal\n12\n\n\n\n\n\nSpeaker Notes: Walk through each row. Stress that “comment quality” is not about harshness — a polite, specific comment that gives the author a clear path forward earns full marks. A harsh but vague comment earns nothing. For “revision commits,” remind students that the commit message is the evidence — the grader will read it."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#todays-workflow",
+    "href": "slides/15-code-review-revision.html#todays-workflow",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Today’s Workflow",
+    "text": "Today’s Workflow\n\n0:00 – 0:30 — GitHub PR demo (live, follow along)\n0:30 – 0:45 — Issues demo + Q&A\n0:45 – 1:00 — Work time: clone partner’s repo and run the reproducibility checklist\n1:00 – 1:15 — Break\n1:15 – 2:15 — Write and post review comments + open Issue\n2:15 – 2:45 — Respond to received feedback with revision commits\n2:45 – 3:00 — Wrap-up and submission instructions\n\n\nSpeaker Notes: Keep the demo tight — 30 minutes is enough if you have a prepared demo repo with a realistic but intentionally flawed analysis script. The most valuable class time is the second half when students are writing and responding to real reviews. Be available to walk around during the work periods. Common sticking points: students not knowing how to anchor a comment to a line in GitHub, and students not understanding that they need to push AFTER making edits."
+  },
+  {
+    "objectID": "slides/15-code-review-revision.html#verification",
+    "href": "slides/15-code-review-revision.html#verification",
+    "title": "Week 15: Code Review and Revision",
+    "section": "Verification",
+    "text": "Verification\n\nDid you clone your partner’s repo and confirm it renders?\nDid you post 3+ substantive comments (location + observation + concern + suggestion)?\nDid you open at least 1 GitHub Issue for a methodological question?\nDid you push 2+ revision commits responding to feedback on YOUR repo?\nDo your commit messages explain what changed and why?\nCan you explain why a methodological disagreement belongs in an Issue rather than a PR comment?\n\n\nSpeaker Notes: Read through the verification list before releasing students for the work period. This is the same list on the assignment rubric. Tell students: “If you can answer yes to all five of these by the end of class, you are on track. The written submission is due Sunday — use the remaining time to finish anything incomplete.”"
+  }
+]
