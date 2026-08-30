@@ -18,7 +18,7 @@
     "href": "slides/16-capstone-showcase.html#how-to-use-today",
     "title": "Week 16: Capstone Showcase",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nTreat the showcase like a reproducibility audit, not a performance.\nCheck that the repo works from a fresh clone before you present.\nUse the reflection to name one concrete improvement you would make next time."
+    "text": "How To Use Today\n\nTreat the showcase like a reproducibility audit, not a performance.\nCheck that the repo works from a fresh clone before you present.\nUse the reflection to name one concrete improvement you would make next time.\n\nDownload the Week 16 follow-along script (.R)"
   },
   {
     "objectID": "slides/16-capstone-showcase.html#where-we-started",
@@ -130,7 +130,7 @@
     "href": "slides/14-polished-reporting.html#how-to-use-today",
     "title": "Week 14: Polished Reporting",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nStart with a document that renders, then polish the reader experience.\nLet Quarto number and reference figures and tables for you.\nUse inline R for values that should stay in sync with the data.\n\n\nSpeaker Notes: Open a “before” document on the projector — one that renders but is clearly not ready for a reader. Ask students what they notice. Common answers: you can see all the R warnings, the figure is just floating there with no number, the table is just a tibble dump. Use this as the motivation for every YAML option we add today."
+    "text": "How To Use Today\n\nStart with a document that renders, then polish the reader experience.\nLet Quarto number and reference figures and tables for you.\nUse inline R for values that should stay in sync with the data.\n\nDownload the Week 14 follow-along script (.R)\n\nSpeaker Notes: Open a “before” document on the projector — one that renders but is clearly not ready for a reader. Ask students what they notice. Common answers: you can see all the R warnings, the figure is just floating there with no number, the table is just a tibble dump. Use this as the motivation for every YAML option we add today."
   },
   {
     "objectID": "slides/14-polished-reporting.html#document-level-yaml-the-foundation",
@@ -221,7 +221,7 @@
     "href": "slides/12-scaling-up.html#how-to-use-today",
     "title": "Week 12: Scaling Up",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nReplace repetition with a pattern that adapts to new files.\nKeep track of where each row came from.\nInspect mismatched columns before you drop or rename anything.\n\n\nSpeaker Notes: Ask: “How many of you have done this?” Almost everyone will raise a hand. The key insight is that copying code isn’t just an aesthetic problem — it’s a correctness problem. When the folder gains a new file, the manually-maintained script is instantly out of date. The goal today is to make the script adapt automatically."
+    "text": "How To Use Today\n\nReplace repetition with a pattern that adapts to new files.\nKeep track of where each row came from.\nInspect mismatched columns before you drop or rename anything.\n\nDownload the Week 12 follow-along script (.R)\n\nSpeaker Notes: Ask: “How many of you have done this?” Almost everyone will raise a hand. The key insight is that copying code isn’t just an aesthetic problem — it’s a correctness problem. When the folder gains a new file, the manually-maintained script is instantly out of date. The goal today is to make the script adapt automatically."
   },
   {
     "objectID": "slides/12-scaling-up.html#learning-objectives",
@@ -319,7 +319,7 @@
     "href": "slides/10-string-cleaning-categorical-control.html#how-to-use-today",
     "title": "Week 10: String Cleaning and Categorical Control",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nClean column names first so the rest of the script stays readable.\nStandardize text before grouping or plotting.\nReorder factors when the default alphabetical order would mislead.\n\n\nSpeaker Notes: Last week you encountered messy data for the first time in a systematic way. You probably noticed that a lot of the mess was text — inconsistent capitalization, extra spaces, abbreviated versus spelled-out values. This week we put names on those problems and give you a repeatable toolkit. These three packages together handle the vast majority of text and categorical cleanup you will encounter in ecological and agricultural data."
+    "text": "How To Use Today\n\nClean column names first so the rest of the script stays readable.\nStandardize text before grouping or plotting.\nReorder factors when the default alphabetical order would mislead.\n\nDownload the Week 10 follow-along script (.R)\n\nSpeaker Notes: Last week you encountered messy data for the first time in a systematic way. You probably noticed that a lot of the mess was text — inconsistent capitalization, extra spaces, abbreviated versus spelled-out values. This week we put names on those problems and give you a repeatable toolkit. These three packages together handle the vast majority of text and categorical cleanup you will encounter in ecological and agricultural data."
   },
   {
     "objectID": "slides/10-string-cleaning-categorical-control.html#learning-objectives",
@@ -410,7 +410,7 @@
     "href": "slides/08-joining-tables.html#how-to-use-today",
     "title": "Week 08: Joining Tables",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nIdentify the key column before you join anything.\nCheck row counts immediately after each join.\nUse anti_join() when the output looks suspicious or incomplete."
+    "text": "How To Use Today\n\nIdentify the key column before you join anything.\nCheck row counts immediately after each join.\nUse anti_join() when the output looks suspicious or incomplete.\n\nDownload the Week 08 follow-along script (.R)"
   },
   {
     "objectID": "slides/08-joining-tables.html#why-joins-exist",
@@ -501,7 +501,7 @@
     "href": "slides/06-grouped-summaries.html#how-to-use-today",
     "title": "Week 06: Grouped Summaries",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nTreat each summary as a question about a group, not a row.\nPredict the row count before you run summarize().\nCheck whether NA means missing information or a true zero."
+    "text": "How To Use Today\n\nTreat each summary as a question about a group, not a row.\nPredict the row count before you run summarize().\nCheck whether NA means missing information or a true zero.\n\nDownload the Week 06 follow-along script (.R)"
   },
   {
     "objectID": "slides/06-grouped-summaries.html#learning-objectives",
@@ -613,7 +613,7 @@
     "href": "slides/04-viz-foundations.html#how-to-use-today",
     "title": "Week 04: Viz Foundations",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nDecide what the plot needs to say before choosing the geom.\nUse color only when it helps the reader.\nPrefer clear labels and a clean theme over decoration.\n\n\nSpeaker Notes: The question for today is not “What looks pretty?” It is “What helps the reader understand the data fastest?”"
+    "text": "How To Use Today\n\nDecide what the plot needs to say before choosing the geom.\nUse color only when it helps the reader.\nPrefer clear labels and a clean theme over decoration.\n\nDownload the Week 04 follow-along script (.R)\n\nSpeaker Notes: The question for today is not “What looks pretty?” It is “What helps the reader understand the data fastest?”"
   },
   {
     "objectID": "slides/04-viz-foundations.html#mapping-vs-setting",
@@ -669,7 +669,7 @@
     "href": "slides/02-objects-debugging.html#how-to-use-today",
     "title": "Week 02: Objects & Debugging",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nRead the error message before touching the code.\nUse the Environment pane as a diagnostic tool.\nFix the cause, not just the symptom.\n\n\nSpeaker Notes: This week is about developing a debugging habit. The slides should help students remember the flow: inspect, diagnose, fix, verify."
+    "text": "How To Use Today\n\nRead the error message before touching the code.\nUse the Environment pane as a diagnostic tool.\nFix the cause, not just the symptom.\n\nDownload the Week 02 follow-along script (.R)\n\nSpeaker Notes: This week is about developing a debugging habit. The slides should help students remember the flow: inspect, diagnose, fix, verify."
   },
   {
     "objectID": "slides/02-objects-debugging.html#r-is-for-objects",
@@ -739,7 +739,7 @@
     "href": "slides/01-the-whole-game.html#how-to-use-today",
     "title": "Week 01: The Whole Game",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
+    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\nDownload the Week 01 follow-along script (.R)\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
   },
   {
     "objectID": "slides/01-the-whole-game.html#why-the-whole-game",
@@ -802,7 +802,7 @@
     "href": "slides/03-importing-data.html#how-to-use-today",
     "title": "Week 03: Importing Data",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nFind the project root first.\nUse here() before you type a path by hand.\nVerify that the raw data is still unchanged after import.\n\n\nSpeaker Notes: The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now."
+    "text": "How To Use Today\n\nFind the project root first.\nUse here() before you type a path by hand.\nVerify that the raw data is still unchanged after import.\n\nDownload the Week 03 follow-along script (.R)\n\nSpeaker Notes: The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now."
   },
   {
     "objectID": "slides/03-importing-data.html#the-path-to-reproducibility",
@@ -858,7 +858,7 @@
     "href": "slides/05-rows-columns-new-variables.html#how-to-use-today",
     "title": "Week 05: Rows, Columns, and New Variables",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nTreat each verb as a tool with one job.\nAsk which rows or columns should change before typing.\nCheck the row count after every major filter.\n\n\nSpeaker Notes: This week is about changing the shape of the data without losing track of what each step does. Keep the verbs separate in your mind: filter for rows, select for columns, arrange for order, mutate for new variables.\n\n\nSpeaker Notes: Welcome to Week 05. This week we shift from visualization to transformation. Before you can build a meaningful plot, you usually have to reshape your data. The four verbs we learn today — filter, select, arrange, and mutate — will handle the vast majority of data wrangling tasks you encounter in graduate research."
+    "text": "How To Use Today\n\nTreat each verb as a tool with one job.\nAsk which rows or columns should change before typing.\nCheck the row count after every major filter.\n\nDownload the Week 05 follow-along script (.R)\n\nSpeaker Notes: This week is about changing the shape of the data without losing track of what each step does. Keep the verbs separate in your mind: filter for rows, select for columns, arrange for order, mutate for new variables.\n\n\nSpeaker Notes: Welcome to Week 05. This week we shift from visualization to transformation. Before you can build a meaningful plot, you usually have to reshape your data. The four verbs we learn today — filter, select, arrange, and mutate — will handle the vast majority of data wrangling tasks you encounter in graduate research."
   },
   {
     "objectID": "slides/05-rows-columns-new-variables.html#learning-objectives",
@@ -921,7 +921,7 @@
     "href": "slides/07-tidying-data.html#how-to-use-today",
     "title": "Week 07: Tidying Data",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nAsk whether a variable is hiding in column names.\nCount rows before and after every reshape.\nMatch the data shape to the task: plot, summarize, or present."
+    "text": "How To Use Today\n\nAsk whether a variable is hiding in column names.\nCount rows before and after every reshape.\nMatch the data shape to the task: plot, summarize, or present.\n\nDownload the Week 07 follow-along script (.R)"
   },
   {
     "objectID": "slides/07-tidying-data.html#learning-objectives",
@@ -1026,7 +1026,7 @@
     "href": "slides/09-integrated-challenge-i.html#how-to-use-today",
     "title": "Week 09: Integrated Challenge I",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nTreat the workflow as one connected pipeline, not separate tricks.\nVerify row counts and key values at every step.\nIf a result looks odd, stop and inspect the data before changing code.\n\n\nSpeaker Notes: This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation."
+    "text": "How To Use Today\n\nTreat the workflow as one connected pipeline, not separate tricks.\nVerify row counts and key values at every step.\nIf a result looks odd, stop and inspect the data before changing code.\n\nDownload the Week 09 follow-along script (.R)\n\nSpeaker Notes: This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation."
   },
   {
     "objectID": "slides/09-integrated-challenge-i.html#learning-objectives",
@@ -1145,7 +1145,7 @@
     "href": "slides/11-dates-time-series.html#how-to-use-today",
     "title": "Week 11: Dates and Time Series",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nParse first, then summarize or plot.\nCheck for NA immediately after parsing.\nUse ordered date components when the chart needs calendar meaning.\n\n\nSpeaker Notes: Open with this question: “Has anyone ever loaded a date column and gotten NAs they didn’t expect?” Almost every student will raise their hand. That’s the point — the default tools fail silently on mixed formats. lubridate’s parse_date_time() is the fix, and today we’ll understand why."
+    "text": "How To Use Today\n\nParse first, then summarize or plot.\nCheck for NA immediately after parsing.\nUse ordered date components when the chart needs calendar meaning.\n\nDownload the Week 11 follow-along script (.R)\n\nSpeaker Notes: Open with this question: “Has anyone ever loaded a date column and gotten NAs they didn’t expect?” Almost every student will raise their hand. That’s the point — the default tools fail silently on mixed formats. lubridate’s parse_date_time() is the fix, and today we’ll understand why."
   },
   {
     "objectID": "slides/11-dates-time-series.html#learning-objectives",
@@ -1243,7 +1243,7 @@
     "href": "slides/13-functions-repeated-work.html#how-to-use-today",
     "title": "Week 13: Functions for Repeated Work",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nWrite the function once, then test it on more than one input.\nKeep the body readable by reusing the pipelines you already know.\nAdd a check that fails early if the inputs are wrong.\n\n\nSpeaker Notes: Take 2 minutes to orient the class. We are at Week 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline."
+    "text": "How To Use Today\n\nWrite the function once, then test it on more than one input.\nKeep the body readable by reusing the pipelines you already know.\nAdd a check that fails early if the inputs are wrong.\n\nDownload the Week 13 follow-along script (.R)\n\nSpeaker Notes: Take 2 minutes to orient the class. We are at Week 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline."
   },
   {
     "objectID": "slides/13-functions-repeated-work.html#learning-objectives",
@@ -1341,7 +1341,7 @@
     "href": "slides/15-code-review-revision.html#how-to-use-today",
     "title": "Week 15: Code Review and Revision",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nReview the draft as if you were trying to reproduce it from scratch.\nMake comments specific enough that the author can act on them immediately.\nSeparate required fixes from open discussion.\n\n\nSpeaker Notes: Remind students that code review is not grading each other. The goal is to help the author make the project more reproducible, clearer, and analytically sound. Frame it as a collaboration, not a critique. Many students have never seen a professional pull request workflow; today normalizes it."
+    "text": "How To Use Today\n\nReview the draft as if you were trying to reproduce it from scratch.\nMake comments specific enough that the author can act on them immediately.\nSeparate required fixes from open discussion.\n\nDownload the Week 15 follow-along script (.R)\n\nSpeaker Notes: Remind students that code review is not grading each other. The goal is to help the author make the project more reproducible, clearer, and analytically sound. Frame it as a collaboration, not a critique. Many students have never seen a professional pull request workflow; today normalizes it."
   },
   {
     "objectID": "slides/15-code-review-revision.html#learning-objectives",

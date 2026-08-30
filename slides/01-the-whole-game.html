@@ -548,6 +548,25 @@ color: #555;
 margin-top: 0.6rem;
 text-align: center;
 }
+.script-download {
+display: inline-block;
+margin-top: 0.7rem;
+padding: 0.5rem 0.8rem;
+border: 2px solid #d00000;
+border-radius: 6px;
+background: #d00000;
+color: #fff !important;
+font-size: 0.72em;
+font-weight: 700;
+text-decoration: none;
+}
+.script-download:hover,
+.script-download:focus-visible {
+background: #fff;
+color: #9b0000 !important;
+outline: 3px solid #111;
+outline-offset: 3px;
+}
 @media (max-width: 800px) {
 .diagram-flow {
 flex-direction: column;
@@ -1127,6 +1146,7 @@ Use this map to track where each live-coding step fits in the larger workflow.
 <li>Ask questions during the checkpoints.</li>
 <li>Keep the goal small: one plot, one interpretation, one push.</li>
 </ul>
+<p><a class="script-download" href="../scripts/week_01_follow_along.R" download>Download the Week 01 follow-along script (.R)</a></p>
 <aside class="notes">
 <p><strong>Speaker Notes:</strong> This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact.</p>
 <style type="text/css">

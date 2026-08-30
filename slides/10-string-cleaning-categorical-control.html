@@ -614,6 +614,25 @@ color: #555;
 margin-top: 0.6rem;
 text-align: center;
 }
+.script-download {
+display: inline-block;
+margin-top: 0.7rem;
+padding: 0.5rem 0.8rem;
+border: 2px solid #d00000;
+border-radius: 6px;
+background: #d00000;
+color: #fff !important;
+font-size: 0.72em;
+font-weight: 700;
+text-decoration: none;
+}
+.script-download:hover,
+.script-download:focus-visible {
+background: #fff;
+color: #9b0000 !important;
+outline: 3px solid #111;
+outline-offset: 3px;
+}
 @media (max-width: 800px) {
 .diagram-flow {
 flex-direction: column;
@@ -1201,6 +1220,7 @@ Use this map to track where each live-coding step fits in the larger workflow.
 <li>Standardize text before grouping or plotting.</li>
 <li>Reorder factors when the default alphabetical order would mislead.</li>
 </ul>
+<p><a class="script-download" href="../scripts/week_10_follow_along.R" download>Download the Week 10 follow-along script (.R)</a></p>
 <aside class="notes">
 <p><strong>Speaker Notes:</strong> Last week you encountered messy data for the first time in a systematic way. You probably noticed that a lot of the mess was text — inconsistent capitalization, extra spaces, abbreviated versus spelled-out values. This week we put names on those problems and give you a repeatable toolkit. These three packages together handle the vast majority of text and categorical cleanup you will encounter in ecological and agricultural data.</p>
 <style type="text/css">

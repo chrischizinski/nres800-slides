@@ -614,6 +614,25 @@ color: #555;
 margin-top: 0.6rem;
 text-align: center;
 }
+.script-download {
+display: inline-block;
+margin-top: 0.7rem;
+padding: 0.5rem 0.8rem;
+border: 2px solid #d00000;
+border-radius: 6px;
+background: #d00000;
+color: #fff !important;
+font-size: 0.72em;
+font-weight: 700;
+text-decoration: none;
+}
+.script-download:hover,
+.script-download:focus-visible {
+background: #fff;
+color: #9b0000 !important;
+outline: 3px solid #111;
+outline-offset: 3px;
+}
 @media (max-width: 800px) {
 .diagram-flow {
 flex-direction: column;
@@ -1201,6 +1220,7 @@ Use this map to track where each live-coding step fits in the larger workflow.
 <li>Verify row counts and key values at every step.</li>
 <li>If a result looks odd, stop and inspect the data before changing code.</li>
 </ul>
+<p><a class="script-download" href="../scripts/week_09_follow_along.R" download>Download the Week 09 follow-along script (.R)</a></p>
 <aside class="notes">
 <p><strong>Speaker Notes:</strong> This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation.</p>
 <style type="text/css">

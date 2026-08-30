@@ -614,6 +614,25 @@ color: #555;
 margin-top: 0.6rem;
 text-align: center;
 }
+.script-download {
+display: inline-block;
+margin-top: 0.7rem;
+padding: 0.5rem 0.8rem;
+border: 2px solid #d00000;
+border-radius: 6px;
+background: #d00000;
+color: #fff !important;
+font-size: 0.72em;
+font-weight: 700;
+text-decoration: none;
+}
+.script-download:hover,
+.script-download:focus-visible {
+background: #fff;
+color: #9b0000 !important;
+outline: 3px solid #111;
+outline-offset: 3px;
+}
 @media (max-width: 800px) {
 .diagram-flow {
 flex-direction: column;
@@ -1225,6 +1244,7 @@ display:block!important;
 <li>Let Quarto number and reference figures and tables for you.</li>
 <li>Use inline R for values that should stay in sync with the data.</li>
 </ul>
+<p><a class="script-download" href="../scripts/week_14_follow_along.R" download>Download the Week 14 follow-along script (.R)</a></p>
 <aside class="notes">
 <p><strong>Speaker Notes:</strong> Open a “before” document on the projector — one that renders but is clearly not ready for a reader. Ask students what they notice. Common answers: you can see all the R warnings, the figure is just floating there with no number, the table is just a tibble dump. Use this as the motivation for every YAML option we add today.</p>
 <style type="text/css">
