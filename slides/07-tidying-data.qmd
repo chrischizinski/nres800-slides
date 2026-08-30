@@ -1,0 +1,219 @@
+---
+title: "Week 07: Tidying Data"
+subtitle: "From Wide to Long"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A split-screen diagram showing the same water quality data arranged in wide format on the left (many columns, few rows) and long format on the right (few columns, many rows), with an arrow labeled pivot_longer() pointing from left to right.
+- **Speaker Notes:** These slides introduce the concept of tidy data and the two primary reshaping functions in tidyr: pivot_longer() and pivot_wider().
+
+<!-- visual-aid: week_07 -->
+## Wide-to-Long Map
+
+::: {.diagram-flow aria-label="Tidying workflow from wide table to analysis-ready table"}
+<div class="diagram-node">Wide columns</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Name variable</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Value variable</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Long table</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Plot or summarize</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Ask whether a variable is hiding in column names.
+- Count rows before and after every reshape.
+- Match the data shape to the task: plot, summarize, or present.
+
+## Learning Objectives
+
+1. Explain why wide-format data is difficult to plot in ggplot2.
+2. Use `pivot_longer()` to reshape wide data into long (tidy) format.
+3. Use `pivot_wider()` to reshape long data into a wide summary table.
+4. Connect reshaping to downstream plotting and summarization.
+
+::: {.notes}
+**Speaker Notes:**
+By the end of today, students will have a concrete mental model: ggplot needs a column of values to map to an aesthetic. Wide format hides values inside column names. pivot_longer() fixes that. Emphasize that this is not an abstract tidyverse concept — it is a practical requirement for making any plot that uses month or parameter as a visual channel.
+:::
+
+## The Problem: Wide Data
+
+What is wrong with this?
+
+| site_id | nitrate_may | nitrate_jul | nitrate_sep |
+|---------|-------------|-------------|-------------|
+| WQ01    | 8.4         | 12.1        | 9.7         |
+| WQ02    | 7.9         | 11.3        | 8.8         |
+
+- **Months live in column names, not in a column.**
+- You cannot write `aes(x = month)` — there is no `month` column.
+- Adding a new sampling date means adding new columns, not new rows.
+
+::: {.notes}
+**Speaker Notes:**
+Ask students: "If I hand you this table and say 'make a boxplot of nitrate by month,' what do you type for x?" Pause. Wait. Let them feel stuck. That discomfort is the exact motivation for pivot_longer(). The problem is not the data values — it is the data shape. ggplot2 maps columns to aesthetics. If months are column names, they cannot be aesthetics.
+:::
+
+## The Solution: Long (Tidy) Data
+
+After `pivot_longer()`:
+
+| site_id | parameter | month | value |
+|---------|-----------|-------|-------|
+| WQ01    | nitrate   | may   | 8.4   |
+| WQ01    | nitrate   | jul   | 12.1  |
+| WQ01    | nitrate   | sep   | 9.7   |
+
+- Now `month` is a **column** — it can be an axis or a fill color.
+- Each row is one observation.
+- Adding new dates = new rows, not new columns.
+
+::: {.notes}
+**Speaker Notes:**
+This is the tidy data principle from Hadley Wickham's paper: each variable is a column, each observation is a row, each value is a cell. Wide format violates the "each variable is a column" rule because it stores month as a variable across multiple columns. Walk through the table row by row: WQ01 now has three rows — one for each month. The total rows after pivoting will be 25 sites * 9 measurement columns = 225 rows.
+:::
+
+## `pivot_longer()` Syntax
+
+```r
+wq_long <- wq_wide |>
+  pivot_longer(
+    cols      = nitrate_may:turbidity_sep,  # which columns to stack
+    names_to  = "measurement",              # new column for old names
+    values_to = "value"                     # new column for values
+  )
+```
+
+- `cols`: the columns being collapsed (use a range or `starts_with()`)
+- `names_to`: what to call the column that stores the **old column names**
+- `values_to`: what to call the column that stores the **values**
+
+::: {.notes}
+**Speaker Notes:**
+The argument names trip students up. A memory trick: names_to is where the NAMES go (the old column headers become values in this new column). values_to is where the VALUES go (the actual numbers). Walk through the mapping slowly: "nitrate_may" is a column header in the wide data. After pivoting, it becomes a VALUE in the "measurement" column. The number 8.4 stays a value — it moves into the "value" column.
+:::
+
+## Row Count Checkpoint
+
+```r
+nrow(wq_wide)   # 25 rows
+nrow(wq_long)   # 225 rows
+```
+
+**Why 225?**
+
+- 25 sites × 9 measurement columns = 225 rows
+
+::: {.notes}
+**Speaker Notes:**
+This is the single most important checkpoint of the day. Many students panic when they see 225 rows and think something went wrong. Walk through the math explicitly: we had 25 sites. Each site had 9 measurement columns (nitrate in 3 months + phosphorus in 3 months + turbidity in 3 months = 9). After pivoting, each site contributes 9 rows — one per measurement. 25 × 9 = 225. No data was lost or duplicated. It was just reshaped. Ask: "Is this more or less data than we started with? (Same amount — different shape.)"
+:::
+
+## Separating a Combined Column
+
+After `pivot_longer()`, the `measurement` column holds values like `"nitrate_may"`.
+
+```r
+wq_long <- wq_long |>
+  separate(measurement, into = c("parameter", "month"), sep = "_")
+```
+
+Result:
+
+| measurement  | →  | parameter | month |
+|--------------|----|-----------|-------|
+| nitrate_may  | →  | nitrate   | may   |
+| phosphorus_jul | → | phosphorus | jul  |
+| turbidity_sep | → | turbidity | sep  |
+
+::: {.notes}
+**Speaker Notes:**
+The column naming convention in the dataset (parameter_month) was intentional — it makes this separate() step clean. In real-world data, column names are often inconsistent or ambiguous. This is a good moment to discuss naming conventions in data collection: if you collect data yourself, build the separator into your column names from the start so that pivot + separate works automatically. Ask: "Why did I use underscore as the separator and not a space or a period?"
+:::
+
+## `pivot_wider()` Syntax
+
+```r
+wq_summary |>
+  pivot_wider(
+    names_from  = month,        # column whose values become new column names
+    values_from = mean_value    # column whose values fill the table
+  )
+```
+
+Useful for: **summary tables**, not raw analysis.
+
+::: {.notes}
+**Speaker Notes:**
+pivot_wider() is the inverse of pivot_longer(). It is most useful when you want to make a readable summary table — for example, showing mean nitrate in each month as side-by-side columns for easy visual comparison. Emphasize that pivot_wider() on raw data often creates problems (like multiple values mapping to one cell), so it is safest to use it after summarizing. The mnemonic: longer = more rows, wider = more columns.
+:::
+
+## Live Coding: Section 1
+
+- Load `water_quality_wide.csv` and inspect structure.
+- Try (and fail) to plot all three months from wide data.
+- Use `pivot_longer()` and `separate()` to create tidy long format.
+- Build a boxplot: nitrate by month, filled by land use.
+
+::: {.notes}
+**Speaker Notes:**
+The "fail first" moment at the start of live coding is intentional pedagogy. Students should try to construct the ggplot from wide data and hit the wall. This creates motivation before the solution is revealed. Do not skip this step — it is the most important teaching moment of the day. After building the working plot from long data, ask: "Which code was harder to write — the failed attempt or this one? Which plot is more informative?"
+:::
+
+## Live Coding: Section 2
+
+- Use `group_by()` + `summarize()` on long data to get mean values.
+- Use `pivot_wider()` to turn the summary into a readable table.
+- Discuss: when is wide format useful?
+
+::: {.notes}
+**Speaker Notes:**
+This section connects today's content back to Week 06 (dplyr). Long format is what dplyr wants for grouped summaries. After summarizing, pivot_wider() can make the result presentable. Reinforce that there is no single "correct" shape for data — the right shape depends on what you are doing with it. Summarizing: long. Plotting: long. Reading a table: sometimes wide. Storing raw data: depends on collection design.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Watershed Nitrate Audit
+
+- Dataset: `water_quality_wide.csv`
+- **Base goal:** Do agricultural watersheds have higher nitrate than forested ones across all three sampling months?
+- **Extension goal:** Show the seasonal pattern by month and explain whether the gap changes over time.
+- **Must:** pivot to long, group and summarize, then plot.
+
+::: {.notes}
+**Speaker Notes:**
+The research question is one that ecologists and regulators actually ask about agricultural watersheds in Nebraska. Nitrate runoff from row crops is a documented water quality concern for the Platte, Elkhorn, and Loup river systems. Students should feel like they are doing real science. The technical requirement — pivot first, then summarize, then plot — mirrors the actual workflow they will use in their own research. Circulate while students work. The most common sticking point is month ordering: students will often get months alphabetically (jul, may, sep) instead of chronologically (may, jul, sep). Ask them: "Does the order on your x-axis tell a true seasonal story?"
+:::
+
+## Verification
+
+- Does your long-format data have 225 rows?
+- Did you use `na.rm = TRUE` when summarizing?
+- Are months displayed in seasonal order (May → Jul → Sep)?
+- Can you state in one sentence why `pivot_longer()` was necessary?
+- Can you state in one sentence when `pivot_wider()` would be useful?
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each verification item with the class before they commit. The 225-row check is the most important — it confirms the pivot ran correctly. The na.rm check catches a common mistake that produces NA means silently. The month ordering check is a data communication issue: a plot that shows months alphabetically misrepresents the seasonal trend. The one-sentence explanation forces students to verbalize the core concept, which is the best test of whether they actually understood it.
+:::

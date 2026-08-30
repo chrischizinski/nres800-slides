@@ -1,0 +1,127 @@
+---
+title: "Week 01: The Whole Game"
+subtitle: "Hello ggplot2 & Reproducibility"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A scenic photograph of three different penguin species (Adelie, Chinstrap, Gentoo) standing on ice in the Palmer Archipelago, Antarctica.
+- **Speaker Notes:** These slides are designed to be read alongside the live-coding script.
+
+<!-- visual-aid: week_01 -->
+## The Whole Game Map
+
+::: {.diagram-flow aria-label="Course workflow from question to shared evidence"}
+<div class="diagram-node">Ask a field question</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Sketch the graph</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Write reproducible code</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Render and inspect</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Commit the evidence</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Type along in the follow-along script.
+- Ask questions during the checkpoints.
+- Keep the goal small: one plot, one interpretation, one push.
+
+::: {.notes}
+**Speaker Notes:**
+This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact.
+:::
+
+## Why the "Whole Game"?
+
+- We start by doing, not just installing.
+- You will load data, make a plot, and interpret it TODAY.
+- We will spend the rest of the semester unpacking HOW it works.
+
+::: {.notes}
+**Speaker Notes:**
+Welcome to NRES 800. We use a 'Whole Game' approach, inspired by David Perkins. Instead of spending weeks learning about file types and syntax, we are going to build a full analysis today. This gives you the 'big picture' context for everything else we'll learn.
+:::
+
+## Learning Objectives
+
+1. Navigate RStudio's four main panes.
+2. Render a Quarto document (.qmd).
+3. Create a scatterplot using `ggplot2`.
+4. Push your work to GitHub.
+
+::: {.notes}
+**Speaker Notes:**
+These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track.
+:::
+
+## Today's Dataset: Palmer Penguins
+
+- Data on three penguin species in Antarctica.
+- Variables: bill length, flipper length, body mass, sex.
+- A classic dataset for learning visualization.
+
+::: {.notes}
+**Speaker Notes:**
+The palmerpenguins dataset is a modern alternative to the classic 'iris' dataset. It's real ecological data collected by Dr. Kristen Gorman at the Palmer Station.
+:::
+
+## Live Coding: Section 1
+
+- Open your project in RStudio.
+- Open `scripts/week_01_follow_along.R`.
+- Type along as we build the plot.
+
+::: {.notes}
+**Speaker Notes:**
+Now, please switch over to RStudio. We are going to build our first plot. Remember: don't just watch me—type the code yourself. The muscle memory of typing is how you learn the syntax.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The 30-Minute Analyst
+
+- Load the `palmerpenguins` data.
+- Create a scatterplot of body mass vs flipper length.
+- Color the points by species.
+- **Extension:** Add professional labels and a theme.
+- **Base goal:** Make the plot work and make the mapping correct.
+- **Extension goal:** Make the plot readable without explanation.
+
+::: {.notes}
+**Speaker Notes:**
+You have 45 minutes to work on this challenge. If you finish the base goal early, try the extension. The extension asks you to add labels like title, x-axis, and y-axis.
+:::
+
+## Verification
+
+- Does the Quarto document render to HTML?
+- Can you explain why `species` belongs inside `aes()`?
+- Did you commit and push the rendered result?
+
+::: {.notes}
+**Speaker Notes:**
+Before you leave, verify three things: render, explanation, and GitHub push. If one of those is missing, the assignment is not done yet.
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Before you leave, you must verify your work. Render the document. If it doesn't render, we need to fix it before you go. Finally, push to GitHub. If it's not on GitHub, it doesn't exist for grading!
+:::

@@ -1,0 +1,248 @@
+---
+title: "Week 13: Functions for Repeated Work"
+subtitle: "Stop Repeating Yourself"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A diagram showing a single labeled box labeled "function" receiving two arrows on the left (inputs) and producing one arrow on the right (output), representing the abstraction of repeated logic.
+- **Speaker Notes:** These slides introduce writing R functions as a tool for eliminating repeated pipeline code, with a direct connection to capstone project reproducibility.
+
+<!-- visual-aid: week_13 -->
+## Function Design Map
+
+::: {.diagram-flow aria-label="Function workflow from repeated code to reusable helper"}
+<div class="diagram-node">Find repetition</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Name inputs</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Write function</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Test examples</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Reuse safely</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## Where We Are
+
+- We have now filtered, summarized, visualized, and iterated over data.
+- We have used `purrr::map()` to apply operations across lists.
+- **Today:** We wrap those operations into *named, testable, reusable* functions.
+
+## How To Use Today
+
+- Write the function once, then test it on more than one input.
+- Keep the body readable by reusing the pipelines you already know.
+- Add a check that fails early if the inputs are wrong.
+
+::: {.notes}
+**Speaker Notes:**
+Take 2 minutes to orient the class. We are at Week 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline.
+:::
+
+## Learning Objectives
+
+1. Write a function with `function()`, arguments, a body, and `return()`.
+2. Apply the DRY principle to eliminate copy-pasted pipeline code.
+3. Validate function inputs with `stopifnot()`.
+4. Use a function inside `map()` and `mutate()`.
+
+::: {.notes}
+**Speaker Notes:**
+Read these aloud and ask students to keep them in mind. By the end of today, they should be able to do all four. The assignment will ask them to demonstrate 1 through 4 using their own capstone data. That connection — today's skill, their real data — is the through-line for the session.
+:::
+
+## The DRY Principle
+
+**D**on't **R**epeat **Y**ourself
+
+```r
+# Copy-pasted code: 3 places to break
+fw |> filter(state == "NE") |> group_by(species_code) |> summarize(...)
+fw |> filter(state == "IA") |> group_by(species_code) |> summarize(...)
+fw |> filter(state == "KS") |> group_by(species_code) |> summarize(...)
+```
+
+. . .
+
+```r
+# DRY: one place to maintain
+summarize_species(fw, "NE")
+summarize_species(fw, "IA")
+summarize_species(fw, "KS")
+```
+
+::: {.notes}
+**Speaker Notes:**
+Ask the class: "If I need to change the filter from January to February, how many lines do I edit in the top version? In the bottom version?" The answer — three versus one — is the entire argument for functions in one question. Copy-paste is not a strategy; it is deferred debt. Every duplicated block is a bug waiting to happen during the capstone crunch week.
+:::
+
+## Anatomy of a Function
+
+```r
+# 1. Name      2. Arguments
+summarize_species <- function(data, state_filter, n_top = 5) {
+
+  # 3. Body
+  result <- data |>
+    filter(state == state_filter) |>
+    group_by(species_code) |>
+    summarize(total_obs = sum(how_many, na.rm = TRUE), .groups = "drop") |>
+    slice_max(total_obs, n = n_top)
+
+  # 4. Return value
+  return(result)
+}
+```
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each numbered comment in the code. Emphasize: (1) name is how you call it — use snake_case; (2) arguments are the "knobs" the caller controls — n_top = 5 gives a default so the argument is optional; (3) the body is just the same pipeline they already know; (4) return() makes the output explicit. Ask: "What would the function return if I removed return(result)?" Answer: R returns the last evaluated expression, so it would still work — but explicit return() is a best practice for readability.
+:::
+
+## Default Arguments
+
+```r
+# n_top = 5 is the default — caller does not have to pass it
+summarize_species(fw, "NE")        # returns top 5
+summarize_species(fw, "NE", n_top = 3)  # overrides default
+```
+
+- Default arguments make a function flexible **and** easy to call.
+- Put defaults on arguments that have a sensible "most common" value.
+- Arguments without defaults **must** be supplied by the caller.
+
+::: {.notes}
+**Speaker Notes:**
+Live-code both calls so students see the output change when n_top is overridden. Then ask: "What happens if I don't pass `data`?" They should predict an error. Run it to confirm. The lesson: arguments without defaults are required; arguments with defaults are optional. This is a design decision — think about what the caller will need most of the time.
+:::
+
+## Validate Inputs with stopifnot()
+
+```r
+summarize_species <- function(data, state_filter, n_top = 5) {
+
+  stopifnot(
+    "data must be a data frame" = is.data.frame(data),
+    "state_filter must be a single string" =
+      is.character(state_filter) && length(state_filter) == 1
+  )
+
+  # ... rest of body
+}
+```
+
+- A bad input should fail **loudly and immediately**, not silently downstream.
+- The named form `"message" = condition` gives the caller a helpful error.
+
+::: {.notes}
+**Speaker Notes:**
+Run the function with a bad argument — e.g., pass 42 as state_filter — and show the error message. Then ask: "Without stopifnot(), what would the filter() call return? Would it be an error or an empty tibble?" It would likely be a silent empty tibble — which is far harder to debug. The principle: fail early with a clear message, not late with a confusing result. This is especially important for capstone code that others (or future-you) will run.
+:::
+
+## Functions + map()
+
+```r
+# Week 12 recap: map() applies a function to each element
+states <- c("NE", "IA", "KS")
+
+# Apply our function to each state
+result_list <- map(states, \(s) summarize_species(fw, s))
+
+# Bind list of tibbles into one data frame
+all_results <- list_rbind(result_list)
+```
+
+- `map()` replaces a for-loop with a cleaner, functional pattern.
+- `list_rbind()` stacks the list of tibbles into a single data frame.
+
+::: {.notes}
+**Speaker Notes:**
+This is the payoff slide — the function we wrote drops directly into the map() pattern from Week 12. Ask: "How many lines of code would this have been if we had copied the pipeline three times?" Then contrast with 3 lines using map(). Run this live so students see the list_rbind() output. Point out that adding a fourth state requires changing only the `states` vector — nothing else in the pipeline changes.
+:::
+
+## Functions Inside mutate()
+
+```r
+# A helper function
+classify_abundance <- function(total) {
+  if (total >= 500) return("High")
+  if (total >= 100) return("Medium")
+  return("Low")
+}
+
+# Apply it to every row via map_chr() inside mutate()
+all_results |>
+  mutate(abundance_class = map_chr(total_obs, classify_abundance))
+```
+
+::: {.notes}
+**Speaker Notes:**
+Point out that classify_abundance() works on a single number, not a whole vector. That is why we need map_chr() inside mutate() — it applies the function row-by-row and collects the character results. Ask: "Why map_chr and not map?" Answer: map() returns a list; map_chr() returns a character vector, which is what mutate() expects for a new column. If students are fuzzy on this, connect it to Week 12's map_dbl() and map_chr() examples.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The State Species Auditor
+
+Write a `top_n_species()` function that:
+
+1. Takes `data`, `state_filter`, and `n` (default 5).
+2. Returns a ranked species summary with `total_obs`, `n_sites`, and `rank`.
+3. Includes at least **one** input validation (`stopifnot` or `if/stop`).
+
+**Then:**
+- Test it on NE and IA individually.
+- Apply it via `map()` to a list of at least 3 states.
+- Bind results and make a faceted bar plot.
+
+**Base goal:** Get the function working for one state with one clear output.
+
+**Extension goal:** Generalize it cleanly enough to map across multiple states.
+
+::: {.notes}
+**Speaker Notes:**
+Read the three requirements aloud before students start. Emphasize constraint 3 — the validation — because it is easy to skip under time pressure and it is the hardest habit to build. Walk the room during the 45 minutes. When students finish the base goal, push them toward the extension: add a month_filter argument that defaults to NULL (all months) but can be set to a single month number.
+:::
+
+## Verification
+
+- Does your function return the right number of rows when `n = 5`? `n = 3`?
+- Does it fail with a clear error when you pass `42` as `state_filter`?
+- Does `map()` return a list of the correct length?
+- Can you explain what `return()` does without using the word "return"?
+- Can you point to the one line that makes the function reusable?
+
+::: {.notes}
+**Speaker Notes:**
+Work through these questions as a class. The last question — explain return() without using the word return — is a good comprehension check. A strong answer: "It hands a value back to whoever called the function so they can store it or use it." Before closing, connect to the assignment: students will write a function for their OWN capstone data. Ask 2-3 students to name one pipeline step in their project that they have repeated. Those are tomorrow's functions.
+:::
+
+## Capstone Connection
+
+> "Every pipeline step you have copy-pasted more than once is a function waiting to be written."
+
+- Assignment 13: Write **one** cleaning or summarization function for your capstone dataset.
+- Test it on **two** different inputs.
+- Render a Quarto report showing the function and its outputs.
+- **Due:** Sunday, Nov 22, 11:59 PM
+
+::: {.notes}
+**Speaker Notes:**
+End on this framing. Students are 2 weeks from capstone submissions. The assignment is not busywork — it is the first step of their final cleanup. Encourage them to use a real piece of their capstone pipeline, not a toy example. The function they write this week may end up in their final report.
+:::

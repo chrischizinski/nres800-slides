@@ -1,0 +1,289 @@
+---
+title: "Week 15: Code Review and Revision"
+subtitle: "The Professional Workflow"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A GitHub Pull Request interface showing review comments anchored to specific lines of code, representing the professional peer review workflow.
+- **Speaker Notes:** These slides guide students through the GitHub Pull Request review workflow, covering how to write actionable review comments, open methodological Issues, and respond to feedback with traceable commits.
+
+<!-- visual-aid: week_15 -->
+## Review and Revision Map
+
+::: {.diagram-flow aria-label="Professional review workflow from issue to merged revision"}
+<div class="diagram-node">Open issue</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Create branch</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Revise with evidence</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Open pull request</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Document verification</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## Where We Are
+
+- Week 15 of 16 — your capstone drafts are in.
+- Today: you review a classmate's draft; a classmate reviews yours.
+- Skill being practiced: **professional code review** — a core workflow in data science, government agencies, and academic research teams.
+
+## How To Use Today
+
+- Review the draft as if you were trying to reproduce it from scratch.
+- Make comments specific enough that the author can act on them immediately.
+- Separate required fixes from open discussion.
+
+::: {.notes}
+**Speaker Notes:**
+Remind students that code review is not grading each other. The goal is to help the author make the project more reproducible, clearer, and analytically sound. Frame it as a collaboration, not a critique. Many students have never seen a professional pull request workflow; today normalizes it.
+:::
+
+## Learning Objectives
+
+1. Write a PR description that makes a reviewer's job tractable.
+2. Post review comments that are specific, located, and actionable.
+3. Distinguish between a PR comment (must fix) and a GitHub Issue (must discuss).
+4. Respond to received feedback with a commit that explains what changed and why.
+
+::: {.notes}
+**Speaker Notes:**
+These four objectives map directly to the assignment rubric. Walk through each one briefly before diving into the demo. Emphasize that objective 3 — the PR vs Issue distinction — is the subtlest and the one students most often get wrong.
+:::
+
+## Why Code Review Exists
+
+- **In industry:** No code ships without a second pair of eyes.
+- **In science:** Reproducibility requires that *someone else* can run your code.
+- **For you:** The review process catches errors that familiarity blinds you to.
+
+> "Code is read far more often than it is written."
+> — Guido van Rossum
+
+::: {.notes}
+**Speaker Notes:**
+Students sometimes feel that review is adversarial. Share the van Rossum quote and follow up: "Your code will be read by future-you, by your advisor, by collaborators, and now by a classmate. Writing for a reader is a professional skill." Ask if anyone has returned to their own code after six months and not understood it.
+:::
+
+## The Pull Request Workflow
+
+1. **Author** pushes a branch and opens a PR with a clear description.
+2. **Reviewer** reads the description, clones/renders, and posts line-level comments.
+3. **Author** responds to each comment with a commit (or a reply explaining why not).
+4. **Reviewer** confirms changes and approves or requests another round.
+5. **Author** (or instructor) merges.
+
+::: {.notes}
+**Speaker Notes:**
+Draw this as a loop on the whiteboard: Author → PR → Reviewer → Comments → Author (commits) → Reviewer (approves) → Merge. Stress that step 3 is where most students stall. Responding to every comment — even to say "I disagree, and here is why" — is required professional behavior. Silence is not a valid response to a review comment.
+:::
+
+## Anatomy of a Good PR Description
+
+A PR description must answer three questions:
+
+1. **What changed?** — What will the reviewer see in the diff?
+2. **Why?** — The scientific or analytical reason for the change.
+3. **How do I verify it?** — Step-by-step reproduction instructions.
+
+::: {.notes}
+**Speaker Notes:**
+Show the bad example first on GitHub: "Fixed some stuff. Should work now." Ask the class: "If you were reviewing this, where would you even start?" Then show the good template. The key insight is that a PR description is written for the reviewer, not for the author. The author already knows what changed.
+:::
+
+## Good PR Description vs Bad
+
+::: {.columns}
+::: {.column width="48%"}
+**Bad**
+
+> Fixed some stuff. Should work now.
+:::
+::: {.column width="48%"}
+**Good**
+
+> **What changed:** Replaced `setwd()` on line 14 with `here::here()`.
+>
+> **Why:** The old path only ran on my machine.
+>
+> **Verify:** Clone fresh → open `.Rproj` → knit → confirm all figures appear.
+:::
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Ask the class to identify why the bad version fails before revealing the good version. Common student answers: "we don't know what 'stuff' means," "we can't verify anything." Push further: "What does 'should work now' tell the reviewer about scientific validity?" Answer: nothing.
+:::
+
+## Writing a Review Comment: The Formula
+
+Every substantive comment should contain:
+
+1. **Location** — file name and line number (GitHub anchors this automatically)
+2. **Observation** — what you actually see in the code or output
+3. **Concern** — why it matters (reproducibility, inference, clarity)
+4. **Suggestion** — a concrete alternative, ideally as a code snippet
+
+::: {.notes}
+**Speaker Notes:**
+Walk through this formula on the demo repo. Show students how to click a line number in GitHub's "Files Changed" tab to open a comment box anchored to that line. Emphasize that "Suggestion" is where students often write vague advice instead of a concrete fix. If you can write the replacement code in four lines, write it.
+:::
+
+## Good Comment vs Bad Comment
+
+::: {.columns}
+::: {.column width="48%"}
+**Bad**
+
+> This looks wrong.
+
+> I think you should reorganize this.
+
+> Why did you do it this way?
+:::
+::: {.column width="48%"}
+**Good**
+
+> **Line 47 — hard-coded path**
+> `read_csv('/Users/student/Desktop/...')` will not run on another machine.
+> Replace with `here('data', 'fish.csv')`.
+> This is required for reproducibility.
+:::
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Show the bad comments on screen and ask: "What would you do with this feedback as an author?" The answer is usually "not much — I don't know what to fix." Then show the good comment and ask: "How long would it take to act on this?" Usually under two minutes. That specificity is the point. Also note that "Why did you do it this way?" is not inherently bad — it belongs in a GitHub Issue, not a PR comment, because it opens a discussion rather than identifying a required fix.
+:::
+
+## PR Comment vs GitHub Issue
+
+| | **PR Comment** | **GitHub Issue** |
+|---|---|---|
+| **Use when** | Something must change | Something must be discussed |
+| **Tone** | "Please fix X" | "I have a question about decision Y" |
+| **Resolves when** | Author pushes a fix | Parties agree on an approach |
+| **Example** | Hard-coded path | Whether to exclude outlier year |
+
+::: {.notes}
+**Speaker Notes:**
+The hardest part of this distinction is that methodological questions often FEEL like they should be PR comments. Walk through the outlier example: if you write "Remove the 2019 data" as a PR comment, you are making the decision for the author. Opening an Issue says "I noticed this — let's discuss." The author may have a good reason for including 2019. Issues preserve the conversation and the decision rationale, which is good for the scientific record.
+:::
+
+## The Reproducibility Checklist
+
+Before posting any review comment, verify:
+
+- [ ] Can you clone and render without editing anything?
+- [ ] Are all file paths project-relative (no `setwd()`, no absolute paths)?
+- [ ] Are missing data decisions documented (how many rows, which column, why)?
+- [ ] Does every figure have a caption describing the trend?
+- [ ] Are conclusions supported by visible output in the rendered document?
+- [ ] Is the README clear enough for a new reader to start?
+
+::: {.notes}
+**Speaker Notes:**
+Walk through the checklist item by item. For item 1, remind students that "renders on my machine" is not the same as "reproducible." They need to actually clone to a new directory and try. For item 3, emphasize that na.omit() is the silent killer — it removes rows without telling the reader how many or from where. For item 5, tell students to cover the prose and look only at the figures and tables — can they reconstruct the conclusions?
+:::
+
+## Responding to Review: The Author's Role
+
+When you receive comments on your PR:
+
+1. **Read all comments before responding** — some may be related.
+2. **For each comment:** push a fix OR reply explaining why you disagree.
+3. **Commit messages matter:** say WHAT changed and WHY, reference the comment.
+4. **After pushing:** resolve the conversation and `@mention` the reviewer.
+
+::: {.notes}
+**Speaker Notes:**
+Students often address comments one at a time and push after each fix, which creates a noisy commit history. Recommend batching related fixes into one commit. The commit message is a permanent record of the decision. Show on the demo repo: "fix: replace hard-coded path with here() — addresses review comment #3 in PR #7" vs "addressed comments." Future-you will thank you for the first version.
+:::
+
+## Good Commit Message vs Bad
+
+::: {.columns}
+::: {.column width="48%"}
+**Bad**
+
+> addressed comments
+
+> fixed it
+
+> update
+:::
+::: {.column width="48%"}
+**Good**
+
+> fix: replace hard-coded path with here() on line 47
+>
+> Reviewer flagged that the absolute path broke on other machines.
+> Also updated README to note the here() convention.
+> Resolves review comment #3 in PR #7.
+:::
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Run `git log --oneline` on the demo repo and show what a history of "addressed comments / fixed it / update" looks like — three identical-looking commits with no information. Then show a clean history. Ask students: "If your advisor asked you in six months what you changed between draft 1 and draft 2, which history would help you answer?" The good history is also evidence of responsiveness, which matters for the assignment rubric.
+:::
+
+## Peer Review Rubric
+
+| Criterion | Points | What earns full marks |
+|---|---|---|
+| Reproducibility check | 3 | All checklist items evaluated; clone-and-render tested |
+| Comment quality | 4 | 3+ comments with location, observation, concern, and suggestion |
+| GitHub Issue | 2 | 1+ issue with context, question, and proposed next steps |
+| Revision commits | 3 | 2+ commits responding to received feedback with clear messages |
+| **Total** | **12** | |
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each row. Stress that "comment quality" is not about harshness — a polite, specific comment that gives the author a clear path forward earns full marks. A harsh but vague comment earns nothing. For "revision commits," remind students that the commit message is the evidence — the grader will read it.
+:::
+
+## Today's Workflow
+
+- **0:00 – 0:30** — GitHub PR demo (live, follow along)
+- **0:30 – 0:45** — Issues demo + Q&A
+- **0:45 – 1:00** — Work time: clone partner's repo and run the reproducibility checklist
+- **1:00 – 1:15** — Break
+- **1:15 – 2:15** — Write and post review comments + open Issue
+- **2:15 – 2:45** — Respond to received feedback with revision commits
+- **2:45 – 3:00** — Wrap-up and submission instructions
+
+::: {.notes}
+**Speaker Notes:**
+Keep the demo tight — 30 minutes is enough if you have a prepared demo repo with a realistic but intentionally flawed analysis script. The most valuable class time is the second half when students are writing and responding to real reviews. Be available to walk around during the work periods. Common sticking points: students not knowing how to anchor a comment to a line in GitHub, and students not understanding that they need to push AFTER making edits.
+:::
+
+## Verification
+
+- Did you clone your partner's repo and confirm it renders?
+- Did you post 3+ substantive comments (location + observation + concern + suggestion)?
+- Did you open at least 1 GitHub Issue for a methodological question?
+- Did you push 2+ revision commits responding to feedback on YOUR repo?
+- Do your commit messages explain what changed and why?
+- Can you explain why a methodological disagreement belongs in an Issue rather than a PR comment?
+
+::: {.notes}
+**Speaker Notes:**
+Read through the verification list before releasing students for the work period. This is the same list on the assignment rubric. Tell students: "If you can answer yes to all five of these by the end of class, you are on track. The written submission is due Sunday — use the remaining time to finish anything incomplete."
+:::

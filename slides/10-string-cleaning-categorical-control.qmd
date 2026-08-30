@@ -1,0 +1,229 @@
+---
+title: "Week 10: String Cleaning and Categorical Control"
+subtitle: "stringr, janitor, and forcats"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A screenshot of a messy CSV file with inconsistent capitalization and extra spaces in a state code column, beside a clean version of the same table after string standardization.
+- **Speaker Notes:** These slides introduce systematic text cleaning using stringr functions, janitor column name normalization, and factor reordering with forcats.
+
+<!-- visual-aid: week_10 -->
+## String Cleaning Map
+
+::: {.diagram-flow aria-label="String and category cleanup workflow"}
+<div class="diagram-node">Raw labels</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Standardize strings</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Clean names</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Set factor order</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Verify counts</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## Where We Are
+
+- Week 09: You tackled your first fully messy dataset — end to end.
+- This week: We name the specific tools for the most common mess.
+- The trio: **stringr** (text), **janitor** (column names), **forcats** (categories).
+
+## How To Use Today
+
+- Clean column names first so the rest of the script stays readable.
+- Standardize text before grouping or plotting.
+- Reorder factors when the default alphabetical order would mislead.
+
+::: {.notes}
+**Speaker Notes:**
+Last week you encountered messy data for the first time in a systematic way. You probably noticed that a lot of the mess was text — inconsistent capitalization, extra spaces, abbreviated versus spelled-out values. This week we put names on those problems and give you a repeatable toolkit. These three packages together handle the vast majority of text and categorical cleanup you will encounter in ecological and agricultural data.
+:::
+
+## Learning Objectives
+
+1. Use `janitor::clean_names()` to normalize column names on import.
+2. Apply `str_trim()`, `str_to_lower()`, and `str_to_upper()` to standardize text fields.
+3. Use `str_detect()` for partial-match filtering and `str_replace()` for targeted recoding.
+4. Control factor level order in plots using `fct_reorder()` and `fct_relevel()`.
+
+::: {.notes}
+**Speaker Notes:**
+Four objectives, roughly one per 30-minute block of live coding today. Objective 4 — factor reordering — is the one that immediately improves the quality of every visualization they make, so it tends to get the most audible reaction in class. Let students work through the alphabetical-order plot first, then show the reordered version.
+:::
+
+## The Problem: Text Columns Are Liars
+
+```r
+count(crop_raw, state)
+# A tibble: 4 × 2
+#   state        n
+#   <chr>    <int>
+# 1 NE          20
+# 2 ne          20
+# 3 Nebraska    20
+# 4 NEBRASKA    20
+```
+
+One state. Four representations. Every `group_by()` will treat them as four groups.
+
+::: {.notes}
+**Speaker Notes:**
+Pull this up in the console and run it live. Ask the class: if we group_by(state) right now and calculate a mean, how many rows will we get? They will say four. Then ask: how many should we get? One. That's the whole problem — and it's invisible unless you look. This slide exists to make them paranoid. Good paranoid.
+:::
+
+## Tool 1: janitor::clean_names()
+
+```r
+library(janitor)
+
+crop_raw <- read_csv(here("data", "crop_survey_messy.csv")) |>
+  clean_names()
+```
+
+- Converts `Reported Yield Bu/Ac` → `reported_yield_bu_ac`
+- No more backtick-quoting column names in your pipeline.
+- Always do this on import.
+
+::: {.notes}
+**Speaker Notes:**
+clean_names() is a one-line, no-brainer addition to every import. It handles spaces, special characters, and mixed case in column headers. The rule of thumb I give students: if the column name would need backticks in R, clean_names() would have fixed it. Make it a habit — add it to your import template.
+:::
+
+## Tool 2: str_trim() and str_to_lower()
+
+```r
+library(stringr)
+
+crop_clean <- crop_raw |>
+  mutate(
+    state = str_trim(state) |> str_to_lower(),
+    crop_type = str_trim(crop_type) |> str_to_lower()
+  )
+```
+
+**Order matters:** trim whitespace FIRST, then change case.
+
+::: {.notes}
+**Speaker Notes:**
+Ask the class: why does order matter here? If you lower-case first, you still have "corn " with a trailing space. When you group by it, "corn" and "corn " are different values. Trim first eliminates the space, then lower-case standardizes capitalization. The trailing space is especially insidious because it is invisible in the output — you have to count characters or look at the raw CSV to find it. That's the kind of bug that costs an afternoon.
+:::
+
+## Tool 3: str_replace()
+
+```r
+crop_clean <- crop_clean |>
+  mutate(
+    state = str_replace(state, "nebraska", "ne"),
+    crop_type = str_replace(crop_type, "^soy$", "soybean"),
+    crop_type = str_replace(crop_type, "soybeans", "soybean")
+  )
+```
+
+- `^soy$` anchors the pattern — matches the whole word only.
+- Without anchors, `str_replace("soybean", "soy", "X")` → `"Xbean"`.
+
+::: {.notes}
+**Speaker Notes:**
+The regex anchors ^ and $ are the most important thing to explain here. Write "soy" on the board or slide, then show what happens if you replace "soy" inside "soybean" without anchors. The result is "Xbean", which is wrong. The anchors say "only match if soy is the entire string." This is a common mistake. You can also show str_replace_all() versus str_replace() — the former replaces every match in the string, the latter only the first. For cleaning categorical labels we almost always want str_replace().
+:::
+
+## Tool 4: str_detect() for Filtering
+
+```r
+# Filter rows where notes mention irrigation
+crop_clean |>
+  filter(str_detect(notes, "irrigat")) |>
+  select(county, crop_type, notes)
+```
+
+- Returns `TRUE`/`FALSE` — works inside `filter()` naturally.
+- Pattern is a regular expression — `"irrigat"` matches "irrigated", "irrigation", etc.
+
+::: {.notes}
+**Speaker Notes:**
+str_detect() is the partial-match filter. Contrast it with the equality filter: filter(state == "ne") only matches exact strings. str_detect() matches substrings or patterns. The notes column in today's dataset is a good example — no two notes are identical, but you can still find rows mentioning irrigation, drought, or flood damage. This is also useful for sanity checking: str_detect(crop_type, " ") will catch any values that still have spaces in them after cleaning.
+:::
+
+## Tool 5: fct_reorder() and fct_relevel()
+
+```r
+library(forcats)
+
+# Logical order: small -> medium -> large
+crop_summary <- crop_summary |>
+  mutate(
+    farm_size_category = fct_relevel(farm_size_category,
+                                     "small", "medium", "large")
+  )
+```
+
+- `fct_relevel()`: set an explicit, meaningful order.
+- `fct_reorder()`: sort by a numeric variable (e.g., mean yield, descending).
+
+::: {.notes}
+**Speaker Notes:**
+ggplot defaults to alphabetical factor order. For farm size, alphabetical gives you "large, medium, small" — the reverse of what anyone expects. fct_relevel() lets you specify exactly what order the levels appear. fct_reorder() is used when the order should be driven by a numeric value, like ranking crop types from highest to lowest yield. Show both: fct_relevel for ordinal categories with a natural order, fct_reorder for nominal categories ranked by a statistic.
+:::
+
+## Before and After: Factor Order
+
+```r
+# Before: alphabetical (confusing)
+ggplot(crop_summary, aes(x = farm_size_category, y = mean_yield)) +
+  geom_col()
+
+# After: logical order (clear)
+crop_summary |>
+  mutate(farm_size_category = fct_relevel(farm_size_category,
+                                          "small", "medium", "large")) |>
+  ggplot(aes(x = farm_size_category, y = mean_yield)) +
+  geom_col()
+```
+
+::: {.notes}
+**Speaker Notes:**
+Run both plots side by side if you can. The alphabetical version reads "large, medium, small" which forces the audience to mentally reorder while reading. The reordered version reads left to right in the natural direction. This is a small change with a large communication payoff. Make the point that factor reordering is not cosmetic — it changes what conclusions readers draw from the chart.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Crop Yield Audit
+
+- Clean the `crop_survey_messy.csv` dataset end to end.
+- **Base goal:** Which crop type has the highest average yield in Nebraska?
+- **Extension goal:** Does farm size matter once the categories are ordered clearly?
+- Required: clean text columns, filter to NE, summarize, plot with reordered factors.
+
+::: {.notes}
+**Speaker Notes:**
+Students should be able to complete this independently now — they have all four tools. The challenge is intentionally structured so that cleaning must happen before the analysis makes sense. If they skip cleaning and go straight to group_by(), they will get four state groups instead of one and their results will be wrong. That is the lesson. Walk the room during the 45 minutes and look for students who are still getting four crop_type values after their clean step — that means they missed either str_trim() or the anchored str_replace().
+:::
+
+## Verification
+
+- Does `count(crop_clean, state)` show exactly **one** value?
+- Does `count(crop_clean, crop_type)` show exactly **two** values?
+- Is your x-axis ordered **small → medium → large** (not alphabetical)?
+- Can you articulate why `str_trim()` must run before `str_to_lower()`?
+- Can you explain why `clean_names()` belongs at the start of the pipeline?
+
+::: {.notes}
+**Speaker Notes:**
+Go through each verification check with the class before they commit. The count checks are pass/fail — if they have more than one state value, their pipeline has a bug. The ordering check is about communication quality. The articulation question is the metacognitive exit ticket: if they can explain the order-of-operations logic, they will apply it correctly to future datasets without needing to be reminded.
+:::

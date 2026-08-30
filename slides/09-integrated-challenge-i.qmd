@@ -1,0 +1,287 @@
+---
+title: "Week 09: Integrated Challenge I"
+subtitle: "From Raw Data to Plot — Putting It All Together"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A diagram showing the data science pipeline as a river flowing from raw field data through cleaning and wrangling to a final visualization, representing the integration of skills learned in Weeks 03-08.
+- **Speaker Notes:** These slides frame Week 09 as a capstone synthesis session. No new R syntax is introduced. Students apply everything they have learned in a single integrated workflow on a realistic, messy dataset.
+
+<!-- visual-aid: week_09 -->
+## Integrated Analysis Map
+
+::: {.diagram-flow aria-label="Full analysis workflow for the integrated challenge"}
+<div class="diagram-node">Import raw data</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Clean variables</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Summarize pattern</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Build plot</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Explain evidence</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## What We Are Doing Today
+
+- **No new syntax.** Everything you need, you already know.
+- One realistic messy dataset. One scientific question.
+- One complete pipeline: import → clean → wrangle → summarize → visualize → interpret.
+
+## How To Use Today
+
+- Treat the workflow as one connected pipeline, not separate tricks.
+- Verify row counts and key values at every step.
+- If a result looks odd, stop and inspect the data before changing code.
+
+::: {.notes}
+**Speaker Notes:**
+This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation.
+:::
+
+## Learning Objectives
+
+1. Diagnose and describe problems in a raw dataset before writing any cleaning code.
+2. Standardize inconsistent identifiers and categorical values using `stringr`.
+3. Filter invalid or missing records and track row-count changes at each step.
+4. Summarize EPT richness by site using `group_by()` and `summarize()`.
+5. Join a site-level lookup table to an analytical summary.
+6. Produce a labeled, publication-ready visualization and interpret the result.
+
+::: {.notes}
+**Speaker Notes:**
+Read these objectives out loud with students and ask them to identify which week each skill came from. Objective 2 is Week 05 (strings). Objectives 3 and 4 are Week 06 (dplyr). Objective 5 is Week 07 (joins). Objectives 1 and 6 span everything. This exercise makes students aware of their own accumulated competency.
+:::
+
+## The Data Pipeline — A Recap
+
+```
+Raw Data → Import → Inspect → Clean → Wrangle → Summarize → Visualize → Interpret
+```
+
+- Each step has a **verification check**.
+- Never move to the next step until you can describe what the current step produced.
+- Row counts are your first diagnostic tool.
+
+::: {.notes}
+**Speaker Notes:**
+Draw this pipeline on the whiteboard before opening R. Ask students to tell you what R functions belong in each stage. Import: read_csv(). Inspect: nrow(), str(), head(). Clean: mutate(), str_to_lower(), filter(). Wrangle: group_by(), summarize(). Visualize: ggplot(). The pipeline is not unique to this dataset — it is the template they will use for the rest of their careers.
+:::
+
+## Today's Scientific Question
+
+> **Which Nebraska stream sites show the highest EPT richness, and does richness increase with stream order?**
+
+- **EPT** = Ephemeroptera + Plecoptera + Trichoptera
+- EPT richness is a standard bio-assessment metric: more EPT orders = cleaner water
+- Dataset: macroinvertebrate field surveys from 10 Nebraska sites, 2022
+
+::: {.notes}
+**Speaker Notes:**
+Briefly explain EPT to students who may not have a stream ecology background. Ephemeroptera (mayflies), Plecoptera (stoneflies), and Trichoptera (caddisflies) are pollution-sensitive invertebrate orders. Sites with high EPT richness are generally in better ecological condition. Stream order is a measure of stream size: first-order streams are headwater tributaries; higher-order streams are larger, potentially more disturbed by agriculture and channelization.
+:::
+
+## The Raw Data: What Could Go Wrong?
+
+- `SiteID` has three formats: `"NE01"`, `"ne01"`, `"NE-01"`
+- `order_name` has three cases: `"Ephemeroptera"`, `"ephemeroptera"`, `"EPHEMEROPTERA"`
+- Some `count` values are `NA` (not recorded)
+- Some `count` values are `0` (recorded absence)
+- Some dates are `YYYY-MM-DD`, others are `M/D/YYYY`
+
+::: {.notes}
+**Speaker Notes:**
+Ask students: "Before I write a single line of cleaning code, what would happen if I tried to group_by(SiteID) on the raw data?" They would get 30 groups instead of 10, because 'NE01', 'ne01', and 'NE-01' would each be treated as a distinct site. This is the diagnosis-before-cleaning mindset. Spend 5 minutes on this slide. The skill of noticing problems in data before touching it is underrated and worth emphasizing.
+:::
+
+## Step 1: Import & Inspect
+
+```r
+library(tidyverse)
+library(here)
+library(lubridate)
+
+raw <- read_csv(here("data", "macroinvertebrate_raw.csv"))
+
+nrow(raw)
+names(raw)
+head(raw, 10)
+str(raw)
+```
+
+**Checkpoint:** How many rows? How many unique SiteID values in the raw data?
+
+::: {.notes}
+**Speaker Notes:**
+Have students run this code and call out what they see. Expected: 104 rows. If they run count(SiteID) on the raw data they should see 30 groups instead of 10. This is the "aha" moment that motivates the cleaning step. Remind them that str() is their first friend — it tells you the data type of every column, which determines what cleaning functions to use.
+:::
+
+## Step 2: Standardize Identifiers
+
+```r
+cleaned <- raw |>
+  mutate(
+    SiteID     = str_to_upper(SiteID),
+    SiteID     = str_remove_all(SiteID, "-"),
+    SiteID     = str_trim(SiteID),
+    order_name = str_to_lower(str_trim(order_name))
+  )
+
+cleaned |> count(SiteID)
+cleaned |> count(order_name)
+```
+
+**Checkpoint:** How many unique SiteID values now? How many unique order_name values?
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each mutate line deliberately. str_to_upper() handles case. str_remove_all() with pattern "-" removes the dash. str_trim() removes any stray whitespace. Repeat the same logic for order_name with str_to_lower(). After this step, count(SiteID) should show exactly 10 groups and count(order_name) should show exactly 6 groups. Ask students: 'What would str_squish() do differently from str_trim()?' This is a good moment to reinforce that cleaning functions are composable.
+:::
+
+## Step 3: Filter Invalid Records
+
+```r
+filtered <- cleaned |>
+  filter(!is.na(count), count > 0)
+
+nrow(filtered)
+nrow(cleaned) - nrow(filtered)  # rows removed
+```
+
+**Checkpoint:** How many rows were removed? What do the removed rows represent?
+
+::: {.notes}
+**Speaker Notes:**
+Ask students to decide BEFORE running the code: should we keep zero counts or drop them? There is no universally correct answer. For EPT richness, a count of 0 means the order was not detected — we drop it because we want presence only. For abundance models, zeros are meaningful and must be retained. The point is that this is a scientific decision, not a coding decision. The code just implements the decision.
+:::
+
+## Step 4: Summarize EPT Richness
+
+```r
+ept_summary <- filtered |>
+  filter(order_name %in% c("ephemeroptera", "plecoptera", "trichoptera")) |>
+  group_by(SiteID) |>
+  summarize(
+    ept_richness  = n_distinct(order_name),
+    ept_abundance = sum(count),
+    stream_order  = first(stream_order),
+    .groups = "drop"
+  )
+```
+
+**Checkpoint:** Which site has the highest EPT richness?
+
+::: {.notes}
+**Speaker Notes:**
+The key conceptual question here is: why n_distinct(order_name) and not n()? n() counts rows. n_distinct(order_name) counts how many of the three EPT orders are actually represented. A site with 100 mayflies but no stoneflies or caddisflies has EPT richness of 1, not 100. This distinction between richness (diversity) and abundance (quantity) is fundamental in ecology and worth spending 3-4 minutes on.
+:::
+
+## Step 5: Join to Site Lookup
+
+```r
+site_lookup <- tibble(
+  SiteID    = c("NE01", "NE02", "NE03", "NE04", "NE05",
+                "NE06", "NE07", "NE08", "NE09", "NE10"),
+  watershed = c("Platte", "Platte", "Loup", "Loup", "Elkhorn",
+                "Elkhorn", "Platte", "Loup", "Elkhorn", "Platte")
+)
+
+ept_joined <- ept_summary |>
+  left_join(site_lookup, by = "SiteID")
+
+ept_joined |> filter(is.na(watershed))
+```
+
+**Checkpoint:** Did every site get a watershed? Why use `left_join` and not `inner_join`?
+
+::: {.notes}
+**Speaker Notes:**
+The inline tibble is intentional — no extra file to track, no path issues. Ask students why left_join was chosen. A left_join keeps all rows from the left table (ept_summary) and adds matching columns from the right (site_lookup). If any SiteID in ept_summary was missing from site_lookup, that row would have NA in the watershed column — and the filter() check at the end would expose it. inner_join would silently drop unmatched sites, which is usually more dangerous.
+:::
+
+## Step 6: Visualize
+
+```r
+ggplot(ept_joined, aes(x = factor(stream_order), y = ept_richness)) +
+  geom_point(aes(color = watershed), size = 4, alpha = 0.85) +
+  scale_color_brewer(palette = "Set2") +
+  labs(
+    title    = "EPT Richness by Stream Order",
+    subtitle = "Nebraska macroinvertebrate sites, 2022",
+    x        = "Stream Order",
+    y        = "EPT Richness (# of EPT orders present)",
+    color    = "Watershed"
+  ) +
+  theme_minimal(base_size = 14)
+```
+
+::: {.notes}
+**Speaker Notes:**
+Before they run the code, ask: "Should stream_order be numeric or a factor on the x-axis?" As numeric, ggplot would draw a continuous axis and might try to fit a smooth line — misleading because stream order is an ordinal categorical variable, not truly continuous. factor() forces a discrete axis. Also point out scale_color_brewer() — this is from Week 04. Color-blind safe palettes should be the default, not the exception.
+:::
+
+## Interpretation
+
+- Does EPT richness increase with stream order?
+- Which watershed has the most consistently high EPT richness?
+- What caveats would you include in a figure caption?
+
+::: {.notes}
+**Speaker Notes:**
+Push students to interpret, not just describe. 'The plot shows points' is description. 'Sites with higher stream order tend to have higher EPT richness, suggesting larger streams in this dataset support more pollution-sensitive taxa — though sample size per stream order is small' is interpretation with appropriate epistemic humility. Remind them that any claim should be proportional to the sample size and design of the data.
+:::
+
+## The Weekly Challenge [45 mins]
+
+### Your Task
+
+Using `macroinvertebrate_raw.csv`:
+
+1. Import and diagnose the data (5 min)
+2. Standardize SiteID and order_name (10 min)
+3. Filter zeros and NAs (5 min)
+4. Summarize EPT richness by site (10 min)
+5. Join to the site lookup (5 min)
+6. Plot and interpret (10 min)
+
+**Base goal:** Produce a correct site-level EPT summary and plot.
+
+**Extension goal:** Compare richness and abundance as separate stories.
+
+**Verification:** Check row counts at every step. Do not skip.
+
+::: {.notes}
+**Speaker Notes:**
+Give students the time budget out loud and post it on the screen. Walk the room during Steps 2 and 4 — those are where most students will need support. Students who finish early should try the extension: replace ept_richness with ept_abundance as the y-axis and compare the two plots. Do they tell the same story?
+:::
+
+## Verification Before You Commit
+
+- [ ] Raw data: 104 rows, 7 columns
+- [ ] After standardization: still 104 rows, 10 unique SiteIDs, 6 unique order_names
+- [ ] After filtering: fewer rows (check: how many removed?)
+- [ ] EPT summary: 10 rows, one per site
+- [ ] Join: 0 NAs in watershed column
+- [ ] Plot renders with labeled axes and a professional theme
+- [ ] You can explain why each step belongs in the order shown
+
+::: {.notes}
+**Speaker Notes:**
+Read through this checklist with students before they close their laptops. This verification pattern — state your expectations first, then check — is what separates professional-grade analysis from student-grade analysis. If any check fails, that is not a problem; it is information. The goal is to never let a mistake pass silently.
+:::

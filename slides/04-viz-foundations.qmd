@@ -1,0 +1,115 @@
+---
+title: "Week 04: Viz Foundations"
+subtitle: "The Grammar of Graphics"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A vibrant collage of various data visualizations, including scatterplots, bar charts, and heatmaps, representing the diversity of the Grammar of Graphics.
+- **Speaker Notes:** These slides introduce the core concepts of ggplot2, focusing on mapping variables to aesthetics and faceting.
+
+<!-- visual-aid: week_04 -->
+## Grammar of Graphics Map
+
+::: {.diagram-flow aria-label="ggplot workflow from data through visual output"}
+<div class="diagram-node">Data</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Aesthetic mapping</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Geometries</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Scales and facets</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Readable plot</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Decide what the plot needs to say before choosing the geom.
+- Use color only when it helps the reader.
+- Prefer clear labels and a clean theme over decoration.
+
+::: {.notes}
+**Speaker Notes:**
+The question for today is not "What looks pretty?" It is "What helps the reader understand the data fastest?"
+:::
+
+## Mapping vs Setting
+
+- **Mapping:** Linking data to a visual trait (inside `aes()`).
+- **Setting:** Assigning a fixed visual trait (outside `aes()`).
+- This is the #1 source of ggplot confusion!
+
+::: {.notes}
+**Speaker Notes:**
+If you remember only one thing from today, let it be the difference between 'mapping' and 'setting'. Mapping is when you want the color to change based on the data (like species). Setting is when you just want all the points to be blue. Mixing these up is the most common error in ggplot2.
+:::
+
+## Learning Objectives
+
+1. Map variables to aesthetics.
+2. Choose geoms for different data types.
+3. Use facets to split plots by category.
+4. Add professional labels and themes.
+
+::: {.notes}
+**Speaker Notes:**
+Today we move from simple plots to 'publication-ready' visualizations. We'll learn how to choose the right 'geom' for your data and how to use 'facets' to tell a story across different categories.
+:::
+
+## Live Coding: Section 1
+
+- Layers of a ggplot.
+- Histograms, Boxplots, and Scatterplots.
+- Faceting and Themes.
+
+::: {.notes}
+**Speaker Notes:**
+We'll build our plots layer-by-layer. Think of it like an onion—we start with the data, then add the mapping, then the geom, then the labels, and finally the theme.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Visualization Architect
+
+- Build a multi-layer plot of prairie restoration.
+- Use facets to compare soil types.
+- Apply a clean theme and informative labels.
+- **Base goal:** Make the plot communicate the trend clearly.
+- **Extension goal:** Add a facet-based version and compare it to the colored version.
+
+::: {.notes}
+**Speaker Notes:**
+You are now the 'Architect'. You have a dataset of prairie restoration plots. Your goal is to build a visualization that clearly shows how species richness changes over time across different soil types.
+:::
+
+## Verification
+
+- Does the plot clearly show the trend?
+- Are the axis labels readable and informative?
+- Did you use a professional theme and a color-blind-safe palette?
+
+::: {.notes}
+**Speaker Notes:**
+If the plot needs a long explanation to make sense, the design needs work. The final check is whether a first-time reader can understand it quickly.
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Before you commit, look at your plot with fresh eyes. Are the axis labels large enough? Does the title actually describe what's happening? Did you remember to use a theme like 'theme_minimal' to remove the default gray background?
+:::

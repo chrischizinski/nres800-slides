@@ -1,0 +1,84 @@
+/* Shared title-slide logo and text-based visual aids. */
+#title-slide::after {
+  content: "";
+  display: block;
+  width: 190px;
+  height: 105px;
+  margin: 1.2rem auto 0;
+  background-image: url("../assets/HuskerLogo2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.diagram-flow {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 1.3rem auto;
+  max-width: 1100px;
+}
+
+.diagram-node,
+.diagram-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagram-node {
+  min-height: 5.2rem;
+  flex: 1 1 0;
+  padding: 0.65rem 0.8rem;
+  border: 2px solid #d00000;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.diagram-arrow {
+  flex: 0 0 auto;
+  color: #6b6b6b;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.diagram-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin: 1.1rem auto;
+  max-width: 1050px;
+}
+
+.diagram-caption {
+  font-size: 0.72em;
+  color: #555;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .diagram-flow {
+    flex-direction: column;
+  }
+
+  .diagram-arrow {
+    transform: rotate(90deg);
+  }
+
+  .diagram-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+#title-slide::after {
+  top: 0.35rem;
+  right: 0.8rem;
+  width: clamp(220px, 20vw, 340px);
+  height: clamp(220px, 20vw, 340px);
+}

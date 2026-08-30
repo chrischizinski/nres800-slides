@@ -1,0 +1,193 @@
+---
+title: "Week 16: Capstone Showcase"
+subtitle: "What Did We Build?"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A mosaic of data visualizations, R code, and a GitHub repository structure, representing the complete reproducible data science workflow built over 16 weeks.
+- **Speaker Notes:** These slides guide the capstone showcase session, which includes a course retrospective, student presentations, an independent reproducibility check, and a closing reflection.
+
+::: {.notes}
+**Speaker Notes:**
+Welcome to the last class. There is no new code today. Instead, we are doing something harder — we are going to prove that the work we produced actually does what we claim it does, on a machine we have never touched.
+:::
+
+<!-- visual-aid: week_16 -->
+## Capstone Showcase Map
+
+::: {.diagram-flow aria-label="Capstone presentation workflow from claim to next step"}
+<div class="diagram-node">Research question</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Data evidence</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Key figure</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Limitation</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Next step</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Treat the showcase like a reproducibility audit, not a performance.
+- Check that the repo works from a fresh clone before you present.
+- Use the reflection to name one concrete improvement you would make next time.
+
+## Where We Started
+
+- Week 1: Loading one CSV without crashing R.
+- Week 2: Understanding what your data *actually* contains.
+- Week 3: Reading messy files into a tidy format.
+- Week 4: Building a plot that tells a story.
+
+::: {.notes}
+**Speaker Notes:**
+Take a moment to think back to Week 1. Most of you had never used a project-relative path. Some of you had never used R at all. The gap between where you started and where you are today is real — and it is worth naming before we move on.
+:::
+
+## The Middle Arc
+
+- Week 5–6: Transforming and summarizing data with dplyr.
+- Week 7–8: Reshaping and joining datasets.
+- Week 9: Integrating multiple tools into one workflow.
+- Week 10–11: Working with strings and dates.
+
+::: {.notes}
+**Speaker Notes:**
+The middle weeks were about precision — learning that raw data almost never arrives in the shape you need it. dplyr, tidyr, and the string/date tools are what let you go from "I have data" to "I have the right data in the right format."
+:::
+
+## The Advanced Arc
+
+- Week 12: Importing complex and multi-sheet data.
+- Week 13: Writing your own functions.
+- Week 14: Building reproducible reports with Quarto.
+- Week 15: Iteration and automation with purrr.
+
+::: {.notes}
+**Speaker Notes:**
+The back half of the semester was about scale and robustness. Functions and iteration mean you never write the same transformation twice. Quarto means your analysis and your report are the same document — there is no copy-paste gap where errors hide.
+:::
+
+## Today: The Capstone
+
+1. **Course retrospective** — 10 minutes
+2. **Student presentations** — ~10 minutes each
+3. **Independent reproducibility check** — 20 minutes
+4. **Reflection and close** — 20 minutes
+
+::: {.notes}
+**Speaker Notes:**
+The structure today is designed so that the reproducibility check is not just a formality — it is the proof of concept. Someone who was not in this class should be able to clone your repo and reproduce your results without asking you a single question.
+:::
+
+## Showcase Format
+
+Each presenter has 10 minutes:
+
+- **3 min:** Research question and dataset overview
+- **3 min:** Walk through one key result or visualization
+- **2 min:** Walk through the repo structure (README, file paths, data)
+- **2 min:** Peer Q&A
+
+::: {.notes}
+**Speaker Notes:**
+The three-minute limit on the repo walk-through is intentional. If a colleague cannot understand your repo structure in three minutes, the README needs work. The peer Q&A should focus on one of these two questions: "What does this analysis do well?" and "What question can the data not answer?"
+:::
+
+## Reproducibility Check Protocol
+
+**The reproducer (not the presenter) runs these steps:**
+
+1. `git clone [repo URL]` — clone to a new folder
+2. Open the `.Rproj` file (not the `.qmd` directly)
+3. Run `renv::restore()` if applicable
+4. Render: `quarto::quarto_render("report.qmd")`
+5. Verify: do figures match? any path errors?
+
+::: {.notes}
+**Speaker Notes:**
+Emphasize Step 2 — opening the .Rproj file is what sets the working directory correctly. Students who skip this step and open the .qmd directly from Finder or Windows Explorer are the ones who hit "file not found" errors even on their own machine. The reproducer should narrate what they see as they go so the presenter can take notes.
+:::
+
+## What We Are Looking For
+
+| Check | Pass | Flag |
+|---|---|---|
+| Renders without edits | No errors | Any error |
+| File paths | `here::here()` used | Absolute paths |
+| Data present | All files tracked | Missing CSVs |
+| Figures match | Identical to slides | Different outputs |
+
+::: {.notes}
+**Speaker Notes:**
+An error during the reproducibility check is not a failure of the presenter as a person — it is a gap in the workflow. The goal is to name it precisely so it can be fixed before the Dec 14 submission. Common causes: absolute path, missing data file, package installed locally but not declared.
+:::
+
+## Final Submission Checklist
+
+- [ ] Renders clean from a fresh clone
+- [ ] All data files are in the repo
+- [ ] No absolute paths — `here::here()` throughout
+- [ ] README explains the project and how to reproduce it
+- [ ] Every figure has a `fig-cap` that describes the pattern
+- [ ] Interpretations match what the figures show
+- [ ] AI use documented if applicable
+- [ ] You can describe one decision you would change in a future version
+
+::: {.notes}
+**Speaker Notes:**
+Go through this checklist out loud with the class. Ask for a show of hands on each item — not to shame anyone, but to help students self-triage before the final push. The most common last-minute fix is adding or updating the README.
+:::
+
+## Reflection Prompt
+
+**"What would you do differently?"**
+
+Think about:
+- A skill you wish you had learned earlier
+- A decision in your project you would change
+- A question your data raised that you cannot yet answer
+
+::: {.notes}
+**Speaker Notes:**
+Give students two minutes of quiet to write before opening this to discussion. The "what would you do differently" question is more productive than "what went wrong" — it is forward-facing and normalizes iteration. There is no analysis that could not be improved with more time. The skill is knowing *how* you would improve it.
+:::
+
+## What Comes Next
+
+- **Dec 14:** Final submission due (11:59 PM)
+- Push rendered `.html` and `.qmd` to GitHub Classroom
+- Grading rubric: Reproducibility (50), Data Management (40), Visualization (40), Communication (40), Code Quality (30)
+
+::: {.notes}
+**Speaker Notes:**
+The grading rubric weights reproducibility highest because it is the foundation of everything else. A beautiful visualization that cannot be recreated is anecdote, not analysis. Remind students that the rendered HTML must be pushed — not just the .qmd — because the grader will check the rendered output as well as the code.
+:::
+
+## Thank You
+
+- You came in with a dataset and a question.
+- You leave with a reproducible, documented, shareable analysis.
+- That is not a small thing.
+
+::: {.notes}
+**Speaker Notes:**
+Close by naming something concrete the cohort improved on over the semester. Examples: "In September, half your repos had absolute paths. Today, every single one uses here()." Or: "The figure captions in your final projects are more precise than the ones in published papers I reviewed this year." Specific praise lands harder than general praise.
+:::

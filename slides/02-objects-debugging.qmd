@@ -1,0 +1,115 @@
+---
+title: "Week 02: Objects & Debugging"
+subtitle: "Everything is an Object"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A close-up image of a computer screen displaying multiple R error messages in red text, symbolizing the debugging process.
+- **Speaker Notes:** These slides explain the fundamental nature of R objects and how to diagnose errors.
+
+<!-- visual-aid: week_02 -->
+## Debugging Loop
+
+::: {.diagram-flow aria-label="Debugging workflow from symptom to verified fix"}
+<div class="diagram-node">Symptom</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Inspect object</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Read the error</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Change one thing</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Run again</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Read the error message before touching the code.
+- Use the Environment pane as a diagnostic tool.
+- Fix the cause, not just the symptom.
+
+::: {.notes}
+**Speaker Notes:**
+This week is about developing a debugging habit. The slides should help students remember the flow: inspect, diagnose, fix, verify.
+:::
+
+## R is for Objects
+
+- Everything that exists in R is an **object**.
+- Everything that happens is a **function**.
+- Objects have **types** (numeric, character, logical).
+
+::: {.notes}
+**Speaker Notes:**
+In R, everything you create—a single number, a list of names, or a giant dataset—is an 'object'. We interact with these objects using 'functions'. Today we learn how to see inside these objects and understand their 'type'.
+:::
+
+## Learning Objectives
+
+1. Create and name R objects.
+2. Identify common data types.
+3. Inspect data frames in the Environment.
+4. Interpret and fix common R errors.
+
+::: {.notes}
+**Speaker Notes:**
+Our goal is to move from being 'scared' of error messages to 'reading' them. By the end of today, you should be able to identify why a function fails based on the data type you give it.
+:::
+
+## Live Coding: Section 1
+
+- Creating vectors and data frames.
+- Breaking R on purpose.
+- Interpreting error messages.
+
+::: {.notes}
+**Speaker Notes:**
+We'll start by building vectors. Then, I'm going to ask you to try and 'break' your code. Intentionally causing errors is one of the best ways to learn how R thinks.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Debugging Clinic
+
+- Fix 3 intentional errors in a provided script.
+- Identify the data types of a new dataset.
+- **Extension:** Fix a column type mismatch.
+- **Base goal:** Get the script running from top to bottom.
+- **Extension goal:** Explain each fix in plain language.
+
+::: {.notes}
+**Speaker Notes:**
+In this challenge, you are playing the role of a 'Code Doctor'. I've provided a script that is sick—it won't run. Your job is to diagnose the 3 main bugs and get it back to healthy, runnable status.
+:::
+
+## Verification
+
+- Does the script run without errors from top to bottom?
+- Are the objects the lengths you expected?
+- Did you push a clear commit message that names what changed?
+
+::: {.notes}
+**Speaker Notes:**
+If they can explain the error in one sentence and show the fix in the script, they have met the goal for the day.
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Verification check: Run your script from top to bottom. If it stops at line 10, it's not ready. Check your row counts. When you push, use a descriptive commit message like 'Fix: changed character to numeric'.
+:::

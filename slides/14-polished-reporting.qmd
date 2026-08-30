@@ -1,0 +1,256 @@
+---
+title: "Week 14: Polished Reporting"
+subtitle: "From Draft to Reader-Facing Document"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A side-by-side comparison of a raw Quarto document output and a polished, formatted report with a table of contents, numbered sections, and captioned figures.
+- **Speaker Notes:** These slides guide students through progressively polishing a Quarto document from a functional draft to a reader-facing report suitable for a thesis chapter or technical memo.
+
+<!-- visual-aid: week_14 -->
+## Quarto Reporting Map
+
+::: {.diagram-flow aria-label="Reporting workflow from analysis code to rendered document"}
+<div class="diagram-node">Analysis code</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Narrative text</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Figures and tables</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Render report</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Review output</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## Learning Objectives
+
+1. Set document-level YAML options that control structure and code visibility.
+2. Add figure and table captions with cross-references (`@fig-`, `@tbl-`).
+3. Embed live data summaries using inline R expressions.
+4. Create a parameterized report that can be rerun for different subgroups.
+5. Format tables with `knitr::kable()` or `gt()`.
+
+::: {.notes}
+**Speaker Notes:**
+This is Week 14 — the capstone week for reproducible workflows. Students have been writing Quarto documents all semester, but mostly for their own use. Today the audience shifts: we are writing for a reader who does not see the code. Every decision — hiding code, numbering sections, captioning figures — serves that reader.
+:::
+
+## The Problem with Drafts
+
+- Raw output: code visible, figures unnumbered, tables print as tibbles.
+- A reader cannot find Figure 3 if there is no Figure 3.
+- Hard-coded numbers break the moment data changes.
+
+**Today's goal:** make the document do the bookkeeping so you don't have to.
+
+## How To Use Today
+
+- Start with a document that renders, then polish the reader experience.
+- Let Quarto number and reference figures and tables for you.
+- Use inline R for values that should stay in sync with the data.
+
+::: {.notes}
+**Speaker Notes:**
+Open a "before" document on the projector — one that renders but is clearly not ready for a reader. Ask students what they notice. Common answers: you can see all the R warnings, the figure is just floating there with no number, the table is just a tibble dump. Use this as the motivation for every YAML option we add today.
+:::
+
+## Document-Level YAML: The Foundation
+
+```yaml
+---
+title: "Nebraska Deer Harvest Report"
+author: "Chris Chizinski"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    fig-width: 7
+    fig-height: 4.5
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+```
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each option. toc: true adds the sidebar navigation — readers can jump to a section. number-sections: true auto-numbers headings. embed-resources: true is critical: without it, sharing the HTML file means sharing a folder of assets too. echo: false at the document level means no code chunks appear in the output unless a specific chunk overrides with echo: true.
+:::
+
+## YAML Options at a Glance
+
+| Option | Where | Effect |
+|---|---|---|
+| `toc: true` | `format: html:` | Adds sidebar navigation |
+| `number-sections: true` | `format: html:` | Auto-numbers headings |
+| `fig-width` / `fig-height` | `format: html:` | Default figure dimensions |
+| `embed-resources: true` | `format: html:` | Single portable file |
+| `echo: false` | `execute:` | Hides code globally |
+| `warning: false` | `execute:` | Suppresses warnings |
+| `message: false` | `execute:` | Suppresses messages |
+| `echo: true` | individual chunk `#|` | Override: show this chunk |
+
+::: {.notes}
+**Speaker Notes:**
+Stress the two-level hierarchy: document-level execute: options set the default; individual chunk #| options override. This is how you hide data-loading code but show a key analysis chunk in a methods section.
+:::
+
+## Figure Captions and Cross-References
+
+````markdown
+```{{r}}
+#| label: fig-harvest-trend
+#| fig-cap: "Total Nebraska deer harvest by year across all seasons."
+#| fig-alt: "Line chart of deer harvest 2018–present with increasing trend."
+
+deer |>
+  group_by(year) |>
+  summarize(total = sum(harvest_count, na.rm = TRUE)) |>
+  ggplot(aes(x = year, y = total)) +
+  geom_line(linewidth = 1, color = "steelblue") +
+  geom_point(size = 2.5) +
+  labs(x = "Year", y = "Total Harvest") +
+  theme_minimal()
+```
+````
+
+In prose: `"As shown in @fig-harvest-trend, harvest increased..."`
+
+::: {.notes}
+**Speaker Notes:**
+The label must start with fig- for figure cross-references to work. The @fig-harvest-trend in prose renders as "Figure 1" — or whatever number the figure actually ends up being. The payoff: if you insert a new figure earlier in the document, all the downstream numbers update automatically. You never touch the prose. This is the core value of cross-referencing.
+:::
+
+## Why Cross-References Matter
+
+- Hard-coded: *"As shown in Figure 3..."* → You add a figure → now it's Figure 4 → your prose is wrong.
+- Cross-reference: *"As shown in @fig-harvest-trend..."* → Quarto handles the number → always correct.
+
+Same logic applies to tables with `@tbl-`.
+
+::: {.notes}
+**Speaker Notes:**
+Ask students how many times they have had to manually renumber figures in a Word document. The groan is universal. This is the exact problem cross-references solve. It is not a cosmetic feature — it is a correctness feature.
+:::
+
+## Formatted Tables: knitr::kable()
+
+````markdown
+```{{r}}
+#| label: tbl-top-counties
+#| tbl-cap: "Top 10 county-season combinations by total deer harvest."
+
+deer |>
+  group_by(county, season) |>
+  summarize(total = sum(harvest_count, na.rm = TRUE), .groups = "drop") |>
+  slice_max(total, n = 10) |>
+  rename(County = county, Season = season, `Total Harvest` = total) |>
+  knitr::kable()
+```
+````
+
+In prose: `"County leaders are listed in @tbl-top-counties."`
+
+::: {.notes}
+**Speaker Notes:**
+kable() is the simplest path to a formatted HTML table. It respects column names, so rename() before kable() is good practice. The label must start with tbl- for table cross-references. Show the rendered output side by side with the raw tibble print — the difference is obvious. If students want more control over column formatting, cell colors, or footnotes, point them toward gt() as an extension.
+:::
+
+## Inline R: Let the Data Write the Numbers
+
+In your .qmd prose:
+
+```markdown
+The dataset covers `r n_distinct(deer$county)` counties and
+`r n_distinct(deer$year)` harvest years, totalling
+`r format(sum(deer$harvest_count, na.rm = TRUE), big.mark = ",")`
+individual deer harvested.
+```
+
+Renders as:
+
+> The dataset covers 12 counties and 5 harvest years, totalling 48,302 individual deer harvested.
+
+::: {.notes}
+**Speaker Notes:**
+The backtick-r syntax is how Quarto evaluates R code inline inside prose. Everything between the backticks runs as R. The result is inserted as plain text. Key point: when the data is updated next year, the numbers update automatically on the next render. No search-and-replace, no copy-paste errors. Ask students: "When would hard-coding the number be safer?" Answer: when the calculation is complex enough that an error would go unnoticed — then you want to compute it once, assign it to a named object, and reference the object inline.
+:::
+
+## Parameterized Reports
+
+```yaml
+params:
+  county: "Lancaster"
+  season: "archery"
+```
+
+```r
+deer_sub <- deer |>
+  filter(county == params$county,
+         season == params$season)
+```
+
+Rerun for a different county at the terminal:
+
+```bash
+quarto render report.qmd -P county:Douglas -P season:firearm
+```
+
+::: {.notes}
+**Speaker Notes:**
+Ask: how many Nebraska counties are there? 93. If you needed a harvest report for every county, the copy-paste approach means 93 files with duplicated code, all of which drift out of sync. With params, you write one document and render it 93 times — or use a loop in a separate script to do it automatically. This is the gateway concept to literate programming at scale.
+:::
+
+## The Challenge [45 mins]
+
+### The Report Polish Challenge
+
+- Take your capstone analysis draft (or the deer harvest starter).
+- Add: `toc`, `number-sections`, `echo: false`.
+- Add one figure with `fig-cap` and reference it with `@fig-` in prose.
+- Add one table using `knitr::kable()` with `tbl-cap` and `@tbl-` cross-reference.
+- Add two inline R expressions reporting summary values.
+- Add a `params:` block with one parameter.
+
+**Base goal:** Make the draft readable and correctly referenced.
+
+**Extension goal:** Parameterize the report so it can be rerun for different subgroups.
+
+::: {.notes}
+**Speaker Notes:**
+Students who do not have a capstone draft ready should use the provided deer harvest starter .qmd. The challenge is designed to be completed in one session — the pieces are all covered in today's demo. Circulate and watch for the two most common errors: (1) labels that don't start with fig- or tbl-, and (2) inline expressions that fail because the object isn't defined earlier in the document.
+:::
+
+## Verification
+
+- Render from a fresh R session (`Session > Restart R > Render`).
+- All `@fig-` and `@tbl-` references resolve — no `?fig-` in the output.
+- Inline R values match what you see in the console.
+- The TOC has at least three entries.
+- params block is tested with at least two different values.
+- Can you explain why hard-coded figure numbers are a maintenance problem?
+
+::: {.notes}
+**Speaker Notes:**
+The restart-and-render test is the gold standard for reproducibility. If the document only renders when your environment is already populated, it is not reproducible — it just looks like it is. Emphasize this before students submit their assignments: render from a clean session, not from the comfort of an open session where everything is already loaded.
+:::

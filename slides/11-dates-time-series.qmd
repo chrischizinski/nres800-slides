@@ -1,0 +1,236 @@
+---
+title: "Week 11: Dates and Time Series"
+subtitle: "Parsing and Plotting Time"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A time-series line chart showing stream discharge measurements across multiple river monitoring sites over the course of a calendar year, with peaks visible in spring months.
+- **Speaker Notes:** These slides introduce lubridate for parsing mixed-format date strings and ggplot2 for visualizing time-series data from environmental sensors.
+
+<!-- visual-aid: week_11 -->
+## Date Workflow Map
+
+::: {.diagram-flow aria-label="Date and time-series workflow from raw dates to seasonal pattern"}
+<div class="diagram-node">Raw date text</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Parse date</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Check failures</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Aggregate by time</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Plot trend</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## Why Dates Are Harder Than They Look
+
+- Date strings look simple — they are not.
+- R reads `date_recorded` as **character** when formats are mixed.
+- Silent failures: `as.Date("May 15, 2023")` returns `NA` with no error.
+- Today: tools that handle the mess.
+
+## How To Use Today
+
+- Parse first, then summarize or plot.
+- Check for `NA` immediately after parsing.
+- Use ordered date components when the chart needs calendar meaning.
+
+::: {.notes}
+**Speaker Notes:**
+Open with this question: "Has anyone ever loaded a date column and gotten NAs they didn't expect?" Almost every student will raise their hand. That's the point — the default tools fail silently on mixed formats. lubridate's parse_date_time() is the fix, and today we'll understand why.
+:::
+
+## Learning Objectives
+
+1. Recognize and name common date string formats (ISO 8601, US slash, spelled month).
+2. Use `parse_date_time()` to handle mixed-format date columns.
+3. Extract components: `year()`, `month()`, `yday()`.
+4. Aggregate time series with `floor_date()`.
+5. Build and interpret time-series line plots in ggplot2.
+
+::: {.notes}
+**Speaker Notes:**
+These five objectives form a complete workflow — you cannot plot a time series correctly until you have parsed the dates correctly, and you cannot aggregate sensibly without floor_date. Emphasize that parsing is the foundation; everything else sits on top of it.
+:::
+
+## Common Date Formats
+
+| Format Name      | Example          | lubridate order |
+|------------------|------------------|-----------------|
+| ISO 8601         | `2023-05-15`     | `"ymd"`         |
+| US slash         | `05/15/2023`     | `"mdy"`         |
+| Spelled month    | `May 15, 2023`   | `"BdY"`         |
+| Spelled compact  | `May 15 2023`    | `"BdY"`         |
+| European         | `15/05/2023`     | `"dmy"`         |
+
+Mixed formats in one column are the norm in sensor data, not the exception.
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each row in the table. Point out the ISO 8601 standard specifically — it is unambiguous (year always first, largest unit to smallest) and is the preferred format for any data you create. US slash format is the most dangerous because "05/06/2023" could be May 6 or June 5 depending on locale. Spelled month is verbose but unambiguous.
+:::
+
+## parse_date_time() vs as.Date()
+
+```r
+# as.Date() fails silently on unrecognized formats
+as.Date("May 15, 2023")   # returns NA — no warning by default
+
+# parse_date_time() tries multiple formats in order
+parse_date_time(
+  "May 15, 2023",
+  orders = c("ymd", "mdy", "BdY")
+)
+# [1] "2023-05-15 UTC"
+```
+
+Always check: `sum(is.na(date_parsed))` after parsing.
+
+::: {.notes}
+**Speaker Notes:**
+Live-type the as.Date() example first and show the NA. Then show parse_date_time(). Pause and ask: "What would happen to your analysis if 15 out of 120 rows silently became NA and you didn't check?" That's a missing-data problem that masquerades as a date problem. The check — sum(is.na()) — is the safety net.
+:::
+
+## Extracting Date Components
+
+```r
+library(lubridate)
+
+discharge <- discharge |>
+  mutate(
+    yr     = year(date_parsed),
+    mo     = month(date_parsed, label = TRUE, abbr = TRUE),
+    mo_num = month(date_parsed),
+    doy    = yday(date_parsed)
+  )
+```
+
+- `month(label = TRUE)` returns an **ordered factor** — plots sort correctly.
+- `yday()` is useful for phenology and day-of-year comparisons across years.
+
+::: {.notes}
+**Speaker Notes:**
+Ask students: "Why do we want month as an ordered factor instead of a character string?" The answer is that ggplot2 will sort character strings alphabetically — so April comes before August comes before February. An ordered factor with levels Jan-Dec plots in calendar order automatically. This is a common bug students hit when they forget label = TRUE.
+:::
+
+## floor_date: Snapping to Periods
+
+```r
+floor_date(as.Date("2023-05-15"), unit = "month")
+# [1] "2023-05-01"
+
+floor_date(as.Date("2023-05-15"), unit = "week")
+# [1] "2023-05-14"  (snaps to Sunday by default)
+```
+
+Use `floor_date()` as the **x-axis grouping key** for aggregated time series.
+
+```r
+discharge |>
+  mutate(month_floor = floor_date(date_parsed, unit = "month")) |>
+  group_by(site_id, month_floor) |>
+  summarise(mean_q = mean(discharge_cfs, na.rm = TRUE))
+```
+
+::: {.notes}
+**Speaker Notes:**
+The key mental model: floor_date does for dates what floor() does for numbers — it rounds down to the nearest period boundary. Show on the board: if you have readings on May 3, May 17, and May 29, floor_date maps all three to May 1. Now you can group by that "May 1" key and get a true monthly average. Without this, group_by(date) would give you one row per date, not per month.
+:::
+
+## Plotting Time Series with ggplot2
+
+```r
+ggplot(monthly_discharge,
+       aes(x = month_floor, y = mean_discharge, color = site_id)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 2) +
+  scale_x_datetime(
+    date_breaks  = "2 months",
+    date_labels  = "%b %Y"
+  ) +
+  labs(title = "Monthly Mean Discharge — Platte River Sites",
+       x = "Month", y = "Mean Discharge (cfs)") +
+  theme_minimal()
+```
+
+::: {.notes}
+**Speaker Notes:**
+Point out scale_x_datetime() specifically — this is the scale for POSIXct columns (what parse_date_time returns). If the column were a Date (not POSIXct), you would use scale_x_date() instead. The date_labels argument uses strftime format codes: %b = abbreviated month name, %Y = 4-digit year. A gap in a geom_line means missing data — lines do not connect across NAs. Ask students to look for gaps as a data-quality check.
+:::
+
+## Live Coding: Section 1
+
+- Load `stream_discharge.csv` and inspect the date column.
+- Identify the three date formats across sites.
+- Parse with `parse_date_time()` and verify no NAs.
+- Extract `year()`, `month()`, `yday()`.
+- Create `month_floor` with `floor_date()`.
+
+::: {.notes}
+**Speaker Notes:**
+Before opening RStudio, have students predict: how many rows will have date parse failures? Take a show of hands for different guesses. Then run the code and check together. The goal is to build the habit of verifying before moving on — not assuming the parse worked.
+:::
+
+## Live Coding: Section 2
+
+- Aggregate to monthly mean discharge by site.
+- Plot the time series — identify the seasonal peak.
+- Compute a seasonal summary across all sites.
+- Discuss: which site shows the most flow variability?
+
+::: {.notes}
+**Speaker Notes:**
+When the plot renders, give students 60 seconds to silently look at it before asking questions. Then ask: "Which month appears to be peak discharge?" and "Are all six sites synchronized, or do some peak earlier?" These questions prepare them for the challenge.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Platte River Pulse
+
+> "Does discharge peak in spring across all monitoring sites, and which site has the most variable flow?"
+
+**Steps Required:**
+1. Parse all dates (use the script from the demo).
+2. Extract month and calculate monthly mean and SD by site.
+3. Calculate coefficient of variation (CV = SD / mean) per site.
+4. Identify the highest-CV site.
+5. Plot seasonal pattern by site — colored or faceted.
+
+**Base goal:** Build the monthly summary and identify the peak discharge month.
+
+**Extension goal:** Compare variability across sites with CV and explain the pattern.
+
+::: {.notes}
+**Speaker Notes:**
+The coefficient of variation is new to some students — define it: it is the standard deviation expressed as a proportion of the mean. A high CV means the flow varies a lot relative to its average level. Sites near reservoirs or regulated reaches tend to have lower CV; unregulated streams have higher CV. Students should interpret their result in that ecological context.
+:::
+
+## Verification
+
+- Does `sum(is.na(date_parsed))` equal 0?
+- Does the line plot x-axis show month names in calendar order?
+- Can you identify the peak discharge month from the plot?
+- Which site has the highest coefficient of variation?
+- Did you use `na.rm = TRUE` in all summary calculations?
+- Can you explain why `floor_date()` is the grouping key for monthly summaries?
+
+::: {.notes}
+**Speaker Notes:**
+Walk through each bullet as a class. For the third bullet, ask a student to name the peak month without looking at the data summary — they should be able to read it from the plot. If they cannot, the plot labels need work. For the last bullet, remind students that discharge_cfs has 5 NAs — forgetting na.rm = TRUE will propagate those NAs into every group containing a missing value.
+:::

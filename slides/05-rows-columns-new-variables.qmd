@@ -1,0 +1,138 @@
+---
+title: "Week 05: Rows, Columns, and New Variables"
+subtitle: "Data Wrangling with dplyr"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A map of Nebraska counties overlaid with colored circles representing deer harvest counts by region and year, illustrating spatial and temporal variation in wildlife data.
+- **Speaker Notes:** These slides introduce the four core dplyr verbs — filter, select, arrange, and mutate — using Nebraska deer harvest records as the working dataset.
+
+<!-- visual-aid: week_05 -->
+## Wrangling Decision Map
+
+::: {.diagram-flow aria-label="dplyr workflow for changing rows and columns"}
+<div class="diagram-node">Choose rows</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Choose columns</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Create variables</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Check result</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Use downstream</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Treat each verb as a tool with one job.
+- Ask which rows or columns should change before typing.
+- Check the row count after every major filter.
+
+::: {.notes}
+**Speaker Notes:**
+This week is about changing the shape of the data without losing track of what each step does. Keep the verbs separate in your mind: filter for rows, select for columns, arrange for order, mutate for new variables.
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Welcome to Week 05. This week we shift from visualization to transformation. Before you can build a meaningful plot, you usually have to reshape your data. The four verbs we learn today — filter, select, arrange, and mutate — will handle the vast majority of data wrangling tasks you encounter in graduate research.
+:::
+
+## Learning Objectives
+
+1. Use `filter()` to subset rows by one or more conditions.
+2. Use `select()` to keep or rename columns.
+3. Use `arrange()` to sort rows by one or more variables.
+4. Use `mutate()` to create new columns from existing ones, including `case_when()`.
+
+::: {.notes}
+**Speaker Notes:**
+These four verbs follow a consistent pattern: the first argument is always the data frame, and the output is always a new data frame. This makes them pipe-friendly. Each verb does exactly one thing — that predictability is what makes dplyr so powerful for teaching.
+:::
+
+## The Dataset: Nebraska Deer Harvest
+
+- **Source:** Simulated from Nebraska Game and Parks Commission harvest structure.
+- **Unit of observation:** One row = one county × year × season × sex × age class combination.
+- **Key variables:** `county`, `year`, `season`, `sex`, `age_class`, `harvest_count`, `hunter_days`.
+- **Teaching features:** Includes NA values in `harvest_count` and `hunter_days` — real decisions required.
+
+::: {.notes}
+**Speaker Notes:**
+This dataset mirrors the structure of real state wildlife harvest reports. Each row is not an individual deer — it is an aggregate record for a county-season-sex-age combination. That distinction matters when students start summarizing. Point out the NA values early: they are deliberate and will force students to think about missing data decisions before they can calculate rates.
+:::
+
+## The Four dplyr Verbs
+
+| Verb | Operation | Think of it as... |
+|-----------|-----------|---------------------|
+| `filter()` | Rows | Keep only certain rows |
+| `select()` | Columns | Keep only certain columns |
+| `arrange()` | Order | Sort the table |
+| `mutate()` | New columns | Add a calculated variable |
+
+::: {.notes}
+**Speaker Notes:**
+Show this table and ask students: 'If I want only bucks from Lancaster County, which verb do I use?' If I want only the county and harvest columns, which verb? If I want to rank by harvest count, which verb? If I want to calculate harvest per hunter day, which verb? These four questions map cleanly to the four verbs.
+:::
+
+## Live Coding: Section 1
+
+- Load `ne_deer_harvest.csv` with `here()`.
+- `filter()`: single condition, multiple conditions, `!is.na()`.
+- `select()` and rename columns.
+- `arrange()` with `desc()`.
+- `mutate()` for arithmetic and `case_when()`.
+
+::: {.notes}
+**Speaker Notes:**
+During live coding, make the == mistake on purpose when writing filter(season = "rifle") and let R throw the error. This is the most common mistake and seeing it in context is more memorable than being warned about it. After fixing it, say: 'In R, = means assignment; == means comparison.'
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Harvest Analyst
+
+- **Question:** Which NE county had the largest increase in doe harvest from 2020 to 2022?
+- **Required verbs:** `filter()`, `select()`, `mutate()`, `arrange()`
+- **Hint:** You will also need `pivot_wider()` to put each year in its own column before you can subtract.
+- **Base goal:** A county comparison table with the numeric change.
+- **Extension goal:** Add a percent change column and explain whether the biggest absolute change is also the biggest relative change.
+
+::: {.notes}
+**Speaker Notes:**
+Remind students of the constraints: they must use the native pipe |> at least once, and they must use mutate() to compute the difference — not do it by hand. The pivot_wider step is a preview of next week. Give a 2-minute explanation of pivot_wider before releasing them. The goal is not to memorize the syntax but to understand why reshaping is necessary to do column arithmetic.
+:::
+
+## Verification
+
+- Does `filter()` return the number of rows you expected? Check with `nrow()`.
+- Did you account for missing values before calculating the comparison?
+- Does your final challenge table include the numeric change and the year labels?
+- Can you explain the difference between `filter()` (rows) and `select()` (columns) in one sentence?
+
+::: {.notes}
+**Speaker Notes:**
+The quickest way to catch a broken pipeline this week is to check the row count after filtering and before computing the final change. Students should be able to say, in one sentence, what each verb did to the data.
+:::
+
+::: {.notes}
+**Speaker Notes:**
+Before students commit and push, have them answer the last bullet point out loud to a neighbor. If they cannot produce a one-sentence answer distinguishing filter from select, they need to revisit the code. The nrow() check is a quick diagnostic habit that catches silent filter errors — rows that disappear because a condition was mis-specified.
+:::

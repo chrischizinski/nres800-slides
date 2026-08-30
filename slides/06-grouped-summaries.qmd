@@ -1,0 +1,266 @@
+---
+title: "Week 06: Grouped Summaries"
+subtitle: "Collapsing Data to Answer Questions"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A field notebook showing a tally of bird species counts next to a laptop screen with an R console, representing the shift from raw observations to grouped summaries.
+- **Speaker Notes:** These slides introduce group_by() and summarize() as the core dplyr tools for collapsing raw data into group-level answers.
+
+::: {.notes}
+**Speaker Notes:**
+Welcome to Week 06. Today we move from row-level transformations — which we did with filter, mutate, and arrange — to group-level summaries. This is one of the most powerful shifts in data analysis: going from "what do individual observations say?" to "what does each group tell us?"
+:::
+
+<!-- visual-aid: week_06 -->
+## Grouped Summary Map
+
+::: {.diagram-flow aria-label="Grouped analysis workflow from question to comparison"}
+<div class="diagram-node">Question by group</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Group data</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Summarize metric</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Compare groups</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Interpret pattern</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Treat each summary as a question about a group, not a row.
+- Predict the row count before you run `summarize()`.
+- Check whether `NA` means missing information or a true zero.
+
+## Learning Objectives
+
+1. Use `group_by()` to define analysis groups.
+2. Use `summarize()` to collapse groups into summary statistics.
+3. Apply `n()`, `n_distinct()`, `sum()`, and `mean()` inside `summarize()`.
+4. Handle missing values (`NA`) deliberately before summarizing.
+5. Combine `arrange(desc())` to rank grouped results.
+
+::: {.notes}
+**Speaker Notes:**
+By the end of today you should be able to take a raw dataset of thousands of rows and produce a clean ranked summary table in a single pipe chain. These five functions — group_by, summarize, n, n_distinct, and arrange — will appear in almost every data analysis project you do.
+:::
+
+## Where We Are in the Pipeline
+
+```
+read_csv() → glimpse() → filter() → mutate() → group_by() → summarize()
+```
+
+- **Last week:** `filter()`, `select()`, `arrange()`, `mutate()` — row-level operations.
+- **This week:** `group_by()` + `summarize()` — group-level operations.
+- **Key shift:** The output has **fewer rows** than the input.
+
+::: {.notes}
+**Speaker Notes:**
+This is the most important conceptual shift of today. Every function we've learned so far — filter, mutate, arrange — returns the same number of rows (or fewer via filter). Summarize intentionally collapses rows. One row per group, no matter how many observations were in that group. If this feels surprising, that's exactly the right reaction — pause and think about it.
+:::
+
+## The Mental Model: Split → Apply → Combine
+
+1. **Split:** `group_by(species_code)` divides the data into one "chunk" per species.
+2. **Apply:** `summarize()` runs a calculation on each chunk independently.
+3. **Combine:** The results are reassembled into one tidy output table.
+
+::: {.notes}
+**Speaker Notes:**
+"Split, apply, combine" is a phrase from statistics that predates R. The idea is ancient: separate your data by group, do the math on each group, then stack the results back together. group_by does the split, summarize does the apply and combine. This mental model will help you debug when results look wrong.
+:::
+
+## `group_by()` + `summarize()` Side by Side
+
+**No grouping — one global row:**
+```r
+birds |>
+  summarize(total_obs = sum(how_many, na.rm = TRUE))
+```
+
+**With grouping — one row per state:**
+```r
+birds |>
+  group_by(state) |>
+  summarize(total_obs = sum(how_many, na.rm = TRUE))
+```
+
+::: {.notes}
+**Speaker Notes:**
+Run both of these live and have students predict the number of rows before you run them. The first returns one row — the global total. The second returns one row per unique state value. The only difference is the addition of group_by(). This contrast is the core demo of the day. Do not rush past it.
+:::
+
+## Multiple Summaries in One Call
+
+```r
+birds |>
+  group_by(state) |>
+  summarize(
+    total_obs  = sum(how_many, na.rm = TRUE),
+    n_records  = n(),
+    n_sites    = n_distinct(site_id),
+    mean_count = mean(how_many, na.rm = TRUE)
+  )
+```
+
+- `n()` counts rows in the group.
+- `n_distinct(site_id)` counts unique values of `site_id` in the group.
+
+::: {.notes}
+**Speaker Notes:**
+You can put as many summary expressions as you want inside a single summarize() call — each becomes one new column. Emphasize the difference between n() and n_distinct(): n() asks "how many rows?" while n_distinct() asks "how many unique values?" If site NE001 appears five times in January, n() counts 5 but n_distinct(site_id) still counts 1.
+:::
+
+## The NA Problem in Summarize
+
+```r
+# One NA poisons the whole group sum:
+birds |>
+  group_by(state) |>
+  summarize(
+    sum_with_na    = sum(how_many),              # returns NA
+    sum_without_na = sum(how_many, na.rm = TRUE) # returns a number
+  )
+```
+
+**Question:** Does `NA` in `how_many` mean zero birds, or was the count not recorded?
+
+::: {.notes}
+**Speaker Notes:**
+This is a deliberate teaching moment. Run the code live and let students see the NA in the first column. Then ask the question on the slide. The answer depends on your domain knowledge. In FeederWatch data, a missing count typically means the observer didn't submit a count — not that they saw zero birds. This is different from a true zero count. Students must be able to articulate this distinction before removing NAs. na.rm = TRUE is not automatically correct — it's a decision that must be documented.
+:::
+
+## Handling NAs: A Decision, Not a Default
+
+**Before summarizing, filter intentionally:**
+
+```r
+birds |>
+  filter(!is.na(how_many), how_many > 0) |>
+  group_by(species_code) |>
+  summarize(total_obs = sum(how_many))
+```
+
+**Or use `na.rm = TRUE` inside the summary function and document why.**
+
+::: {.notes}
+**Speaker Notes:**
+There are two defensible strategies: filter NAs out before grouping, or use na.rm = TRUE inside sum() or mean(). The filter approach is often cleaner because it makes the decision explicit and visible at the top of the pipeline. Either way, you must write a comment explaining what NA means in this context and why you chose to remove it. Silently dropping NAs without documentation is the kind of mistake that causes retractions in published research.
+:::
+
+## Grouping by Multiple Columns
+
+```r
+birds |>
+  group_by(state, month) |>
+  summarize(
+    total_obs = sum(how_many, na.rm = TRUE),
+    n_sites   = n_distinct(site_id),
+    .groups   = "drop"
+  )
+```
+
+- Result has one row per unique **combination** of `state` and `month`.
+- `.groups = "drop"` removes the grouping structure after summarizing.
+
+::: {.notes}
+**Speaker Notes:**
+You can group by any number of columns. The result always has one row per unique combination of the grouping variables. Mention .groups = "drop" — without it, dplyr retains a residual grouping on all but the last variable, which can produce unexpected behavior in downstream pipes. Using drop is the safer default in most workflows.
+:::
+
+## Ranking Results with `arrange(desc())`
+
+```r
+birds |>
+  group_by(species_code) |>
+  summarize(
+    total_obs = sum(how_many, na.rm = TRUE),
+    n_sites   = n_distinct(site_id)
+  ) |>
+  arrange(desc(total_obs))
+```
+
+- `arrange(desc(...))` sorts from highest to lowest.
+- Chain it after `summarize()` in the same pipe.
+
+::: {.notes}
+**Speaker Notes:**
+After we summarize, we almost always want to rank the results. arrange(desc()) is the tool for that. Point out that arrange() comes after summarize() in the pipe — not before. Order matters in a pipe: each step receives the output of the previous step.
+:::
+
+## Live Coding: Section 1
+
+- Load `feeder_watch_raw.csv` and inspect with `glimpse()`.
+- Run a global `summarize()` — predict the row count first.
+- Add `group_by(state)` and observe the change.
+- Build a multi-column `summarize()` with `n()`, `n_distinct()`, and `mean()`.
+
+::: {.notes}
+**Speaker Notes:**
+Open week_06_instructor.R. Walk through sections 3a through 3d at a teaching pace — pause after each code chunk and ask students to predict the output before running it. The goal is to build intuition for what group_by does to the data, not to move through the code quickly.
+:::
+
+## Live Coding: Section 2
+
+- Demonstrate multi-column `group_by()`.
+- Add `.groups = "drop"`.
+- Rank species by total observations with `arrange(desc())`.
+- Show the NA comparison side by side.
+
+::: {.notes}
+**Speaker Notes:**
+This section reinforces the concepts with practical ranking. The NA comparison (sum with vs without na.rm) is the single most important live demo of the day — do not skip it. Ask students to explain, in plain English, why one column is NA and the other is not.
+:::
+
+## The Challenge [45 mins]
+
+### The Wildlife Survey Audit
+
+- Dataset: `feeder_watch_raw.csv`
+- **Base goal:** Identify the **Top 5 species** observed in Nebraska during January.
+- **Extension goal:** Compare the top species by total observations and number of sites.
+
+**Steps:**
+1. `filter()` to Nebraska, January.
+2. Remove `NA` and zero-count rows.
+3. `group_by()` species code.
+4. `summarize()` — create `total_obs` and `n_sites`.
+5. `arrange(desc())` and keep top 5.
+
+**Constraint:** Use `|>` at least once. `summarize()` must produce at least 2 columns.
+
+::: {.notes}
+**Speaker Notes:**
+Release the follow-along script. Students have 45 minutes. Circulate and watch for two common errors: forgetting group_by before summarize (results in one row), and not using na.rm = TRUE (results in NA in total_obs). The verification question is on the next slide — remind students to check it before they commit.
+:::
+
+## Verification
+
+- Does your final table have exactly **5 rows**?
+- Is `total_obs` a number (not `NA`) for every row?
+- Did you write a comment explaining your `NA` decision?
+- Can you explain in one sentence why `group_by()` changed the output shape?
+- Compare your top species with your neighbor — do they match?
+
+::: {.notes}
+**Speaker Notes:**
+Walk around and look at screens before class ends. The most common failure mode is a table with more than 5 rows (forgot slice_head) or NA in total_obs (forgot na.rm or forgot to filter NAs first). If two neighbors get different answers, that's a great signal to debug together — ask them to read each other's filter conditions out loud.
+:::

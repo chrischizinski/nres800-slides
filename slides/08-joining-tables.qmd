@@ -1,0 +1,200 @@
+---
+title: "Week 08: Joining Tables"
+subtitle: "Linking Observations to Context"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A two-table diagram showing an observations table on the left and a site metadata table on the right, connected by a shared site_id key column, representing the concept of relational data joining.
+- **Speaker Notes:** These slides introduce the three core join operations in dplyr — left_join, inner_join, and anti_join — using bird observation data joined to site metadata.
+
+<!-- visual-aid: week_08 -->
+## Join Planning Map
+
+::: {.diagram-flow aria-label="Join workflow from key inspection to verified merge"}
+<div class="diagram-node">Identify keys</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Check uniqueness</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Choose join</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Inspect unmatched rows</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Verify result</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Identify the key column before you join anything.
+- Check row counts immediately after each join.
+- Use `anti_join()` when the output looks suspicious or incomplete.
+
+## Why Joins Exist
+
+- Ecological data rarely lives in one table.
+- Observations tell you **what was seen** and **where**.
+- Site metadata tells you **what that place is like**.
+- Joins link tables by a shared **key column**.
+
+::: {.notes}
+**Speaker Notes:**
+Think about how you would collect field data. You record species observations in one notebook. Site characteristics — habitat type, area, land use — are in a separate site registry. Keeping them separate is the right design: it avoids repeating site information on every observation row. But to answer questions like 'which habitat type has the most species?', you need to link those two tables together. That is exactly what a join does.
+:::
+
+## Learning Objectives
+
+1. Explain what a key column is and why it must match exactly.
+2. Use `left_join()` to add site context to observation records.
+3. Use `inner_join()` and explain when rows are dropped.
+4. Use `anti_join()` to audit unmatched records.
+5. Verify row counts before and after every join.
+
+::: {.notes}
+**Speaker Notes:**
+By the end of today you will have a toolkit for combining any two related tables in R. More importantly, you will have the habit of checking row counts and auditing unmatched records — skills that catch data problems before they silently corrupt your analysis.
+:::
+
+## The Key Column
+
+```r
+# Both tables must have a column with matching values
+obs   |> distinct(site_id)   # e.g., SITE001, SITE002, ...
+sites |> distinct(site_id)   # e.g., SITE001, SITE002, ...
+```
+
+- The key must be **the same type** in both tables (character = character).
+- Values must match **exactly** — `"SITE001"` ≠ `"site001"`.
+- Check for duplicates in the right-hand table before joining.
+
+::: {.notes}
+**Speaker Notes:**
+Before you ever run a join, ask yourself: what is the key? In our dataset it is site_id. Now ask: does site_id appear in both tables, and do the values match exactly? A trailing space or a case difference will silently cause a row to go unmatched. This is one of the most common join bugs in practice.
+:::
+
+## left_join: The Safe Join
+
+**Visual concept (describe aloud):**
+
+> Imagine two tables side by side. The left table — your observations — is the anchor.
+> Every row in the left table is kept. Matching rows from the right table slide in alongside.
+> Where no match exists, the right-side columns fill with `NA`.
+
+```r
+obs_with_sites <- obs |>
+  left_join(sites, by = "site_id")
+
+nrow(obs)            # e.g., 80
+nrow(obs_with_sites) # still 80 — left table is preserved
+```
+
+::: {.notes}
+**Speaker Notes:**
+The left join is your default join for ecological analysis. It says: 'I want to keep all of my observation records, and I will add whatever site information I can find. If a site has no metadata, I get NA — and that NA is a signal to investigate, not a reason to lose the record.' The key insight is that the row count of the result equals the row count of the left table, assuming no duplicate keys in the right table.
+:::
+
+## inner_join: Only Matched Rows
+
+```r
+obs_inner <- obs |>
+  inner_join(sites, by = "site_id")
+
+nrow(obs_inner)  # fewer rows — unmatched obs are dropped
+```
+
+- Rows from `obs` with no matching `site_id` in `sites` are **silently dropped**.
+- Use when you need complete cases for a model or calculation.
+- **Always** compare `nrow()` before and after.
+
+::: {.notes}
+**Speaker Notes:**
+The inner join is stricter. It only keeps rows where the key exists in both tables. This can be the right choice — if you are fitting a model that requires habitat type, you cannot include sites with missing metadata. But the danger is that rows disappear silently. You must check the row count. If you expected 80 rows and got 76, ask: which 4 observations were dropped, and why?
+:::
+
+## anti_join: The Data Audit Tool
+
+```r
+unmatched <- obs |>
+  anti_join(sites, by = "site_id")
+
+# Shows obs rows with no matching site in the registry
+unmatched |> select(obs_id, site_id, species, date)
+```
+
+- Returns rows from the **left** table that have **no match** in the right table.
+- This is your primary tool for finding data quality problems.
+- Ask: were these sites omitted from the registry by mistake?
+
+::: {.notes}
+**Speaker Notes:**
+The anti_join is the most underused of the three joins, and arguably the most important for data quality. Before you do any analysis, run an anti_join to find out which records have no metadata. In our dataset, SITE016 and SITE017 appear in observations but not in the site registry. Is that a data entry error? A site that was surveyed but never formally registered? You need to know before you proceed.
+:::
+
+## Row Count Verification
+
+```r
+cat("Original observations:          ", nrow(obs), "\n")
+cat("After left_join (with sites):   ", nrow(obs_with_sites), "\n")
+cat("After inner_join (only matched):", nrow(obs_inner), "\n")
+cat("Unmatched observations:         ", nrow(unmatched), "\n")
+```
+
+- left_join row count = original obs count (assuming no duplicate keys in right table).
+- inner_join row count <= left_join count.
+- unmatched count = left_join count - inner_join count.
+
+::: {.notes}
+**Speaker Notes:**
+Make this a reflex: every time you join two tables, print the row counts of the input and output. If left_join produces MORE rows than your left table, you have duplicate keys in the right table — one input row matched multiple right-side rows and got duplicated. If inner_join produces fewer rows, rows were silently dropped. These are the two most common join surprises.
+:::
+
+## Live Coding: Section 1
+
+- Load both tables and inspect dimensions.
+- Compare `site_id` values across tables.
+- `left_join()`, `inner_join()`, `anti_join()` in sequence.
+- Verify row counts at each step.
+
+::: {.notes}
+**Speaker Notes:**
+We will work through all three joins on the bird observation dataset. For each join, we will check the row count immediately after. I will also show you how to use filter(is.na(habitat_type)) after a left_join to locate the unmatched rows — which gives you the same information as anti_join but from the joined table perspective.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: Habitat Richness and the Missing Registry
+
+- **Base goal:** Join bird observations to site metadata and audit unmatched sites using `anti_join()`.
+- **Extension goal:** Summarize species richness by habitat type using `group_by()` + `summarize()` and visualize the distribution.
+
+::: {.notes}
+**Speaker Notes:**
+The challenge today has two parts that must be done in order. First, audit the data — find and document the sites that have observations but no registry entry. Second, join and analyze. You will calculate species richness (number of unique species) per site, then average that by habitat type. The goal is to answer the question: which habitat types support the most diverse bird communities?
+:::
+
+## Verification
+
+- Does your `left_join` result have the same row count as the original `obs`?
+- Did `anti_join` reveal any unmatched `site_id` values?
+- Does your richness summary group correctly by `habitat_type`?
+- Does your plot have a title, axis labels, and a color scale?
+- Can you explain why `left_join()` is the safest default for this task?
+
+::: {.notes}
+**Speaker Notes:**
+Before you commit, run through this checklist out loud. The row count check is non-negotiable — if you cannot confirm the join preserved or intentionally reduced your rows, you do not know what you joined. The audit question is the analytical equivalent: if you skipped the anti_join, you do not know whether your richness estimates are based on complete data.
+:::

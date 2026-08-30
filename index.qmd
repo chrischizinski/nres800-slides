@@ -1,0 +1,29 @@
+---
+title: "NRES 800"
+subtitle: "Data Management and Visualization"
+---
+
+Welcome to the lecture slides for **NRES 800: Data Management and Visualization**.
+
+Canvas remains the course home for assignments, deadlines, grades, announcements, and submissions. This site provides the HTML lecture slides released for the course.
+
+## Weekly lecture slides
+
+- [Week 01 — The Whole Game](slides/01-the-whole-game.qmd)
+- [Week 02 — Objects and Debugging](slides/02-objects-debugging.qmd)
+- [Week 03 — Importing Data](slides/03-importing-data.qmd)
+- [Week 04 — Visualization Foundations](slides/04-viz-foundations.qmd)
+- [Week 05 — Rows, Columns, and New Variables](slides/05-rows-columns-new-variables.qmd)
+- [Week 06 — Grouped Summaries](slides/06-grouped-summaries.qmd)
+- [Week 07 — Tidying Data](slides/07-tidying-data.qmd)
+- [Week 08 — Joining Tables](slides/08-joining-tables.qmd)
+- [Week 09 — Integrated Challenge I](slides/09-integrated-challenge-i.qmd)
+- [Week 10 — String Cleaning and Categorical Control](slides/10-string-cleaning-categorical-control.qmd)
+- [Week 11 — Dates and Time Series](slides/11-dates-time-series.qmd)
+- [Week 12 — Scaling Up](slides/12-scaling-up.qmd)
+- [Week 13 — Functions for Repeated Work](slides/13-functions-repeated-work.qmd)
+- [Week 14 — Polished Reporting](slides/14-polished-reporting.qmd)
+- [Week 15 — Code Review and Revision](slides/15-code-review-revision.qmd)
+- [Week 16 — Capstone Showcase](slides/16-capstone-showcase.qmd)
+
+New lectures appear here only after they are ready for students.

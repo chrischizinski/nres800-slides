@@ -1,0 +1,25 @@
+{
+  "generated_by": "scripts/sync_course_slides.py",
+  "managed_paths": [
+    "assets/HuskerLogo2.png",
+    "index.qmd",
+    "slides/01-the-whole-game.qmd",
+    "slides/02-objects-debugging.qmd",
+    "slides/03-importing-data.qmd",
+    "slides/04-viz-foundations.qmd",
+    "slides/05-rows-columns-new-variables.qmd",
+    "slides/06-grouped-summaries.qmd",
+    "slides/07-tidying-data.qmd",
+    "slides/08-joining-tables.qmd",
+    "slides/09-integrated-challenge-i.qmd",
+    "slides/10-string-cleaning-categorical-control.qmd",
+    "slides/11-dates-time-series.qmd",
+    "slides/12-scaling-up.qmd",
+    "slides/13-functions-repeated-work.qmd",
+    "slides/14-polished-reporting.qmd",
+    "slides/15-code-review-revision.qmd",
+    "slides/16-capstone-showcase.qmd",
+    "styles/pp.scss",
+    "styles/slide-extras.css"
+  ]
+}

@@ -1,0 +1,116 @@
+---
+title: "Week 03: Importing Data"
+subtitle: "Paths and Portability"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A photograph of organized filing cabinets and stacks of papers, representing the transition from physical data storage to organized digital project folders.
+- **Speaker Notes:** These slides cover the critical concepts of project-relative paths and data import strategies.
+
+<!-- visual-aid: week_03 -->
+## Reproducible Path Map
+
+::: {.diagram-flow aria-label="Project workflow connecting files, relative paths, and GitHub"}
+<div class="diagram-node">Project folder</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Relative path</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Import data</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Render result</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Share repository</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## How To Use Today
+
+- Find the project root first.
+- Use `here()` before you type a path by hand.
+- Verify that the raw data is still unchanged after import.
+
+::: {.notes}
+**Speaker Notes:**
+The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now.
+:::
+
+## The Path to Reproducibility
+
+- Avoid absolute paths like `C:/Users/Chris/Downloads`.
+- Use the `here` package to find files relative to your project.
+- Keep your raw data "read-only".
+
+::: {.notes}
+**Speaker Notes:**
+One of the most common reasons code fails when shared is that it uses 'absolute paths'. If your script starts with 'C:/Users/YourName', it will NEVER work on my machine. We're going to use a package called 'here' that builds paths relative to your project file, making your code portable and reproducible.
+:::
+
+## Learning Objectives
+
+1. Explain the value of relative paths.
+2. Use `here::here()` to find files.
+3. Import CSVs with `read_csv()`.
+4. Skip metadata rows during import.
+
+::: {.notes}
+**Speaker Notes:**
+By the end of today, you'll be able to move your project folder to any computer, or even share it on GitHub, and have the data load perfectly every time. We'll also learn how to handle those annoying extra rows at the top of many CSV files.
+:::
+
+## Live Coding: Section 1
+
+- Setting up the `data/` folder.
+- Importing weather data.
+- Handling messy headers.
+- Checking the imported types and row count.
+
+::: {.notes}
+**Speaker Notes:**
+First, we're going to create a standard 'data' folder. Then we'll practice importing a weather dataset. We'll look at the console output to see how R 'guesses' what kind of data is in each column.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Import Audit
+
+- Import `stream_gauge_messy.csv` with 5 rows of metadata.
+- Rename the discharge column so it is easier to read.
+- Identify missing values or suspicious values in the imported data.
+- Confirm that the row count changes the way you expect after skipping metadata.
+
+::: {.notes}
+**Speaker Notes:**
+Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You'll need to use the 'skip' argument to get to the real data. Then, you'll audit the data for missing values.
+:::
+
+## Verification
+
+- Does the script run on your neighbor's machine?
+- Are you using `here()` and not `setwd()`?
+- Is your raw data still in the right folder and unchanged?
+- Can you explain why skipping the correct number of rows matters?
+
+::: {.notes}
+**Speaker Notes:**
+The import is not finished until you know where the file lives, how many rows came in, and whether the headers are correct.
+:::
+
+::: {.notes}
+**Speaker Notes:**
+The ultimate test of reproducibility: can your neighbor run your script? If you used 'here()', the answer should be yes. Check your 'data' folder—did you include the raw CSV?
+:::

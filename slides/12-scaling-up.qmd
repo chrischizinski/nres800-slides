@@ -1,0 +1,260 @@
+---
+title: "Week 12: Scaling Up"
+subtitle: "Reading Many Files Without Copy-Paste"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+---
+
+## Slide Accessibility Note
+- **Title Background Image Alt-Text:** A branching diagram showing three separate CSV files converging into a single unified data frame, representing the programmatic reading of multiple files.
+- **Speaker Notes:** These slides teach students to replace repetitive file-reading code with a functional iteration pattern using purrr::map() and fs::dir_ls().
+
+<!-- visual-aid: week_12 -->
+## Repeated File Import Map
+
+::: {.diagram-flow aria-label="Workflow for importing and combining repeated files"}
+<div class="diagram-node">List files</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Read one file</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Map over files</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Bind rows</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Check source column</div>
+:::
+
+<p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
+
+## The Copy-Paste Trap
+
+- Year 1: you copy one `read_csv()` call.
+- Year 2: you paste and change "2021" to "2022".
+- Year 3: you do it again.
+- Year 4: a colleague adds a file. **You forget to update the script.**
+
+This is the copy-paste anti-pattern. It scales badly and breaks silently.
+
+## How To Use Today
+
+- Replace repetition with a pattern that adapts to new files.
+- Keep track of where each row came from.
+- Inspect mismatched columns before you drop or rename anything.
+
+::: {.notes}
+**Speaker Notes:**
+Ask: "How many of you have done this?" Almost everyone will raise a hand. The key insight is that copying code isn't just an aesthetic problem — it's a correctness problem. When the folder gains a new file, the manually-maintained script is instantly out of date. The goal today is to make the script adapt automatically.
+:::
+
+## Learning Objectives
+
+1. Use `fs::dir_ls()` to list files programmatically.
+2. Use `purrr::map()` + `list_rbind()` to read multiple files without copy-paste.
+3. Track the source file name with the `.id` argument.
+4. Detect and handle column mismatches across files.
+5. Read specific sheets from Excel workbooks with `readxl::read_excel()`.
+
+::: {.notes}
+**Speaker Notes:**
+These five skills are what separate a script that runs once from a pipeline that keeps running as data accumulates. By the end of class, students should be able to drop a new CSV in the data folder and re-run the script with zero code changes.
+:::
+
+## The Anti-Pattern vs The Pattern
+
+:::: {.columns}
+::: {.column width="48%"}
+**Anti-pattern (copy-paste)**
+```r
+d21 <- read_csv("counts_2021.csv")
+d22 <- read_csv("counts_2022.csv")
+d23 <- read_csv("counts_2023.csv")
+all <- bind_rows(d21, d22, d23)
+```
+Adding year 4 = editing 2 lines.
+:::
+::: {.column width="48%"}
+**Pattern (iterate)**
+```r
+files <- dir_ls("data", glob = "*.csv")
+all   <- files |>
+  map(read_csv) |>
+  list_rbind(names_to = "source_file")
+```
+Adding year 4 = **zero code changes.**
+:::
+::::
+
+::: {.notes}
+**Speaker Notes:**
+Put both blocks on screen at the same time so students can compare them side by side. The left is familiar; the right is unfamiliar but shorter. Emphasize that the right side is not shorter because it is clever — it is shorter because it describes the *pattern* rather than the *instances*. Ask: "What has to be true about the files for the right-hand pattern to work?" Answer: they must live in the same folder and have the same naming convention.
+:::
+
+## `fs::dir_ls()` — File Discovery
+
+```r
+library(fs)
+
+csv_files <- dir_ls(here("data"), glob = "*.csv")
+csv_files
+#> data/annual_counts_2021.csv
+#> data/annual_counts_2022.csv
+#> data/annual_counts_2023.csv
+```
+
+- `glob = "*.csv"` filters by file pattern (shell-style wildcard).
+- Returns an `fs_path` vector — works like a character vector, prints cleanly.
+- Change the glob and the rest of the pipeline updates automatically.
+
+::: {.notes}
+**Speaker Notes:**
+Run this live. Students often think of file-listing as something you do in Finder or the terminal. Show them that R can see the filesystem too. Emphasize the glob argument — this is how they would limit to a specific pattern like "raptor_*.csv" if the folder contained mixed file types.
+:::
+
+## `purrr::map()` — Applying a Function to Every Element
+
+```r
+library(purrr)
+
+# map() returns a *list* — one data frame per file
+list_of_dfs <- map(csv_files, read_csv)
+length(list_of_dfs)   # 3
+class(list_of_dfs)    # "list"
+
+# list_rbind() collapses the list into one data frame
+all_counts <- list_rbind(list_of_dfs, names_to = "source_file")
+nrow(all_counts)      # 90
+```
+
+::: {.notes}
+**Speaker Notes:**
+Slow down here. Students who have not seen functional programming before will find this abstract. The key mental model: map() is a loop that saves the output. Ask: "What would you have to do with a for-loop to get the same result?" Then show them that map() + list_rbind() does the same thing in two lines. The names_to argument is critical — if you skip it, you lose the information about which file each row came from.
+:::
+
+## Tracking the Source File with `.id`
+
+```r
+all_counts <- csv_files |>
+  map(read_csv) |>
+  list_rbind(names_to = "source_file")
+
+# Extract the year from the file path
+all_counts <- all_counts |>
+  mutate(year = str_extract(source_file, "\\d{4}") |> as.integer())
+```
+
+- `names_to = "source_file"` stores the file path in a new column.
+- `str_extract()` pulls the 4-digit year from the path string.
+- Without this step: all your rows look identical and the year is lost.
+
+::: {.notes}
+**Speaker Notes:**
+This is a step students frequently skip because they think they can infer the year from the data itself. But survey_date only tells you when the survey happened — not which file it came from. What if you had a bug that read the wrong file? The source_file column is your audit trail. Make the habit explicit.
+:::
+
+## Column Mismatches Happen
+
+The 2023 file has a `notes` column. The 2021 and 2022 files do not.
+
+```r
+all_counts |> count(source_file, is.na(notes))
+#> annual_counts_2021.csv  TRUE   30
+#> annual_counts_2022.csv  TRUE   30
+#> annual_counts_2023.csv  FALSE  30
+```
+
+`list_rbind()` fills missing columns with `NA` — this is **correct behavior**.
+
+Your job: *understand* the NAs before you drop or ignore them.
+
+::: {.notes}
+**Speaker Notes:**
+Students often panic when they see a column of NAs. Teach them the diagnostic reflex: count(source_file, is.na(column)) before making any decisions. In this case the NAs are completely explainable — 2021 and 2022 didn't record observer notes. The next question is whether notes matters for the analysis. Since we are summarizing counts, we can safely drop it. But we document why.
+:::
+
+## Reading Excel: `readxl::read_excel()`
+
+```r
+library(readxl)
+
+# ALWAYS inspect sheet names first
+excel_sheets(here("data", "monitoring_workbook.xlsx"))
+#> [1] "Cover"            "Raptor Survey"
+#> [3] "Waterfowl Survey" "Metadata"
+
+# Read a specific sheet by name
+raptors <- read_excel(
+  here("data", "monitoring_workbook.xlsx"),
+  sheet = "Raptor Survey"
+)
+```
+
+Omitting `sheet =` reads the **first sheet only** — which is often a cover page.
+
+::: {.notes}
+**Speaker Notes:**
+Ask: "Has anyone ever opened an Excel file in R and wondered why there was no data?" This is almost always the cause. The default reads sheet 1, which in monitoring workbooks is often a title or cover sheet with no data. Show excel_sheets() as the first thing to run whenever you receive a new workbook. It is cheap — it just reads the sheet names, not the data.
+:::
+
+## Reading All Excel Sheets at Once
+
+```r
+path <- here("data", "monitoring_workbook.xlsx")
+
+all_sheets <- excel_sheets(path) |>
+  map(\(s) read_excel(path, sheet = s)) |>
+  set_names(excel_sheets(path))
+
+# Access by name
+all_sheets[["Raptor Survey"]]
+```
+
+Same map() pattern — now applied to sheet names instead of file paths.
+
+::: {.notes}
+**Speaker Notes:**
+Point out the parallel structure: in one case we mapped over file paths; here we map over sheet names. The function we apply is different but the pattern is identical. This is why learning map() once pays dividends — it generalizes to any situation where you want to apply the same function to a list of inputs.
+:::
+
+## The Challenge [45 mins]
+
+### Problem: The Three-Year Monitoring Audit
+
+You have three years of annual wildlife count CSV files.
+
+**Question:** How has total species count changed across sites from 2021 to 2023?
+
+**Must use:** `dir_ls()`, `map()`, `list_rbind()`, year extraction, and a trend plot.
+
+**Base goal:** Read all three files and produce one combined table.
+
+**Extension goal:** Add the source file or year to your plot and explain the trend.
+
+::: {.notes}
+**Speaker Notes:**
+Remind students that the 2023 file has the extra notes column — this is intentional. They need to detect it, understand it, and handle it before summarizing. The plot should show year on the x-axis, total count on the y-axis, and lines colored by site. Students who finish early can add n_species as a secondary facet or extend with error bars.
+:::
+
+## Verification
+
+- Does your combined data frame have exactly 90 rows and rows from all 3 years?
+- Did you check for NAs in the `notes` column and document where they came from?
+- Does your trend plot have axis labels, a title, and `theme_minimal()`?
+- If a `annual_counts_2024.csv` appeared in the folder tomorrow, how many lines of your script would you need to change?
+- Can you explain why `map()` is better than copy-paste here?
+
+::: {.notes}
+**Speaker Notes:**
+The last question is the key verification. The answer should be zero — if they have to change even one line, their pipeline is not fully generalized. Go around the room and have each student answer it aloud. This reinforces the central lesson: we write code that adapts, not code that we maintain by hand.
+:::
