@@ -50,6 +50,8 @@ execute:
 - Make comments specific enough that the author can act on them immediately.
 - Separate required fixes from open discussion.
 
+<a class="script-download" href="../scripts/week_15_follow_along.R" download>Download the Week 15 follow-along script (.R)</a>
+
 ::: {.notes}
 **Speaker Notes:**
 Remind students that code review is not grading each other. The goal is to help the author make the project more reproducible, clearer, and analytically sound. Frame it as a collaboration, not a critique. Many students have never seen a professional pull request workflow; today normalizes it.

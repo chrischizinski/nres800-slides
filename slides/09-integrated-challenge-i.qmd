@@ -50,6 +50,8 @@ execute:
 - Verify row counts and key values at every step.
 - If a result looks odd, stop and inspect the data before changing code.
 
+<a class="script-download" href="../scripts/week_09_follow_along.R" download>Download the Week 09 follow-along script (.R)</a>
+
 ::: {.notes}
 **Speaker Notes:**
 This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation.

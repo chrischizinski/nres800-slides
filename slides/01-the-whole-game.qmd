@@ -44,6 +44,8 @@ execute:
 - Ask questions during the checkpoints.
 - Keep the goal small: one plot, one interpretation, one push.
 
+<a class="script-download" href="../scripts/week_01_follow_along.R" download>Download the Week 01 follow-along script (.R)</a>
+
 ::: {.notes}
 **Speaker Notes:**
 This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact.

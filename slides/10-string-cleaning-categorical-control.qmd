@@ -50,6 +50,8 @@ execute:
 - Standardize text before grouping or plotting.
 - Reorder factors when the default alphabetical order would mislead.
 
+<a class="script-download" href="../scripts/week_10_follow_along.R" download>Download the Week 10 follow-along script (.R)</a>
+
 ::: {.notes}
 **Speaker Notes:**
 Last week you encountered messy data for the first time in a systematic way. You probably noticed that a lot of the mess was text — inconsistent capitalization, extra spaces, abbreviated versus spelled-out values. This week we put names on those problems and give you a repeatable toolkit. These three packages together handle the vast majority of text and categorical cleanup you will encounter in ecological and agricultural data.

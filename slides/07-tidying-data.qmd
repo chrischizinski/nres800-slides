@@ -44,6 +44,8 @@ execute:
 - Count rows before and after every reshape.
 - Match the data shape to the task: plot, summarize, or present.
 
+<a class="script-download" href="../scripts/week_07_follow_along.R" download>Download the Week 07 follow-along script (.R)</a>
+
 ## Learning Objectives
 
 1. Explain why wide-format data is difficult to plot in ggplot2.

@@ -44,6 +44,8 @@ execute:
 - Check row counts immediately after each join.
 - Use `anti_join()` when the output looks suspicious or incomplete.
 
+<a class="script-download" href="../scripts/week_08_follow_along.R" download>Download the Week 08 follow-along script (.R)</a>
+
 ## Why Joins Exist
 
 - Ecological data rarely lives in one table.

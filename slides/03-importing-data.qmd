@@ -44,6 +44,8 @@ execute:
 - Use `here()` before you type a path by hand.
 - Verify that the raw data is still unchanged after import.
 
+<a class="script-download" href="../scripts/week_03_follow_along.R" download>Download the Week 03 follow-along script (.R)</a>
+
 ::: {.notes}
 **Speaker Notes:**
 The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now.

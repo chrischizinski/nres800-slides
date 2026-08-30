@@ -49,6 +49,8 @@ Welcome to Week 06. Today we move from row-level transformations — which we di
 - Predict the row count before you run `summarize()`.
 - Check whether `NA` means missing information or a true zero.
 
+<a class="script-download" href="../scripts/week_06_follow_along.R" download>Download the Week 06 follow-along script (.R)</a>
+
 ## Learning Objectives
 
 1. Use `group_by()` to define analysis groups.

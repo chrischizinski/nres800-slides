@@ -44,6 +44,8 @@ execute:
 - Ask which rows or columns should change before typing.
 - Check the row count after every major filter.
 
+<a class="script-download" href="../scripts/week_05_follow_along.R" download>Download the Week 05 follow-along script (.R)</a>
+
 ::: {.notes}
 **Speaker Notes:**
 This week is about changing the shape of the data without losing track of what each step does. Keep the verbs separate in your mind: filter for rows, select for columns, arrange for order, mutate for new variables.
