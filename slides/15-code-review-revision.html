@@ -554,15 +554,16 @@ margin-top: 0.7rem;
 padding: 0.5rem 0.8rem;
 border: 2px solid #d00000;
 border-radius: 6px;
-background: #d00000;
+background-color: #d00000 !important;
 color: #fff !important;
 font-size: 0.72em;
 font-weight: 700;
 text-decoration: none;
+box-shadow: 0 2px 0 #720000;
 }
 .script-download:hover,
 .script-download:focus-visible {
-background: #fff;
+background-color: #fff !important;
 color: #9b0000 !important;
 outline: 3px solid #111;
 outline-offset: 3px;
@@ -1154,7 +1155,7 @@ Use this map to track where each live-coding step fits in the larger workflow.
 <li>Make comments specific enough that the author can act on them immediately.</li>
 <li>Separate required fixes from open discussion.</li>
 </ul>
-<p><a class="script-download" href="../scripts/week_15_follow_along.R" download>Download the Week 15 follow-along script (.R)</a></p>
+<p><a class="script-download" href="../scripts/week_15_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 15 follow-along script (.R)</a></p>
 <aside class="notes">
 <p><strong>Speaker Notes:</strong> Remind students that code review is not grading each other. The goal is to help the author make the project more reproducible, clearer, and analytically sound. Frame it as a collaboration, not a critique. Many students have never seen a professional pull request workflow; today normalizes it.</p>
 <style type="text/css">
