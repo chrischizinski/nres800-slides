@@ -49,7 +49,7 @@ Welcome to the last class. There is no new code today. Instead, we are doing som
 - Check that the repo works from a fresh clone before you present.
 - Use the reflection to name one concrete improvement you would make next time.
 
-<a class="script-download" href="../scripts/week_16_follow_along.R" download>Download the Week 16 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_16_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 16 follow-along script (.R)</a>
 
 ## Where We Started
 

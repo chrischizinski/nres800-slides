@@ -50,7 +50,7 @@ execute:
 - Make comments specific enough that the author can act on them immediately.
 - Separate required fixes from open discussion.
 
-<a class="script-download" href="../scripts/week_15_follow_along.R" download>Download the Week 15 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_15_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 15 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

@@ -44,7 +44,7 @@ execute:
 - Use the Environment pane as a diagnostic tool.
 - Fix the cause, not just the symptom.
 
-<a class="script-download" href="../scripts/week_02_follow_along.R" download>Download the Week 02 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_02_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 02 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

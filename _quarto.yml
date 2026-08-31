@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - scripts/*.R
   render:
     - index.qmd
     - slides/*.qmd

@@ -44,7 +44,7 @@ execute:
 - Use color only when it helps the reader.
 - Prefer clear labels and a clean theme over decoration.
 
-<a class="script-download" href="../scripts/week_04_follow_along.R" download>Download the Week 04 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_04_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 04 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

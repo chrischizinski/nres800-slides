@@ -44,7 +44,7 @@ execute:
 - Ask which rows or columns should change before typing.
 - Check the row count after every major filter.
 
-<a class="script-download" href="../scripts/week_05_follow_along.R" download>Download the Week 05 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_05_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 05 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

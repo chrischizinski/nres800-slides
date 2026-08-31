@@ -65,7 +65,7 @@ This is Week 14 — the capstone week for reproducible workflows. Students have 
 - Let Quarto number and reference figures and tables for you.
 - Use inline R for values that should stay in sync with the data.
 
-<a class="script-download" href="../scripts/week_14_follow_along.R" download>Download the Week 14 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_14_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 14 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
