@@ -718,82 +718,82 @@
     "href": "index.html#weekly-lecture-slides",
     "title": "NRES 800",
     "section": "Weekly lecture slides",
-    "text": "Weekly lecture slides\n\nWeek 01 — The Whole Game\nWeek 02 — Objects and Debugging\nWeek 03 — Importing Data\nWeek 04 — Visualization Foundations\nWeek 05 — Rows, Columns, and New Variables\nWeek 06 — Grouped Summaries\nWeek 07 — Tidying Data\nWeek 08 — Joining Tables\nWeek 09 — Integrated Challenge I\nWeek 10 — String Cleaning and Categorical Control\nWeek 11 — Dates and Time Series\nWeek 12 — Scaling Up\nWeek 13 — Functions for Repeated Work\nWeek 14 — Polished Reporting\nWeek 15 — Code Review and Revision\nWeek 16 — Capstone Showcase\n\nNew lectures appear here only after they are ready for students."
+    "text": "Weekly lecture slides\n\nWeek 03 — The Whole Game (Assignment 01)\nWeek 02 — Objects and Debugging\nWeek 03 — Importing Data\nWeek 04 — Visualization Foundations\nWeek 05 — Rows, Columns, and New Variables\nWeek 06 — Grouped Summaries\nWeek 07 — Tidying Data\nWeek 08 — Joining Tables\nWeek 09 — Integrated Challenge I\nWeek 10 — String Cleaning and Categorical Control\nWeek 11 — Dates and Time Series\nWeek 12 — Scaling Up\nWeek 13 — Functions for Repeated Work\nWeek 14 — Polished Reporting\nWeek 15 — Code Review and Revision\nWeek 16 — Capstone Showcase\n\nNew lectures appear here only after they are ready for students."
   },
   {
     "objectID": "slides/01-the-whole-game.html#slide-accessibility-note",
     "href": "slides/01-the-whole-game.html#slide-accessibility-note",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Slide Accessibility Note",
     "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A scenic photograph of three different penguin species (Adelie, Chinstrap, Gentoo) standing on ice in the Palmer Archipelago, Antarctica.\nSpeaker Notes: These slides are designed to be read alongside the live-coding script."
   },
   {
     "objectID": "slides/01-the-whole-game.html#the-whole-game-map",
     "href": "slides/01-the-whole-game.html#the-whole-game-map",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "The Whole Game Map",
     "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRender and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
   },
   {
     "objectID": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
     "href": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Today: Turn Your Graph into an Assignment",
-    "text": "Today: Turn Your Graph into an Assignment\n\nIn Classroom 50, create your private Week 01 repository.\nClone it and open assignment.qmd.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern, render, commit, and push.\n\nDue: Tuesday, September 15, 2026, 11:59 PM Central Time.\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.qmd, move the familiar ggplot() mapping into the assignment, render, inspect the HTML, commit, and push. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
+    "text": "Today: Turn Your Graph into an Assignment\n\nIn Classroom 50, create your private Assignment 01 repository.\nClone it and open assignment.qmd.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern, render, commit, and push.\n\nDue: Tuesday, September 15, 2026, 11:59 PM Central Time.\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.qmd, move the familiar ggplot() mapping into the assignment, render, inspect the HTML, commit, and push. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
   },
   {
     "objectID": "slides/01-the-whole-game.html#choose-one-git-path",
     "href": "slides/01-the-whole-game.html#choose-one-git-path",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Choose One Git Path",
     "text": "Choose One Git Path\n\nGitHub Desktop: recommended if it is installed; no terminal required.\nPositron Source Control: use the built-in Git panel if Git is installed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
   },
   {
     "objectID": "slides/01-the-whole-game.html#how-to-use-today",
     "href": "slides/01-the-whole-game.html#how-to-use-today",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "How To Use Today",
-    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\nDownload the Week 01 follow-along script (.R)\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
+    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\nDownload the Assignment 01 follow-along script (.R)\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
   },
   {
     "objectID": "slides/01-the-whole-game.html#why-the-whole-game",
     "href": "slides/01-the-whole-game.html#why-the-whole-game",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Why the “Whole Game”?",
     "text": "Why the “Whole Game”?\n\nWe start by doing, not just installing.\nYou will load data, make a plot, and interpret it TODAY.\nWe will spend the rest of the semester unpacking HOW it works.\n\n\nSpeaker Notes: Welcome to NRES 800. We use a ‘Whole Game’ approach, inspired by David Perkins. Instead of spending weeks learning about file types and syntax, we are going to build a full analysis today. This gives you the ‘big picture’ context for everything else we’ll learn."
   },
   {
     "objectID": "slides/01-the-whole-game.html#learning-objectives",
     "href": "slides/01-the-whole-game.html#learning-objectives",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Learning Objectives",
     "text": "Learning Objectives\n\nCreate a private weekly repository through Classroom 50 and clone it.\nMove a familiar ggplot2 graph into a Quarto assignment.\nRender and inspect a Quarto document (.qmd).\nCommit and push a reproducible result to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
   },
   {
     "objectID": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
     "href": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Today’s Dataset: Palmer Penguins",
     "text": "Today’s Dataset: Palmer Penguins\n\nData on three penguin species in Antarctica.\nVariables: bill length, flipper length, body mass, sex.\nA classic dataset for learning visualization.\n\n\nSpeaker Notes: The palmerpenguins dataset is a modern alternative to the classic ‘iris’ dataset. It’s real ecological data collected by Dr. Kristen Gorman at the Palmer Station."
   },
   {
     "objectID": "slides/01-the-whole-game.html#live-coding-section-1",
     "href": "slides/01-the-whole-game.html#live-coding-section-1",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Live Coding: Section 1",
     "text": "Live Coding: Section 1\n\nOpen your project in RStudio.\nOpen scripts/week_01_follow_along.R.\nType along as we build the plot.\n\n\nSpeaker Notes: Now, please switch over to RStudio. We are going to build our first plot. Remember: don’t just watch me—type the code yourself. The muscle memory of typing is how you learn the syntax."
   },
   {
     "objectID": "slides/01-the-whole-game.html#the-challenge-45-mins",
     "href": "slides/01-the-whole-game.html#the-challenge-45-mins",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "The Challenge [45 mins]",
     "text": "The Challenge [45 mins]\nProblem: The 30-Minute Analyst\n\nLoad the palmerpenguins data.\nCreate a scatterplot of body mass vs flipper length.\nColor the points by species.\nExtension: Add professional labels and a theme.\nBase goal: Make the plot work and make the mapping correct.\nExtension goal: Make the plot readable without explanation.\n\n\nSpeaker Notes: You have 45 minutes to work on this challenge. If you finish the base goal early, try the extension. The extension asks you to add labels like title, x-axis, and y-axis."
   },
   {
     "objectID": "slides/01-the-whole-game.html#verification",
     "href": "slides/01-the-whole-game.html#verification",
-    "title": "Week 01: The Whole Game",
+    "title": "Week 03: The Whole Game",
     "section": "Verification",
     "text": "Verification\n\nDoes the Quarto document render to HTML?\nCan you explain why species belongs inside aes()?\nDid you commit and push the rendered result?\n\n\nSpeaker Notes: Before you leave, verify three things: render, explanation, and GitHub push. If one of those is missing, the assignment is not done yet.\n\n\nSpeaker Notes: Before you leave, you must verify your work. Render the document. If it doesn’t render, we need to fix it before you go. Finally, push to GitHub. If it’s not on GitHub, it doesn’t exist for grading!"
   },
