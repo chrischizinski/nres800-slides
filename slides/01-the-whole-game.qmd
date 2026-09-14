@@ -61,14 +61,15 @@ assignment is registered.
 
 ## Choose One Git Path
 
-- **GitHub Desktop:** recommended if it is installed; no terminal required.
-- **Positron Source Control:** use the built-in Git panel if Git is installed.
+- **GitHub Desktop:** use it if it opens; no terminal required.
+- **Positron Source Control:** use the Git panel if Git is installed.
 - Both paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.
+- If an app will not open, your repository is safe on GitHub: take a screenshot and use the other path or ask for help.
 
 ::: {.notes}
 **Speaker Notes:**
 Students do not need the `gh` command-line tool for this assignment. Start by
-asking who has GitHub Desktop and direct them to that path. For students using
+asking who has a working GitHub Desktop and direct them to that path. For students using
 Positron, demonstrate **New Folder from Git** and the **Source Control** icon
 in the left Activity Bar. Explain the vocabulary before clicking anything:
 clone makes the first local copy, fetch checks for remote changes without
