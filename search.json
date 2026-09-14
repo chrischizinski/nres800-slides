@@ -749,6 +749,13 @@
     "text": "Choose One Git Path\n\nGitHub Desktop: recommended if it is installed; no terminal required.\nPositron Source Control: use the built-in Git panel if Git is installed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
   },
   {
+    "objectID": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
+    "href": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
+    "title": "Week 03: The Whole Game",
+    "section": "Why Keep GitHub in the Loop?",
+    "text": "Why Keep GitHub in the Loop?\n\n\nIllustration by Allison Horst, CC BY 4.0.\n\n\nSpeaker Notes: This image is a visual metaphor, not a required decoding task. Say the point plainly: GitHub gives a project named checkpoints and a shared version of the work; without those, it is easy to lose track of which file is current. Connect the three visible ideas to today’s actions: clone the shared starting point, commit named checkpoints, and push the current version for others to review."
+  },
+  {
     "objectID": "slides/01-the-whole-game.html#how-to-use-today",
     "href": "slides/01-the-whole-game.html#how-to-use-today",
     "title": "Week 03: The Whole Game",
