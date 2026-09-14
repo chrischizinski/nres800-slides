@@ -9,7 +9,7 @@ Canvas remains the course home for assignments, deadlines, grades, announcements
 
 ## Weekly lecture slides
 
-- [Week 01 — The Whole Game](slides/01-the-whole-game.qmd)
+- [Week 03 — The Whole Game (Assignment 01)](slides/01-the-whole-game.qmd)
 - [Week 02 — Objects and Debugging](slides/02-objects-debugging.qmd)
 - [Week 03 — Importing Data](slides/03-importing-data.qmd)
 - [Week 04 — Visualization Foundations](slides/04-viz-foundations.qmd)

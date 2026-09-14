@@ -1,5 +1,5 @@
 ---
-title: "Week 01: The Whole Game"
+title: "Week 03: The Whole Game"
 subtitle: "Hello ggplot2 & Reproducibility"
 author: "Chris Chizinski"
 lang: en
@@ -40,7 +40,7 @@ execute:
 
 ## Today: Turn Your Graph into an Assignment
 
-1. In Classroom 50, create your private Week 01 repository.
+1. In Classroom 50, create your private Assignment 01 repository.
 2. Clone it and open `assignment.qmd`.
 3. Rebuild the graph you explored: body mass vs. flipper length, colored by species.
 4. Make it readable, explain one pattern, render, commit, and push.
@@ -84,7 +84,7 @@ directions for both paths.
 - Ask questions during the checkpoints.
 - Keep the goal small: one plot, one interpretation, one push.
 
-<a class="script-download" href="../scripts/week_01_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 01 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_01_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Assignment 01 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
