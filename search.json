@@ -735,6 +735,20 @@
     "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRender and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
   },
   {
+    "objectID": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
+    "href": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
+    "title": "Week 01: The Whole Game",
+    "section": "Today: Turn Your Graph into an Assignment",
+    "text": "Today: Turn Your Graph into an Assignment\n\nIn Classroom 50, create your private Week 01 repository.\nClone it and open assignment.qmd.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern, render, commit, and push.\n\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.qmd, move the familiar ggplot() mapping into the assignment, render, inspect the HTML, commit, and push. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#choose-one-git-path",
+    "href": "slides/01-the-whole-game.html#choose-one-git-path",
+    "title": "Week 01: The Whole Game",
+    "section": "Choose One Git Path",
+    "text": "Choose One Git Path\n\nGitHub Desktop: recommended if it is installed; no terminal required.\nPositron Source Control: use the built-in Git panel if Git is installed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
+  },
+  {
     "objectID": "slides/01-the-whole-game.html#how-to-use-today",
     "href": "slides/01-the-whole-game.html#how-to-use-today",
     "title": "Week 01: The Whole Game",
@@ -753,7 +767,7 @@
     "href": "slides/01-the-whole-game.html#learning-objectives",
     "title": "Week 01: The Whole Game",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nNavigate RStudio’s four main panes.\nRender a Quarto document (.qmd).\nCreate a scatterplot using ggplot2.\nPush your work to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
+    "text": "Learning Objectives\n\nCreate a private weekly repository through Classroom 50 and clone it.\nMove a familiar ggplot2 graph into a Quarto assignment.\nRender and inspect a Quarto document (.qmd).\nCommit and push a reproducible result to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
   },
   {
     "objectID": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
