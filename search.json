@@ -732,21 +732,28 @@
     "href": "slides/01-the-whole-game.html#the-whole-game-map",
     "title": "Week 03: The Whole Game",
     "section": "The Whole Game Map",
-    "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRender and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+    "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
   },
   {
     "objectID": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
     "href": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
     "title": "Week 03: The Whole Game",
     "section": "Today: Turn Your Graph into an Assignment",
-    "text": "Today: Turn Your Graph into an Assignment\n\nIn Classroom 50, create your private Assignment 01 repository.\nClone it and open assignment.qmd.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern, render, commit, and push.\n\nDue: Tuesday, September 15, 2026, 11:59 PM Central Time.\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.qmd, move the familiar ggplot() mapping into the assignment, render, inspect the HTML, commit, and push. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
+    "text": "Today: Turn Your Graph into an Assignment\n\nAccept the NRES800 organization invitation in GitHub.\nIn Classroom 50, sign in with that GitHub account, select NRES800, and create your private Assignment 01 repository.\nClone it and open assignment.R.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern in script comments, run it, commit, and push.\n\nDue: Tuesday, September 15, 2026, 11:59 PM Central Time.\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.R, move the familiar ggplot() mapping into the assignment, run the script, inspect the plot, commit, and push. Before opening Classroom 50, confirm that students accepted their NRES800 GitHub organization invitation; they must sign in to Classroom 50 with that same account and select NRES800. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
   },
   {
     "objectID": "slides/01-the-whole-game.html#choose-one-git-path",
     "href": "slides/01-the-whole-game.html#choose-one-git-path",
     "title": "Week 03: The Whole Game",
     "section": "Choose One Git Path",
-    "text": "Choose One Git Path\n\nGitHub Desktop: use it if it opens; no terminal required.\nPositron Source Control: use the Git panel if Git is installed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\nIf an app will not open, your repository is safe on GitHub: take a screenshot and use the other path or ask for help.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has a working GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
+    "text": "Choose One Git Path\n\nGitHub Desktop: use it if it opens; no terminal required.\nPositron’s built-in Source Control: use its Git panel if Git is installed; no terminal or separate GitHub extension is needed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\nIf an app will not open, your repository is safe on GitHub: take a screenshot and use the other path or ask for help.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has a working GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#brand-new-positron-user-use-built-in-source-control-to-clone-first.",
+    "href": "slides/01-the-whole-game.html#brand-new-positron-user-use-built-in-source-control-to-clone-first.",
+    "title": "Week 03: The Whole Game",
+    "section": "Brand-New Positron User? Use Built-In Source Control to Clone First.",
+    "text": "Brand-New Positron User? Use Built-In Source Control to Clone First.\n\nOn GitHub: Code → HTTPS → Copy.\nIn Positron’s built-in Source Control: choose New Folder from Git.\nPaste the address, choose your class-work folder, and select Create Folder.\nWhen Positron finishes, open the new folder; then open assignment.R.\n\nDo not start with File → Open Folder. That comes after the clone creates your local repository.\n\nSpeaker Notes: This sequence is specifically for students who have never cloned a repository. They cannot open an assignment folder before one exists on their computer. Demonstrate the GitHub Code → HTTPS copy, then Positron’s built-in New Folder from Git command. It is the GUI route for clone, fetch, pull, commit, and push; students do not need a terminal or a separate GitHub extension. Only after cloning finishes should they use the Explorer to open assignment.R. For students who have already cloned the repository, File → Open Folder is appropriate for returning to that existing local folder."
   },
   {
     "objectID": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
@@ -774,7 +781,7 @@
     "href": "slides/01-the-whole-game.html#learning-objectives",
     "title": "Week 03: The Whole Game",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nCreate a private weekly repository through Classroom 50 and clone it.\nMove a familiar ggplot2 graph into a Quarto assignment.\nRender and inspect a Quarto document (.qmd).\nCommit and push a reproducible result to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
+    "text": "Learning Objectives\n\nCreate a private weekly repository through Classroom 50 and clone it.\nMove a familiar ggplot2 graph into a reproducible R script.\nRun the complete script and inspect the resulting plot.\nCommit and push a reproducible result to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
   },
   {
     "objectID": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
@@ -802,7 +809,7 @@
     "href": "slides/01-the-whole-game.html#verification",
     "title": "Week 03: The Whole Game",
     "section": "Verification",
-    "text": "Verification\n\nDoes the Quarto document render to HTML?\nCan you explain why species belongs inside aes()?\nDid you commit and push the rendered result?\n\n\nSpeaker Notes: Before you leave, verify three things: render, explanation, and GitHub push. If one of those is missing, the assignment is not done yet.\n\n\nSpeaker Notes: Before you leave, you must verify your work. Render the document. If it doesn’t render, we need to fix it before you go. Finally, push to GitHub. If it’s not on GitHub, it doesn’t exist for grading!"
+    "text": "Verification\n\nDoes the R script run and display the plot without an error?\nCan you explain why species belongs inside aes()?\nDid you commit and push the script?\n\n\nSpeaker Notes: Before you leave, verify three things: run the script, explain the result, and push to GitHub. If one of those is missing, the assignment is not done yet.\n\n\nSpeaker Notes: Before you leave, you must verify your work. Run the complete script. If it errors, we need to fix it before you go. Finally, push to GitHub. If it’s not on GitHub, it doesn’t exist for grading!"
   },
   {
     "objectID": "slides/03-importing-data.html#slide-accessibility-note",
