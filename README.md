@@ -1,44 +1,22 @@
 # NRES 800 course slides
 
-> This is a generated public release. The parent NRES 800 course workspace is
-> the only editable source of truth for weekly slide decks, shared styling, and
-> released assets. Use `python3 scripts/sync_course_slides.py --publish` from
-> that workspace; do not edit `slides/`, `styles/`, `assets/`, or `index.qmd`
-> here.
+These are the public lecture slides for **NRES 800: Data Science for Natural
+Resources** (Fall 2026). Start at the [slide table of contents](https://chrischizinski.github.io/nres800-slides/).
 
-This repository hosts the public HTML lecture slides for **NRES 800: Data
-Management and Visualization**. Canvas remains the primary learning-management
-system for course schedules, assignments, quizzes, grades, announcements,
-deadlines, and submissions.
+The site includes the slides used in class and the matching follow-along R
+scripts when they are released. New material appears as it becomes ready for
+students.
 
-The website is intentionally small: it is a stable home for released lecture
-slides. Do not add student information, grades, answer keys, private Canvas
-material, restricted assessments, unpublished sensitive data, or copyrighted
-material that cannot be publicly redistributed.
+Canvas remains the course home for assignments, due dates, announcements,
+grades, and submission instructions. Classroom 50 creates the private
+repositories used for weekly work.
 
-## Publication workflow
+## Open the slides
 
-Edit and preview a deck in the parent course workspace. Its inclusion in
-`course-design/course-slides.toml` is the explicit public-release gate. Then
-run:
+[Go to the NRES 800 slide table of contents.](https://chrischizinski.github.io/nres800-slides/)
 
-```bash
-python3 scripts/sync_course_slides.py --publish
-```
+## About this repository
 
-The command synchronizes only allowlisted public files, verifies a Quarto
-render, commits the generated changes, and pushes them to `main`. The GitHub
-Action then publishes the site.
-
-## GitHub Pages
-
-Once GitHub Pages has been initialized, each push to `main` triggers the
-**Quarto Publish** workflow. For a repository named `nres800-slides` owned by
-`USERNAME`, the site URL is approximately:
-
-```text
-https://USERNAME.github.io/nres800-slides/
-```
-
-Keep a slide filename unchanged after linking it from Canvas: revising its
-contents preserves the stable URL, while renaming it does not.
+This is the public release of the course slides. The lecture sources are
+maintained in the course workspace and synchronized here for publication; do
+not use this repository for private course work or student submissions.

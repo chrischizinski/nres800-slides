@@ -38,6 +38,44 @@ execute:
 
 <p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
 
+## Today: Turn Your Graph into an Assignment
+
+1. In Classroom 50, create your private Week 01 repository.
+2. Clone it and open `assignment.qmd`.
+3. Rebuild the graph you explored: body mass vs. flipper length, colored by species.
+4. Make it readable, explain one pattern, render, commit, and push.
+
+::: {.notes}
+**Speaker Notes:**
+Start with the graph students explored before the break. The point is not to
+start a different exercise; it is to turn that exploratory graph into a small,
+reproducible submission. Demonstrate the workflow in this order: open the
+Classroom 50 assignment, create the private repository, clone it, open
+`assignment.qmd`, move the familiar `ggplot()` mapping into the assignment,
+render, inspect the HTML, commit, and push. Do not promise an accept link on
+this slide: show the current Classroom 50 page or post the link once the
+assignment is registered.
+:::
+
+## Choose One Git Path
+
+- **GitHub Desktop:** recommended if it is installed; no terminal required.
+- **Positron Source Control:** use the built-in Git panel if Git is installed.
+- Both paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.
+
+::: {.notes}
+**Speaker Notes:**
+Students do not need the `gh` command-line tool for this assignment. Start by
+asking who has GitHub Desktop and direct them to that path. For students using
+Positron, demonstrate **New Folder from Git** and the **Source Control** icon
+in the left Activity Bar. Explain the vocabulary before clicking anything:
+clone makes the first local copy, fetch checks for remote changes without
+changing their files, pull brings those changes into the local copy, commit
+makes a named local checkpoint, and push sends that checkpoint to GitHub.
+The book's "Getting your assignment repository" section gives the click-by-click
+directions for both paths.
+:::
+
 ## How To Use Today
 
 - Type along in the follow-along script.
@@ -64,10 +102,10 @@ Welcome to NRES 800. We use a 'Whole Game' approach, inspired by David Perkins. 
 
 ## Learning Objectives
 
-1. Navigate RStudio's four main panes.
-2. Render a Quarto document (.qmd).
-3. Create a scatterplot using `ggplot2`.
-4. Push your work to GitHub.
+1. Create a private weekly repository through Classroom 50 and clone it.
+2. Move a familiar `ggplot2` graph into a Quarto assignment.
+3. Render and inspect a Quarto document (`.qmd`).
+4. Commit and push a reproducible result to GitHub.
 
 ::: {.notes}
 **Speaker Notes:**
