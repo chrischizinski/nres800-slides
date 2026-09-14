@@ -31,7 +31,7 @@ execute:
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
 <div class="diagram-node">Write reproducible code</div>
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
-<div class="diagram-node">Render and inspect</div>
+<div class="diagram-node">Run and inspect</div>
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
 <div class="diagram-node">Commit the evidence</div>
 :::
@@ -40,10 +40,11 @@ execute:
 
 ## Today: Turn Your Graph into an Assignment
 
-1. In Classroom 50, create your private Assignment 01 repository.
-2. Clone it and open `assignment.qmd`.
-3. Rebuild the graph you explored: body mass vs. flipper length, colored by species.
-4. Make it readable, explain one pattern, render, commit, and push.
+1. Accept the NRES800 organization invitation in GitHub.
+2. In Classroom 50, sign in with that GitHub account, select **NRES800**, and create your private Assignment 01 repository.
+3. Clone it and open `assignment.R`.
+4. Rebuild the graph you explored: body mass vs. flipper length, colored by species.
+5. Make it readable, explain one pattern in script comments, run it, commit, and push.
 
 **Due:** Tuesday, September 15, 2026, 11:59 PM Central Time.
 
@@ -53,16 +54,18 @@ Start with the graph students explored before the break. The point is not to
 start a different exercise; it is to turn that exploratory graph into a small,
 reproducible submission. Demonstrate the workflow in this order: open the
 Classroom 50 assignment, create the private repository, clone it, open
-`assignment.qmd`, move the familiar `ggplot()` mapping into the assignment,
-render, inspect the HTML, commit, and push. Do not promise an accept link on
-this slide: show the current Classroom 50 page or post the link once the
-assignment is registered.
+`assignment.R`, move the familiar `ggplot()` mapping into the assignment, run
+the script, inspect the plot, commit, and push. Before opening Classroom 50,
+confirm that students accepted their NRES800 GitHub organization invitation;
+they must sign in to Classroom 50 with that same account and select **NRES800**.
+Do not promise an accept link on this slide: show the current Classroom 50 page
+or post the link once the assignment is registered.
 :::
 
 ## Choose One Git Path
 
 - **GitHub Desktop:** use it if it opens; no terminal required.
-- **Positron Source Control:** use the Git panel if Git is installed.
+- **Positron's built-in Source Control:** use its Git panel if Git is installed; no terminal or separate GitHub extension is needed.
 - Both paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.
 - If an app will not open, your repository is safe on GitHub: take a screenshot and use the other path or ask for help.
 
@@ -77,6 +80,28 @@ changing their files, pull brings those changes into the local copy, commit
 makes a named local checkpoint, and push sends that checkpoint to GitHub.
 The book's "Getting your assignment repository" section gives the click-by-click
 directions for both paths.
+:::
+
+## Brand-New Positron User? Use Built-In Source Control to Clone First.
+
+1. On GitHub: **Code → HTTPS → Copy**.
+2. In Positron's built-in **Source Control**: choose **New Folder from Git**.
+3. Paste the address, choose your class-work folder, and select **Create Folder**.
+4. When Positron finishes, open the new folder; then open `assignment.R`.
+
+Do **not** start with **File → Open Folder**. That comes after the clone creates
+your local repository.
+
+::: {.notes}
+**Speaker Notes:**
+This sequence is specifically for students who have never cloned a repository.
+They cannot open an assignment folder before one exists on their computer.
+Demonstrate the GitHub **Code → HTTPS** copy, then Positron's built-in **New
+Folder from Git** command. It is the GUI route for clone, fetch, pull, commit,
+and push; students do not need a terminal or a separate GitHub extension. Only
+after cloning finishes should they use the Explorer to open `assignment.R`. For
+students who have already cloned the repository, **File → Open Folder** is
+appropriate for returning to that existing local folder.
 :::
 
 ## Why Keep GitHub in the Loop?
@@ -121,8 +146,8 @@ Welcome to NRES 800. We use a 'Whole Game' approach, inspired by David Perkins. 
 ## Learning Objectives
 
 1. Create a private weekly repository through Classroom 50 and clone it.
-2. Move a familiar `ggplot2` graph into a Quarto assignment.
-3. Render and inspect a Quarto document (`.qmd`).
+2. Move a familiar `ggplot2` graph into a reproducible R script.
+3. Run the complete script and inspect the resulting plot.
 4. Commit and push a reproducible result to GitHub.
 
 ::: {.notes}
@@ -170,16 +195,16 @@ You have 45 minutes to work on this challenge. If you finish the base goal early
 
 ## Verification
 
-- Does the Quarto document render to HTML?
+- Does the R script run and display the plot without an error?
 - Can you explain why `species` belongs inside `aes()`?
-- Did you commit and push the rendered result?
+- Did you commit and push the script?
 
 ::: {.notes}
 **Speaker Notes:**
-Before you leave, verify three things: render, explanation, and GitHub push. If one of those is missing, the assignment is not done yet.
+Before you leave, verify three things: run the script, explain the result, and push to GitHub. If one of those is missing, the assignment is not done yet.
 :::
 
 ::: {.notes}
 **Speaker Notes:**
-Before you leave, you must verify your work. Render the document. If it doesn't render, we need to fix it before you go. Finally, push to GitHub. If it's not on GitHub, it doesn't exist for grading!
+Before you leave, you must verify your work. Run the complete script. If it errors, we need to fix it before you go. Finally, push to GitHub. If it's not on GitHub, it doesn't exist for grading!
 :::
