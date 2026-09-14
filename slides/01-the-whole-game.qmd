@@ -78,6 +78,21 @@ The book's "Getting your assignment repository" section gives the click-by-click
 directions for both paths.
 :::
 
+## Why Keep GitHub in the Loop?
+
+![](../assets/allison-horst-github-workflow.png){fig-alt="Two-panel illustration comparing a researcher using GitHub to follow a clear route through a climbing landscape, with labeled checkpoints for an initial commit, a cleaned dataset, and completed analysis, to a researcher without GitHub tangled in multiple poorly named analysis files in a snowstorm." height=500}
+
+<p class="diagram-caption">Illustration by <a href="https://www.allisonhorst.com/git-github">Allison Horst</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+
+::: {.notes}
+**Speaker Notes:**
+This image is a visual metaphor, not a required decoding task. Say the point
+plainly: GitHub gives a project named checkpoints and a shared version of the
+work; without those, it is easy to lose track of which file is current. Connect
+the three visible ideas to today's actions: clone the shared starting point,
+commit named checkpoints, and push the current version for others to review.
+:::
+
 ## How To Use Today
 
 - Type along in the follow-along script.

@@ -2,6 +2,7 @@
   "generated_by": "scripts/sync_course_slides.py",
   "managed_paths": [
     "assets/HuskerLogo2.png",
+    "assets/allison-horst-github-workflow.png",
     "index.qmd",
     "scripts/week_01_follow_along.R",
     "scripts/week_02_follow_along.R",
