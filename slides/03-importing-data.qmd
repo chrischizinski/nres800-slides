@@ -38,6 +38,21 @@ execute:
 
 <p class="diagram-caption">Use this map to track where each live-coding step fits in the larger workflow.</p>
 
+## Module 03: Importing Data
+
+- Finish uploading Assignment 02, then move to importing data.
+- Today: project folders, `here()`, `read_csv()`, and import checks.
+- Assignment 03: Import and Inspect. Module 04 comes afterward.
+
+## Download and Open the Practice Project
+
+<a class="script-download" href="../scripts/module_03_practice.zip" download>Download Module 03 practice project (.zip)</a>
+
+1. Extract the ZIP before opening any files.
+2. In Positron, choose **File > Open Folder** and open `module_03_practice`.
+3. Open `scripts/week_03_follow_along.R` in that folder.
+4. Keep both CSV files in `data/`. Run `here::here()` to check the project root.
+
 ## How To Use Today
 
 - Find the project root first.

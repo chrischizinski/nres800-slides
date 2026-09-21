@@ -3,6 +3,7 @@ project:
   output-dir: _site
   resources:
     - scripts/*.R
+    - scripts/*.zip
   render:
     - index.qmd
     - slides/*.qmd

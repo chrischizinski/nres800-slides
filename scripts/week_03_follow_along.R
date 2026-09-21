@@ -2,6 +2,9 @@
 # Module 03: Importing Data and Project Paths
 # Name: [Your Name]
 
+# Extract module_03_practice.zip and open module_03_practice in Positron.
+# Keep scripts/ and data/ inside that folder. Check here::here() before importing.
+
 # ---- 1. Setup ----
 # Load the packages the instructor names.
 
@@ -27,7 +30,7 @@
 
 
 
-# ---- 3. Weekly Challenge ----
+# ---- 3. Module Challenge ----
 # Problem:
 # Import stream_gauge_messy.csv from the data folder.
 # Skip the metadata rows and verify the column names.
