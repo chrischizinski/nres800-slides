@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 01: The Whole Game: Hello ggplot2
+# Module 01: The Whole Game: Hello ggplot2
 # Name: [Your Name]
 
 # ---- 1. Setup ----

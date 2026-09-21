@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 02: R Objects, Data Frames, and Debugging
+# Module 02: R Objects, Data Frames, and Debugging
 # Name: [Your Name]
 
 # ---- 1. Setup ----
@@ -28,7 +28,7 @@ mixed_values <- c(10, 20, "thirty", 40)
 class(mixed_values)
 
 # ---- 3. Weekly Challenge ----
-# 1. Open the Week 02 Debugging Clinic repository from the link in the slides.
+# 1. Open the Module 02 Debugging Clinic repository from the link in the slides.
 # 2. Open debug_this.R. It contains three intentional bugs.
 # 3. For each fix, add a short comment that explains the cause of the error.
 # 4. Run the script from top to bottom after each change.
