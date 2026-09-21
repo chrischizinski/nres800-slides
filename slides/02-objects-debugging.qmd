@@ -89,11 +89,14 @@ We'll start by building vectors. Then, I'm going to ask you to try and 'break' y
 
 ### Problem: The Debugging Clinic
 
-- Fix 3 intentional errors in a provided script.
-- Identify the data types of a new dataset.
-- **Extension:** Fix a column type mismatch.
+- Open `debug_this.R` in your Assignment 02 repository.
+- Fix 3 intentional errors and explain each cause in a code comment above the fix.
+- Inspect a small soil dataset before deciding what to fix.
+- **Extension:** Convert a column type and create a logical pH check.
 - **Base goal:** Get the script running from top to bottom.
 - **Extension goal:** Explain each fix in plain language.
+
+To get the repository: sign in to [Classroom 50](https://classroom50.org) with your GitHub account, select **NRES800**, and create **Assignment 02 - Debugging Clinic**. Clone it in Positron the same way as Assignment 01.
 
 ::: {.notes}
 **Speaker Notes:**
@@ -103,8 +106,11 @@ In this challenge, you are playing the role of a 'Code Doctor'. I've provided a 
 ## Verification
 
 - Does the script run without errors from top to bottom?
-- Are the objects the lengths you expected?
-- Did you push a clear commit message that names what changed?
+- Can you identify the object-name, data-type, and plotting errors?
+- Did you save `debug_this.R` and your explanation comments?
+- Did you replace the README paragraph with 2-3 sentences of your own?
+- We upload together at the start of class. This is the **last** supported upload; Assignment 03 is pushed from home.
+- Due Tuesday, Sep 22, 11:59 PM. Feedback arrives as an Issue in your repository.
 
 ::: {.notes}
 **Speaker Notes:**
@@ -113,5 +119,5 @@ If they can explain the error in one sentence and show the fix in the script, th
 
 ::: {.notes}
 **Speaker Notes:**
-Verification check: Run your script from top to bottom. If it stops at line 10, it's not ready. Check your row counts. When you push, use a descriptive commit message like 'Fix: changed character to numeric'.
+Verification check: Run your script from top to bottom. If it stops, read the first error and inspect the named object before changing code. Remind students that this is the last time the upload is walked through in class: Assignment 03 (import and inspect) is already open in Classroom 50, is done at home, and is due Sunday, Sep 27. Point them to the Issues tab for their Week 01 feedback.
 :::

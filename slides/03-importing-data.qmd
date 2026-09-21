@@ -31,7 +31,7 @@ execute:
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
 <div class="diagram-node">Import data</div>
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
-<div class="diagram-node">Render result</div>
+<div class="diagram-node">Run and inspect</div>
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
 <div class="diagram-node">Share repository</div>
 :::
@@ -95,6 +95,8 @@ First, we're going to create a standard 'data' folder. Then we'll practice impor
 - Identify missing values or suspicious values in the imported data.
 - Confirm that the row count changes the way you expect after skipping metadata.
 
+**Assignment 03 - Import and Inspect** uses the same skill on `stream_gauge_data.csv`. Accept it in [Classroom 50](https://classroom50.org) (select **NRES800**), complete `assignment.R` at home, write your answers as `#` comments in the script, edit the README, and push from home. Due Sunday, Sep 27, 11:59 PM.
+
 ::: {.notes}
 **Speaker Notes:**
 Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You'll need to use the 'skip' argument to get to the real data. Then, you'll audit the data for missing values.
@@ -106,6 +108,7 @@ Your challenge involves a stream gauge dataset. It has 5 rows of metadata—note
 - Are you using `here()` and not `setwd()`?
 - Is your raw data still in the right folder and unchanged?
 - Can you explain why skipping the correct number of rows matters?
+- Assignment 03 is pushed from home; no in-class upload this time. Feedback arrives as an Issue in your repository.
 
 ::: {.notes}
 **Speaker Notes:**
