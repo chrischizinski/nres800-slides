@@ -732,7 +732,7 @@
     "href": "index.html#lecture-slides-by-module",
     "title": "NRES 800",
     "section": "Lecture slides by module",
-    "text": "Lecture slides by module\n\nSep 14 — Module 01: The Whole Game (Assignment 01)\nSep 21 — Module 02: Objects and Debugging (Assignment 02)\nSep 28 — Module 03: Importing Data (Assignment 03)\nOct 5 — Module 04: Visualization Foundations (Assignment 04)\nModule 05 — Rows, Columns, and New Variables\nModule 06 — Grouped Summaries\nModule 07 — Tidying Data\nModule 08 — Joining Tables\nModule 09 — Integrated Challenge I\nModule 10 — String Cleaning and Categorical Control\nModule 11 — Dates and Time Series\nModule 12 — Scaling Up\nModule 13 — Functions for Repeated Work\nModule 14 — Polished Reporting\nModule 15 — Code Review and Revision\nModule 16 — Capstone Showcase\n\nNew lectures appear here only after they are ready for students."
+    "text": "Lecture slides by module\n\nModule 01: The Whole Game (Assignment 01)\nModule 02: Objects and Debugging (Assignment 02)\nModule 03: Importing Data (Assignment 03)\nModule 04: Visualization Foundations (Assignment 04)\nModule 05 — Rows, Columns, and New Variables\nModule 06 — Grouped Summaries\nModule 07 — Tidying Data\nModule 08 — Joining Tables\nModule 09 — Integrated Challenge I\nModule 10 — String Cleaning and Categorical Control\nModule 11 — Dates and Time Series\nModule 12 — Scaling Up\nModule 13 — Functions for Repeated Work\nModule 14 — Polished Reporting\nModule 15 — Code Review and Revision\nModule 16 — Capstone Showcase\n\nNew lectures appear here only after they are ready for students."
   },
   {
     "objectID": "slides/01-the-whole-game.html#slide-accessibility-note",
@@ -838,6 +838,20 @@
     "title": "Module 03: Importing Data",
     "section": "Reproducible Path Map",
     "text": "Reproducible Path Map\n\n\nProject folder\n\n\n-&gt;\n\n\nRelative path\n\n\n-&gt;\n\n\nImport data\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nShare repository\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#module-03-importing-data",
+    "href": "slides/03-importing-data.html#module-03-importing-data",
+    "title": "Module 03: Importing Data",
+    "section": "Module 03: Importing Data",
+    "text": "Module 03: Importing Data\n\nFinish uploading Assignment 02, then move to importing data.\nToday: project folders, here(), read_csv(), and import checks.\nAssignment 03: Import and Inspect. Module 04 comes afterward."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#download-and-open-the-practice-project",
+    "href": "slides/03-importing-data.html#download-and-open-the-practice-project",
+    "title": "Module 03: Importing Data",
+    "section": "Download and Open the Practice Project",
+    "text": "Download and Open the Practice Project\nDownload Module 03 practice project (.zip)\n\nExtract the ZIP before opening any files.\nIn Positron, choose File &gt; Open Folder and open module_03_practice.\nOpen scripts/week_03_follow_along.R in that folder.\nKeep both CSV files in data/. Run here::here() to check the project root."
   },
   {
     "objectID": "slides/03-importing-data.html#how-to-use-today",
