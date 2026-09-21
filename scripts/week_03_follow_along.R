@@ -48,3 +48,8 @@
 # - Does the script work after restarting R?
 # - Are you using here() instead of setwd()?
 # - Did you check the column names and a summary of the discharge column?
+#
+# Assignment 03 (Classroom 50, "Assignment 03 - Import and Inspect"):
+# - Same skill on data/stream_gauge_data.csv in assignment.R
+# - Written answers go as # comments under each section heading
+# - Edit the README, then commit and push FROM HOME. Due Sun, Sep 27, 11:59 PM.

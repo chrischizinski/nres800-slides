@@ -697,14 +697,14 @@
     "href": "slides/02-objects-debugging.html#the-challenge-45-mins",
     "title": "Week 02: Objects & Debugging",
     "section": "The Challenge [45 mins]",
-    "text": "The Challenge [45 mins]\nProblem: The Debugging Clinic\n\nFix 3 intentional errors in a provided script.\nIdentify the data types of a new dataset.\nExtension: Fix a column type mismatch.\nBase goal: Get the script running from top to bottom.\nExtension goal: Explain each fix in plain language.\n\n\nSpeaker Notes: In this challenge, you are playing the role of a ‘Code Doctor’. I’ve provided a script that is sick—it won’t run. Your job is to diagnose the 3 main bugs and get it back to healthy, runnable status."
+    "text": "The Challenge [45 mins]\nProblem: The Debugging Clinic\n\nOpen debug_this.R in your Assignment 02 repository.\nFix 3 intentional errors and explain each cause in a code comment above the fix.\nInspect a small soil dataset before deciding what to fix.\nExtension: Convert a column type and create a logical pH check.\nBase goal: Get the script running from top to bottom.\nExtension goal: Explain each fix in plain language.\n\nTo get the repository: sign in to Classroom 50 with your GitHub account, select NRES800, and create Assignment 02 - Debugging Clinic. Clone it in Positron the same way as Assignment 01.\n\nSpeaker Notes: In this challenge, you are playing the role of a ‘Code Doctor’. I’ve provided a script that is sick—it won’t run. Your job is to diagnose the 3 main bugs and get it back to healthy, runnable status."
   },
   {
     "objectID": "slides/02-objects-debugging.html#verification",
     "href": "slides/02-objects-debugging.html#verification",
     "title": "Week 02: Objects & Debugging",
     "section": "Verification",
-    "text": "Verification\n\nDoes the script run without errors from top to bottom?\nAre the objects the lengths you expected?\nDid you push a clear commit message that names what changed?\n\n\nSpeaker Notes: If they can explain the error in one sentence and show the fix in the script, they have met the goal for the day.\n\n\nSpeaker Notes: Verification check: Run your script from top to bottom. If it stops at line 10, it’s not ready. Check your row counts. When you push, use a descriptive commit message like ‘Fix: changed character to numeric’."
+    "text": "Verification\n\nDoes the script run without errors from top to bottom?\nCan you identify the object-name, data-type, and plotting errors?\nDid you save debug_this.R and your explanation comments?\nDid you replace the README paragraph with 2-3 sentences of your own?\nWe upload together at the start of class. This is the last supported upload; Assignment 03 is pushed from home.\nDue Tuesday, Sep 22, 11:59 PM. Feedback arrives as an Issue in your repository.\n\n\nSpeaker Notes: If they can explain the error in one sentence and show the fix in the script, they have met the goal for the day.\n\n\nSpeaker Notes: Verification check: Run your script from top to bottom. If it stops, read the first error and inspect the named object before changing code. Remind students that this is the last time the upload is walked through in class: Assignment 03 (import and inspect) is already open in Classroom 50, is done at home, and is due Sunday, Sep 27. Point them to the Issues tab for their Week 01 feedback."
   },
   {
     "objectID": "index.html",
@@ -823,7 +823,7 @@
     "href": "slides/03-importing-data.html#reproducible-path-map",
     "title": "Week 03: Importing Data",
     "section": "Reproducible Path Map",
-    "text": "Reproducible Path Map\n\n\nProject folder\n\n\n-&gt;\n\n\nRelative path\n\n\n-&gt;\n\n\nImport data\n\n\n-&gt;\n\n\nRender result\n\n\n-&gt;\n\n\nShare repository\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+    "text": "Reproducible Path Map\n\n\nProject folder\n\n\n-&gt;\n\n\nRelative path\n\n\n-&gt;\n\n\nImport data\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nShare repository\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
   },
   {
     "objectID": "slides/03-importing-data.html#how-to-use-today",
@@ -858,14 +858,14 @@
     "href": "slides/03-importing-data.html#the-challenge-45-mins",
     "title": "Week 03: Importing Data",
     "section": "The Challenge [45 mins]",
-    "text": "The Challenge [45 mins]\nProblem: The Import Audit\n\nImport stream_gauge_messy.csv with 5 rows of metadata.\nRename the discharge column so it is easier to read.\nIdentify missing values or suspicious values in the imported data.\nConfirm that the row count changes the way you expect after skipping metadata.\n\n\nSpeaker Notes: Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You’ll need to use the ‘skip’ argument to get to the real data. Then, you’ll audit the data for missing values."
+    "text": "The Challenge [45 mins]\nProblem: The Import Audit\n\nImport stream_gauge_messy.csv with 5 rows of metadata.\nRename the discharge column so it is easier to read.\nIdentify missing values or suspicious values in the imported data.\nConfirm that the row count changes the way you expect after skipping metadata.\n\nAssignment 03 - Import and Inspect uses the same skill on stream_gauge_data.csv. Accept it in Classroom 50 (select NRES800), complete assignment.R at home, write your answers as # comments in the script, edit the README, and push from home. Due Sunday, Sep 27, 11:59 PM.\n\nSpeaker Notes: Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You’ll need to use the ‘skip’ argument to get to the real data. Then, you’ll audit the data for missing values."
   },
   {
     "objectID": "slides/03-importing-data.html#verification",
     "href": "slides/03-importing-data.html#verification",
     "title": "Week 03: Importing Data",
     "section": "Verification",
-    "text": "Verification\n\nDoes the script run on your neighbor’s machine?\nAre you using here() and not setwd()?\nIs your raw data still in the right folder and unchanged?\nCan you explain why skipping the correct number of rows matters?\n\n\nSpeaker Notes: The import is not finished until you know where the file lives, how many rows came in, and whether the headers are correct.\n\n\nSpeaker Notes: The ultimate test of reproducibility: can your neighbor run your script? If you used ‘here()’, the answer should be yes. Check your ‘data’ folder—did you include the raw CSV?"
+    "text": "Verification\n\nDoes the script run on your neighbor’s machine?\nAre you using here() and not setwd()?\nIs your raw data still in the right folder and unchanged?\nCan you explain why skipping the correct number of rows matters?\nAssignment 03 is pushed from home; no in-class upload this time. Feedback arrives as an Issue in your repository.\n\n\nSpeaker Notes: The import is not finished until you know where the file lives, how many rows came in, and whether the headers are correct.\n\n\nSpeaker Notes: The ultimate test of reproducibility: can your neighbor run your script? If you used ‘here()’, the answer should be yes. Check your ‘data’ folder—did you include the raw CSV?"
   },
   {
     "objectID": "slides/05-rows-columns-new-variables.html#slide-accessibility-note",
