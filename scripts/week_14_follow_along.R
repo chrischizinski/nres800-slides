@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 14: Reproducible Reporting with Quarto
+# Module 14: Reproducible Reporting with Quarto
 # Name: [Your Name]
 
 # ---- 1. Setup ----

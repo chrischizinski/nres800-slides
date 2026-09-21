@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 11: Dates and Time-Series Data
+# Module 11: Dates and Time-Series Data
 # Name: [Your Name]
 
 # ---- 1. Setup ----

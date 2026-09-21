@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 10: Strings and Categorical Cleanup
+# Module 10: Strings and Categorical Cleanup
 # Name: [Your Name]
 
 # ---- 1. Setup ----

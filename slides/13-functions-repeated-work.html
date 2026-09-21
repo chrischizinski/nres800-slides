@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Chris Chizinski">
-  <title>NRES 800 – Week 13: Functions for Repeated Work</title>
+  <title>NRES 800 – Module 13: Functions for Repeated Work</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1151,7 +1151,7 @@ margin-right: 0; }
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 13: Functions for Repeated Work</h1>
+  <h1 class="title">Module 13: Functions for Repeated Work</h1>
   <p class="subtitle">Stop Repeating Yourself</p>
 
 <div class="quarto-title-authors">
@@ -1221,9 +1221,9 @@ Use this map to track where each live-coding step fits in the larger workflow.
 <li>Keep the body readable by reusing the pipelines you already know.</li>
 <li>Add a check that fails early if the inputs are wrong.</li>
 </ul>
-<p><a class="script-download" href="../scripts/week_13_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 13 follow-along script (.R)</a></p>
+<p><a class="script-download" href="../scripts/week_13_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 13 follow-along script (.R)</a></p>
 <aside class="notes">
-<p><strong>Speaker Notes:</strong> Take 2 minutes to orient the class. We are at Week 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline.</p>
+<p><strong>Speaker Notes:</strong> Take 2 minutes to orient the class. We are at Module 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1370,7 +1370,7 @@ display:block!important;
 </section>
 <section id="functions-map" class="slide level2">
 <h2>Functions + map()</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="co"># Week 12 recap: map() applies a function to each element</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="co"># Module 12 recap: map() applies a function to each element</span></span>
 <span id="cb6-2"><a aria-label="2"></a>states <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;NE&quot;</span>, <span class="st">&quot;IA&quot;</span>, <span class="st">&quot;KS&quot;</span>)</span>
 <span id="cb6-3"><a aria-label="3"></a></span>
 <span id="cb6-4"><a aria-label="4"></a><span class="co"># Apply our function to each state</span></span>
@@ -1383,7 +1383,7 @@ display:block!important;
 <li><code>list_rbind()</code> stacks the list of tibbles into a single data frame.</li>
 </ul>
 <aside class="notes">
-<p><strong>Speaker Notes:</strong> This is the payoff slide — the function we wrote drops directly into the map() pattern from Week 12. Ask: “How many lines of code would this have been if we had copied the pipeline three times?” Then contrast with 3 lines using map(). Run this live so students see the list_rbind() output. Point out that adding a fourth state requires changing only the <code>states</code> vector — nothing else in the pipeline changes.</p>
+<p><strong>Speaker Notes:</strong> This is the payoff slide — the function we wrote drops directly into the map() pattern from Module 12. Ask: “How many lines of code would this have been if we had copied the pipeline three times?” Then contrast with 3 lines using map(). Run this live so students see the list_rbind() output. Point out that adding a fourth state requires changing only the <code>states</code> vector — nothing else in the pipeline changes.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1409,7 +1409,7 @@ display:block!important;
 <span id="cb7-9"><a aria-label="9"></a>all_results <span class="sc">|&gt;</span></span>
 <span id="cb7-10"><a aria-label="10"></a>  <span class="fu">mutate</span>(<span class="at">abundance_class =</span> <span class="fu">map_chr</span>(total_obs, classify_abundance))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
-<p><strong>Speaker Notes:</strong> Point out that classify_abundance() works on a single number, not a whole vector. That is why we need map_chr() inside mutate() — it applies the function row-by-row and collects the character results. Ask: “Why map_chr and not map?” Answer: map() returns a list; map_chr() returns a character vector, which is what mutate() expects for a new column. If students are fuzzy on this, connect it to Week 12’s map_dbl() and map_chr() examples.</p>
+<p><strong>Speaker Notes:</strong> Point out that classify_abundance() works on a single number, not a whole vector. That is why we need map_chr() inside mutate() — it applies the function row-by-row and collects the character results. Ask: “Why map_chr and not map?” Answer: map() returns a list; map_chr() returns a character vector, which is what mutate() expects for a new column. If students are fuzzy on this, connect it to Module 12’s map_dbl() and map_chr() examples.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;

@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 12: Messy Imports and Repeated Files
+# Module 12: Messy Imports and Repeated Files
 # Name: [Your Name]
 
 # ---- 1. Setup ----

@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Chris Chizinski">
-  <title>NRES 800 – Week 09: Integrated Challenge I</title>
+  <title>NRES 800 – Module 09: Integrated Challenge I</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1151,7 +1151,7 @@ margin-right: 0; }
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 09: Integrated Challenge I</h1>
+  <h1 class="title">Module 09: Integrated Challenge I</h1>
   <p class="subtitle">From Raw Data to Plot — Putting It All Together</p>
 
 <div class="quarto-title-authors">
@@ -1167,7 +1167,7 @@ Chris Chizinski
 <h2>Slide Accessibility Note</h2>
 <ul>
 <li><strong>Title Background Image Alt-Text:</strong> A diagram showing the data science pipeline as a river flowing from raw field data through cleaning and wrangling to a final visualization, representing the integration of skills learned in Weeks 03-08.</li>
-<li><strong>Speaker Notes:</strong> These slides frame Week 09 as a capstone synthesis session. No new R syntax is introduced. Students apply everything they have learned in a single integrated workflow on a realistic, messy dataset.</li>
+<li><strong>Speaker Notes:</strong> These slides frame Module 09 as a capstone synthesis session. No new R syntax is introduced. Students apply everything they have learned in a single integrated workflow on a realistic, messy dataset.</li>
 </ul>
 <!-- visual-aid: week_09 -->
 </section>
@@ -1221,7 +1221,7 @@ Use this map to track where each live-coding step fits in the larger workflow.
 <li>Verify row counts and key values at every step.</li>
 <li>If a result looks odd, stop and inspect the data before changing code.</li>
 </ul>
-<p><a class="script-download" href="../scripts/week_09_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 09 follow-along script (.R)</a></p>
+<p><a class="script-download" href="../scripts/week_09_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 09 follow-along script (.R)</a></p>
 <aside class="notes">
 <p><strong>Speaker Notes:</strong> This is a milestone session. Weeks 03 through 08 each introduced one piece of the data science puzzle. Today you put all the pieces on the table at once. The data is messier than what you have seen in isolated exercises — deliberately so. Real Nebraska stream data looks like this. The goal is to build confidence that you can navigate a full analysis from start to finish, not just execute individual steps in isolation.</p>
 <style type="text/css">
@@ -1247,7 +1247,7 @@ display:block!important;
 <li>Produce a labeled, publication-ready visualization and interpret the result.</li>
 </ol>
 <aside class="notes">
-<p><strong>Speaker Notes:</strong> Read these objectives out loud with students and ask them to identify which week each skill came from. Objective 2 is Week 05 (strings). Objectives 3 and 4 are Week 06 (dplyr). Objective 5 is Week 07 (joins). Objectives 1 and 6 span everything. This exercise makes students aware of their own accumulated competency.</p>
+<p><strong>Speaker Notes:</strong> Read these objectives out loud with students and ask them to identify which week each skill came from. Objective 2 is Module 05 (strings). Objectives 3 and 4 are Module 06 (dplyr). Objective 5 is Module 07 (joins). Objectives 1 and 6 span everything. This exercise makes students aware of their own accumulated competency.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1473,7 +1473,7 @@ display:block!important;
 <span id="cb7-10"><a aria-label="10"></a>  ) <span class="sc">+</span></span>
 <span id="cb7-11"><a aria-label="11"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
-<p><strong>Speaker Notes:</strong> Before they run the code, ask: “Should stream_order be numeric or a factor on the x-axis?” As numeric, ggplot would draw a continuous axis and might try to fit a smooth line — misleading because stream order is an ordinal categorical variable, not truly continuous. factor() forces a discrete axis. Also point out scale_color_brewer() — this is from Week 04. Color-blind safe palettes should be the default, not the exception.</p>
+<p><strong>Speaker Notes:</strong> Before they run the code, ask: “Should stream_order be numeric or a factor on the x-axis?” As numeric, ggplot would draw a continuous axis and might try to fit a smooth line — misleading because stream order is an ordinal categorical variable, not truly continuous. factor() forces a discrete axis. Also point out scale_color_brewer() — this is from Module 04. Color-blind safe palettes should be the default, not the exception.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
