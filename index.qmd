@@ -7,11 +7,11 @@ Welcome to the lecture slides for **NRES 800: Data Management and Visualization*
 
 Canvas remains the course home for assignments, deadlines, grades, announcements, and submissions. This site provides the HTML lecture slides released for the course.
 
-## Weekly lecture slides
+## Lecture slides by module
 
-- [Sep 14 — Week 01: The Whole Game (Assignment 01)](slides/01-the-whole-game.qmd)
-- [Sep 21 — Week 02: Objects and Debugging (Assignment 02)](slides/02-objects-debugging.qmd)
-- [Sep 28 — Week 03: Importing Data (Assignment 03)](slides/03-importing-data.qmd)
+- [Sep 14 — Module 01: The Whole Game (Assignment 01)](slides/01-the-whole-game.qmd)
+- [Sep 21 — Module 02: Objects and Debugging (Assignment 02)](slides/02-objects-debugging.qmd)
+- [Sep 28 — Module 03: Importing Data (Assignment 03)](slides/03-importing-data.qmd)
 - [Oct 5 — Module 04: Visualization Foundations (Assignment 04)](slides/04-viz-foundations.qmd)
 - [Module 05 — Rows, Columns, and New Variables](slides/05-rows-columns-new-variables.qmd)
 - [Module 06 — Grouped Summaries](slides/06-grouped-summaries.qmd)

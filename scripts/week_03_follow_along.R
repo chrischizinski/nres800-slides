@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 03: Importing Data and Project Paths
+# Module 03: Importing Data and Project Paths
 # Name: [Your Name]
 
 # ---- 1. Setup ----

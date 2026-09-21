@@ -53,14 +53,14 @@ Welcome to the last class. There is no new code today. Instead, we are doing som
 
 ## Where We Started
 
-- Week 1: Loading one CSV without crashing R.
-- Week 2: Understanding what your data *actually* contains.
-- Week 3: Reading messy files into a tidy format.
+- Module 1: Loading one CSV without crashing R.
+- Module 2: Understanding what your data *actually* contains.
+- Module 3: Reading messy files into a tidy format.
 - Module 4: Building a plot that tells a story.
 
 ::: {.notes}
 **Speaker Notes:**
-Take a moment to think back to Week 1. Most of you had never used a project-relative path. Some of you had never used R at all. The gap between where you started and where you are today is real — and it is worth naming before we move on.
+Take a moment to think back to Module 1. Most of you had never used a project-relative path. Some of you had never used R at all. The gap between where you started and where you are today is real — and it is worth naming before we move on.
 :::
 
 ## The Middle Arc

@@ -1,5 +1,5 @@
 ---
-title: "Week 02: Objects & Debugging"
+title: "Module 02: Objects & Debugging"
 subtitle: "Everything is an Object"
 author: "Chris Chizinski"
 lang: en
@@ -44,7 +44,7 @@ execute:
 - Use the Environment pane as a diagnostic tool.
 - Fix the cause, not just the symptom.
 
-<a class="script-download" href="../scripts/week_02_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 02 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_02_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 02 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
@@ -119,5 +119,5 @@ If they can explain the error in one sentence and show the fix in the script, th
 
 ::: {.notes}
 **Speaker Notes:**
-Verification check: Run your script from top to bottom. If it stops, read the first error and inspect the named object before changing code. Remind students that this is the last time the upload is walked through in class: Assignment 03 (import and inspect) is already open in Classroom 50, is done at home, and is due Sunday, Sep 27. Point them to the Issues tab for their Week 01 feedback.
+Verification check: Run your script from top to bottom. If it stops, read the first error and inspect the named object before changing code. Remind students that this is the last time the upload is walked through in class: Assignment 03 (import and inspect) is already open in Classroom 50, is done at home, and is due Sunday, Sep 27. Point them to the Issues tab for their Module 01 feedback.
 :::

@@ -1,5 +1,5 @@
 ---
-title: "Week 03: The Whole Game"
+title: "Module 03: The Whole Game"
 subtitle: "Hello ggplot2 & Reproducibility"
 author: "Chris Chizinski"
 lang: en
