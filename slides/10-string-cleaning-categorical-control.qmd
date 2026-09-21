@@ -1,5 +1,5 @@
 ---
-title: "Week 10: String Cleaning and Categorical Control"
+title: "Module 10: String Cleaning and Categorical Control"
 subtitle: "stringr, janitor, and forcats"
 author: "Chris Chizinski"
 lang: en
@@ -40,7 +40,7 @@ execute:
 
 ## Where We Are
 
-- Week 09: You tackled your first fully messy dataset — end to end.
+- Module 09: You tackled your first fully messy dataset — end to end.
 - This week: We name the specific tools for the most common mess.
 - The trio: **stringr** (text), **janitor** (column names), **forcats** (categories).
 
@@ -50,7 +50,7 @@ execute:
 - Standardize text before grouping or plotting.
 - Reorder factors when the default alphabetical order would mislead.
 
-<a class="script-download" href="../scripts/week_10_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 10 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_10_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 10 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

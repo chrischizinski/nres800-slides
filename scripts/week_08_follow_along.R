@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 08: Joining Tables
+# Module 08: Joining Tables
 # Name: [Your Name]
 
 # ---- 1. Setup ----

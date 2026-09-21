@@ -1,5 +1,5 @@
 ---
-title: "Week 08: Joining Tables"
+title: "Module 08: Joining Tables"
 subtitle: "Linking Observations to Context"
 author: "Chris Chizinski"
 lang: en
@@ -44,7 +44,7 @@ execute:
 - Check row counts immediately after each join.
 - Use `anti_join()` when the output looks suspicious or incomplete.
 
-<a class="script-download" href="../scripts/week_08_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 08 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_08_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 08 follow-along script (.R)</a>
 
 ## Why Joins Exist
 

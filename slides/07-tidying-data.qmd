@@ -1,5 +1,5 @@
 ---
-title: "Week 07: Tidying Data"
+title: "Module 07: Tidying Data"
 subtitle: "From Wide to Long"
 author: "Chris Chizinski"
 lang: en
@@ -44,7 +44,7 @@ execute:
 - Count rows before and after every reshape.
 - Match the data shape to the task: plot, summarize, or present.
 
-<a class="script-download" href="../scripts/week_07_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 07 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_07_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 07 follow-along script (.R)</a>
 
 ## Learning Objectives
 
@@ -190,7 +190,7 @@ The "fail first" moment at the start of live coding is intentional pedagogy. Stu
 
 ::: {.notes}
 **Speaker Notes:**
-This section connects today's content back to Week 06 (dplyr). Long format is what dplyr wants for grouped summaries. After summarizing, pivot_wider() can make the result presentable. Reinforce that there is no single "correct" shape for data — the right shape depends on what you are doing with it. Summarizing: long. Plotting: long. Reading a table: sometimes wide. Storing raw data: depends on collection design.
+This section connects today's content back to Module 06 (dplyr). Long format is what dplyr wants for grouped summaries. After summarizing, pivot_wider() can make the result presentable. Reinforce that there is no single "correct" shape for data — the right shape depends on what you are doing with it. Summarizing: long. Plotting: long. Reading a table: sometimes wide. Storing raw data: depends on collection design.
 :::
 
 ## The Challenge [45 mins]

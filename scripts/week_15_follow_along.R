@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 15: Professional Review and Revision
+# Module 15: Professional Review and Revision
 # Name: [Your Name]
 
 # ---- 1. Overview ----

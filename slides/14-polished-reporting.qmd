@@ -1,5 +1,5 @@
 ---
-title: "Week 14: Polished Reporting"
+title: "Module 14: Polished Reporting"
 subtitle: "From Draft to Reader-Facing Document"
 author: "Chris Chizinski"
 lang: en
@@ -48,7 +48,7 @@ execute:
 
 ::: {.notes}
 **Speaker Notes:**
-This is Week 14 — the capstone week for reproducible workflows. Students have been writing Quarto documents all semester, but mostly for their own use. Today the audience shifts: we are writing for a reader who does not see the code. Every decision — hiding code, numbering sections, captioning figures — serves that reader.
+This is Module 14 — the capstone week for reproducible workflows. Students have been writing Quarto documents all semester, but mostly for their own use. Today the audience shifts: we are writing for a reader who does not see the code. Every decision — hiding code, numbering sections, captioning figures — serves that reader.
 :::
 
 ## The Problem with Drafts
@@ -65,7 +65,7 @@ This is Week 14 — the capstone week for reproducible workflows. Students have 
 - Let Quarto number and reference figures and tables for you.
 - Use inline R for values that should stay in sync with the data.
 
-<a class="script-download" href="../scripts/week_14_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 14 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_14_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 14 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

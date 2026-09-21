@@ -1,9 +1,9 @@
 # NRES 800: Student Follow-Along Script
-# Week 13: Functions for Repeated Work
+# Module 13: Functions for Repeated Work
 # Name: [Your Name]
 
 # ---- 1. Setup ----
-# Task: Load tidyverse and here. Then load the FeederWatch data from Week 06.
+# Task: Load tidyverse and here. Then load the FeederWatch data from Module 06.
 
 
 # Load data: here("data", "feeder_watch_raw.csv")

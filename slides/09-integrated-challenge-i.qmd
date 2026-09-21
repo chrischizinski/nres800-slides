@@ -1,5 +1,5 @@
 ---
-title: "Week 09: Integrated Challenge I"
+title: "Module 09: Integrated Challenge I"
 subtitle: "From Raw Data to Plot — Putting It All Together"
 author: "Chris Chizinski"
 lang: en
@@ -19,7 +19,7 @@ execute:
 
 ## Slide Accessibility Note
 - **Title Background Image Alt-Text:** A diagram showing the data science pipeline as a river flowing from raw field data through cleaning and wrangling to a final visualization, representing the integration of skills learned in Weeks 03-08.
-- **Speaker Notes:** These slides frame Week 09 as a capstone synthesis session. No new R syntax is introduced. Students apply everything they have learned in a single integrated workflow on a realistic, messy dataset.
+- **Speaker Notes:** These slides frame Module 09 as a capstone synthesis session. No new R syntax is introduced. Students apply everything they have learned in a single integrated workflow on a realistic, messy dataset.
 
 <!-- visual-aid: week_09 -->
 ## Integrated Analysis Map
@@ -50,7 +50,7 @@ execute:
 - Verify row counts and key values at every step.
 - If a result looks odd, stop and inspect the data before changing code.
 
-<a class="script-download" href="../scripts/week_09_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 09 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_09_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 09 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
@@ -68,7 +68,7 @@ This is a milestone session. Weeks 03 through 08 each introduced one piece of th
 
 ::: {.notes}
 **Speaker Notes:**
-Read these objectives out loud with students and ask them to identify which week each skill came from. Objective 2 is Week 05 (strings). Objectives 3 and 4 are Week 06 (dplyr). Objective 5 is Week 07 (joins). Objectives 1 and 6 span everything. This exercise makes students aware of their own accumulated competency.
+Read these objectives out loud with students and ask them to identify which week each skill came from. Objective 2 is Module 05 (strings). Objectives 3 and 4 are Module 06 (dplyr). Objective 5 is Module 07 (joins). Objectives 1 and 6 span everything. This exercise makes students aware of their own accumulated competency.
 :::
 
 ## The Data Pipeline — A Recap
@@ -235,7 +235,7 @@ ggplot(ept_joined, aes(x = factor(stream_order), y = ept_richness)) +
 
 ::: {.notes}
 **Speaker Notes:**
-Before they run the code, ask: "Should stream_order be numeric or a factor on the x-axis?" As numeric, ggplot would draw a continuous axis and might try to fit a smooth line — misleading because stream order is an ordinal categorical variable, not truly continuous. factor() forces a discrete axis. Also point out scale_color_brewer() — this is from Week 04. Color-blind safe palettes should be the default, not the exception.
+Before they run the code, ask: "Should stream_order be numeric or a factor on the x-axis?" As numeric, ggplot would draw a continuous axis and might try to fit a smooth line — misleading because stream order is an ordinal categorical variable, not truly continuous. factor() forces a discrete axis. Also point out scale_color_brewer() — this is from Module 04. Color-blind safe palettes should be the default, not the exception.
 :::
 
 ## Interpretation

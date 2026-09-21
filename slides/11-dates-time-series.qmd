@@ -1,5 +1,5 @@
 ---
-title: "Week 11: Dates and Time Series"
+title: "Module 11: Dates and Time Series"
 subtitle: "Parsing and Plotting Time"
 author: "Chris Chizinski"
 lang: en
@@ -51,7 +51,7 @@ execute:
 - Check for `NA` immediately after parsing.
 - Use ordered date components when the chart needs calendar meaning.
 
-<a class="script-download" href="../scripts/week_11_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 11 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_11_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 11 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

@@ -1,5 +1,5 @@
 ---
-title: "Week 13: Functions for Repeated Work"
+title: "Module 13: Functions for Repeated Work"
 subtitle: "Stop Repeating Yourself"
 author: "Chris Chizinski"
 lang: en
@@ -50,11 +50,11 @@ execute:
 - Keep the body readable by reusing the pipelines you already know.
 - Add a check that fails early if the inputs are wrong.
 
-<a class="script-download" href="../scripts/week_13_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 13 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_13_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 13 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
-Take 2 minutes to orient the class. We are at Week 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline.
+Take 2 minutes to orient the class. We are at Module 13 of 15. Everything we have built this semester has been a setup for this moment. Functions are the glue that holds a reproducible analysis together. If a student can write one clean function today, they are ready to clean up their capstone pipeline.
 :::
 
 ## Learning Objectives
@@ -160,7 +160,7 @@ Run the function with a bad argument — e.g., pass 42 as state_filter — and s
 ## Functions + map()
 
 ```r
-# Week 12 recap: map() applies a function to each element
+# Module 12 recap: map() applies a function to each element
 states <- c("NE", "IA", "KS")
 
 # Apply our function to each state
@@ -175,7 +175,7 @@ all_results <- list_rbind(result_list)
 
 ::: {.notes}
 **Speaker Notes:**
-This is the payoff slide — the function we wrote drops directly into the map() pattern from Week 12. Ask: "How many lines of code would this have been if we had copied the pipeline three times?" Then contrast with 3 lines using map(). Run this live so students see the list_rbind() output. Point out that adding a fourth state requires changing only the `states` vector — nothing else in the pipeline changes.
+This is the payoff slide — the function we wrote drops directly into the map() pattern from Module 12. Ask: "How many lines of code would this have been if we had copied the pipeline three times?" Then contrast with 3 lines using map(). Run this live so students see the list_rbind() output. Point out that adding a fourth state requires changing only the `states` vector — nothing else in the pipeline changes.
 :::
 
 ## Functions Inside mutate()
@@ -195,7 +195,7 @@ all_results |>
 
 ::: {.notes}
 **Speaker Notes:**
-Point out that classify_abundance() works on a single number, not a whole vector. That is why we need map_chr() inside mutate() — it applies the function row-by-row and collects the character results. Ask: "Why map_chr and not map?" Answer: map() returns a list; map_chr() returns a character vector, which is what mutate() expects for a new column. If students are fuzzy on this, connect it to Week 12's map_dbl() and map_chr() examples.
+Point out that classify_abundance() works on a single number, not a whole vector. That is why we need map_chr() inside mutate() — it applies the function row-by-row and collects the character results. Ask: "Why map_chr and not map?" Answer: map() returns a list; map_chr() returns a character vector, which is what mutate() expects for a new column. If students are fuzzy on this, connect it to Module 12's map_dbl() and map_chr() examples.
 :::
 
 ## The Challenge [45 mins]

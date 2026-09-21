@@ -1,5 +1,5 @@
 ---
-title: "Week 16: Capstone Showcase"
+title: "Module 16: Capstone Showcase"
 subtitle: "What Did We Build?"
 author: "Chris Chizinski"
 lang: en
@@ -49,14 +49,14 @@ Welcome to the last class. There is no new code today. Instead, we are doing som
 - Check that the repo works from a fresh clone before you present.
 - Use the reflection to name one concrete improvement you would make next time.
 
-<a class="script-download" href="../scripts/week_16_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 16 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_16_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 16 follow-along script (.R)</a>
 
 ## Where We Started
 
 - Week 1: Loading one CSV without crashing R.
 - Week 2: Understanding what your data *actually* contains.
 - Week 3: Reading messy files into a tidy format.
-- Week 4: Building a plot that tells a story.
+- Module 4: Building a plot that tells a story.
 
 ::: {.notes}
 **Speaker Notes:**
@@ -65,10 +65,10 @@ Take a moment to think back to Week 1. Most of you had never used a project-rela
 
 ## The Middle Arc
 
-- Week 5–6: Transforming and summarizing data with dplyr.
-- Week 7–8: Reshaping and joining datasets.
-- Week 9: Integrating multiple tools into one workflow.
-- Week 10–11: Working with strings and dates.
+- Module 5–6: Transforming and summarizing data with dplyr.
+- Module 7–8: Reshaping and joining datasets.
+- Module 9: Integrating multiple tools into one workflow.
+- Module 10–11: Working with strings and dates.
 
 ::: {.notes}
 **Speaker Notes:**
@@ -77,10 +77,10 @@ The middle weeks were about precision — learning that raw data almost never ar
 
 ## The Advanced Arc
 
-- Week 12: Importing complex and multi-sheet data.
-- Week 13: Writing your own functions.
-- Week 14: Building reproducible reports with Quarto.
-- Week 15: Iteration and automation with purrr.
+- Module 12: Importing complex and multi-sheet data.
+- Module 13: Writing your own functions.
+- Module 14: Building reproducible reports with Quarto.
+- Module 15: Iteration and automation with purrr.
 
 ::: {.notes}
 **Speaker Notes:**

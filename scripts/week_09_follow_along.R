@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 09: Integrated Challenge I — From Raw Data to Plot
+# Module 09: Integrated Challenge I — From Raw Data to Plot
 # Name: [Your Name]
 
 # ---- 1. Setup ----

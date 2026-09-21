@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 07: Tidying Wide Data
+# Module 07: Tidying Wide Data
 # Name: [Your Name]
 
 # ---- 1. Setup ----

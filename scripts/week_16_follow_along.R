@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 16: Capstone Showcase
+# Module 16: Capstone Showcase
 # Name: [Your Name]
 
 # ---- 1. Pre-Submission Final Checklist ----

@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 06: Grouped Summaries
+# Module 06: Grouped Summaries
 # Name: [Your Name]
 
 # ---- 1. Setup ----

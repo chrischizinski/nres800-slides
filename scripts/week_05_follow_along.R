@@ -1,5 +1,5 @@
 # NRES 800: Student Follow-Along Script
-# Week 05: Rows, Columns, and New Variables
+# Module 05: Rows, Columns, and New Variables
 # Name: [Your Name]
 
 # ---- 1. Setup ----

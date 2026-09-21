@@ -1,5 +1,5 @@
 ---
-title: "Week 06: Grouped Summaries"
+title: "Module 06: Grouped Summaries"
 subtitle: "Collapsing Data to Answer Questions"
 author: "Chris Chizinski"
 lang: en
@@ -23,7 +23,7 @@ execute:
 
 ::: {.notes}
 **Speaker Notes:**
-Welcome to Week 06. Today we move from row-level transformations — which we did with filter, mutate, and arrange — to group-level summaries. This is one of the most powerful shifts in data analysis: going from "what do individual observations say?" to "what does each group tell us?"
+Welcome to Module 06. Today we move from row-level transformations — which we did with filter, mutate, and arrange — to group-level summaries. This is one of the most powerful shifts in data analysis: going from "what do individual observations say?" to "what does each group tell us?"
 :::
 
 <!-- visual-aid: week_06 -->
@@ -49,7 +49,7 @@ Welcome to Week 06. Today we move from row-level transformations — which we di
 - Predict the row count before you run `summarize()`.
 - Check whether `NA` means missing information or a true zero.
 
-<a class="script-download" href="../scripts/week_06_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 06 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_06_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 06 follow-along script (.R)</a>
 
 ## Learning Objectives
 

@@ -1,5 +1,5 @@
 ---
-title: "Week 04: Viz Foundations"
+title: "Module 04: Viz Foundations"
 subtitle: "The Grammar of Graphics"
 author: "Chris Chizinski"
 lang: en
@@ -19,7 +19,7 @@ execute:
 
 ## Slide Accessibility Note
 - **Title Background Image Alt-Text:** A vibrant collage of various data visualizations, including scatterplots, bar charts, and heatmaps, representing the diversity of the Grammar of Graphics.
-- **Speaker Notes:** These slides introduce the core concepts of ggplot2, focusing on mapping variables to aesthetics and faceting.
+- **Speaker Notes:** These slides introduce the core concepts of ggplot2, focusing on mapping variables to aesthetics and faceting, and give the first walkthrough of a Quarto document.
 
 <!-- visual-aid: week_04 -->
 ## Grammar of Graphics Map
@@ -44,7 +44,7 @@ execute:
 - Use color only when it helps the reader.
 - Prefer clear labels and a clean theme over decoration.
 
-<a class="script-download" href="../scripts/week_04_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 04 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_04_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 04 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
@@ -68,6 +68,7 @@ If you remember only one thing from today, let it be the difference between 'map
 2. Choose geoms for different data types.
 3. Use facets to split plots by category.
 4. Add professional labels and themes.
+5. Render a Quarto document that combines a plot and prose.
 
 ::: {.notes}
 **Speaker Notes:**
@@ -83,6 +84,40 @@ Today we move from simple plots to 'publication-ready' visualizations. We'll lea
 ::: {.notes}
 **Speaker Notes:**
 We'll build our plots layer-by-layer. Think of it like an onion—we start with the data, then add the mapping, then the geom, then the labels, and finally the theme.
+:::
+
+## New Tool: Quarto [15 mins]
+
+- A `.qmd` file holds **prose** (Markdown) and **code chunks** (R) together.
+- **Render** runs the code and produces one `.html` page: text, code, output, plot.
+- Three parts to learn today: the YAML header, a chunk, and `#| fig-cap`.
+- Open `first_report.qmd` in the Module 04 project folder and follow along.
+
+A chunk looks like this inside the `.qmd` file:
+
+````markdown
+```{{r richness-plot}}
+#| fig-cap: "Richness increases with restoration age across soil types."
+ggplot(prairie, aes(x = age_years, y = richness, color = soil_type)) +
+  geom_point()
+```
+````
+
+::: {.notes}
+**Speaker Notes:**
+This is the first time students see Quarto, and Assignment 04 is the first Quarto submission. Keep it narrow: header, chunk, render. Open `first_report.qmd`, render it, open the HTML. Then break it on purpose (leave a blank in the chunk), render, and read the error together; it is the same read-the-first-error loop they already know. Say it twice: written answers go in the prose sections, not as comments inside a chunk, and they push the rendered HTML along with the .qmd.
+:::
+
+## Where Answers Go Now
+
+- Assignments 01 to 03: sentences as `#` comments inside the script.
+- Assignment 04 onward: sentences as **prose** between chunks, under a heading.
+- A comment inside a chunk renders as gray code, not text. The reader will miss it.
+- `#| fig-cap:` is the caption and the alt text. Describe the pattern, not the columns.
+
+::: {.notes}
+**Speaker Notes:**
+This slide exists because the convention changes this week. Students have been told three times to write answers as comments. Show the difference in the rendered page: a paragraph versus a gray comment line.
 :::
 
 ## The Challenge [45 mins]
@@ -105,6 +140,9 @@ You are now the 'Architect'. You have a dataset of prairie restoration plots. Yo
 - Does the plot clearly show the trend?
 - Are the axis labels readable and informative?
 - Did you use a professional theme and a color-blind-safe palette?
+- Did `first_report.qmd` render, and can you find the HTML file?
+
+**Assignment 04 - The Visualization Brief** (Classroom 50, select **NRES800**): the same prairie data in `assignment.qmd`. Faceted plot, descriptive `fig-cap`, three prose paragraphs, README. Push `assignment.qmd` and `assignment.html` from home. Due Sunday, Oct 11, 11:59 PM.
 
 ::: {.notes}
 **Speaker Notes:**

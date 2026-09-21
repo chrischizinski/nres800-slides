@@ -1,5 +1,5 @@
 ---
-title: "Week 12: Scaling Up"
+title: "Module 12: Scaling Up"
 subtitle: "Reading Many Files Without Copy-Paste"
 author: "Chris Chizinski"
 lang: en
@@ -53,7 +53,7 @@ This is the copy-paste anti-pattern. It scales badly and breaks silently.
 - Keep track of where each row came from.
 - Inspect mismatched columns before you drop or rename anything.
 
-<a class="script-download" href="../scripts/week_12_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 12 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_12_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 12 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**

@@ -1,5 +1,5 @@
 ---
-title: "Week 05: Rows, Columns, and New Variables"
+title: "Module 05: Rows, Columns, and New Variables"
 subtitle: "Data Wrangling with dplyr"
 author: "Chris Chizinski"
 lang: en
@@ -44,7 +44,7 @@ execute:
 - Ask which rows or columns should change before typing.
 - Check the row count after every major filter.
 
-<a class="script-download" href="../scripts/week_05_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Week 05 follow-along script (.R)</a>
+<a class="script-download" href="../scripts/week_05_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 05 follow-along script (.R)</a>
 
 ::: {.notes}
 **Speaker Notes:**
@@ -53,7 +53,7 @@ This week is about changing the shape of the data without losing track of what e
 
 ::: {.notes}
 **Speaker Notes:**
-Welcome to Week 05. This week we shift from visualization to transformation. Before you can build a meaningful plot, you usually have to reshape your data. The four verbs we learn today — filter, select, arrange, and mutate — will handle the vast majority of data wrangling tasks you encounter in graduate research.
+Welcome to Module 05. This week we shift from visualization to transformation. Before you can build a meaningful plot, you usually have to reshape your data. The four verbs we learn today — filter, select, arrange, and mutate — will handle the vast majority of data wrangling tasks you encounter in graduate research.
 :::
 
 ## Learning Objectives
