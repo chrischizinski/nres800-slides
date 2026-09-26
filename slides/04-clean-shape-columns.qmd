@@ -1,0 +1,244 @@
+---
+title: "Module 04: Clean and Shape Columns"
+subtitle: "Make the columns trustworthy, then keep what the question needs"
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+execute:
+  freeze: auto
+  echo: true
+  eval: false
+---
+
+## Slide Accessibility Note
+- **Images:** none; diagrams are HTML text with labels.
+- **Speaker Notes:** These slides follow the Module 04 follow-along script.
+  They name the purpose, vocabulary, challenges, and checklist; the live
+  coding happens in `class/week_04_follow_along.R`.
+
+<!-- visual-aid: week_04 -->
+## Today's Workflow
+
+::: {.diagram-flow aria-label="Workflow from messy file to answer: import, clean names, check types, fix types, select, filter with row counts, arrange, mutate, answer"}
+<div class="diagram-node">Messy file</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Import + <code>problems()</code></div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node"><code>clean_names()</code></div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Check and fix types</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node"><code>select</code> / <code>filter</code> / <code>arrange</code></div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node"><code>mutate</code> -&gt; answer</div>
+:::
+
+<p class="diagram-caption">Count rows at every filter. Every dropped row needs a reason.</p>
+
+## Before We Start
+
+- Open **this module's repo** (accepted in Classroom 50 before class).
+- Open `week_04.Rproj`, then `class/week_04_follow_along.R`.
+- Run `here::here()`: it should print your repo folder.
+- Backup: the follow-along is also on this slide site.
+
+<a class="script-download" href="../scripts/week_04_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 04 follow-along script (.R)</a>
+
+::: {.notes}
+Anyone who could not clone: pair them with a neighbor for Cycle 1 and fix the clone during Challenge 1.
+:::
+
+## Recap: Module 03
+
+Answer in your script first:
+
+1. `weather_raw.csv` had two lines above the header. What fixed it?
+2. What did `clean_names()` turn `"Age (Years)"` into?
+3. `filter(!is.na(x))` vs `drop_na(x)`: same result?
+
+## Learning Goals
+
+By the end of today you can:
+
+- read the import message and `problems()`, and declare missing codes with `na =`
+- **check** types (`glimpse`, `class`, `summary`, `count`) and say *why* a number is text
+- **fix** types (`parse_number`, `as.numeric`, `as.integer`, `col_types`)
+- `select()`, `filter()`, `arrange()`, and report **row counts** before and after
+- create variables with `mutate()` and keep them by reassigning
+- render a first Quarto document
+
+## The Data: Great Lakes Fish Stocking
+
+- Great Lakes Fishery Commission stocking database
+- **56,232 stocking events x 31 columns**, 1950-2018
+- Used exactly as released: real codes, real typos, real gaps
+- Via TidyTuesday (2021-06-08)
+
+::: {.notes}
+Ask: who has worked with agency data before? What went wrong the first time you opened it?
+:::
+
+## Vocabulary
+
+| Term | Meaning |
+|---|---|
+| column type | `<dbl>` number, `<int>` integer, `<chr>` text, `<date>`, `<lgl>` |
+| missing-value code | `"N/A"`, `-999`, `999.99`: someone's way of saying "unknown" |
+| coercion | converting a type; misfits become `NA` with a warning |
+| parsing problem | a value `read_csv()` could not fit; see `problems()` |
+| row count check | `nrow()` before and after a filter |
+
+## Cycle 1: Trustworthy Columns
+
+```{r}
+stocked_raw <- read_csv(here("class", "data", "stocked.csv"))
+problems(stocked_raw)          # 22 values R could not read
+
+stocked <- read_csv(
+  here("class", "data", "stocked.csv"),
+  na = c("", "NA", "N/A")      # tell R what "missing" looks like
+) |>
+  clean_names()
+
+glimpse(stocked)               # which <chr> columns should be numbers?
+summary(stocked$length)        # 999.99? 0 mm? 13 m?
+```
+
+## One Code Makes A Whole Column Text
+
+- `mark_eff` holds percentages, but one value is `"N/A"`
+- R cannot store `"N/A"` as a number, so the **whole column** becomes `<chr>`
+- Fix at import (`na =`) or after (`as.numeric()` + read the warning)
+
+. . .
+
+**The dangerous one:** a `tag_ret` cell reads `"64.0, 100.0"`. The column
+looks fine in `glimpse()`, but that value is silently `NA`. Only `problems()`
+tells you.
+
+## Challenge 1: Type Detective (15 min)
+
+**Question:** why did `WEIGHT` break R's guess in 22 rows?
+
+- **Base:** read `WEIGHT` as text, find the values that are not plain
+  numbers, convert with `parse_number()`, prove it with `glimpse()` and an NA
+  count
+- **Extension:** what does `".9 /K"` become? Is that *correct*? What would
+  you ask the data owner?
+
+## Cycle 2: The Rows And Columns You Need
+
+```{r}
+stocking_core <- stocked |>
+  select(year, month, day, lake, state_prov, site, agency,
+         species, stage, no_stocked, length, weight)
+
+nrow(stocking_core)
+
+superior_lat <- stocking_core |>
+  filter(lake == "SU", species == "LAT")     # comma = AND
+nrow(superior_lat)
+
+stocking_core |> filter(species %in% c("CHS", "COS"))  # one column, many values
+stocking_core |> filter(between(year, 1990, 1999))
+stocking_core |> filter(!is.na(month))
+superior_lat  |> arrange(desc(no_stocked))
+```
+
+## Where Did The Rows Go?
+
+```{r}
+stocking_core |> filter(length > 100)    |> nrow()
+stocking_core |> filter(!(length > 100)) |> nrow()
+```
+
+- These two do **not** add up to the total
+- `filter()` drops rows where the condition is `NA`
+- Missing values never pass a test, and never fail one
+
+## Challenge 2: Three Manager Questions (15 min)
+
+One pipeline each. Report `nrow()` each time.
+
+1. Lake trout (`LAT`) stocked in Lake Superior (`SU`) by Wisconsin since 2000, largest first
+2. Chinook or coho (`CHS`, `COS`) in Lake Michigan (`MI`) in the 1990s
+3. Walleye (`WAE`) in Lake Erie (`ER`) with no recorded month
+
+**Extension:** a question with 0 rows. Does 0 rows mean it never happened?
+
+## Break (10 min)
+
+## Cycle 3: New Variables
+
+```{r}
+stocking_core <- stocking_core |>          # reassign to keep it
+  mutate(
+    fish_thousands = round(no_stocked / 1000, 1),
+    decade = (year %/% 10) * 10             # 1987 %/% 10 is 198
+  ) |>
+  relocate(decade, .after = year)
+
+write_csv(stocking_core,
+          here("class", "data", "processed", "stocking_core.csv"))
+# never overwrite the raw file
+```
+
+## Integrated Challenge
+
+**Lake Huron walleye, 2010s:** after dropping events with no recorded
+length, which event stocked the largest fish? How many events did you drop?
+
+- **Base:** rows before, drop missing length, rows after, sort, answer in a comment
+- **Extension:** `count(stage)` shows 17 codes. How many real stages? Make them consistent (hint: `str_to_lower()`)
+- **Discuss:** if a third of events have no length, is "largest fish" trustworthy?
+
+## New Tool: Quarto (15 min)
+
+- Open `class/first_report.qmd`
+- **YAML** header: title, author, format
+- **Prose** outside chunks; **code** inside ```` ```{r} ```` chunks
+- **Render**, open the `.html`
+- Break it on purpose, read the error, fix it
+
+## Where Answers Go Now
+
+- Assignment 04 is a Quarto document: `assignment/assignment.qmd`
+- Written answers go in **prose between chunks**, not as `#` comments
+- Push `assignment.qmd`, `assignment.html`, **and** `README.md`
+
+## Assignment 04: Wildlife Strikes Cleanup
+
+- **Data:** FAA wildlife strikes (57k strikes), new to you
+- **Same skills:** missing codes, `clean_names()`, types, `select`/`filter`
+  with row counts, `mutate`, `arrange`
+- **Investigate:** a `weekend` column. Hint: `lubridate::wday()` + `%in%`
+- **Due Sun Oct 11, 11:59 PM.** Last push before then is graded
+
+## How It Is Graded (10 pts)
+
+| Criterion | Pts |
+|---|---:|
+| Renders + `.html` pushed | 2 |
+| Cleaning and types | 2 |
+| Core tasks | 3 |
+| Investigate | 1 |
+| Written answers | 1 |
+| README | 1 |
+
+- Only `assignment/` and `README.md` are checked. **`class/` never is.**
+- A red X is feedback, not a grade.
+
+## Before You Leave
+
+- [ ] Follow-along runs top to bottom after restarting R
+- [ ] **Commit and push `class/`** (required, not graded; participation)
+- [ ] Push shows on GitHub
+- [ ] You know where Assignment 04 lives: `assignment/assignment.qmd`
