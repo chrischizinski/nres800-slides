@@ -14,6 +14,25 @@ format:
     embed-resources: true
 ---
 
+```{r}
+#| include: false
+library(gt)
+library(countdown)
+
+# One table style for every slide table (instructor convention: gt tables).
+slide_table <- function(df) {
+  gt(df) |>
+    fmt_markdown(columns = everything()) |>
+    tab_options(
+      table.font.size = px(24),
+      column_labels.font.weight = "bold",
+      table.width = pct(100),
+      data_row.padding = px(6)
+    ) |>
+    opt_row_striping()
+}
+```
+
 ## Slide Accessibility Note
 - **Images:** none; diagrams are HTML text with labels.
 - **Speaker Notes:** These slides follow the Module 04 follow-along script.
@@ -23,7 +42,7 @@ format:
 <!-- visual-aid: week_04 -->
 ## Today's Workflow
 
-::: {.diagram-flow aria-label="Workflow from messy file to answer: import, clean names, check types, fix types, select, filter with row counts, arrange, mutate, answer"}
+::: {.diagram-flow .diagram-compact aria-label="Workflow from messy file to answer: import, clean names, check types, fix types, select, filter with row counts, arrange, mutate, answer"}
 <div class="diagram-node">Messy file</div>
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
 <div class="diagram-node">Import + <code>problems()</code></div>
@@ -84,13 +103,18 @@ Ask: who has worked with agency data before? What went wrong the first time you 
 
 ## Vocabulary
 
-| Term | Meaning |
-|---|---|
-| column type | `<dbl>` number, `<int>` integer, `<chr>` text, `<date>`, `<lgl>` |
-| missing-value code | `"N/A"`, `-999`, `999.99`: someone's way of saying "unknown" |
-| coercion | converting a type; misfits become `NA` with a warning |
-| parsing problem | a value `read_csv()` could not fit; see `problems()` |
-| row count check | `nrow()` before and after a filter |
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Term, ~Meaning,
+  "column type", "`<dbl>` number, `<int>` integer, `<chr>` text, `<date>`, `<lgl>`",
+  "missing-value code", "`\"N/A\"`, `-999`, `999.99`: someone's way of saying \"unknown\"",
+  "coercion", "converting a type; misfits become `NA` with a warning",
+  "parsing problem", "a value `read_csv()` could not fit; see `problems()`",
+  "row count check", "`nrow()` before and after a filter"
+) |>
+  slide_table()
+```
 
 ## Cycle 1: Trustworthy Columns
 
@@ -129,6 +153,11 @@ tells you.
   count
 - **Extension:** what does `".9 /K"` become? Is that *correct*? What would
   you ask the data owner?
+
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
 
 ## Cycle 2: The Rows And Columns You Need
 
@@ -170,7 +199,17 @@ One pipeline each. Report `nrow()` each time.
 
 **Extension:** a question with 0 rows. Does 0 rows mean it never happened?
 
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
+
 ## Break (10 min)
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
 
 ## Cycle 3: New Variables
 
@@ -187,7 +226,7 @@ write_csv(stocking_core,
 # never overwrite the raw file
 ```
 
-## Integrated Challenge
+## Integrated Challenge (15 min)
 
 **Lake Huron walleye, 2010s:** after dropping events with no recorded
 length, which event stocked the largest fish? How many events did you drop?
@@ -196,6 +235,11 @@ length, which event stocked the largest fish? How many events did you drop?
 - **Extension:** `count(stage)` shows 17 codes. How many real stages? Make them consistent (hint: `str_to_lower()`)
 - **Discuss:** if a third of events have no length, is "largest fish" trustworthy?
 
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
+
 ## New Tool: Quarto (15 min)
 
 - Open `class/first_report.qmd`
@@ -203,6 +247,11 @@ length, which event stocked the largest fish? How many events did you drop?
 - **Prose** outside chunks; **code** inside ```` ```{r} ```` chunks
 - **Render**, open the `.html`
 - Break it on purpose, read the error, fix it
+
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
 
 ## Where Answers Go Now
 
@@ -220,14 +269,20 @@ length, which event stocked the largest fish? How many events did you drop?
 
 ## How It Is Graded (10 pts)
 
-| Criterion | Pts |
-|---|---:|
-| Renders + `.html` pushed | 2 |
-| Cleaning and types | 2 |
-| Core tasks | 3 |
-| Investigate | 1 |
-| Written answers | 1 |
-| README | 1 |
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Criterion, ~Points,
+  "Renders + `.html` pushed", 2,
+  "Cleaning and types", 2,
+  "Core tasks", 3,
+  "Investigate", 1,
+  "Written answers", 1,
+  "README", 1
+) |>
+  slide_table() |>
+  cols_align(align = "center", columns = Points)
+```
 
 - Only `assignment/` and `README.md` are checked. **`class/` never is.**
 - A red X is feedback, not a grade.
