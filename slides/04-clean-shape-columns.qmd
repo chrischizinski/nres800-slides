@@ -220,7 +220,7 @@ length, which event stocked the largest fish? How many events did you drop?
 - **Same skills:** missing codes, `clean_names()`, types, `select`/`filter`
   with row counts, `mutate`, `arrange`
 - **Investigate:** a `weekend` column. Hint: `lubridate::wday()` + `%in%`
-- **Due Sun Oct 11, 11:59 PM.** Last push before then is graded
+- **Due Sun Oct 4, 11:59 PM.** Last push before then is graded
 
 ## How It Is Graded (10 pts)
 

@@ -1,7 +1,7 @@
 # NRES 800: Student Follow-Along Script
 # Module 04: Clean and Shape Columns
 # Name: [Your Name]
-# Date: 2026-10-05
+# Date: 2026-09-28
 #
 # This file lives in class/. It is never checked or graded.
 # Commit and push it before you leave class (participation evidence).
@@ -234,6 +234,6 @@ stocking_core <- stocked |>
 # [ ] Commit and push class/ (Source Control in Positron)
 # [ ] Check the push shows on GitHub
 #
-# Assignment 04 - Wildlife Strikes Cleanup (due Sun Oct 11, 11:59 PM)
+# Assignment 04 - Wildlife Strikes Cleanup (due Sun Oct 4, 11:59 PM)
 # - Open assignment/assignment.qmd (not this file)
 # - Graded: assignment/ and README.md only
