@@ -12,10 +12,6 @@ format:
     slide-number: true
     incremental: false
     embed-resources: true
-execute:
-  freeze: auto
-  echo: true
-  eval: false
 ---
 
 ## Slide Accessibility Note
@@ -98,7 +94,7 @@ Ask: who has worked with agency data before? What went wrong the first time you 
 
 ## Cycle 1: Trustworthy Columns
 
-```{r}
+```r
 stocked_raw <- read_csv(here("class", "data", "stocked.csv"))
 problems(stocked_raw)          # 22 values R could not read
 
@@ -136,7 +132,7 @@ tells you.
 
 ## Cycle 2: The Rows And Columns You Need
 
-```{r}
+```r
 stocking_core <- stocked |>
   select(year, month, day, lake, state_prov, site, agency,
          species, stage, no_stocked, length, weight)
@@ -155,7 +151,7 @@ superior_lat  |> arrange(desc(no_stocked))
 
 ## Where Did The Rows Go?
 
-```{r}
+```r
 stocking_core |> filter(length > 100)    |> nrow()
 stocking_core |> filter(!(length > 100)) |> nrow()
 ```
@@ -178,7 +174,7 @@ One pipeline each. Report `nrow()` each time.
 
 ## Cycle 3: New Variables
 
-```{r}
+```r
 stocking_core <- stocking_core |>          # reassign to keep it
   mutate(
     fish_thousands = round(no_stocked / 1000, 1),
