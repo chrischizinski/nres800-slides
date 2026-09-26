@@ -46,7 +46,7 @@
     "href": "slides/04-clean-shape-columns.html#vocabulary",
     "title": "Module 04: Clean and Shape Columns",
     "section": "Vocabulary",
-    "text": "Vocabulary\n\n\n\n\n\n\n\nTerm\nMeaning\n\n\n\n\ncolumn type\n&lt;dbl&gt; number, &lt;int&gt; integer, &lt;chr&gt; text, &lt;date&gt;, &lt;lgl&gt;\n\n\nmissing-value code\n\"N/A\", -999, 999.99: someone’s way of saying “unknown”\n\n\ncoercion\nconverting a type; misfits become NA with a warning\n\n\nparsing problem\na value read_csv() could not fit; see problems()\n\n\nrow count check\nnrow() before and after a filter"
+    "text": "Vocabulary\n\n\n\n\n\n\n\n\nTerm\nMeaning\n\n\n\n\ncolumn type\n&lt;dbl&gt; number, &lt;int&gt; integer, &lt;chr&gt; text, &lt;date&gt;, &lt;lgl&gt;\n\n\nmissing-value code\n\"N/A\", -999, 999.99: someone’s way of saying “unknown”\n\n\ncoercion\nconverting a type; misfits become NA with a warning\n\n\nparsing problem\na value read_csv() could not fit; see problems()\n\n\nrow count check\nnrow() before and after a filter"
   },
   {
     "objectID": "slides/04-clean-shape-columns.html#cycle-1-trustworthy-columns",
@@ -105,11 +105,11 @@
     "text": "Cycle 3: New Variables\nstocking_core &lt;- stocking_core |&gt;          # reassign to keep it\n  mutate(\n    fish_thousands = round(no_stocked / 1000, 1),\n    decade = (year %/% 10) * 10             # 1987 %/% 10 is 198\n  ) |&gt;\n  relocate(decade, .after = year)\n\nwrite_csv(stocking_core,\n          here(\"class\", \"data\", \"processed\", \"stocking_core.csv\"))\n# never overwrite the raw file"
   },
   {
-    "objectID": "slides/04-clean-shape-columns.html#integrated-challenge",
-    "href": "slides/04-clean-shape-columns.html#integrated-challenge",
+    "objectID": "slides/04-clean-shape-columns.html#integrated-challenge-15-min",
+    "href": "slides/04-clean-shape-columns.html#integrated-challenge-15-min",
     "title": "Module 04: Clean and Shape Columns",
-    "section": "Integrated Challenge",
-    "text": "Integrated Challenge\nLake Huron walleye, 2010s: after dropping events with no recorded length, which event stocked the largest fish? How many events did you drop?\n\nBase: rows before, drop missing length, rows after, sort, answer in a comment\nExtension: count(stage) shows 17 codes. How many real stages? Make them consistent (hint: str_to_lower())\nDiscuss: if a third of events have no length, is “largest fish” trustworthy?"
+    "section": "Integrated Challenge (15 min)",
+    "text": "Integrated Challenge (15 min)\nLake Huron walleye, 2010s: after dropping events with no recorded length, which event stocked the largest fish? How many events did you drop?\n\nBase: rows before, drop missing length, rows after, sort, answer in a comment\nExtension: count(stage) shows 17 codes. How many real stages? Make them consistent (hint: str_to_lower())\nDiscuss: if a third of events have no length, is “largest fish” trustworthy?"
   },
   {
     "objectID": "slides/04-clean-shape-columns.html#new-tool-quarto-15-min",
@@ -137,7 +137,7 @@
     "href": "slides/04-clean-shape-columns.html#how-it-is-graded-10-pts",
     "title": "Module 04: Clean and Shape Columns",
     "section": "How It Is Graded (10 pts)",
-    "text": "How It Is Graded (10 pts)\n\n\n\nCriterion\nPts\n\n\n\n\nRenders + .html pushed\n2\n\n\nCleaning and types\n2\n\n\nCore tasks\n3\n\n\nInvestigate\n1\n\n\nWritten answers\n1\n\n\nREADME\n1\n\n\n\n\nOnly assignment/ and README.md are checked. class/ never is.\nA red X is feedback, not a grade."
+    "text": "How It Is Graded (10 pts)\n\n\n\n\n\n\n\n\nCriterion\nPoints\n\n\n\n\nRenders + .html pushed\n2\n\n\nCleaning and types\n2\n\n\nCore tasks\n3\n\n\nInvestigate\n1\n\n\nWritten answers\n1\n\n\nREADME\n1\n\n\n\n\n\n\n\n\nOnly assignment/ and README.md are checked. class/ never is.\nA red X is feedback, not a grade."
   },
   {
     "objectID": "slides/04-clean-shape-columns.html#before-you-leave",
