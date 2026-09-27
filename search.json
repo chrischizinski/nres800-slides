@@ -1,5 +1,390 @@
 [
   {
+    "objectID": "slides/05-summaries-decisions.html#slide-accessibility-note",
+    "href": "slides/05-summaries-decisions.html#slide-accessibility-note",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nImages: none; diagrams are HTML text with labels.\nSpeaker Notes: These slides follow the Module 05 follow-along script. They name the purpose, vocabulary, challenges, and checklist; the live coding happens in class/week_05_follow_along.R."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#todays-workflow",
+    "href": "slides/05-summaries-decisions.html#todays-workflow",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Today’s Workflow",
+    "text": "Today’s Workflow\n\n\nClean data\n\n\n-&gt;\n\n\nDecide which rows count\n\n\n-&gt;\n\n\nDecide categories\n\n\n-&gt;\n\n\ngroup_by + summarize\n\n\n-&gt;\n\n\nCheck against a known total\n\n\n\nA total you cannot check is a guess."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#before-we-start",
+    "href": "slides/05-summaries-decisions.html#before-we-start",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Before We Start",
+    "text": "Before We Start\n\nOpen this module’s repo (accepted in Classroom 50 before class).\nOpen week_05.Rproj, then class/week_05_follow_along.R.\nRun here::here(): it should print your repo folder.\nBackup: the follow-along is also on this slide site.\n\nDownload the Module 05 follow-along script (.R)\n\nAnyone who could not clone: pair them with a neighbor for Cycle 1 and fix the clone during Challenge 1."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#recap-module-04",
+    "href": "slides/05-summaries-decisions.html#recap-module-04",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Recap: Module 04",
+    "text": "Recap: Module 04\nAnswer in your script first:\n\nAfter read_csv(), what do you run first on real data, and why?\nA filter dropped 39 of 109 rows. What must you report with the answer?\nWhat does 1987 %/% 10 * 10 give?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#learning-goals",
+    "href": "slides/05-summaries-decisions.html#learning-goals",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nBy the end of today you can:\n\nsummarize a table, and one row per group, with group_by() + summarize()\nuse count() as the shortcut, including two-column counts\nhandle NA in summaries: na.rm = TRUE, and report how many were missing\nmake categories with if_else() (two) and case_when() (many)\nspot total rows mixed with detail rows, and summarize without double counting\nexplain how the rows and the denominator change a percentage"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#the-data-great-lakes-commercial-catch",
+    "href": "slides/05-summaries-decisions.html#the-data-great-lakes-commercial-catch",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "The Data: Great Lakes Commercial Catch",
+    "text": "The Data: Great Lakes Commercial Catch\n\nGreat Lakes Fishery Commission commercial fish production\n65,706 rows x 7 columns, 1867-2015, six lakes\nvalues = catch in thousands of pounds\nUsed exactly as released. Via TidyTuesday (2021-06-08)\n\n\nSame agency as last week’s stocking data. Ask: what would a fisheries manager want summarized from this?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#vocabulary",
+    "href": "slides/05-summaries-decisions.html#vocabulary",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Vocabulary",
+    "text": "Vocabulary\n\n\n\n\n\n\n\n\nTerm\nMeaning\n\n\n\n\nsummary\none number that stands for many rows: a count, total, mean\n\n\ngrouping\ngroup_by() splits rows; summarize() returns one row per group\n\n\nna.rm = TRUE\ndrop NA before computing: a decision to report, not a fix\n\n\ntotal row\na row that already sums other rows; include it and you double count\n\n\ndenominator\nwhat a percentage is “out of”; change it, change the answer"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#cycle-1-one-row-per-group",
+    "href": "slides/05-summaries-decisions.html#cycle-1-one-row-per-group",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Cycle 1: One Row Per Group",
+    "text": "Cycle 1: One Row Per Group\nfishing &lt;- read_csv(here(\"class\", \"data\", \"fishing.csv\")) |&gt;\n  clean_names()\n\nfishing |&gt; count(lake)                        # you know this one\nfishing |&gt; summarize(total = sum(values))     # NA. Why?\n\nfishing |&gt;\n  group_by(lake) |&gt;\n  summarize(\n    rows      = n(),\n    n_missing = sum(is.na(values)),           # report what you dropped\n    total     = sum(values, na.rm = TRUE)\n  ) |&gt;\n  arrange(desc(total))"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#why-is-the-sum-na",
+    "href": "slides/05-summaries-decisions.html#why-is-the-sum-na",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Why Is The Sum NA?",
+    "text": "Why Is The Sum NA?\n\n21,916 of 65,706 values are NA (a third of the file)\nOne unknown value makes the total unknown; R refuses to guess\nna.rm = TRUE drops them. That is your decision\nSo report n_missing right beside the total, every time\n\n\nsum(is.na(values)): is.na() gives TRUE/FALSE, sum() counts the TRUEs."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#a-number-that-should-worry-you",
+    "href": "slides/05-summaries-decisions.html#a-number-that-should-worry-you",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "A Number That Should Worry You",
+    "text": "A Number That Should Worry You\nfishing |&gt;\n  filter(lake == \"Michigan\", species == \"Lake Whitefish\", year == 2000) |&gt;\n  summarize(total = sum(values, na.rm = TRUE))\n#&gt; 14381\nIs that the U.S. commercial lake whitefish catch from Lake Michigan in 2000?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#challenge-1-catch-audit-15-min",
+    "href": "slides/05-summaries-decisions.html#challenge-1-catch-audit-15-min",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Challenge 1: Catch Audit (15 min)",
+    "text": "Challenge 1: Catch Audit (15 min)\nQuestion: where did 14,381 come from?\n\nBase: show the rows behind the total (region, values). Compare with the U.S. Total row. How many times too big? Explain with distinct(lake, region)\nExtension: for every lake, all-rows sum vs U.S. total sum. Which lake is furthest off, and why is that ratio not only double counting?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#the-same-catch-counted-three-times",
+    "href": "slides/05-summaries-decisions.html#the-same-catch-counted-three-times",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "The Same Catch, Counted Three Times",
+    "text": "The Same Catch, Counted Three Times\n\n\n\n\n\n\n\n\nregion\nvalues\nwhat it is\n\n\n\n\nGreen Bay (MI)\n1,158\narea\n\n\nMich. Proper (MI)\n1,871\narea\n\n\nMI State Total\n3,029\nsum of the two above\n\n\nGreen Bay (WI)\n116\narea\n\n\nMich. Proper (WI)\n1,648\narea\n\n\nWI State Total\n1,765\nsum of the two above\n\n\nIllinois (IL), Indiana (IN)\nNA\nnot reported\n\n\nU.S. Total\n4,794\nsum of the state totals\n\n\n\n\n\n\n\nLake Michigan lake whitefish, 2000 (thousand lb). All rows sum to 14,381."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#cycle-2-categories-you-decide",
+    "href": "slides/05-summaries-decisions.html#cycle-2-categories-you-decide",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Cycle 2: Categories You Decide",
+    "text": "Cycle 2: Categories You Decide\nfishing |&gt;\n  mutate(recorded = if_else(is.na(values), \"missing\", \"recorded\")) |&gt;\n  count(lake, recorded)\n\nfishing &lt;- fishing |&gt;\n  mutate(\n    region_level = case_when(\n      region %in% us_totals     ~ \"US total\",\n      region %in% canada_totals ~ \"Canada total\",\n      region %in% state_totals  ~ \"state total\",\n      .default = \"area\"\n    )\n  )\n\nfishing |&gt; count(region_level, region)   # did every region land right?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#how-case_when-reads",
+    "href": "slides/05-summaries-decisions.html#how-case_when-reads",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "How case_when() Reads",
+    "text": "How case_when() Reads\n\nEach line: if this ~ then that\nLines are checked top to bottom; the first TRUE wins\n.default catches every row no line matched (forget it: NA)\nAlways count() the result to check it\n\n\nera = case_when(\n  year &lt; 2000 ~ \"1950-1999\",   # first: now 1867 lands here too\n  year &lt; 1900 ~ \"1867-1899\",   # never reached\n  ...\n)"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#now-the-totals-are-right",
+    "href": "slides/05-summaries-decisions.html#now-the-totals-are-right",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Now The Totals Are Right",
+    "text": "Now The Totals Are Right\nfishing |&gt;\n  filter(region_level == \"US total\") |&gt;\n  group_by(lake) |&gt;\n  summarize(n_missing = sum(is.na(values)),\n            total = sum(values, na.rm = TRUE),\n            .groups = \"drop\") |&gt;\n  arrange(desc(total))\n\nMichigan first: 3,072,965 thousand lb\nSaint Clair last, but 845 of its 1,171 rows are missing. Would you rank it with confidence?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#challenge-2-species-list-15-min",
+    "href": "slides/05-summaries-decisions.html#challenge-2-species-list-15-min",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Challenge 2: Species List (15 min)",
+    "text": "Challenge 2: Species List (15 min)\n\nBase: count(species): find the same fish spelled differently (\"Amercian Eel\"?). Recode with case_when(), keep the rest with .default = species, count again. How many labels remain?\nExtension: how many lakes report each species in the 2000s? (hint: n_distinct()). Are \"Drum\" and \"Freshwater Drum\" the same fish? What would you check first?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#break-10-min",
+    "href": "slides/05-summaries-decisions.html#break-10-min",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Break (10 min)",
+    "text": "Break (10 min)"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#integrated-challenge-30-min",
+    "href": "slides/05-summaries-decisions.html#integrated-challenge-30-min",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Integrated Challenge (30 min)",
+    "text": "Integrated Challenge (30 min)\nLake whitefish, Lake Michigan, U.S. catch: total catch by decade, with the number of years and missing years beside each total. Which decade peaked?\n\nBase: one pipeline, filter, decade with mutate(), group_by(), summarize(), sort. Answer in pounds, not thousands\nExtension: the 2010s look low. Compute catch per recorded year. Does the story change? Which decade “wins” now, and should you trust it?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#every-fix-raises-the-next-question",
+    "href": "slides/05-summaries-decisions.html#every-fix-raises-the-next-question",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Every Fix Raises The Next Question",
+    "text": "Every Fix Raises The Next Question\n\nBy total, the 1990s peak: 69,967 thousand lb (about 70 million lb)\nThe 2010s look halved, but the data end in 2015: 6 years, not 10\nPer year, the 2010s dip only a little (4,265 vs 4,575)\nPer year, the 1870s “win”, on one recorded year\n\n\nReport a rate with the number of years behind it."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#assignment-05-park-species-decisions",
+    "href": "slides/05-summaries-decisions.html#assignment-05-park-species-decisions",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Assignment 05: Park Species Decisions",
+    "text": "Assignment 05: Park Species Decisions\n\nData: NPS species lists, 15 most-visited national parks (61k records)\nDecide: which records count as “in the park”; one category for two kinds of “unknown”\nSummarize: percent non-native per park. Watch the denominator\nInvestigate: dplyr::across() to total several columns at once\nDue Sun Oct 11, 11:59 PM. Last push before then is graded"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#how-it-is-graded-10-pts",
+    "href": "slides/05-summaries-decisions.html#how-it-is-graded-10-pts",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "How It Is Graded (10 pts)",
+    "text": "How It Is Graded (10 pts)\n\n\n\n\n\n\n\n\nCriterion\nPoints\n\n\n\n\nRenders + .html pushed\n2\n\n\nCleaning and types\n2\n\n\nCore tasks\n3\n\n\nInvestigate\n1\n\n\nWritten answers\n1\n\n\nREADME\n1\n\n\n\n\n\n\n\n\nOnly assignment/ and README.md are checked. class/ never is.\nA red X is feedback, not a grade."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#before-you-leave",
+    "href": "slides/05-summaries-decisions.html#before-you-leave",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Before You Leave",
+    "text": "Before You Leave\n\nFollow-along runs top to bottom after restarting R\nCommit and push class/ (required, not graded; participation). GitHub Desktop: summary, Commit to main, Push origin\nPush shows on GitHub\nYou know where Assignment 05 lives: assignment/assignment.qmd"
+  },
+  {
+    "objectID": "slides/03-importing-data.html#slide-accessibility-note",
+    "href": "slides/03-importing-data.html#slide-accessibility-note",
+    "title": "Module 03: Importing Data",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A photograph of organized filing cabinets and stacks of papers, representing the transition from physical data storage to organized digital project folders.\nSpeaker Notes: These slides cover the critical concepts of project-relative paths and data import strategies."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#reproducible-path-map",
+    "href": "slides/03-importing-data.html#reproducible-path-map",
+    "title": "Module 03: Importing Data",
+    "section": "Reproducible Path Map",
+    "text": "Reproducible Path Map\n\n\nProject folder\n\n\n-&gt;\n\n\nRelative path\n\n\n-&gt;\n\n\nImport data\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nShare repository\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#module-03-importing-data",
+    "href": "slides/03-importing-data.html#module-03-importing-data",
+    "title": "Module 03: Importing Data",
+    "section": "Module 03: Importing Data",
+    "text": "Module 03: Importing Data\n\nFinish uploading Assignment 02, then move to importing data.\nToday: project folders, here(), read_csv(), and import checks.\nAssignment 03: Import and Inspect. Module 04 comes afterward."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#download-and-open-the-practice-project",
+    "href": "slides/03-importing-data.html#download-and-open-the-practice-project",
+    "title": "Module 03: Importing Data",
+    "section": "Download and Open the Practice Project",
+    "text": "Download and Open the Practice Project\nDownload Module 03 practice project (.zip)\n\nExtract the ZIP before opening any files.\nIn Positron, choose File &gt; Open Folder and open module_03_practice.\nOpen scripts/week_03_follow_along.R in that folder.\nKeep both CSV files in data/. Run here::here() to check the project root."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#how-to-use-today",
+    "href": "slides/03-importing-data.html#how-to-use-today",
+    "title": "Module 03: Importing Data",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nFind the project root first.\nUse here() before you type a path by hand.\nVerify that the raw data is still unchanged after import.\n\nDownload the Module 03 follow-along script (.R)\n\nSpeaker Notes: The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#the-path-to-reproducibility",
+    "href": "slides/03-importing-data.html#the-path-to-reproducibility",
+    "title": "Module 03: Importing Data",
+    "section": "The Path to Reproducibility",
+    "text": "The Path to Reproducibility\n\nAvoid absolute paths like C:/Users/Chris/Downloads.\nUse the here package to find files relative to your project.\nKeep your raw data “read-only”.\n\n\nSpeaker Notes: One of the most common reasons code fails when shared is that it uses ‘absolute paths’. If your script starts with ‘C:/Users/YourName’, it will NEVER work on my machine. We’re going to use a package called ‘here’ that builds paths relative to your project file, making your code portable and reproducible."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#learning-objectives",
+    "href": "slides/03-importing-data.html#learning-objectives",
+    "title": "Module 03: Importing Data",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nExplain the value of relative paths.\nUse here::here() to find files.\nImport CSVs with read_csv().\nSkip metadata rows during import.\n\n\nSpeaker Notes: By the end of today, you’ll be able to move your project folder to any computer, or even share it on GitHub, and have the data load perfectly every time. We’ll also learn how to handle those annoying extra rows at the top of many CSV files."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#live-coding-section-1",
+    "href": "slides/03-importing-data.html#live-coding-section-1",
+    "title": "Module 03: Importing Data",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nSetting up the data/ folder.\nImporting weather data.\nHandling messy headers.\nChecking the imported types and row count.\n\n\nSpeaker Notes: First, we’re going to create a standard ‘data’ folder. Then we’ll practice importing a weather dataset. We’ll look at the console output to see how R ‘guesses’ what kind of data is in each column."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#the-challenge-45-mins",
+    "href": "slides/03-importing-data.html#the-challenge-45-mins",
+    "title": "Module 03: Importing Data",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Import Audit\n\nImport stream_gauge_messy.csv with 5 rows of metadata.\nRename the discharge column so it is easier to read.\nIdentify missing values or suspicious values in the imported data.\nConfirm that the row count changes the way you expect after skipping metadata.\n\nAssignment 03 - Import and Inspect uses the same skill on stream_gauge_data.csv. Accept it in Classroom 50 (select NRES800), complete assignment.R at home, write your answers as # comments in the script, edit the README, and push from home. Due Sunday, Sep 27, 11:59 PM.\n\nSpeaker Notes: Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You’ll need to use the ‘skip’ argument to get to the real data. Then, you’ll audit the data for missing values."
+  },
+  {
+    "objectID": "slides/03-importing-data.html#verification",
+    "href": "slides/03-importing-data.html#verification",
+    "title": "Module 03: Importing Data",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the script run on your neighbor’s machine?\nAre you using here() and not setwd()?\nIs your raw data still in the right folder and unchanged?\nCan you explain why skipping the correct number of rows matters?\nAssignment 03 is pushed from home; no in-class upload this time. Feedback arrives as an Issue in your repository.\n\n\nSpeaker Notes: The import is not finished until you know where the file lives, how many rows came in, and whether the headers are correct.\n\n\nSpeaker Notes: The ultimate test of reproducibility: can your neighbor run your script? If you used ‘here()’, the answer should be yes. Check your ‘data’ folder—did you include the raw CSV?"
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#slide-accessibility-note",
+    "href": "slides/01-the-whole-game.html#slide-accessibility-note",
+    "title": "Module 03: The Whole Game",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A scenic photograph of three different penguin species (Adelie, Chinstrap, Gentoo) standing on ice in the Palmer Archipelago, Antarctica.\nSpeaker Notes: These slides are designed to be read alongside the live-coding script."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#the-whole-game-map",
+    "href": "slides/01-the-whole-game.html#the-whole-game-map",
+    "title": "Module 03: The Whole Game",
+    "section": "The Whole Game Map",
+    "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
+    "href": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
+    "title": "Module 03: The Whole Game",
+    "section": "Today: Turn Your Graph into an Assignment",
+    "text": "Today: Turn Your Graph into an Assignment\n\nAccept the NRES800 organization invitation in GitHub.\nIn Classroom 50, sign in with that GitHub account, select NRES800, and create your private Assignment 01 repository.\nClone it and open assignment.R.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern in script comments, run it, commit, and push.\n\nDue: Tuesday, September 15, 2026, 11:59 PM Central Time.\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.R, move the familiar ggplot() mapping into the assignment, run the script, inspect the plot, commit, and push. Before opening Classroom 50, confirm that students accepted their NRES800 GitHub organization invitation; they must sign in to Classroom 50 with that same account and select NRES800. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#choose-one-git-path",
+    "href": "slides/01-the-whole-game.html#choose-one-git-path",
+    "title": "Module 03: The Whole Game",
+    "section": "Choose One Git Path",
+    "text": "Choose One Git Path\n\nGitHub Desktop: use it if it opens; no terminal required.\nPositron’s built-in Source Control: use its Git panel if Git is installed; no terminal or separate GitHub extension is needed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\nIf an app will not open, your repository is safe on GitHub: take a screenshot and use the other path or ask for help.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has a working GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#brand-new-positron-user-use-built-in-source-control-to-clone-first.",
+    "href": "slides/01-the-whole-game.html#brand-new-positron-user-use-built-in-source-control-to-clone-first.",
+    "title": "Module 03: The Whole Game",
+    "section": "Brand-New Positron User? Use Built-In Source Control to Clone First.",
+    "text": "Brand-New Positron User? Use Built-In Source Control to Clone First.\n\nOn GitHub: Code → HTTPS → Copy.\nIn Positron’s built-in Source Control: choose New Folder from Git.\nPaste the address, choose your class-work folder, and select Create Folder.\nWhen Positron finishes, open the new folder; then open assignment.R.\n\nDo not start with File → Open Folder. That comes after the clone creates your local repository.\n\nSpeaker Notes: This sequence is specifically for students who have never cloned a repository. They cannot open an assignment folder before one exists on their computer. Demonstrate the GitHub Code → HTTPS copy, then Positron’s built-in New Folder from Git command. It is the GUI route for clone, fetch, pull, commit, and push; students do not need a terminal or a separate GitHub extension. Only after cloning finishes should they use the Explorer to open assignment.R. For students who have already cloned the repository, File → Open Folder is appropriate for returning to that existing local folder."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
+    "href": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
+    "title": "Module 03: The Whole Game",
+    "section": "Why Keep GitHub in the Loop?",
+    "text": "Why Keep GitHub in the Loop?\n\n\nIllustration by Allison Horst, CC BY 4.0.\n\n\nSpeaker Notes: This image is a visual metaphor, not a required decoding task. Say the point plainly: GitHub gives a project named checkpoints and a shared version of the work; without those, it is easy to lose track of which file is current. Connect the three visible ideas to today’s actions: clone the shared starting point, commit named checkpoints, and push the current version for others to review."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#how-to-use-today",
+    "href": "slides/01-the-whole-game.html#how-to-use-today",
+    "title": "Module 03: The Whole Game",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\nDownload the Assignment 01 follow-along script (.R)\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#why-the-whole-game",
+    "href": "slides/01-the-whole-game.html#why-the-whole-game",
+    "title": "Module 03: The Whole Game",
+    "section": "Why the “Whole Game”?",
+    "text": "Why the “Whole Game”?\n\nWe start by doing, not just installing.\nYou will load data, make a plot, and interpret it TODAY.\nWe will spend the rest of the semester unpacking HOW it works.\n\n\nSpeaker Notes: Welcome to NRES 800. We use a ‘Whole Game’ approach, inspired by David Perkins. Instead of spending weeks learning about file types and syntax, we are going to build a full analysis today. This gives you the ‘big picture’ context for everything else we’ll learn."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#learning-objectives",
+    "href": "slides/01-the-whole-game.html#learning-objectives",
+    "title": "Module 03: The Whole Game",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nCreate a private weekly repository through Classroom 50 and clone it.\nMove a familiar ggplot2 graph into a reproducible R script.\nRun the complete script and inspect the resulting plot.\nCommit and push a reproducible result to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
+    "href": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
+    "title": "Module 03: The Whole Game",
+    "section": "Today’s Dataset: Palmer Penguins",
+    "text": "Today’s Dataset: Palmer Penguins\n\nData on three penguin species in Antarctica.\nVariables: bill length, flipper length, body mass, sex.\nA classic dataset for learning visualization.\n\n\nSpeaker Notes: The palmerpenguins dataset is a modern alternative to the classic ‘iris’ dataset. It’s real ecological data collected by Dr. Kristen Gorman at the Palmer Station."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#live-coding-section-1",
+    "href": "slides/01-the-whole-game.html#live-coding-section-1",
+    "title": "Module 03: The Whole Game",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nOpen your project in RStudio.\nOpen scripts/week_01_follow_along.R.\nType along as we build the plot.\n\n\nSpeaker Notes: Now, please switch over to RStudio. We are going to build our first plot. Remember: don’t just watch me—type the code yourself. The muscle memory of typing is how you learn the syntax."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#the-challenge-45-mins",
+    "href": "slides/01-the-whole-game.html#the-challenge-45-mins",
+    "title": "Module 03: The Whole Game",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The 30-Minute Analyst\n\nLoad the palmerpenguins data.\nCreate a scatterplot of body mass vs flipper length.\nColor the points by species.\nExtension: Add professional labels and a theme.\nBase goal: Make the plot work and make the mapping correct.\nExtension goal: Make the plot readable without explanation.\n\n\nSpeaker Notes: You have 45 minutes to work on this challenge. If you finish the base goal early, try the extension. The extension asks you to add labels like title, x-axis, and y-axis."
+  },
+  {
+    "objectID": "slides/01-the-whole-game.html#verification",
+    "href": "slides/01-the-whole-game.html#verification",
+    "title": "Module 03: The Whole Game",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the R script run and display the plot without an error?\nCan you explain why species belongs inside aes()?\nDid you commit and push the script?\n\n\nSpeaker Notes: Before you leave, verify three things: run the script, explain the result, and push to GitHub. If one of those is missing, the assignment is not done yet.\n\n\nSpeaker Notes: Before you leave, you must verify your work. Run the complete script. If it errors, we need to fix it before you go. Finally, push to GitHub. If it’s not on GitHub, it doesn’t exist for grading!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NRES 800",
+    "section": "",
+    "text": "Welcome to the lecture slides for NRES 800: Data Management and Visualization.\nCanvas remains the course home for assignments, deadlines, grades, announcements, and submissions. This site provides the HTML lecture slides released for the course."
+  },
+  {
+    "objectID": "index.html#lecture-slides-by-module",
+    "href": "index.html#lecture-slides-by-module",
+    "title": "NRES 800",
+    "section": "Lecture slides by module",
+    "text": "Lecture slides by module\n\nModule 01: The Whole Game (Assignment 01)\nModule 02: Objects and Debugging (Assignment 02)\nModule 03: Importing Data (Assignment 03)\nModule 04: Clean and Shape Columns (Assignment 04)\nModule 05: Summaries and Decisions (Assignment 05)\n\nNew lectures appear here only after they are ready for students."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#slide-accessibility-note",
+    "href": "slides/02-objects-debugging.html#slide-accessibility-note",
+    "title": "Module 02: Objects & Debugging",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A close-up image of a computer screen displaying multiple R error messages in red text, symbolizing the debugging process.\nSpeaker Notes: These slides explain the fundamental nature of R objects and how to diagnose errors."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#debugging-loop",
+    "href": "slides/02-objects-debugging.html#debugging-loop",
+    "title": "Module 02: Objects & Debugging",
+    "section": "Debugging Loop",
+    "text": "Debugging Loop\n\n\nSymptom\n\n\n-&gt;\n\n\nInspect object\n\n\n-&gt;\n\n\nRead the error\n\n\n-&gt;\n\n\nChange one thing\n\n\n-&gt;\n\n\nRun again\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#how-to-use-today",
+    "href": "slides/02-objects-debugging.html#how-to-use-today",
+    "title": "Module 02: Objects & Debugging",
+    "section": "How To Use Today",
+    "text": "How To Use Today\n\nRead the error message before touching the code.\nUse the Environment pane as a diagnostic tool.\nFix the cause, not just the symptom.\n\nDownload the Module 02 follow-along script (.R)\n\nSpeaker Notes: This week is about developing a debugging habit. The slides should help students remember the flow: inspect, diagnose, fix, verify."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#r-is-for-objects",
+    "href": "slides/02-objects-debugging.html#r-is-for-objects",
+    "title": "Module 02: Objects & Debugging",
+    "section": "R is for Objects",
+    "text": "R is for Objects\n\nEverything that exists in R is an object.\nEverything that happens is a function.\nObjects have types (numeric, character, logical).\n\n\nSpeaker Notes: In R, everything you create—a single number, a list of names, or a giant dataset—is an ‘object’. We interact with these objects using ‘functions’. Today we learn how to see inside these objects and understand their ‘type’."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#learning-objectives",
+    "href": "slides/02-objects-debugging.html#learning-objectives",
+    "title": "Module 02: Objects & Debugging",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nCreate and name R objects.\nIdentify common data types.\nInspect data frames in the Environment.\nInterpret and fix common R errors.\n\n\nSpeaker Notes: Our goal is to move from being ‘scared’ of error messages to ‘reading’ them. By the end of today, you should be able to identify why a function fails based on the data type you give it."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#live-coding-section-1",
+    "href": "slides/02-objects-debugging.html#live-coding-section-1",
+    "title": "Module 02: Objects & Debugging",
+    "section": "Live Coding: Section 1",
+    "text": "Live Coding: Section 1\n\nCreating vectors and data frames.\nBreaking R on purpose.\nInterpreting error messages.\n\n\nSpeaker Notes: We’ll start by building vectors. Then, I’m going to ask you to try and ‘break’ your code. Intentionally causing errors is one of the best ways to learn how R thinks."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#the-challenge-45-mins",
+    "href": "slides/02-objects-debugging.html#the-challenge-45-mins",
+    "title": "Module 02: Objects & Debugging",
+    "section": "The Challenge [45 mins]",
+    "text": "The Challenge [45 mins]\nProblem: The Debugging Clinic\n\nOpen debug_this.R in your Assignment 02 repository.\nFix 3 intentional errors and explain each cause in a code comment above the fix.\nInspect a small soil dataset before deciding what to fix.\nExtension: Convert a column type and create a logical pH check.\nBase goal: Get the script running from top to bottom.\nExtension goal: Explain each fix in plain language.\n\nTo get the repository: sign in to Classroom 50 with your GitHub account, select NRES800, and create Assignment 02 - Debugging Clinic. Clone it in Positron the same way as Assignment 01.\n\nSpeaker Notes: In this challenge, you are playing the role of a ‘Code Doctor’. I’ve provided a script that is sick—it won’t run. Your job is to diagnose the 3 main bugs and get it back to healthy, runnable status."
+  },
+  {
+    "objectID": "slides/02-objects-debugging.html#verification",
+    "href": "slides/02-objects-debugging.html#verification",
+    "title": "Module 02: Objects & Debugging",
+    "section": "Verification",
+    "text": "Verification\n\nDoes the script run without errors from top to bottom?\nCan you identify the object-name, data-type, and plotting errors?\nDid you save debug_this.R and your explanation comments?\nDid you replace the README paragraph with 2-3 sentences of your own?\nWe upload together at the start of class. This is the last supported upload; Assignment 03 is pushed from home.\nDue Tuesday, Sep 22, 11:59 PM. Feedback arrives as an Issue in your repository.\n\n\nSpeaker Notes: If they can explain the error in one sentence and show the fix in the script, they have met the goal for the day.\n\n\nSpeaker Notes: Verification check: Run your script from top to bottom. If it stops, read the first error and inspect the named object before changing code. Remind students that this is the last time the upload is walked through in class: Assignment 03 (import and inspect) is already open in Classroom 50, is done at home, and is due Sunday, Sep 27. Point them to the Issues tab for their Module 01 feedback."
+  },
+  {
     "objectID": "slides/04-clean-shape-columns.html#slide-accessibility-note",
     "href": "slides/04-clean-shape-columns.html#slide-accessibility-note",
     "title": "Module 04: Clean and Shape Columns",
@@ -145,236 +530,5 @@
     "title": "Module 04: Clean and Shape Columns",
     "section": "Before You Leave",
     "text": "Before You Leave\n\nFollow-along runs top to bottom after restarting R\nCommit and push class/ (required, not graded; participation)\nPush shows on GitHub\nYou know where Assignment 04 lives: assignment/assignment.qmd"
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#slide-accessibility-note",
-    "href": "slides/02-objects-debugging.html#slide-accessibility-note",
-    "title": "Module 02: Objects & Debugging",
-    "section": "Slide Accessibility Note",
-    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A close-up image of a computer screen displaying multiple R error messages in red text, symbolizing the debugging process.\nSpeaker Notes: These slides explain the fundamental nature of R objects and how to diagnose errors."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#debugging-loop",
-    "href": "slides/02-objects-debugging.html#debugging-loop",
-    "title": "Module 02: Objects & Debugging",
-    "section": "Debugging Loop",
-    "text": "Debugging Loop\n\n\nSymptom\n\n\n-&gt;\n\n\nInspect object\n\n\n-&gt;\n\n\nRead the error\n\n\n-&gt;\n\n\nChange one thing\n\n\n-&gt;\n\n\nRun again\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#how-to-use-today",
-    "href": "slides/02-objects-debugging.html#how-to-use-today",
-    "title": "Module 02: Objects & Debugging",
-    "section": "How To Use Today",
-    "text": "How To Use Today\n\nRead the error message before touching the code.\nUse the Environment pane as a diagnostic tool.\nFix the cause, not just the symptom.\n\nDownload the Module 02 follow-along script (.R)\n\nSpeaker Notes: This week is about developing a debugging habit. The slides should help students remember the flow: inspect, diagnose, fix, verify."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#r-is-for-objects",
-    "href": "slides/02-objects-debugging.html#r-is-for-objects",
-    "title": "Module 02: Objects & Debugging",
-    "section": "R is for Objects",
-    "text": "R is for Objects\n\nEverything that exists in R is an object.\nEverything that happens is a function.\nObjects have types (numeric, character, logical).\n\n\nSpeaker Notes: In R, everything you create—a single number, a list of names, or a giant dataset—is an ‘object’. We interact with these objects using ‘functions’. Today we learn how to see inside these objects and understand their ‘type’."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#learning-objectives",
-    "href": "slides/02-objects-debugging.html#learning-objectives",
-    "title": "Module 02: Objects & Debugging",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nCreate and name R objects.\nIdentify common data types.\nInspect data frames in the Environment.\nInterpret and fix common R errors.\n\n\nSpeaker Notes: Our goal is to move from being ‘scared’ of error messages to ‘reading’ them. By the end of today, you should be able to identify why a function fails based on the data type you give it."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#live-coding-section-1",
-    "href": "slides/02-objects-debugging.html#live-coding-section-1",
-    "title": "Module 02: Objects & Debugging",
-    "section": "Live Coding: Section 1",
-    "text": "Live Coding: Section 1\n\nCreating vectors and data frames.\nBreaking R on purpose.\nInterpreting error messages.\n\n\nSpeaker Notes: We’ll start by building vectors. Then, I’m going to ask you to try and ‘break’ your code. Intentionally causing errors is one of the best ways to learn how R thinks."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#the-challenge-45-mins",
-    "href": "slides/02-objects-debugging.html#the-challenge-45-mins",
-    "title": "Module 02: Objects & Debugging",
-    "section": "The Challenge [45 mins]",
-    "text": "The Challenge [45 mins]\nProblem: The Debugging Clinic\n\nOpen debug_this.R in your Assignment 02 repository.\nFix 3 intentional errors and explain each cause in a code comment above the fix.\nInspect a small soil dataset before deciding what to fix.\nExtension: Convert a column type and create a logical pH check.\nBase goal: Get the script running from top to bottom.\nExtension goal: Explain each fix in plain language.\n\nTo get the repository: sign in to Classroom 50 with your GitHub account, select NRES800, and create Assignment 02 - Debugging Clinic. Clone it in Positron the same way as Assignment 01.\n\nSpeaker Notes: In this challenge, you are playing the role of a ‘Code Doctor’. I’ve provided a script that is sick—it won’t run. Your job is to diagnose the 3 main bugs and get it back to healthy, runnable status."
-  },
-  {
-    "objectID": "slides/02-objects-debugging.html#verification",
-    "href": "slides/02-objects-debugging.html#verification",
-    "title": "Module 02: Objects & Debugging",
-    "section": "Verification",
-    "text": "Verification\n\nDoes the script run without errors from top to bottom?\nCan you identify the object-name, data-type, and plotting errors?\nDid you save debug_this.R and your explanation comments?\nDid you replace the README paragraph with 2-3 sentences of your own?\nWe upload together at the start of class. This is the last supported upload; Assignment 03 is pushed from home.\nDue Tuesday, Sep 22, 11:59 PM. Feedback arrives as an Issue in your repository.\n\n\nSpeaker Notes: If they can explain the error in one sentence and show the fix in the script, they have met the goal for the day.\n\n\nSpeaker Notes: Verification check: Run your script from top to bottom. If it stops, read the first error and inspect the named object before changing code. Remind students that this is the last time the upload is walked through in class: Assignment 03 (import and inspect) is already open in Classroom 50, is done at home, and is due Sunday, Sep 27. Point them to the Issues tab for their Module 01 feedback."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "NRES 800",
-    "section": "",
-    "text": "Welcome to the lecture slides for NRES 800: Data Management and Visualization.\nCanvas remains the course home for assignments, deadlines, grades, announcements, and submissions. This site provides the HTML lecture slides released for the course."
-  },
-  {
-    "objectID": "index.html#lecture-slides-by-module",
-    "href": "index.html#lecture-slides-by-module",
-    "title": "NRES 800",
-    "section": "Lecture slides by module",
-    "text": "Lecture slides by module\n\nModule 01: The Whole Game (Assignment 01)\nModule 02: Objects and Debugging (Assignment 02)\nModule 03: Importing Data (Assignment 03)\nModule 04: Clean and Shape Columns (Assignment 04)\n\nNew lectures appear here only after they are ready for students."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#slide-accessibility-note",
-    "href": "slides/01-the-whole-game.html#slide-accessibility-note",
-    "title": "Module 03: The Whole Game",
-    "section": "Slide Accessibility Note",
-    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A scenic photograph of three different penguin species (Adelie, Chinstrap, Gentoo) standing on ice in the Palmer Archipelago, Antarctica.\nSpeaker Notes: These slides are designed to be read alongside the live-coding script."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#the-whole-game-map",
-    "href": "slides/01-the-whole-game.html#the-whole-game-map",
-    "title": "Module 03: The Whole Game",
-    "section": "The Whole Game Map",
-    "text": "The Whole Game Map\n\n\nAsk a field question\n\n\n-&gt;\n\n\nSketch the graph\n\n\n-&gt;\n\n\nWrite reproducible code\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nCommit the evidence\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
-    "href": "slides/01-the-whole-game.html#today-turn-your-graph-into-an-assignment",
-    "title": "Module 03: The Whole Game",
-    "section": "Today: Turn Your Graph into an Assignment",
-    "text": "Today: Turn Your Graph into an Assignment\n\nAccept the NRES800 organization invitation in GitHub.\nIn Classroom 50, sign in with that GitHub account, select NRES800, and create your private Assignment 01 repository.\nClone it and open assignment.R.\nRebuild the graph you explored: body mass vs. flipper length, colored by species.\nMake it readable, explain one pattern in script comments, run it, commit, and push.\n\nDue: Tuesday, September 15, 2026, 11:59 PM Central Time.\n\nSpeaker Notes: Start with the graph students explored before the break. The point is not to start a different exercise; it is to turn that exploratory graph into a small, reproducible submission. Demonstrate the workflow in this order: open the Classroom 50 assignment, create the private repository, clone it, open assignment.R, move the familiar ggplot() mapping into the assignment, run the script, inspect the plot, commit, and push. Before opening Classroom 50, confirm that students accepted their NRES800 GitHub organization invitation; they must sign in to Classroom 50 with that same account and select NRES800. Do not promise an accept link on this slide: show the current Classroom 50 page or post the link once the assignment is registered."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#choose-one-git-path",
-    "href": "slides/01-the-whole-game.html#choose-one-git-path",
-    "title": "Module 03: The Whole Game",
-    "section": "Choose One Git Path",
-    "text": "Choose One Git Path\n\nGitHub Desktop: use it if it opens; no terminal required.\nPositron’s built-in Source Control: use its Git panel if Git is installed; no terminal or separate GitHub extension is needed.\nBoth paths end the same way: clone → fetch/pull → edit → commit → push → verify on GitHub.\nIf an app will not open, your repository is safe on GitHub: take a screenshot and use the other path or ask for help.\n\n\nSpeaker Notes: Students do not need the gh command-line tool for this assignment. Start by asking who has a working GitHub Desktop and direct them to that path. For students using Positron, demonstrate New Folder from Git and the Source Control icon in the left Activity Bar. Explain the vocabulary before clicking anything: clone makes the first local copy, fetch checks for remote changes without changing their files, pull brings those changes into the local copy, commit makes a named local checkpoint, and push sends that checkpoint to GitHub. The book’s “Getting your assignment repository” section gives the click-by-click directions for both paths."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#brand-new-positron-user-use-built-in-source-control-to-clone-first.",
-    "href": "slides/01-the-whole-game.html#brand-new-positron-user-use-built-in-source-control-to-clone-first.",
-    "title": "Module 03: The Whole Game",
-    "section": "Brand-New Positron User? Use Built-In Source Control to Clone First.",
-    "text": "Brand-New Positron User? Use Built-In Source Control to Clone First.\n\nOn GitHub: Code → HTTPS → Copy.\nIn Positron’s built-in Source Control: choose New Folder from Git.\nPaste the address, choose your class-work folder, and select Create Folder.\nWhen Positron finishes, open the new folder; then open assignment.R.\n\nDo not start with File → Open Folder. That comes after the clone creates your local repository.\n\nSpeaker Notes: This sequence is specifically for students who have never cloned a repository. They cannot open an assignment folder before one exists on their computer. Demonstrate the GitHub Code → HTTPS copy, then Positron’s built-in New Folder from Git command. It is the GUI route for clone, fetch, pull, commit, and push; students do not need a terminal or a separate GitHub extension. Only after cloning finishes should they use the Explorer to open assignment.R. For students who have already cloned the repository, File → Open Folder is appropriate for returning to that existing local folder."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
-    "href": "slides/01-the-whole-game.html#why-keep-github-in-the-loop",
-    "title": "Module 03: The Whole Game",
-    "section": "Why Keep GitHub in the Loop?",
-    "text": "Why Keep GitHub in the Loop?\n\n\nIllustration by Allison Horst, CC BY 4.0.\n\n\nSpeaker Notes: This image is a visual metaphor, not a required decoding task. Say the point plainly: GitHub gives a project named checkpoints and a shared version of the work; without those, it is easy to lose track of which file is current. Connect the three visible ideas to today’s actions: clone the shared starting point, commit named checkpoints, and push the current version for others to review."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#how-to-use-today",
-    "href": "slides/01-the-whole-game.html#how-to-use-today",
-    "title": "Module 03: The Whole Game",
-    "section": "How To Use Today",
-    "text": "How To Use Today\n\nType along in the follow-along script.\nAsk questions during the checkpoints.\nKeep the goal small: one plot, one interpretation, one push.\n\nDownload the Assignment 01 follow-along script (.R)\n\nSpeaker Notes: This deck is the narrative layer, not the whole lesson. We will use it to orient ourselves, but the instructor script is the real teaching artifact."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#why-the-whole-game",
-    "href": "slides/01-the-whole-game.html#why-the-whole-game",
-    "title": "Module 03: The Whole Game",
-    "section": "Why the “Whole Game”?",
-    "text": "Why the “Whole Game”?\n\nWe start by doing, not just installing.\nYou will load data, make a plot, and interpret it TODAY.\nWe will spend the rest of the semester unpacking HOW it works.\n\n\nSpeaker Notes: Welcome to NRES 800. We use a ‘Whole Game’ approach, inspired by David Perkins. Instead of spending weeks learning about file types and syntax, we are going to build a full analysis today. This gives you the ‘big picture’ context for everything else we’ll learn."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#learning-objectives",
-    "href": "slides/01-the-whole-game.html#learning-objectives",
-    "title": "Module 03: The Whole Game",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nCreate a private weekly repository through Classroom 50 and clone it.\nMove a familiar ggplot2 graph into a reproducible R script.\nRun the complete script and inspect the resulting plot.\nCommit and push a reproducible result to GitHub.\n\n\nSpeaker Notes: These four objectives are the technical foundation of the course. If you can do these four things by the end of today, you are 100% on track."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
-    "href": "slides/01-the-whole-game.html#todays-dataset-palmer-penguins",
-    "title": "Module 03: The Whole Game",
-    "section": "Today’s Dataset: Palmer Penguins",
-    "text": "Today’s Dataset: Palmer Penguins\n\nData on three penguin species in Antarctica.\nVariables: bill length, flipper length, body mass, sex.\nA classic dataset for learning visualization.\n\n\nSpeaker Notes: The palmerpenguins dataset is a modern alternative to the classic ‘iris’ dataset. It’s real ecological data collected by Dr. Kristen Gorman at the Palmer Station."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#live-coding-section-1",
-    "href": "slides/01-the-whole-game.html#live-coding-section-1",
-    "title": "Module 03: The Whole Game",
-    "section": "Live Coding: Section 1",
-    "text": "Live Coding: Section 1\n\nOpen your project in RStudio.\nOpen scripts/week_01_follow_along.R.\nType along as we build the plot.\n\n\nSpeaker Notes: Now, please switch over to RStudio. We are going to build our first plot. Remember: don’t just watch me—type the code yourself. The muscle memory of typing is how you learn the syntax."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#the-challenge-45-mins",
-    "href": "slides/01-the-whole-game.html#the-challenge-45-mins",
-    "title": "Module 03: The Whole Game",
-    "section": "The Challenge [45 mins]",
-    "text": "The Challenge [45 mins]\nProblem: The 30-Minute Analyst\n\nLoad the palmerpenguins data.\nCreate a scatterplot of body mass vs flipper length.\nColor the points by species.\nExtension: Add professional labels and a theme.\nBase goal: Make the plot work and make the mapping correct.\nExtension goal: Make the plot readable without explanation.\n\n\nSpeaker Notes: You have 45 minutes to work on this challenge. If you finish the base goal early, try the extension. The extension asks you to add labels like title, x-axis, and y-axis."
-  },
-  {
-    "objectID": "slides/01-the-whole-game.html#verification",
-    "href": "slides/01-the-whole-game.html#verification",
-    "title": "Module 03: The Whole Game",
-    "section": "Verification",
-    "text": "Verification\n\nDoes the R script run and display the plot without an error?\nCan you explain why species belongs inside aes()?\nDid you commit and push the script?\n\n\nSpeaker Notes: Before you leave, verify three things: run the script, explain the result, and push to GitHub. If one of those is missing, the assignment is not done yet.\n\n\nSpeaker Notes: Before you leave, you must verify your work. Run the complete script. If it errors, we need to fix it before you go. Finally, push to GitHub. If it’s not on GitHub, it doesn’t exist for grading!"
-  },
-  {
-    "objectID": "slides/03-importing-data.html#slide-accessibility-note",
-    "href": "slides/03-importing-data.html#slide-accessibility-note",
-    "title": "Module 03: Importing Data",
-    "section": "Slide Accessibility Note",
-    "text": "Slide Accessibility Note\n\nTitle Background Image Alt-Text: A photograph of organized filing cabinets and stacks of papers, representing the transition from physical data storage to organized digital project folders.\nSpeaker Notes: These slides cover the critical concepts of project-relative paths and data import strategies."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#reproducible-path-map",
-    "href": "slides/03-importing-data.html#reproducible-path-map",
-    "title": "Module 03: Importing Data",
-    "section": "Reproducible Path Map",
-    "text": "Reproducible Path Map\n\n\nProject folder\n\n\n-&gt;\n\n\nRelative path\n\n\n-&gt;\n\n\nImport data\n\n\n-&gt;\n\n\nRun and inspect\n\n\n-&gt;\n\n\nShare repository\n\n\n\nUse this map to track where each live-coding step fits in the larger workflow."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#module-03-importing-data",
-    "href": "slides/03-importing-data.html#module-03-importing-data",
-    "title": "Module 03: Importing Data",
-    "section": "Module 03: Importing Data",
-    "text": "Module 03: Importing Data\n\nFinish uploading Assignment 02, then move to importing data.\nToday: project folders, here(), read_csv(), and import checks.\nAssignment 03: Import and Inspect. Module 04 comes afterward."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#download-and-open-the-practice-project",
-    "href": "slides/03-importing-data.html#download-and-open-the-practice-project",
-    "title": "Module 03: Importing Data",
-    "section": "Download and Open the Practice Project",
-    "text": "Download and Open the Practice Project\nDownload Module 03 practice project (.zip)\n\nExtract the ZIP before opening any files.\nIn Positron, choose File &gt; Open Folder and open module_03_practice.\nOpen scripts/week_03_follow_along.R in that folder.\nKeep both CSV files in data/. Run here::here() to check the project root."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#how-to-use-today",
-    "href": "slides/03-importing-data.html#how-to-use-today",
-    "title": "Module 03: Importing Data",
-    "section": "How To Use Today",
-    "text": "How To Use Today\n\nFind the project root first.\nUse here() before you type a path by hand.\nVerify that the raw data is still unchanged after import.\n\nDownload the Module 03 follow-along script (.R)\n\nSpeaker Notes: The goal today is portability. Students should leave with a workflow that works on another machine, not just the one they are using right now."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#the-path-to-reproducibility",
-    "href": "slides/03-importing-data.html#the-path-to-reproducibility",
-    "title": "Module 03: Importing Data",
-    "section": "The Path to Reproducibility",
-    "text": "The Path to Reproducibility\n\nAvoid absolute paths like C:/Users/Chris/Downloads.\nUse the here package to find files relative to your project.\nKeep your raw data “read-only”.\n\n\nSpeaker Notes: One of the most common reasons code fails when shared is that it uses ‘absolute paths’. If your script starts with ‘C:/Users/YourName’, it will NEVER work on my machine. We’re going to use a package called ‘here’ that builds paths relative to your project file, making your code portable and reproducible."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#learning-objectives",
-    "href": "slides/03-importing-data.html#learning-objectives",
-    "title": "Module 03: Importing Data",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nExplain the value of relative paths.\nUse here::here() to find files.\nImport CSVs with read_csv().\nSkip metadata rows during import.\n\n\nSpeaker Notes: By the end of today, you’ll be able to move your project folder to any computer, or even share it on GitHub, and have the data load perfectly every time. We’ll also learn how to handle those annoying extra rows at the top of many CSV files."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#live-coding-section-1",
-    "href": "slides/03-importing-data.html#live-coding-section-1",
-    "title": "Module 03: Importing Data",
-    "section": "Live Coding: Section 1",
-    "text": "Live Coding: Section 1\n\nSetting up the data/ folder.\nImporting weather data.\nHandling messy headers.\nChecking the imported types and row count.\n\n\nSpeaker Notes: First, we’re going to create a standard ‘data’ folder. Then we’ll practice importing a weather dataset. We’ll look at the console output to see how R ‘guesses’ what kind of data is in each column."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#the-challenge-45-mins",
-    "href": "slides/03-importing-data.html#the-challenge-45-mins",
-    "title": "Module 03: Importing Data",
-    "section": "The Challenge [45 mins]",
-    "text": "The Challenge [45 mins]\nProblem: The Import Audit\n\nImport stream_gauge_messy.csv with 5 rows of metadata.\nRename the discharge column so it is easier to read.\nIdentify missing values or suspicious values in the imported data.\nConfirm that the row count changes the way you expect after skipping metadata.\n\nAssignment 03 - Import and Inspect uses the same skill on stream_gauge_data.csv. Accept it in Classroom 50 (select NRES800), complete assignment.R at home, write your answers as # comments in the script, edit the README, and push from home. Due Sunday, Sep 27, 11:59 PM.\n\nSpeaker Notes: Your challenge involves a stream gauge dataset. It has 5 rows of metadata—notes about the sensor—at the top. You’ll need to use the ‘skip’ argument to get to the real data. Then, you’ll audit the data for missing values."
-  },
-  {
-    "objectID": "slides/03-importing-data.html#verification",
-    "href": "slides/03-importing-data.html#verification",
-    "title": "Module 03: Importing Data",
-    "section": "Verification",
-    "text": "Verification\n\nDoes the script run on your neighbor’s machine?\nAre you using here() and not setwd()?\nIs your raw data still in the right folder and unchanged?\nCan you explain why skipping the correct number of rows matters?\nAssignment 03 is pushed from home; no in-class upload this time. Feedback arrives as an Issue in your repository.\n\n\nSpeaker Notes: The import is not finished until you know where the file lives, how many rows came in, and whether the headers are correct.\n\n\nSpeaker Notes: The ultimate test of reproducibility: can your neighbor run your script? If you used ‘here()’, the answer should be yes. Check your ‘data’ folder—did you include the raw CSV?"
   }
 ]
