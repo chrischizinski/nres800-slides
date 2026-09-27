@@ -1,0 +1,330 @@
+---
+title: "Module 05: Summaries and Decisions"
+subtitle: "Every summary hides a decision. Make it on purpose."
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+---
+
+```{r}
+#| include: false
+library(gt)
+library(countdown)
+
+# One table style for every slide table (instructor convention: gt tables).
+slide_table <- function(df) {
+  gt(df) |>
+    fmt_markdown(columns = everything()) |>
+    tab_options(
+      table.font.size = px(24),
+      column_labels.font.weight = "bold",
+      table.width = pct(100),
+      data_row.padding = px(6)
+    ) |>
+    opt_row_striping()
+}
+```
+
+## Slide Accessibility Note
+- **Images:** none; diagrams are HTML text with labels.
+- **Speaker Notes:** These slides follow the Module 05 follow-along script.
+  They name the purpose, vocabulary, challenges, and checklist; the live
+  coding happens in `class/week_05_follow_along.R`.
+
+<!-- visual-aid: week_05 -->
+## Today's Workflow
+
+::: {.diagram-flow .diagram-compact aria-label="Workflow from clean data to a checked answer: decide which rows count, decide categories with if_else and case_when, group_by, summarize, check against a known total"}
+<div class="diagram-node">Clean data</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Decide which rows count</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Decide categories</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node"><code>group_by</code> + <code>summarize</code></div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Check against a known total</div>
+:::
+
+<p class="diagram-caption">A total you cannot check is a guess.</p>
+
+## Before We Start
+
+- Open **this module's repo** (accepted in Classroom 50 before class).
+- Open `week_05.Rproj`, then `class/week_05_follow_along.R`.
+- Run `here::here()`: it should print your repo folder.
+- Backup: the follow-along is also on this slide site.
+
+<a class="script-download" href="../scripts/week_05_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 05 follow-along script (.R)</a>
+
+::: {.notes}
+Anyone who could not clone: pair them with a neighbor for Cycle 1 and fix the clone during Challenge 1.
+:::
+
+## Recap: Module 04
+
+Answer in your script first:
+
+1. After `read_csv()`, what do you run first on real data, and why?
+2. A filter dropped 39 of 109 rows. What must you report with the answer?
+3. What does `1987 %/% 10 * 10` give?
+
+## Learning Goals
+
+By the end of today you can:
+
+- summarize a table, and one row **per group**, with `group_by()` + `summarize()`
+- use `count()` as the shortcut, including two-column counts
+- handle `NA` in summaries: `na.rm = TRUE`, and **report how many were missing**
+- make categories with `if_else()` (two) and `case_when()` (many)
+- spot **total rows mixed with detail rows**, and summarize without double counting
+- explain how the rows and the denominator change a percentage
+
+## The Data: Great Lakes Commercial Catch
+
+- Great Lakes Fishery Commission commercial fish production
+- **65,706 rows x 7 columns**, 1867-2015, six lakes
+- `values` = catch in **thousands of pounds**
+- Used exactly as released. Via TidyTuesday (2021-06-08)
+
+::: {.notes}
+Same agency as last week's stocking data. Ask: what would a fisheries manager want summarized from this?
+:::
+
+## Vocabulary
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Term, ~Meaning,
+  "summary", "one number that stands for many rows: a count, total, mean",
+  "grouping", "`group_by()` splits rows; `summarize()` returns one row per group",
+  "`na.rm = TRUE`", "drop `NA` before computing: a decision to **report**, not a fix",
+  "total row", "a row that already sums other rows; include it and you double count",
+  "denominator", "what a percentage is \"out of\"; change it, change the answer"
+) |>
+  slide_table()
+```
+
+## Cycle 1: One Row Per Group
+
+```r
+fishing <- read_csv(here("class", "data", "fishing.csv")) |>
+  clean_names()
+
+fishing |> count(lake)                        # you know this one
+fishing |> summarize(total = sum(values))     # NA. Why?
+
+fishing |>
+  group_by(lake) |>
+  summarize(
+    rows      = n(),
+    n_missing = sum(is.na(values)),           # report what you dropped
+    total     = sum(values, na.rm = TRUE)
+  ) |>
+  arrange(desc(total))
+```
+
+## Why Is The Sum `NA`?
+
+- 21,916 of 65,706 `values` are `NA` (a third of the file)
+- One unknown value makes the total unknown; R refuses to guess
+- `na.rm = TRUE` drops them. That is **your** decision
+- So report `n_missing` right beside the total, every time
+
+. . .
+
+`sum(is.na(values))`: `is.na()` gives TRUE/FALSE, `sum()` counts the TRUEs.
+
+## A Number That Should Worry You
+
+```r
+fishing |>
+  filter(lake == "Michigan", species == "Lake Whitefish", year == 2000) |>
+  summarize(total = sum(values, na.rm = TRUE))
+#> 14381
+```
+
+Is that the U.S. commercial lake whitefish catch from Lake Michigan in 2000?
+
+## Challenge 1: Catch Audit (15 min)
+
+**Question:** where did 14,381 come from?
+
+- **Base:** show the rows behind the total (`region`, `values`). Compare
+  with the `U.S. Total` row. How many times too big? Explain with
+  `distinct(lake, region)`
+- **Extension:** for every lake, all-rows sum vs U.S. total sum. Which lake
+  is furthest off, and why is that ratio not only double counting?
+
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
+
+## The Same Catch, Counted Three Times
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~region, ~values, ~`what it is`,
+  "Green Bay (MI)", "1,158", "area",
+  "Mich. Proper (MI)", "1,871", "area",
+  "**MI State Total**", "**3,029**", "sum of the two above",
+  "Green Bay (WI)", "116", "area",
+  "Mich. Proper (WI)", "1,648", "area",
+  "**WI State Total**", "**1,765**", "sum of the two above",
+  "Illinois (IL), Indiana (IN)", "NA", "not reported",
+  "**U.S. Total**", "**4,794**", "sum of the state totals"
+) |>
+  slide_table() |>
+  cols_align(align = "right", columns = values)
+```
+
+Lake Michigan lake whitefish, 2000 (thousand lb). All rows sum to 14,381.
+
+## Cycle 2: Categories You Decide
+
+```r
+fishing |>
+  mutate(recorded = if_else(is.na(values), "missing", "recorded")) |>
+  count(lake, recorded)
+
+fishing <- fishing |>
+  mutate(
+    region_level = case_when(
+      region %in% us_totals     ~ "US total",
+      region %in% canada_totals ~ "Canada total",
+      region %in% state_totals  ~ "state total",
+      .default = "area"
+    )
+  )
+
+fishing |> count(region_level, region)   # did every region land right?
+```
+
+## How `case_when()` Reads
+
+- Each line: **if this ~ then that**
+- Lines are checked **top to bottom**; the **first TRUE wins**
+- `.default` catches every row no line matched (forget it: `NA`)
+- Always `count()` the result to check it
+
+. . .
+
+```r
+era = case_when(
+  year < 2000 ~ "1950-1999",   # first: now 1867 lands here too
+  year < 1900 ~ "1867-1899",   # never reached
+  ...
+)
+```
+
+## Now The Totals Are Right
+
+```r
+fishing |>
+  filter(region_level == "US total") |>
+  group_by(lake) |>
+  summarize(n_missing = sum(is.na(values)),
+            total = sum(values, na.rm = TRUE),
+            .groups = "drop") |>
+  arrange(desc(total))
+```
+
+- Michigan first: 3,072,965 thousand lb
+- Saint Clair last, but 845 of its 1,171 rows are missing. Would you rank
+  it with confidence?
+
+## Challenge 2: Species List (15 min)
+
+- **Base:** `count(species)`: find the same fish spelled differently
+  (`"Amercian Eel"`?). Recode with `case_when()`, keep the rest with
+  `.default = species`, count again. How many labels remain?
+- **Extension:** how many lakes report each species in the 2000s?
+  (hint: `n_distinct()`). Are `"Drum"` and `"Freshwater Drum"` the same
+  fish? What would you check first?
+
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
+
+## Break (10 min)
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## Integrated Challenge (30 min)
+
+**Lake whitefish, Lake Michigan, U.S. catch:** total catch by decade, with
+the number of years and missing years beside each total. Which decade
+peaked?
+
+- **Base:** one pipeline, filter, `decade` with `mutate()`, `group_by()`,
+  `summarize()`, sort. Answer in pounds, not thousands
+- **Extension:** the 2010s look low. Compute catch **per recorded year**.
+  Does the story change? Which decade "wins" now, and should you trust it?
+
+```{r}
+#| echo: false
+countdown(minutes = 30)
+```
+
+## Every Fix Raises The Next Question
+
+- By total, the **1990s** peak: 69,967 thousand lb (about 70 million lb)
+- The 2010s look halved, but the data end in 2015: **6 years**, not 10
+- Per year, the 2010s dip only a little (4,265 vs 4,575)
+- Per year, the **1870s** "win", on **one** recorded year
+
+. . .
+
+**Report a rate with the number of years behind it.**
+
+## Assignment 05: Park Species Decisions
+
+- **Data:** NPS species lists, 15 most-visited national parks (61k records)
+- **Decide:** which records count as "in the park"; one category for two
+  kinds of "unknown"
+- **Summarize:** percent non-native per park. Watch the **denominator**
+- **Investigate:** `dplyr::across()` to total several columns at once
+- **Due Sun Oct 11, 11:59 PM.** Last push before then is graded
+
+## How It Is Graded (10 pts)
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Criterion, ~Points,
+  "Renders + `.html` pushed", 2,
+  "Cleaning and types", 2,
+  "Core tasks", 3,
+  "Investigate", 1,
+  "Written answers", 1,
+  "README", 1
+) |>
+  slide_table() |>
+  cols_align(align = "center", columns = Points)
+```
+
+- Only `assignment/` and `README.md` are checked. **`class/` never is.**
+- A red X is feedback, not a grade.
+
+## Before You Leave
+
+- [ ] Follow-along runs top to bottom after restarting R
+- [ ] **Commit and push `class/`** (required, not graded; participation).
+  GitHub Desktop: summary, **Commit to main**, **Push origin**
+- [ ] Push shows on GitHub
+- [ ] You know where Assignment 05 lives: `assignment/assignment.qmd`
