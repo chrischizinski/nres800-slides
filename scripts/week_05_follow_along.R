@@ -206,6 +206,6 @@ fishing |>
 #     write a summary, Commit to main, then Push origin)
 # [ ] Check the push shows on GitHub
 #
-# Assignment 05 - Park Species Decisions (due Sun Oct 11, 11:59 PM)
+# Assignment 05 - Park Species Decisions (due Sun Oct 18, 11:59 PM)
 # - Open assignment/assignment.qmd (not this file)
 # - Graded: assignment/ and README.md only

@@ -84,11 +84,39 @@
     "text": "The Same Catch, Counted Three Times\n\n\n\n\n\n\n\n\nregion\nvalues\nwhat it is\n\n\n\n\nGreen Bay (MI)\n1,158\narea\n\n\nMich. Proper (MI)\n1,871\narea\n\n\nMI State Total\n3,029\nsum of the two above\n\n\nGreen Bay (WI)\n116\narea\n\n\nMich. Proper (WI)\n1,648\narea\n\n\nWI State Total\n1,765\nsum of the two above\n\n\nIllinois (IL), Indiana (IN)\nNA\nnot reported\n\n\nU.S. Total\n4,794\nsum of the state totals\n\n\n\n\n\n\n\nLake Michigan lake whitefish, 2000 (thousand lb). All rows sum to 14,381."
   },
   {
+    "objectID": "slides/05-summaries-decisions.html#part-2-mon-oct-12-where-we-are",
+    "href": "slides/05-summaries-decisions.html#part-2-mon-oct-12-where-we-are",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Part 2 (Mon Oct 12): Where We Are",
+    "text": "Part 2 (Mon Oct 12): Where We Are\n\nPart 1: one row per group, and a total that counted the catch three times\nToday: decide categories, get the right totals, then start the assignment\nNew file today: class/week_05_part2_follow_along.R\nAssignment 05 is now due Sun Oct 18"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#get-part-2-your-first-pull",
+    "href": "slides/05-summaries-decisions.html#get-part-2-your-first-pull",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Get Part 2: Your First Pull",
+    "text": "Get Part 2: Your First Pull\nPull = copy new changes from GitHub down to your computer (push goes up). I added one new file to your repo on GitHub. Your Part 1 file is not touched.\n\n\nGitHub Desktop\n\nCommit anything changed\nFetch origin\nPull origin\n\n\nPositron\n\nSource Control: commit anything changed\n… menu &gt; Pull\n\n\nCheck: week_05_part2_follow_along.R is in class/."
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#stuck-on-the-pull",
+    "href": "slides/05-summaries-decisions.html#stuck-on-the-pull",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Stuck On The Pull?",
+    "text": "Stuck On The Pull?\n\n\n\n\n\n\n\n\nYou see\nDo this\n\n\n\n\nDesktop: Pull origin, then Push origin\nClick Pull origin, then Push origin\n\n\nPositron: “reconcile divergent branches”\nTerminal: git pull --no-rebase --no-edit, then push\n\n\nNo Pull option / “not a git repository”\nOpen the Module 05 repo folder\n\n\nAnything else after 3 minutes\nDownload below into class/; we fix git at the break\n\n\n\n\n\n\n\nDownload the Part 2 follow-along script (.R)"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#checkpoint-same-start-for-everyone",
+    "href": "slides/05-summaries-decisions.html#checkpoint-same-start-for-everyone",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Checkpoint: Same Start For Everyone",
+    "text": "Checkpoint: Same Start For Everyone\n\nSession &gt; Restart R\nOpen class/week_05_part2_follow_along.R\nRun Section 0, the checkpoint block\nnrow(fishing) should print 65706\n\n\nHow each step works today:\n\nGOAL and WHY first, then a worked example on tiny data\nYour turn on the real data, then a CHECK number: match it, move on\nChallenges: Step 1 for everyone, Step 2 when Step 1 matches"
+  },
+  {
     "objectID": "slides/05-summaries-decisions.html#cycle-2-categories-you-decide",
     "href": "slides/05-summaries-decisions.html#cycle-2-categories-you-decide",
     "title": "Module 05: Summaries and Decisions",
     "section": "Cycle 2: Categories You Decide",
-    "text": "Cycle 2: Categories You Decide\nfishing |&gt;\n  mutate(recorded = if_else(is.na(values), \"missing\", \"recorded\")) |&gt;\n  count(lake, recorded)\n\nfishing &lt;- fishing |&gt;\n  mutate(\n    region_level = case_when(\n      region %in% us_totals     ~ \"US total\",\n      region %in% canada_totals ~ \"Canada total\",\n      region %in% state_totals  ~ \"state total\",\n      .default = \"area\"\n    )\n  )\n\nfishing |&gt; count(region_level, region)   # did every region land right?"
+    "text": "Cycle 2: Categories You Decide\nGOAL: label what kind of row each one is. WHY: summing every row counted the same fish three times.\nfishing |&gt;\n  mutate(recorded = if_else(is.na(values), \"missing\", \"recorded\")) |&gt;\n  count(lake, recorded)\n\nfishing &lt;- fishing |&gt;\n  mutate(\n    region_level = case_when(\n      region %in% us_totals     ~ \"US total\",\n      region %in% canada_totals ~ \"Canada total\",\n      region %in% state_totals  ~ \"state total\",\n      .default = \"area\"\n    )\n  )\n\nfishing |&gt; count(region_level, region)   # did every region land right?"
   },
   {
     "objectID": "slides/05-summaries-decisions.html#how-case_when-reads",
@@ -105,11 +133,18 @@
     "text": "Now The Totals Are Right\nfishing |&gt;\n  filter(region_level == \"US total\") |&gt;\n  group_by(lake) |&gt;\n  summarize(n_missing = sum(is.na(values)),\n            total = sum(values, na.rm = TRUE),\n            .groups = \"drop\") |&gt;\n  arrange(desc(total))\n\nMichigan first: 3,072,965 thousand lb\nSaint Clair last, but 845 of its 1,171 rows are missing. Would you rank it with confidence?"
   },
   {
-    "objectID": "slides/05-summaries-decisions.html#challenge-2-species-list-15-min",
-    "href": "slides/05-summaries-decisions.html#challenge-2-species-list-15-min",
+    "objectID": "slides/05-summaries-decisions.html#challenge-2-species-list-20-min",
+    "href": "slides/05-summaries-decisions.html#challenge-2-species-list-20-min",
     "title": "Module 05: Summaries and Decisions",
-    "section": "Challenge 2: Species List (15 min)",
-    "text": "Challenge 2: Species List (15 min)\n\nBase: count(species): find the same fish spelled differently (\"Amercian Eel\"?). Recode with case_when(), keep the rest with .default = species, count again. How many labels remain?\nExtension: how many lakes report each species in the 2000s? (hint: n_distinct()). Are \"Drum\" and \"Freshwater Drum\" the same fish? What would you check first?"
+    "section": "Challenge 2: Species List (20 min)",
+    "text": "Challenge 2: Species List (20 min)\nQuestion: how many different fish are really in this file?\n\nStep 1 (everyone): fix the four misspellings listed in your script with case_when(), keep the rest with .default = species. CHECK: 47 labels\nStep 2 (Step 1 matches): find the other same-fish labels yourself. How many lakes report each species in the 2000s? Are \"Drum\" and \"Freshwater Drum\" the same fish?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#challenge-2-hint-1-the-plan",
+    "href": "slides/05-summaries-decisions.html#challenge-2-hint-1-the-plan",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Challenge 2: Hint 1, The Plan",
+    "text": "Challenge 2: Hint 1, The Plan\n\n\nStep 1\n\ncount(species); find the four labels\nmutate() + case_when(): wrong label ~ right label\nKeep the rest: .default\ncount() again; compare with 47\n\n\nStep 2\n\nRead the 47 labels A to Z: capital letters? plural s?\nOne line per fix; several labels into one at once\nLakes: 2000s, U.S. totals, known values; count different lakes per species\n\n\nStill stuck? Hint 2 is in the book: Chapter 5, Try It."
   },
   {
     "objectID": "slides/05-summaries-decisions.html#break-10-min",
@@ -123,7 +158,14 @@
     "href": "slides/05-summaries-decisions.html#integrated-challenge-30-min",
     "title": "Module 05: Summaries and Decisions",
     "section": "Integrated Challenge (30 min)",
-    "text": "Integrated Challenge (30 min)\nLake whitefish, Lake Michigan, U.S. catch: total catch by decade, with the number of years and missing years beside each total. Which decade peaked?\n\nBase: one pipeline, filter, decade with mutate(), group_by(), summarize(), sort. Answer in pounds, not thousands\nExtension: the 2010s look low. Compute catch per recorded year. Does the story change? Which decade “wins” now, and should you trust it?"
+    "text": "Integrated Challenge (30 min)\nLake whitefish, Lake Michigan, U.S. catch: total catch by decade, with the number of years and missing years beside each total. Which decade peaked?\n\nStep 1 (everyone): fill in the pipeline in your script. Answer in pounds, not thousands. CHECK: 1990s, 69,967\nStep 2 (Step 1 matches): the 2010s look low. Compute catch per recorded year. Which decade “wins” now, and should you trust it?"
+  },
+  {
+    "objectID": "slides/05-summaries-decisions.html#integrated-challenge-hint-1-the-plan",
+    "href": "slides/05-summaries-decisions.html#integrated-challenge-hint-1-the-plan",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Integrated Challenge: Hint 1, The Plan",
+    "text": "Integrated Challenge: Hint 1, The Plan\n\n\nStep 1\n\nKeep Michigan, lake whitefish, U.S. total rows\ndecade from year (1987 becomes 1980)\nOne row per decade\nYears, number missing, total catch\nBiggest catch first\n\n\nStep 2\n\nHow many years does each decade have? Data end in 2015\nNew column: catch / recorded years\nSort by decade; read it top to bottom\nThe new “winner”: how many years is it built on?\n\n\nStill stuck? Hint 2 is in the book: Chapter 5, Try It."
   },
   {
     "objectID": "slides/05-summaries-decisions.html#every-fix-raises-the-next-question",
@@ -137,7 +179,7 @@
     "href": "slides/05-summaries-decisions.html#assignment-05-park-species-decisions",
     "title": "Module 05: Summaries and Decisions",
     "section": "Assignment 05: Park Species Decisions",
-    "text": "Assignment 05: Park Species Decisions\n\nData: NPS species lists, 15 most-visited national parks (61k records)\nDecide: which records count as “in the park”; one category for two kinds of “unknown”\nSummarize: percent non-native per park. Watch the denominator\nInvestigate: dplyr::across() to total several columns at once\nDue Sun Oct 11, 11:59 PM. Last push before then is graded"
+    "text": "Assignment 05: Park Species Decisions\n\nData: NPS species lists, 15 most-visited national parks (61k records)\nDecide: which records count as “in the park”; one category for two kinds of “unknown”\nSummarize: percent non-native per park. Watch the denominator\nInvestigate: dplyr::across() to total several columns at once\nDue Sun Oct 18, 11:59 PM. Last push before then is graded"
   },
   {
     "objectID": "slides/05-summaries-decisions.html#how-it-is-graded-10-pts",
@@ -147,11 +189,18 @@
     "text": "How It Is Graded (10 pts)\n\n\n\n\n\n\n\n\nCriterion\nPoints\n\n\n\n\nRenders + .html pushed\n2\n\n\nCleaning and types\n2\n\n\nCore tasks\n3\n\n\nInvestigate\n1\n\n\nWritten answers\n1\n\n\nREADME\n1\n\n\n\n\n\n\n\n\nOnly assignment/ and README.md are checked. class/ never is.\nA red X is feedback, not a grade."
   },
   {
+    "objectID": "slides/05-summaries-decisions.html#assignment-workshop-35-min",
+    "href": "slides/05-summaries-decisions.html#assignment-workshop-35-min",
+    "title": "Module 05: Summaries and Decisions",
+    "section": "Assignment Workshop (35 min)",
+    "text": "Assignment Workshop (35 min)\n\nOpen assignment/assignment.qmd. Goal today: Tasks 1 and 2\nTask 2, decide which records count, is the same move as region_level today\nRun it chunk by chunk. The full render fails until later tasks have code: expected, not a problem\nDone with 1 and 2? Keep going\nLast 3 minutes: commit and push assignment/"
+  },
+  {
     "objectID": "slides/05-summaries-decisions.html#before-you-leave",
     "href": "slides/05-summaries-decisions.html#before-you-leave",
     "title": "Module 05: Summaries and Decisions",
     "section": "Before You Leave",
-    "text": "Before You Leave\n\nFollow-along runs top to bottom after restarting R\nCommit and push class/ (required, not graded; participation). GitHub Desktop: summary, Commit to main, Push origin\nPush shows on GitHub\nYou know where Assignment 05 lives: assignment/assignment.qmd"
+    "text": "Before You Leave\n\nFollow-along runs top to bottom after restarting R\nCommit and push class/ (required, not graded; participation). GitHub Desktop: summary, Commit to main, Push origin\nPush shows on GitHub\nPart 2: push your assignment/ work too\nYou know where Assignment 05 lives: assignment/assignment.qmd (due Sun Oct 18)"
   },
   {
     "objectID": "slides/03-importing-data.html#slide-accessibility-note",
