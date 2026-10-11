@@ -191,7 +191,79 @@ tibble::tribble(
 
 Lake Michigan lake whitefish, 2000 (thousand lb). All rows sum to 14,381.
 
+## Part 2 (Mon Oct 12): Where We Are
+
+- Part 1: one row per group, and a total that counted the catch **three
+  times**
+- Today: **decide categories**, get the right totals, then start the
+  assignment
+- New file today: `class/week_05_part2_follow_along.R`
+- **Assignment 05 is now due Sun Oct 18**
+
+## Get Part 2: Your First Pull
+
+**Pull** = copy new changes from GitHub down to your computer (push goes
+up). I added one new file to your repo on GitHub. Your Part 1 file is not
+touched.
+
+:::: {.columns}
+::: {.column width="50%"}
+**GitHub Desktop**
+
+1. Commit anything changed
+2. **Fetch origin**
+3. **Pull origin**
+:::
+::: {.column width="50%"}
+**Positron**
+
+1. Source Control: commit anything changed
+2. **...** menu > **Pull**
+:::
+::::
+
+Check: `week_05_part2_follow_along.R` is in `class/`.
+
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
+
+## Stuck On The Pull?
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~`You see`, ~`Do this`,
+  "Desktop: **Pull origin**, then **Push origin**", "Click Pull origin, then Push origin",
+  "Positron: \"reconcile **divergent branches**\"", "Terminal: `git pull --no-rebase --no-edit`, then push",
+  "No Pull option / \"not a git repository\"", "Open the Module 05 repo folder",
+  "Anything else after 3 minutes", "Download below into `class/`; we fix git at the break"
+) |>
+  slide_table()
+```
+
+<a class="script-download" href="../scripts/week_05_part2_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Part 2 follow-along script (.R)</a>
+
+## Checkpoint: Same Start For Everyone
+
+1. **Session > Restart R**
+2. Open `class/week_05_part2_follow_along.R`
+3. Run Section 0, the checkpoint block
+4. `nrow(fishing)` should print **65706**
+
+. . .
+
+How each step works today:
+
+- **GOAL** and **WHY** first, then a **worked example** on tiny data
+- Your turn on the real data, then a **CHECK** number: match it, move on
+- Challenges: **Step 1** for everyone, **Step 2** when Step 1 matches
+
 ## Cycle 2: Categories You Decide
+
+**GOAL:** label what kind of row each one is. **WHY:** summing every row
+counted the same fish three times.
 
 ```r
 fishing |>
@@ -244,19 +316,44 @@ fishing |>
 - Saint Clair last, but 845 of its 1,171 rows are missing. Would you rank
   it with confidence?
 
-## Challenge 2: Species List (15 min)
+## Challenge 2: Species List (20 min)
 
-- **Base:** `count(species)`: find the same fish spelled differently
-  (`"Amercian Eel"`?). Recode with `case_when()`, keep the rest with
-  `.default = species`, count again. How many labels remain?
-- **Extension:** how many lakes report each species in the 2000s?
-  (hint: `n_distinct()`). Are `"Drum"` and `"Freshwater Drum"` the same
-  fish? What would you check first?
+**Question:** how many different fish are really in this file?
+
+- **Step 1 (everyone):** fix the four misspellings listed in your script
+  with `case_when()`, keep the rest with `.default = species`.
+  **CHECK: 47 labels**
+- **Step 2 (Step 1 matches):** find the other same-fish labels yourself.
+  How many lakes report each species in the 2000s? Are `"Drum"` and
+  `"Freshwater Drum"` the same fish?
 
 ```{r}
 #| echo: false
-countdown(minutes = 15)
+countdown(minutes = 20)
 ```
+
+## Challenge 2: Hint 1, The Plan {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+**Step 1**
+
+1. `count(species)`; find the four labels
+2. `mutate()` + `case_when()`: wrong label `~` right label
+3. Keep the rest: `.default`
+4. `count()` again; compare with 47
+:::
+::: {.column width="50%"}
+**Step 2**
+
+1. Read the 47 labels A to Z: capital letters? plural `s`?
+2. One line per fix; several labels into one at once
+3. Lakes: 2000s, U.S. totals, known values; count different lakes per
+   species
+:::
+::::
+
+Still stuck? **Hint 2** is in the book: Chapter 5, *Try It*.
 
 ## Break (10 min)
 
@@ -271,15 +368,39 @@ countdown(minutes = 10)
 the number of years and missing years beside each total. Which decade
 peaked?
 
-- **Base:** one pipeline, filter, `decade` with `mutate()`, `group_by()`,
-  `summarize()`, sort. Answer in pounds, not thousands
-- **Extension:** the 2010s look low. Compute catch **per recorded year**.
-  Does the story change? Which decade "wins" now, and should you trust it?
+- **Step 1 (everyone):** fill in the pipeline in your script. Answer in
+  pounds, not thousands. **CHECK: 1990s, 69,967**
+- **Step 2 (Step 1 matches):** the 2010s look low. Compute catch **per
+  recorded year**. Which decade "wins" now, and should you trust it?
 
 ```{r}
 #| echo: false
 countdown(minutes = 30)
 ```
+
+## Integrated Challenge: Hint 1, The Plan {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+**Step 1**
+
+1. Keep Michigan, lake whitefish, U.S. total rows
+2. `decade` from `year` (1987 becomes 1980)
+3. One row per decade
+4. Years, number missing, total catch
+5. Biggest catch first
+:::
+::: {.column width="50%"}
+**Step 2**
+
+1. How many years does each decade have? Data end in 2015
+2. New column: catch / **recorded** years
+3. Sort by decade; read it top to bottom
+4. The new "winner": how many years is it built on?
+:::
+::::
+
+Still stuck? **Hint 2** is in the book: Chapter 5, *Try It*.
 
 ## Every Fix Raises The Next Question
 
@@ -299,7 +420,7 @@ countdown(minutes = 30)
   kinds of "unknown"
 - **Summarize:** percent non-native per park. Watch the **denominator**
 - **Investigate:** `dplyr::across()` to total several columns at once
-- **Due Sun Oct 11, 11:59 PM.** Last push before then is graded
+- **Due Sun Oct 18, 11:59 PM.** Last push before then is graded
 
 ## How It Is Graded (10 pts)
 
@@ -321,10 +442,27 @@ tibble::tribble(
 - Only `assignment/` and `README.md` are checked. **`class/` never is.**
 - A red X is feedback, not a grade.
 
+## Assignment Workshop (35 min)
+
+- Open `assignment/assignment.qmd`. **Goal today: Tasks 1 and 2**
+- Task 2, *decide which records count*, is the same move as
+  `region_level` today
+- Run it chunk by chunk. The full render fails until later tasks have code:
+  expected, not a problem
+- Done with 1 and 2? Keep going
+- Last 3 minutes: **commit and push `assignment/`**
+
+```{r}
+#| echo: false
+countdown(minutes = 35)
+```
+
 ## Before You Leave
 
 - [ ] Follow-along runs top to bottom after restarting R
 - [ ] **Commit and push `class/`** (required, not graded; participation).
   GitHub Desktop: summary, **Commit to main**, **Push origin**
 - [ ] Push shows on GitHub
+- [ ] Part 2: push your `assignment/` work too
 - [ ] You know where Assignment 05 lives: `assignment/assignment.qmd`
+  (**due Sun Oct 18**)
