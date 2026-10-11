@@ -144,7 +144,7 @@
     "href": "slides/05-summaries-decisions.html#challenge-2-hint-1-the-plan",
     "title": "Module 05: Summaries and Decisions",
     "section": "Challenge 2: Hint 1, The Plan",
-    "text": "Challenge 2: Hint 1, The Plan\n\n\nStep 1\n\ncount(species); find the four labels\nmutate() + case_when(): wrong label ~ right label\nKeep the rest: .default\ncount() again; compare with 47\n\n\nStep 2\n\nRead the 47 labels A to Z: capital letters? plural s?\nOne line per fix; several labels into one at once\nLakes: 2000s, U.S. totals, known values; count different lakes per species\n\n\nStill stuck? Hint 2 is in the book: Chapter 5, Try It."
+    "text": "Challenge 2: Hint 1, The Plan\n\n\nStep 1\n\ncount(species); find the four labels\nmutate() + case_when(): wrong label ~ right label\nKeep the rest: .default\ncount() again; compare with 47\n\n\nStep 2\n\nRead the 47 labels A to Z: capital letters? plural s?\nOne line per fix; several labels into one at once\nLakes: 2000s, U.S. totals, known values; count different lakes per species\n\n\nStill stuck? Hint 2 is in the book: Summaries and Decisions, In-Class Challenge Hints (book chapter 8)."
   },
   {
     "objectID": "slides/05-summaries-decisions.html#break-10-min",
@@ -165,7 +165,7 @@
     "href": "slides/05-summaries-decisions.html#integrated-challenge-hint-1-the-plan",
     "title": "Module 05: Summaries and Decisions",
     "section": "Integrated Challenge: Hint 1, The Plan",
-    "text": "Integrated Challenge: Hint 1, The Plan\n\n\nStep 1\n\nKeep Michigan, lake whitefish, U.S. total rows\ndecade from year (1987 becomes 1980)\nOne row per decade\nYears, number missing, total catch\nBiggest catch first\n\n\nStep 2\n\nHow many years does each decade have? Data end in 2015\nNew column: catch / recorded years\nSort by decade; read it top to bottom\nThe new “winner”: how many years is it built on?\n\n\nStill stuck? Hint 2 is in the book: Chapter 5, Try It."
+    "text": "Integrated Challenge: Hint 1, The Plan\n\n\nStep 1\n\nKeep Michigan, lake whitefish, U.S. total rows\ndecade from year (1987 becomes 1980)\nOne row per decade\nYears, number missing, total catch\nBiggest catch first\n\n\nStep 2\n\nHow many years does each decade have? Data end in 2015\nNew column: catch / recorded years\nSort by decade; read it top to bottom\nThe new “winner”: how many years is it built on?\n\n\nStill stuck? Hint 2 is in the book: Summaries and Decisions, In-Class Challenge Hints (book chapter 8)."
   },
   {
     "objectID": "slides/05-summaries-decisions.html#every-fix-raises-the-next-question",
