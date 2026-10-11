@@ -353,7 +353,7 @@ countdown(minutes = 20)
 :::
 ::::
 
-Still stuck? **Hint 2** is in the book: Chapter 5, *Try It*.
+Still stuck? **Hint 2** is in the book: [Summaries and Decisions, In-Class Challenge Hints](https://nres800-fall2026.netlify.app/chapters/05-summaries-decisions.html#in-class-challenge-hints) (book chapter 8).
 
 ## Break (10 min)
 
@@ -400,7 +400,7 @@ countdown(minutes = 30)
 :::
 ::::
 
-Still stuck? **Hint 2** is in the book: Chapter 5, *Try It*.
+Still stuck? **Hint 2** is in the book: [Summaries and Decisions, In-Class Challenge Hints](https://nres800-fall2026.netlify.app/chapters/05-summaries-decisions.html#in-class-challenge-hints) (book chapter 8).
 
 ## Every Fix Raises The Next Question
 
