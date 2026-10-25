@@ -11,11 +11,13 @@
     "scripts/week_04_follow_along.R",
     "scripts/week_05_follow_along.R",
     "scripts/week_05_part2_follow_along.R",
+    "scripts/week_06_follow_along.R",
     "slides/01-the-whole-game.qmd",
     "slides/02-objects-debugging.qmd",
     "slides/03-importing-data.qmd",
     "slides/04-clean-shape-columns.qmd",
     "slides/05-summaries-decisions.qmd",
+    "slides/06-tidy-data.qmd",
     "styles/pp.scss",
     "styles/slide-extras.css"
   ]

@@ -1,0 +1,412 @@
+---
+title: "Module 06: Tidy Data + Your Project Repository"
+subtitle: "Ask what a column means before you reshape it."
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+---
+
+```{r}
+#| include: false
+library(gt)
+library(countdown)
+
+# One table style for every slide table (instructor convention: gt tables).
+slide_table <- function(df) {
+  gt(df) |>
+    fmt_markdown(columns = everything()) |>
+    tab_options(
+      table.font.size = px(24),
+      column_labels.font.weight = "bold",
+      table.width = pct(100),
+      data_row.padding = px(6)
+    ) |>
+    opt_row_striping()
+}
+```
+
+## Slide Accessibility Note
+- **Images:** none; diagrams are HTML text with labels.
+- **Speaker Notes:** These slides follow the Module 06 follow-along script
+  and the book chapter Your Project Repository. The live coding happens in
+  `class/week_06_follow_along.R`.
+
+## Today: Two Halves
+
+::: {.diagram-flow .diagram-compact aria-label="Today's workflow: read the wide table, ask what each column means, pivot_longer to tidy, summarize, pivot_wider to show. Then, after the break, create your project repository"}
+<div class="diagram-node">Read the wide table</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Ask what each column means</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node"><code>pivot_longer()</code></div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Summarize</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node"><code>pivot_wider()</code></div>
+:::
+
+<p class="diagram-caption">After the break: your semester project repository.</p>
+
+- **No Assignment 06.** Your project proposal is the work for the next two
+  weeks (**due Sun Nov 15**).
+- **Mon Nov 2: no class meeting.** You do the project data audit on your
+  own.
+
+## Get Today's Files: Pull
+
+I added two files to your **Module 05** repo on GitHub:
+`class/week_06_follow_along.R` and `class/data/drought.csv`.
+
+:::: {.columns}
+::: {.column width="50%"}
+**GitHub Desktop**
+
+1. Commit anything changed
+2. **Fetch origin**
+3. **Pull origin**
+:::
+::: {.column width="50%"}
+**Positron**
+
+1. Source Control: commit anything changed
+2. **...** menu > **Pull**
+:::
+::::
+
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
+
+## Stuck On The Pull?
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~`You see`, ~`Do this`,
+  "Positron: \"reconcile **divergent branches**\"", "Terminal: `git pull --no-rebase --no-edit`, then push",
+  "No Pull option / \"not a git repository\"", "Open the Module 05 repo folder",
+  "Anything else after 3 minutes", "Download both files below into `class/` and `class/data/`"
+) |>
+  slide_table()
+```
+
+<a class="script-download" href="../scripts/week_06_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the Module 06 follow-along script (.R)</a>
+
+[Download drought.csv from TidyTuesday (4.4 MB)](https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2022/2022-06-14/drought.csv)
+
+## Setup Check
+
+1. **Session > Restart R**
+2. Open `class/week_06_follow_along.R`, run Section 0
+3. `dim(drought)` should print **73344 14**
+
+## Learning Goals
+
+- Say whether a table is **tidy**, and name the variable spread across
+  columns
+- Reshape wide to long with `pivot_longer()`, and **predict the row count**
+- Reshape long to wide with `pivot_wider()` for a table people read
+- Explain why **cumulative** categories cannot be added
+- Create and share your **project repository**
+
+## The Data: Drought By State
+
+- Monthly, **1895-2022**, lower 48 states: 48 x 1,528 months = **73,344
+  rows**
+- Values: **percent of state area** in each class
+- NOAA **9-month Standardized Precipitation Index** (SPI), via
+  drought.gov and TidyTuesday 2022-06-14
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Columns, ~Meaning,
+  "`d0` - `d4`", "abnormally dry, moderate, severe, extreme, exceptional drought",
+  "`w0` - `w4`", "the same five classes on the wet side",
+  "`x0`, `x9`", "were `0` and `-9` in the raw file; `clean_names()` renamed them"
+) |>
+  slide_table()
+```
+
+## Tidy Means
+
+- Each **variable** is a column
+- Each **observation** is a row
+- Each **value** is a cell
+
+. . .
+
+`d0`, `d1`, `d2`, `d3`, `d4` are five **values** of one variable,
+**dryness class**, spread across five columns.
+
+## Nebraska, August 2012
+
+```{r}
+#| echo: false
+tibble::tibble(
+  state = "nebraska", date = "d_20120801",
+  d0 = 97.5, d1 = 93.7, d2 = 79.5, d3 = 65.7, d4 = 44.9
+) |>
+  slide_table()
+```
+
+- What percent of Nebraska was in **severe** drought (`d2`)?
+- Add `d0 + d1 + d2 + d3 + d4`. What do you get?
+
+## 381.3% Of Nebraska?
+
+. . .
+
+The classes are **cumulative**: each means "**at least** this dry".
+
+- `d2` = severe drought **or worse**: 79.5% of the state
+- Only severe, nothing worse: `d2 - d3` = 79.5 - 65.7 = **13.8%**
+- True in all 73,344 rows: `d0 >= d1 >= d2 >= d3 >= d4`
+
+. . .
+
+The code adds them without complaint. The **definition** catches it.
+Same trap as Module 05: totals stacked on the rows they total.
+
+## Vocabulary
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Term, ~Meaning,
+  "Wide", "One variable spread across columns (`d0` ... `d4`)",
+  "Long", "That variable in one column, one row per value",
+  "`names_to`", "NEW column for the old column names (in quotes)",
+  "`values_to`", "NEW column for the numbers (in quotes)"
+) |>
+  slide_table()
+```
+
+## `pivot_longer()`: Wide To Tidy
+
+```r
+drought_long <- drought |>
+  select(state, date, d0:d4) |>
+  pivot_longer(
+    d0:d4,                     # columns that exist: no quotes
+    names_to = "category",     # new column: in quotes
+    values_to = "pct_area"     # new column: in quotes
+  )
+```
+
+. . .
+
+**Predict first:** 73,344 rows, each becomes ___ rows.
+**CHECK: 366720**
+
+## Tidy, Then Summarize
+
+Nebraska, mean share in severe drought (`d2`) or worse, by year:
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Rank, ~Year, ~`Mean % of area`,
+  "1", "1934", "62.6",
+  "2", "1956", "56.5",
+  "3", "1940", "54.4",
+  "4", "1936", "52.4",
+  "5", "**2012**", "47.7"
+) |>
+  slide_table()
+```
+
+2012 felt like the worst. On this index, it is **fifth**.
+
+::: {.notes}
+Also: 2022 has only four months (Jan-Apr). Say what the number is built on, as with n() in Module 05.
+:::
+
+## The Lines Never Cross
+
+The plot in your script: Nebraska since 2010, one line per class.
+
+- `d0` is always on top; `d4` always on the bottom
+- That picture **is** the cumulative definition
+- It only works because `category` is **one column**: `color = category`
+
+## `pivot_wider()`: Tidy To A Table People Read
+
+Mean severe-drought share (`d2`), four Plains states:
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~state, ~`2011`, ~`2012`, ~`2013`,
+  "iowa", "0.3", "20.0", "13.6",
+  "kansas", "26.3", "22.5", "22.1",
+  "nebraska", "0.3", "47.7", "32.1",
+  "south-dakota", "0.0", "17.2", "22.3"
+) |>
+  slide_table()
+```
+
+`pivot_wider(names_from = year, values_from = mean_d2)`.
+**Tidy for computing, wide for reading.**
+
+## Challenge (10 min)
+
+- **Step 1 (everyone):** Kansas, **extreme** drought (`d3`), 2000 and
+  later. Which year had the highest mean share? **CHECK: 2002, 20.1**
+- **Step 2 (Step 1 matches, or at home):** the wet side. Tidy `w0:w4`
+  for Nebraska. Since 1950, which year had the highest mean `w1`?
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## Challenge: Hint 1, The Plan {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+**Step 1**
+
+1. Start from your Section 3 pipeline
+2. Change the state and the category
+3. Add `year >= 2000` to the same `filter()`
+4. `group_by(year)`, mean, `arrange(desc())`
+:::
+::: {.column width="50%"}
+**Step 2**
+
+1. Start from `drought`, not `drought_long` (wet columns were dropped)
+2. Nebraska, `select()` the wet columns, pivot them
+3. Copy the `year` line; filter `w1` and 1950 on
+4. Summarize like Step 1
+:::
+::::
+
+Still stuck? **Hint 2** is in the book: [Tidy Data, In-Class Challenge Hints](https://nres800-fall2026.netlify.app/chapters/06-tidy-data.html#in-class-challenge-hints) (book chapter 9).
+
+## Break (10 min)
+
+Before you go: find your **reviewer** and your **reviewee** in the Canvas
+announcement. You need both names after the break.
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## Your Project Repository
+
+- Your repository, **in your own GitHub account**, private
+- Not Classroom 50: no autograder, no feedback bot
+- Shared with the instructor and **one** peer reviewer
+- How you will work on a thesis chapter or agency report after this course
+
+Follow along in the book: [Your Project Repository](https://nres800-fall2026.netlify.app/chapters/project-repository.html) (book chapter 10).
+
+## Step 0: Where It Lives
+
+- **Outside** every course repo (not inside your Module 05 folder)
+- For example: `Documents/nres800/nres800-project`
+- Lowercase, no spaces
+
+::: {.notes}
+A git repo inside another git repo is the most confusing failure today. Check each screen for the path before step 3.
+:::
+
+## Route A: `usethis`
+
+```r
+install.packages(c("usethis", "gitcreds"))
+usethis::git_sitrep()          # token found? skip the next two
+usethis::create_github_token() # Generate token, copy it
+gitcreds::gitcreds_set()       # paste, then Restart R
+
+usethis::create_project("~/Documents/nres800/nres800-project",
+                        open = FALSE)
+# Positron: File > Open Folder > the new folder. Then, there:
+usethis::use_git()             # choose the "yes" option
+usethis::use_github(private = TRUE)
+```
+
+- **Windows:** use `"~/nres800/nres800-project"` (`~` is already Documents)
+- **Token page:** set expiration to **90 days** (30 runs out before Dec 16)
+- **Token stuck for 5 minutes?** Switch to Route B
+
+```{r}
+#| echo: false
+countdown(minutes = 20)
+```
+
+## Route B: GitHub Desktop
+
+1. Same `install.packages()` and `create_project()` lines (no token needed)
+2. Desktop: **File > Add Local Repository**, choose the folder
+3. Click **create a repository**, then **Create Repository**
+4. **Publish repository**, keep **"Keep this code private"** checked
+5. Check github.com: the repo says **Private**
+
+## Share It
+
+::: {.diagram-flow .diagram-compact aria-label="Review ring: you review your reviewee; a different person, your reviewer, reviews you"}
+<div class="diagram-node">Your reviewer</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">You</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Your reviewee</div>
+:::
+
+<p class="diagram-caption">Each arrow means "reviews". The person you review is not the person who reviews you.</p>
+
+1. Repo **Settings > Collaborators > Add people**: `chrischizinski`, then
+   **your reviewer**
+2. Everyone sends first, then: accept your **reviewee's** invite at
+   github.com/notifications
+3. Submit your repo URL on Canvas: **Project Repository**
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## Stuck?
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~`You see`, ~`Do this`,
+  "No personal access token found", "`gitcreds_set()`, Restart R, `git_sitrep()`",
+  "Windows: could not find git", "Route B today",
+  "`use_github()` 401 / 403", "New token with `create_github_token()` defaults",
+  "Already has a GitHub remote", "You ran it twice: check github.com, move on",
+  "Reviewer gets a 404", "They have not accepted your invite yet"
+) |>
+  slide_table()
+```
+
+## Mon Nov 2: No Meeting, Data Audit
+
+On your own, in the class time slot (book chapter 10, Part 2):
+
+1. Choose data: **your own**, or the **course menu** (8 datasets)
+2. Raw file into `data/raw/`; never edit it by hand
+3. Start `proposal.qmd` from the starter; run the **data audit**
+4. Render, commit, push (commits on **more than one day**)
+
+**Proposal due Sun Nov 15, 11:59 PM:** 2-3 pages, rendered, pushed.
+
+## Before You Leave
+
+- [ ] Follow-along runs top to bottom after restarting R
+- [ ] **Commit and push `class/`** in your **Module 05** repo
+- [ ] Project repo on GitHub, **Private**, at least one commit
+- [ ] Instructor and reviewer added; reviewee's invite accepted
+- [ ] Repo URL on Canvas
