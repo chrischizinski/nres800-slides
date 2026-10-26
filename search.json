@@ -18,7 +18,7 @@
     "href": "slides/06-tidy-data.html#get-todays-files-pull",
     "title": "Module 06: Tidy Data + Your Project Repository",
     "section": "Get Today’s Files: Pull",
-    "text": "Get Today’s Files: Pull\nI added two files to your Module 05 repo on GitHub: class/week_06_follow_along.R and class/data/drought.csv.\n\n\nGitHub Desktop\n\nCommit anything changed\nFetch origin\nPull origin\n\n\nPositron\n\nSource Control: commit anything changed\n… menu &gt; Pull"
+    "text": "Get Today’s Files: Pull\nI added two files to your Module 05 repo on GitHub: class/week_06_follow_along.R and class/data/drought.csv.\n\n\nGitHub Desktop\n\nCommit anything changed\nFetch origin\nPull origin\n\n\nPositron\n\nOnce, in the Terminal:git config --global pull.rebase false\nSource Control: commit anything changed\n… menu &gt; Pull"
   },
   {
     "objectID": "slides/06-tidy-data.html#stuck-on-the-pull",
