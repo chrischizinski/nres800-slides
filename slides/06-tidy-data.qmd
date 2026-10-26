@@ -76,8 +76,9 @@ I added two files to your **Module 05** repo on GitHub:
 ::: {.column width="50%"}
 **Positron**
 
-1. Source Control: commit anything changed
-2. **...** menu > **Pull**
+1. Once, in the Terminal:<br>`git config --global pull.rebase false`
+2. Source Control: commit anything changed
+3. **...** menu > **Pull**
 :::
 ::::
 
