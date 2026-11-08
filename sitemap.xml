@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://chrischizinski.github.io/nres800-slides/slides/06-tidy-data.html</loc>
-    <lastmod>2026-10-26T16:53:44.939Z</lastmod>
-  </url>
-  <url>
-    <loc>https://chrischizinski.github.io/nres800-slides/slides/04-clean-shape-columns.html</loc>
-    <lastmod>2026-10-26T16:53:44.939Z</lastmod>
-  </url>
-  <url>
-    <loc>https://chrischizinski.github.io/nres800-slides/slides/02-objects-debugging.html</loc>
-    <lastmod>2026-10-26T16:53:44.939Z</lastmod>
-  </url>
-  <url>
-    <loc>https://chrischizinski.github.io/nres800-slides/index.html</loc>
-    <lastmod>2026-10-26T16:53:44.937Z</lastmod>
-  </url>
-  <url>
-    <loc>https://chrischizinski.github.io/nres800-slides/slides/01-the-whole-game.html</loc>
-    <lastmod>2026-10-26T16:53:44.938Z</lastmod>
-  </url>
-  <url>
-    <loc>https://chrischizinski.github.io/nres800-slides/slides/03-importing-data.html</loc>
-    <lastmod>2026-10-26T16:53:44.939Z</lastmod>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/08-visualizing-wrangled-data.html</loc>
+    <lastmod>2026-11-08T19:35:33.784Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/05-summaries-decisions.html</loc>
-    <lastmod>2026-10-26T16:53:44.939Z</lastmod>
+    <lastmod>2026-11-08T19:35:33.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/03-importing-data.html</loc>
+    <lastmod>2026-11-08T19:35:33.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/01-the-whole-game.html</loc>
+    <lastmod>2026-11-08T19:35:33.783Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/index.html</loc>
+    <lastmod>2026-11-08T19:35:33.783Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/02-objects-debugging.html</loc>
+    <lastmod>2026-11-08T19:35:33.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/04-clean-shape-columns.html</loc>
+    <lastmod>2026-11-08T19:35:33.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/06-tidy-data.html</loc>
+    <lastmod>2026-11-08T19:35:33.784Z</lastmod>
   </url>
 </urlset>
