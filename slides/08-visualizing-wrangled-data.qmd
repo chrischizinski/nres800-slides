@@ -442,13 +442,9 @@ countdown(minutes = 10)
 ## What Is Next
 
 - **Proposal due Sun Nov 15**, 11:59 PM (rendered, pushed)
-- **Assignment 08:** NOAA tornadoes, plots and a join. Opens this week, **due
-  Sun Nov 22**
+- **Assignment 08:** NOAA tornadoes, plots and a join. Opens **Wed Nov 11**,
+  **due Sun Nov 22**
 - **Draft due Sun Nov 29:** `report.qmd`, every section started, 3 figures
-
-::: {.notes}
-Confirm the Assignment 08 release date before saying it out loud.
-:::
 
 ## Before You Leave
 
