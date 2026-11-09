@@ -31,6 +31,9 @@ slide_table <- function(df) {
     ) |>
     opt_row_striping()
 }
+
+# Project timeline table, shared by every deck; pass this class's date.
+source("../R/project_timeline.R")
 ```
 
 ## Slide Accessibility Note
@@ -41,7 +44,7 @@ slide_table <- function(df) {
 
 ## Today
 
-::: {.diagram-flow .diagram-compact aria-label="Today's workflow: text columns get split, trimmed and placeholders made NA with stringr; category columns get their levels chosen and ordered with forcats; date columns get the needed part pulled out with lubridate; then one table and one inline value in your own report"}
+::: {.diagram-flow aria-label="Today's workflow: text columns get split, trimmed and placeholders made NA with stringr; category columns get their levels chosen and ordered with forcats; date columns get the needed part pulled out with lubridate; then one table and one inline value in your own report"}
 <div class="diagram-node">Text: split, trim, NA</div>
 <div class="diagram-arrow" aria-hidden="true">-&gt;</div>
 <div class="diagram-node">Categories: choose, order</div>
@@ -55,6 +58,13 @@ slide_table <- function(df) {
 
 - **No Assignment 09.** Assignment 08 due **Sun Nov 22**
 - **Draft due Sun Nov 29.** Nov 23 is a project workshop
+
+## Your Project: Where We Are {.smaller}
+
+```{r}
+#| echo: false
+project_timeline("2026-11-16")
+```
 
 ## Get Today's Files: Pull
 
