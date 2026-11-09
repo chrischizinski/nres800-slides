@@ -1,5 +1,124 @@
 [
   {
+    "objectID": "slides/10-peer-review.html#slide-accessibility-note",
+    "href": "slides/10-peer-review.html#slide-accessibility-note",
+    "title": "Module 10: Peer Review",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nImages: no images; diagrams are HTML text with labels.\nSpeaker Notes: These slides follow the book chapter Peer Review And Revision, which has every step, the Issue template, and the rubric."
+  },
+  {
+    "objectID": "slides/10-peer-review.html#today",
+    "href": "slides/10-peer-review.html#today",
+    "title": "Module 10: Peer Review",
+    "section": "Today",
+    "text": "Today\n\n\nClone\n\n\n-&gt;\n\n\nRender\n\n\n-&gt;\n\n\nWrite\n\n\n-&gt;\n\n\nFile Issue\n\n\n\nNo new R today. The review is the work.\n\n\nYou review your reviewee. Someone else is reviewing you, right now\nThe list is on Canvas\nEverything is in the book: Peer Review And Revision"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#why-review",
+    "href": "slides/10-peer-review.html#why-review",
+    "title": "Module 10: Peer Review",
+    "section": "Why Review?",
+    "text": "Why Review?\n\nA fresh clone has only what was pushed. It is the honest test of “reproducible”\nReading someone else’s analysis closely is how you see the gaps in your own\nYour reviewer never grades you. You are graded on the review you give (60) and how you respond (40)"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#weak-comments",
+    "href": "slides/10-peer-review.html#weak-comments",
+    "title": "Module 10: Peer Review",
+    "section": "Weak Comments",
+    "text": "Weak Comments\n\n\n\n\n\n\n\n\nWeak\nWhat is missing\n\n\n\n\nThis looks wrong.\nWhere? What? The author cannot find or check it\n\n\nFigure 2 is confusing.\nConfusing how? No way forward\n\n\nRewrite the cleaning section.\nNo reason, no specific change\n\n\nGreat job!\nNothing to keep or change"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#a-comment-the-author-can-act-on",
+    "href": "slides/10-peer-review.html#a-comment-the-author-can-act-on",
+    "title": "Module 10: Peer Review",
+    "section": "A Comment The Author Can Act On",
+    "text": "A Comment The Author Can Act On\n\nWhere: Data and Methods, chunk clean-depth\nWhat I saw: filter(depth_m &gt; 0) drops rows; the count goes from 1,204 to 1,150 with no sentence about it\nWhy it matters: were the 54 rows errors, or real zero-depth samples? If real, dropping them raises the mean\nSuggestion or question: say how many were dropped and why. If zero depth is possible here, keep them\n\nA place they can find, an observation they can check, a reason, a way forward. About the work, not the person."
+  },
+  {
+    "objectID": "slides/10-peer-review.html#step-1-can-you-see-it",
+    "href": "slides/10-peer-review.html#step-1-can-you-see-it",
+    "title": "Module 10: Peer Review",
+    "section": "Step 1: Can You See It?",
+    "text": "Step 1: Can You See It?\nOpen your reviewee’s repository on github.com.\n\n404? You never accepted the invitation: github.com/notifications\nNothing there? They re-send it: Settings &gt; Collaborators"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#step-2-clone-fresh-10-min",
+    "href": "slides/10-peer-review.html#step-2-clone-fresh-10-min",
+    "title": "Module 10: Peer Review",
+    "section": "Step 2: Clone Fresh (10 min)",
+    "text": "Step 2: Clone Fresh (10 min)\nNew folder outside your project and course folders, e.g. Desktop/review.\n\n\nGitHub Desktop\n\nFile &gt; Clone Repository\nGitHub.com tab, pick theirs\nLocal path: the new folder\nClone, then open it in Positron\n\n\nPositron\n\ngithub.com: Code, copy HTTPS\nNew Folder from Git\nPaste, choose the new folder"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#you-can-push-to-their-repo.-dont.",
+    "href": "slides/10-peer-review.html#you-can-push-to-their-repo.-dont.",
+    "title": "Module 10: Peer Review",
+    "section": "You Can Push To Their Repo. Don’t.",
+    "text": "You Can Push To Their Repo. Don’t.\n\nRendering rewrites report.html in your copy\nDesktop and Positron will offer to commit it\nDo not commit. Do not push. The Issue is the whole review\nDelete the folder when the Issue is filed"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#step-3-render-no-edits-20-min",
+    "href": "slides/10-peer-review.html#step-3-render-no-edits-20-min",
+    "title": "Module 10: Peer Review",
+    "section": "Step 3: Render, No Edits (20 min)",
+    "text": "Step 3: Render, No Edits (20 min)\n\nOpen the folder. Restart R\nOpen report.qmd, Render. Do not edit any file\nFill in Reproducibility check in the template\n\n\n\n\n\n\n\n\n\nYou see\nDo this\n\n\n\n\nthere is no package called\ninstall.packages(), render again, note it\n\n\nAny other error\nCopy the exact message. Read their report.html\n\n\nNo data, README says why\nGet the file from the author, put in data/raw/"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#the-template",
+    "href": "slides/10-peer-review.html#the-template",
+    "title": "Module 10: Peer Review",
+    "section": "The Template",
+    "text": "The Template\nCopy it from the book (copy button, top right of the block).\n\nReproducibility check: cloned, rendered, data, paths, README\nChecklist spot-check: present / missing / unclear\nThree comments: cleaning, a figure, the interpretation\nOne thing that works well, one science question, top priority\n\nWrite it in a text file first. GitHub does not save a half-written Issue."
+  },
+  {
+    "objectID": "slides/10-peer-review.html#break-10-min",
+    "href": "slides/10-peer-review.html#break-10-min",
+    "title": "Module 10: Peer Review",
+    "section": "Break (10 min)",
+    "text": "Break (10 min)"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#checklist-spot-check-15-min",
+    "href": "slides/10-peer-review.html#checklist-spot-check-15-min",
+    "title": "Module 10: Peer Review",
+    "section": "Checklist Spot-Check (15 min)",
+    "text": "Checklist Spot-Check (15 min)\nAgainst the final report checklist, mark each line present / missing / unclear.\nIt is a draft. “Missing” is expected. Honest beats kind: they need to know before Dec 16, not after."
+  },
+  {
+    "objectID": "slides/10-peer-review.html#three-comments-45-min",
+    "href": "slides/10-peer-review.html#three-comments-45-min",
+    "title": "Module 10: Peer Review",
+    "section": "Three Comments (45 min)",
+    "text": "Three Comments (45 min)\n\nOne on a cleaning decision\nOne on a figure\nOne on the interpretation: does the text claim more than the data show?\n\nEach: Where / What I saw / Why it matters / Suggestion or question. I am coming round to read drafts."
+  },
+  {
+    "objectID": "slides/10-peer-review.html#file-it-15-min",
+    "href": "slides/10-peer-review.html#file-it-15-min",
+    "title": "Module 10: Peer Review",
+    "section": "File It (15 min)",
+    "text": "File It (15 min)\n\nTheir repo: Issues &gt; New issue\nTitle: Peer review: &lt;your name&gt;\nPaste; Preview; Create\nCopy the Issue address &gt; Canvas Peer Review: Giving"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#your-own-review",
+    "href": "slides/10-peer-review.html#your-own-review",
+    "title": "Module 10: Peer Review",
+    "section": "Your Own Review",
+    "text": "Your Own Review\nCheck Issues on your repository.\n\nRead it. Do not answer yet: that is Dec 7\nOne comment = change it, or decline with a reason\nCommits say refs #1; the last says closes #1"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#what-is-next",
+    "href": "slides/10-peer-review.html#what-is-next",
+    "title": "Module 10: Peer Review",
+    "section": "What Is Next",
+    "text": "What Is Next\n\nWed Dec 2, 11:59 PM: review Issue filed, URL on Canvas\nMon Dec 7 (last class): revision workshop, respond and fix\nSun Dec 13: every comment answered; Issue closed by a commit\nWed Dec 16, 11:59 PM: final push + v1.0 tag"
+  },
+  {
+    "objectID": "slides/10-peer-review.html#before-you-leave",
+    "href": "slides/10-peer-review.html#before-you-leave",
+    "title": "Module 10: Peer Review",
+    "section": "Before You Leave",
+    "text": "Before You Leave\n\nReview Issue filed (or saved in a text file to finish by Dec 2)\nNothing committed or pushed from the review folder\nReview folder deleted (once filed)\nRead the review on your own repository"
+  },
+  {
     "objectID": "slides/08-visualizing-wrangled-data.html#slide-accessibility-note",
     "href": "slides/08-visualizing-wrangled-data.html#slide-accessibility-note",
     "title": "Module 08: Visualizing Wrangled Data",
@@ -12,6 +131,13 @@
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Today",
     "text": "Today\n\n\nCleaned, checked table\n\n\n-&gt;\n\n\nggplot(aes())\n\n\n-&gt;\n\n\nGeom by data type\n\n\n-&gt;\n\n\nFacets, scales, labels\n\n\n-&gt;\n\n\nCaption states the pattern\n\n\n\nAfter the break: joining two tables, then one figure in your project report.\n\n\nProposal due Sun Nov 15, 11:59 PM\nDraft due Sun Nov 29: needs 3 figures. Today is practice for them."
+  },
+  {
+    "objectID": "slides/08-visualizing-wrangled-data.html#your-project-where-we-are",
+    "href": "slides/08-visualizing-wrangled-data.html#your-project-where-we-are",
+    "title": "Module 08: Visualizing Wrangled Data",
+    "section": "Your Project: Where We Are",
+    "text": "Your Project: Where We Are\n\n\n\n\n\n\n\n\n\nWhen\nProject step\n\n\n\n\n☑ Done\nMon Oct 26\nCreate your project repo; invite the instructor and your reviewer\n\n\n☑ Done\nMon Nov 2\nData audit: import, clean_names(), column types, missing values\n\n\n▶ This week\nMon Nov 9\nFirst figure in report.qmd, with fig-cap and fig-alt\n\n\n▶ This week\nSun Nov 15\nProposal due (rendered and pushed)\n\n\n☐ To do\nMon Nov 23\nProject workshop: draft checklist, fresh-clone render test\n\n\n☐ To do\nSun Nov 29\nDraft due: every section started, 3 figures\n\n\n☐ To do\nMon Nov 30\nPeer review in class: clone, render, start the review Issue\n\n\n☐ To do\nWed Dec 2\nReview Issue filed on your peer’s repo\n\n\n☐ To do\nMon Dec 7\nRevision workshop (last class)\n\n\n☐ To do\nSun Dec 13\nReply to every comment on the review Issue\n\n\n☐ To do\nWed Dec 16\nFinal due: last push plus the v1.0 tag"
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#get-todays-files-pull",
@@ -53,7 +179,7 @@
     "href": "slides/08-visualizing-wrangled-data.html#recap-build-the-table-first",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Recap: Build The Table First",
-    "text": "Recap: Build The Table First\nModule 05 trap: total rows sit on top of area rows.\nlake_catch &lt;- fishing |&gt;\n  mutate(region = str_trim(region)) |&gt;\n  filter(region %in% lake_totals) |&gt;      # U.S. + Canada total rows only\n  group_by(lake, year, species) |&gt;\n  summarize(catch = sum(values, na.rm = TRUE), .groups = \"drop\")\nCHECK: nrow(lake_catch) 12047; trout has 606 rows.\n\nWhole-lake = U.S. total + Canada total. Agrees with the file’s grand_total in 99.9% of lake-years that have one (Lake Michigan has none). One region has a trailing space, so str_trim()."
+    "text": "Recap: Build The Table First\nModule 05 trap: total rows sit on top of area rows.\nlake_catch &lt;- fishing |&gt;\n  mutate(region = str_trim(region)) |&gt;\n  filter(region %in% lake_totals) |&gt;      # U.S. + Canada total rows only\n  group_by(lake, year, species) |&gt;\n  summarize(catch = sum(values, na.rm = TRUE), .groups = \"drop\")\nlake_totals is the list of five total-row names, given complete in Section 1 of your script.\nCHECK: nrow(lake_catch) 12047; trout has 606 rows.\n\nWhole-lake = U.S. total + Canada total. Agrees with the file’s grand_total in 99.9% of lake-years that have one (Lake Michigan has none). One region has a trailing space, so str_trim()."
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#three-parts-every-plot",
@@ -81,7 +207,7 @@
     "href": "slides/08-visualizing-wrangled-data.html#labels-with-units",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Labels With Units",
-    "text": "Labels With Units\nlabs(\n  x = NULL,\n  y = \"Commercial catch (thousands of pounds)\",\n  color = \"Lake\",\n  title = \"Lake trout catch collapsed around 1950\"\n)\n\nThe project rubric checks units on every axis\nA title that states the finding beats “Lake trout by year”"
+    "text": "Labels With Units\nlabs(\n  x = NULL,\n  y = \"Commercial catch (thousands of pounds)\",\n  color = \"Lake\",\n  title = \"Lake trout catch collapsed around 1950\"\n)\n\nx = NULL removes the axis title: years need no label\nThe project rubric checks units on every axis\nA title that states the finding beats “Lake trout by year”"
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#challenge-1-15-min",
@@ -102,7 +228,7 @@
     "href": "slides/08-visualizing-wrangled-data.html#pick-the-geom-by-the-data",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Pick The Geom By The Data",
-    "text": "Pick The Geom By The Data\n\n\n\n\n\n\n\n\nYour data\nGeom\nToday's example\n\n\n\n\na number over time\ngeom_line()\ncatch by year\n\n\none number per category\ngeom_col()\ntotal catch by lake\n\n\ndistribution of one number\ngeom_histogram(), geom_boxplot()\nfish per stocking event\n\n\ntwo numbers\ngeom_point()\nstocked vs caught (try at home)\n\n\n\n\n\n\n\ngeom_col() plots a number you already have. geom_bar() counts rows for you."
+    "text": "Pick The Geom By The Data\n\n\n\n\n\n\n\n\nYour data\nGeom\nToday's example\n\n\n\n\na number over time\ngeom_line()\ncatch by year\n\n\none number per category\ngeom_col()\ntotal catch by lake\n\n\ndistribution of one number\ngeom_histogram(), geom_boxplot()\nfish per stocking event\n\n\ntwo numbers\ngeom_point()\nfish stocked vs catch\n\n\n\n\n\n\n\ngeom_col() plots a number you already have. geom_bar() counts rows for you."
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#where-is-lake-ontario",
@@ -165,7 +291,7 @@
     "href": "slides/08-visualizing-wrangled-data.html#the-keys-do-not-match",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "The Keys Do Not Match",
-    "text": "The Keys Do Not Match\nCatch says \"Michigan\". Stocking says \"MI\". Fix with a lookup table:\nlake_key &lt;- tibble(\n  lake_code = c(\"ER\", \"HU\", \"MI\", \"ON\", \"SU\"),\n  lake      = c(\"Erie\", \"Huron\", \"Michigan\", \"Ontario\", \"Superior\")\n)\nstock_trout &lt;- stock_trout |&gt; left_join(lake_key, by = \"lake_code\")\nCHECK: 264 rows before, 264 after. A lookup join never adds rows."
+    "text": "The Keys Do Not Match\nCatch says \"Michigan\". Stocking says \"MI\". First, one row per lake and year, renaming the code column as you group:\nstock_trout &lt;- stocked |&gt;\n  filter(species == \"LAT\") |&gt;\n  group_by(lake_code = lake, year) |&gt;\n  summarize(fish_stocked = sum(no_stocked), .groups = \"drop\")\nThen a lookup table adds the full lake name:\nlake_key &lt;- tibble(\n  lake_code = c(\"ER\", \"HU\", \"MI\", \"ON\", \"SU\"),\n  lake      = c(\"Erie\", \"Huron\", \"Michigan\", \"Ontario\", \"Superior\")\n)\nstock_trout &lt;- stock_trout |&gt; left_join(lake_key, by = \"lake_code\")\nCHECK: 264 rows before, 264 after. A lookup join never adds rows."
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#join-catch-and-stocking",
@@ -186,14 +312,14 @@
     "href": "slides/08-visualizing-wrangled-data.html#did-catch-come-back",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Did Catch Come Back?",
-    "text": "Did Catch Come Back?\n\npivot_longer() (Module 06) + facet_grid(measure ~ lake, scales = \"free_y\")"
+    "text": "Did Catch Come Back?\n\npivot_longer() (Module 06) + facet_grid(measure ~ lake, scales = \"free_y\")\nWarning Removed 37 rows containing missing values: years with no stocking record. A warning, not an error."
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#your-project-one-figure-today-10-min",
     "href": "slides/08-visualizing-wrangled-data.html#your-project-one-figure-today-10-min",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Your Project: One Figure Today (10 min)",
-    "text": "Your Project: One Figure Today (10 min)\nIn your project repo, report.qmd:\n```{r}\n#| label: fig-trout\n#| fig-cap: \"Lake trout catch fell to near zero in Lakes Michigan and Huron by 1955.\"\n#| fig-alt: \"Line chart of lake trout catch by lake, 1867-2015.\"\nggplot(trout, aes(x = year, y = catch, color = lake)) + geom_line()\n```\n\nfig-cap = the pattern (the rubric checks this). fig-alt = what it shows, for a screen reader.\nLabel starts with fig-: Quarto numbers it; refer to it as @fig-trout"
+    "text": "Your Project: One Figure Today (10 min)\nIn your project repo, report.qmd:\n```{r}\n#| label: fig-trout\n#| fig-cap: \"Lake trout catch fell to near zero in Lakes Michigan and Huron by 1955.\"\n#| fig-alt: \"Line chart of lake trout catch, 1867 to 2015, one line\n#|   per lake. Michigan, Huron and Superior drop sharply after 1945.\"\nggplot(trout, aes(x = year, y = catch, color = lake)) + geom_line()\n```\n\nfig-cap = the pattern (the rubric checks this). fig-alt = what it shows, for a screen reader.\nLabel starts with fig-: Quarto numbers it; refer to it as @fig-trout"
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#what-is-next",
@@ -585,7 +711,7 @@
     "href": "index.html#lecture-slides-by-module",
     "title": "NRES 800",
     "section": "Lecture slides by module",
-    "text": "Lecture slides by module\n\nModule 01: The Whole Game (Assignment 01)\nModule 02: Objects and Debugging (Assignment 02)\nModule 03: Importing Data (Assignment 03)\nModule 04: Clean and Shape Columns (Assignment 04)\nModule 05: Summaries and Decisions (Assignment 05)\nModule 06: Tidy Data + Your Project Repository\nModule 08: Visualizing Wrangled Data\n\nNew lectures appear here only after they are ready for students."
+    "text": "Lecture slides by module\n\nModule 01: The Whole Game (Assignment 01)\nModule 02: Objects and Debugging (Assignment 02)\nModule 03: Importing Data (Assignment 03)\nModule 04: Clean and Shape Columns (Assignment 04)\nModule 05: Summaries and Decisions (Assignment 05)\nModule 06: Tidy Data + Your Project Repository\nModule 08: Visualizing Wrangled Data\nModule 09: Text, Categories, and Dates\nModule 10: Peer Review\n\nNew lectures appear here only after they are ready for students."
   },
   {
     "objectID": "slides/02-objects-debugging.html#slide-accessibility-note",
@@ -971,5 +1097,166 @@
     "title": "Module 06: Tidy Data + Your Project Repository",
     "section": "Before You Leave",
     "text": "Before You Leave\n\nFollow-along runs top to bottom after restarting R\nCommit and push class/ in your Module 05 repo\nProject repo on GitHub, Private, at least one commit\nInstructor and reviewer added; reviewee’s invite accepted\nRepo URL on Canvas"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#slide-accessibility-note",
+    "href": "slides/09-text-categories-dates.html#slide-accessibility-note",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Slide Accessibility Note",
+    "text": "Slide Accessibility Note\n\nImages: every figure has alt text; diagrams are HTML text with labels.\nSpeaker Notes: These slides follow the Module 09 follow-along script and the book chapter Text, Categories, and Dates. The live coding happens in class/week_09_follow_along.R."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#today",
+    "href": "slides/09-text-categories-dates.html#today",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Today",
+    "text": "Today\n\n\nText: split, trim, NA\n\n\n-&gt;\n\n\nCategories: choose, order\n\n\n-&gt;\n\n\nDates: pull out a part\n\n\n-&gt;\n\n\nYour report: a table, a number\n\n\n\nA short module: the last 40 minutes are your project draft.\n\n\nNo Assignment 09. Assignment 08 due Sun Nov 22\nDraft due Sun Nov 29. Nov 23 is a project workshop"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#get-todays-files-pull",
+    "href": "slides/09-text-categories-dates.html#get-todays-files-pull",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Get Today’s Files: Pull",
+    "text": "Get Today’s Files: Pull\nI added two files to your Module 05 repo on GitHub: class/week_09_follow_along.R and class/data/sf_trees.csv (31 MB).\n\n\nGitHub Desktop\n\nCommit anything changed\nFetch origin\nPull origin\n\n\nPositron\n\nSource Control: commit anything changed\n… menu &gt; Pull"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#stuck-on-the-pull",
+    "href": "slides/09-text-categories-dates.html#stuck-on-the-pull",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Stuck On The Pull?",
+    "text": "Stuck On The Pull?\n\n\n\n\n\n\n\n\nYou see\nDo this\n\n\n\n\nPositron: “reconcile divergent branches”\nTerminal: git pull --no-rebase --no-edit, then push\n\n\nNo Pull option / “not a git repository”\nOpen the Module 05 repo folder\n\n\nAnything else after 3 minutes\nDownload both files below into class/ and class/data/\n\n\n\n\n\n\n\nDownload the Module 09 follow-along script (.R)\nDownload sf_trees.csv from TidyTuesday (31 MB)"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#setup-check",
+    "href": "slides/09-text-categories-dates.html#setup-check",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Setup Check",
+    "text": "Setup Check\n\nSession &gt; Restart R\nOpen class/week_09_follow_along.R, run Section 0\ndim(trees) 192987 12"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#learning-goals",
+    "href": "slides/09-text-categories-dates.html#learning-goals",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nSplit a text column that holds two facts, trim it, and turn placeholder text into NA\nMake values that mean the same thing match (str_to_lower())\nChoose and order category levels for a plot (fct_lump_n(), fct_infreq()), and say so in the caption\nPull the part of a date a question needs (year(), wday())\nPut a gt table and an inline value in your project report"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#the-data-san-francisco-street-trees",
+    "href": "slides/09-text-categories-dates.html#the-data-san-francisco-street-trees",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "The Data: San Francisco Street Trees",
+    "text": "The Data: San Francisco Street Trees\n\n\n\n\n\n\n\n\nColumn\nWhat it holds\nThe decision\n\n\n\n\nspecies\n\"Platanus x hispanica :: Sycamore: London Plane\"\nsplit into two columns\n\n\nplot_size\n\"Width 3ft\", \"3x3\", \"3X3\" (525 versions)\nmatch the spelling\n\n\ncaretaker\n22 groups, one with 162,000 trees\nlump the small ones\n\n\ndate\nplanting date; 65% missing\nsay what the dates cover\n\n\n\n\n\n\n\n192,987 trees, the city’s public inventory, via TidyTuesday 2020-01-28."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#the-most-common-species",
+    "href": "slides/09-text-categories-dates.html#the-most-common-species",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "The Most Common “Species”",
+    "text": "The Most Common “Species”\n\n\n\n\n\n\n\n\nspecies\nn\n\n\n\n\nTree(s) ::\n11,629\n\n\nPlatanus x hispanica :: Sycamore: London Plane\n11,557\n\n\nMetrosideros excelsa :: New Zealand Xmas Tree\n8,744\n\n\n\n\n\n\n\nIs Tree(s) a species? The inventory did not record one. It is text, so R counts it like any other name until you make it NA."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#one-column-two-facts",
+    "href": "slides/09-text-categories-dates.html#one-column-two-facts",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "One Column, Two Facts",
+    "text": "One Column, Two Facts\ntrees_sp &lt;- trees |&gt;\n  separate_wider_delim(species, delim = \"::\",\n                       names = c(\"scientific\", \"common\"),\n                       too_few = \"align_start\") |&gt;       # rows with no \"::\"\n  mutate(across(c(scientific, common), str_trim),        # spaces left over\n         across(c(scientific, common), \\(x) na_if(x, \"\")),\n         scientific = na_if(scientific, \"Tree(s)\"))      # placeholder -&gt; NA\nCHECK: no_scientific 13468, no_common 15086\n\n13,468 = 11,629 “Tree(s) ::” + 1,839 “::”. Another 1,618 have a scientific name and no common name (“Tristania conferta ::”). Split on “::” without spaces: “Tree(s) ::” has no space after the colons, so ” :: ” would not split it."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#same-thing-different-spelling",
+    "href": "slides/09-text-categories-dates.html#same-thing-different-spelling",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Same Thing, Different Spelling",
+    "text": "Same Thing, Different Spelling\nplot_size has 525 distinct values. Lowercase first:\nn_distinct(str_to_lower(trees$plot_size))   # 465\nThen pull the number out of the \"width ...\" rows:\nwidth_ft = if_else(str_detect(plot_size, \"^width\"),\n                   as.numeric(str_extract(plot_size, \"[0-9.]+\")), NA)\nCHECK: has_width 85694, width_zero 17017. What does “Width 0ft” mean for a tree?"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#challenge-1-10-min",
+    "href": "slides/09-text-categories-dates.html#challenge-1-10-min",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Challenge 1 (10 min)",
+    "text": "Challenge 1 (10 min)\n\nStep 1: the five most common trees by common name, unknowns removed. CHECK: London Plane 11557 first, Victorian Box 7122 fifth\nStep 2: how many trees have “Cherry” anywhere in the common name? CHECK: 14571"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#challenge-1-hint-1-the-plan",
+    "href": "slides/09-text-categories-dates.html#challenge-1-hint-1-the-plan",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Challenge 1: Hint 1, The Plan",
+    "text": "Challenge 1: Hint 1, The Plan\n\n\nStep 1\n\nStart from trees_sp\nfilter(!is.na(common))\ncount(common, sort = TRUE)\nhead(5)\n\n\nStep 2\n\nStart from trees_sp\nfilter(str_detect(common, \"Cherry\"))\nnrow()\nWhy more than “Cherry Plum” alone? str_detect() matches anywhere\n\n\nStill stuck? Hint 2 is in the book: Text, Categories, and Dates, In-Class Challenge Hints."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#names-make-550-bars",
+    "href": "slides/09-text-categories-dates.html#names-make-550-bars",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "550 Names Make 550 Bars",
+    "text": "550 Names Make 550 Bars\n\nAlphabetical order answers no question."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#choose-the-levels-then-order-them",
+    "href": "slides/09-text-categories-dates.html#choose-the-levels-then-order-them",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Choose The Levels, Then Order Them",
+    "text": "Choose The Levels, Then Order Them\n\n\n\n\n\n\nfct_lump_n(common, n = 10), then fct_rev(fct_infreq(common)). Other is 60% of named trees: keep it and explain it, or drop it and say “the 10 most common”."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#challenge-2-10-min",
+    "href": "slides/09-text-categories-dates.html#challenge-2-10-min",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Challenge 2 (10 min)",
+    "text": "Challenge 2 (10 min)\nWho looks after the trees? Lump caretaker to the top 3 plus Other, bars ordered by count, biggest on top.\nCHECK: Private, DPW, Other, SFUSD. Why is Other third?"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#challenge-2-hint-1-the-plan",
+    "href": "slides/09-text-categories-dates.html#challenge-2-hint-1-the-plan",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Challenge 2: Hint 1, The Plan",
+    "text": "Challenge 2: Hint 1, The Plan\n\nStart from trees (caretaker needs no cleaning)\nmutate(caretaker = fct_lump_n(caretaker, n = 3))\nggplot(aes(y = fct_rev(fct_infreq(caretaker)))) + geom_bar()\nOther is 19 small groups together, so it outranks SFUSD. To force it last: fct_relevel(caretaker, \"Other\", after = Inf) after fct_infreq()"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#break-10-min",
+    "href": "slides/09-text-categories-dates.html#break-10-min",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Break (10 min)",
+    "text": "Break (10 min)"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#dates-pull-out-the-part-you-need",
+    "href": "slides/09-text-categories-dates.html#dates-pull-out-the-part-you-need",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Dates: Pull Out The Part You Need",
+    "text": "Dates: Pull Out The Part You Need\n124,610 trees (65%) have no planting date.\n\nThis figure describes dated records. Is the drop after 2016 fewer trees, or records not yet entered?"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#which-day",
+    "href": "slides/09-text-categories-dates.html#which-day",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Which Day?",
+    "text": "Which Day?\nplanted &lt;- trees |&gt;\n  filter(!is.na(date)) |&gt;\n  mutate(year = year(date),\n         weekday = wday(date, label = TRUE, week_start = 1))  # A08 again\n\nSat 10.2%, Sun 1.0%. What would you check before saying so in a report?"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#your-report-one-table-one-number-20-min",
+    "href": "slides/09-text-categories-dates.html#your-report-one-table-one-number-20-min",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Your Report: One Table, One Number (20 min)",
+    "text": "Your Report: One Table, One Number (20 min)\n\n\nA table (a chunk in report.qmd)\n#| label: tbl-top-trees\n#| tbl-cap: \"The five most common street trees.\"\ntop5 |&gt;\n  gt() |&gt;\n  cols_label(common = \"Common name\",\n             n = \"Street trees\") |&gt;\n  fmt_number(columns = n, decimals = 0)\n\nA number in a sentence (in the text, not a chunk)\n\n\nThe city lists `r format(nrow(trees), big.mark = \",\")` \nstreet trees.\n\n\nRenders as: The city lists 192,987 street trees.\nA typed number goes stale. An inline value is recomputed every render.\n\nlibrary(gt) fails? install.packages(\"gt\")."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#draft-work-time-20-min",
+    "href": "slides/09-text-categories-dates.html#draft-work-time-20-min",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Draft Work Time (20 min)",
+    "text": "Draft Work Time (20 min)\n\nreport.qmd renders after Restart R?\n3 figures, each with fig-cap and fig-alt?\nEvery section started?\n\nAsk me now. Nov 23 is a full workshop."
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#what-is-next",
+    "href": "slides/09-text-categories-dates.html#what-is-next",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "What Is Next",
+    "text": "What Is Next\n\nAssignment 08 due Sun Nov 22, 11:59 PM\nMon Nov 23: project workshop. Bring your draft and your questions\nDraft due Sun Nov 29: report.qmd renders, every section started, 3 figures"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#before-you-leave",
+    "href": "slides/09-text-categories-dates.html#before-you-leave",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Before You Leave",
+    "text": "Before You Leave\n\nFollow-along runs top to bottom after restarting R\nCommit and push class/ in your Module 05 repo\nOne gt table and one inline value in your project report.qmd, pushed"
   }
 ]

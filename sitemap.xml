@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/10-peer-review.html</loc>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
+  </url>
+  <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/08-visualizing-wrangled-data.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/05-summaries-decisions.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/03-importing-data.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/01-the-whole-game.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.902Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/index.html</loc>
-    <lastmod>2026-11-08T19:51:43.373Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.901Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/02-objects-debugging.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/04-clean-shape-columns.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
   </url>
   <url>
     <loc>https://chrischizinski.github.io/nres800-slides/slides/06-tidy-data.html</loc>
-    <lastmod>2026-11-08T19:51:43.374Z</lastmod>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
+  </url>
+  <url>
+    <loc>https://chrischizinski.github.io/nres800-slides/slides/09-text-categories-dates.html</loc>
+    <lastmod>2026-11-09T17:52:03.903Z</lastmod>
   </url>
 </urlset>
