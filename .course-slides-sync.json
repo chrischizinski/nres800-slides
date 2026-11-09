@@ -1,6 +1,7 @@
 {
   "generated_by": "scripts/sync_course_slides.py",
   "managed_paths": [
+    "R/project_timeline.R",
     "assets/HuskerLogo2.png",
     "assets/allison-horst-github-workflow.png",
     "assets/m08/setting-inside-aes-bug.png",
@@ -11,6 +12,12 @@
     "assets/m08/trout-facets-free-y.png",
     "assets/m08/trout-lines-default.png",
     "assets/m08/trout-lines-labeled-viridis.png",
+    "assets/m09/trees-alphabetical.png",
+    "assets/m09/trees-caretaker.png",
+    "assets/m09/trees-lumped-other.png",
+    "assets/m09/trees-planted-year.png",
+    "assets/m09/trees-top10.png",
+    "assets/m09/trees-weekday.png",
     "index.qmd",
     "scripts/module_03_practice.zip",
     "scripts/week_01_follow_along.R",
@@ -21,6 +28,7 @@
     "scripts/week_05_part2_follow_along.R",
     "scripts/week_06_follow_along.R",
     "scripts/week_08_follow_along.R",
+    "scripts/week_09_follow_along.R",
     "slides/01-the-whole-game.qmd",
     "slides/02-objects-debugging.qmd",
     "slides/03-importing-data.qmd",
@@ -28,6 +36,8 @@
     "slides/05-summaries-decisions.qmd",
     "slides/06-tidy-data.qmd",
     "slides/08-visualizing-wrangled-data.qmd",
+    "slides/09-text-categories-dates.qmd",
+    "slides/10-peer-review.qmd",
     "styles/pp.scss",
     "styles/slide-extras.css"
   ]

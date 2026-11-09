@@ -16,5 +16,7 @@ Canvas remains the course home for assignments, deadlines, grades, announcements
 - [Module 05: Summaries and Decisions (Assignment 05)](slides/05-summaries-decisions.qmd)
 - [Module 06: Tidy Data + Your Project Repository](slides/06-tidy-data.qmd)
 - [Module 08: Visualizing Wrangled Data](slides/08-visualizing-wrangled-data.qmd)
+- [Module 09: Text, Categories, and Dates](slides/09-text-categories-dates.qmd)
+- [Module 10: Peer Review](slides/10-peer-review.qmd)
 
 New lectures appear here only after they are ready for students.

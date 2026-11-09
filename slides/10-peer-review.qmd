@@ -1,0 +1,238 @@
+---
+title: "Module 10: Peer Review"
+subtitle: "If it does not render for your reviewer, it does not render."
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+---
+
+```{r}
+#| include: false
+library(gt)
+library(countdown)
+
+# One table style for every slide table (instructor convention: gt tables).
+slide_table <- function(df) {
+  gt(df) |>
+    fmt_markdown(columns = everything()) |>
+    tab_options(
+      table.font.size = px(24),
+      column_labels.font.weight = "bold",
+      table.width = pct(100),
+      data_row.padding = px(6)
+    ) |>
+    opt_row_striping()
+}
+```
+
+## Slide Accessibility Note
+- **Images:** no images; diagrams are HTML text with labels.
+- **Speaker Notes:** These slides follow the book chapter Peer Review And
+  Revision, which has every step, the Issue template, and the rubric.
+
+## Today
+
+::: {.diagram-flow aria-label="Today's workflow: clone your reviewee's repository fresh, render it without edits, write the review from the template, then file it as an Issue on their repository"}
+<div class="diagram-node">Clone</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Render</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Write</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">File Issue</div>
+:::
+
+<p class="diagram-caption">No new R today. The review is the work.</p>
+
+- You review **your reviewee**. Someone else is reviewing **you**, right now
+- The list is on Canvas
+- Everything is in the book: **Peer Review And Revision**
+
+## Why Review?
+
+- A **fresh clone** has only what was pushed. It is the honest test of
+  "reproducible"
+- Reading someone else's analysis closely is how you see the gaps in
+  your own
+- Your reviewer **never grades you**. You are graded on the review you
+  **give** (60) and how you **respond** (40)
+
+## Weak Comments
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~Weak, ~`What is missing`,
+  "This looks wrong.", "Where? What? The author cannot find or check it",
+  "Figure 2 is confusing.", "Confusing how? No way forward",
+  "Rewrite the cleaning section.", "No reason, no specific change",
+  "Great job!", "Nothing to keep or change"
+) |>
+  slide_table()
+```
+
+## A Comment The Author Can Act On {.smaller}
+
+- **Where:** Data and Methods, chunk `clean-depth`
+- **What I saw:** `filter(depth_m > 0)` drops rows; the count goes from
+  1,204 to 1,150 with no sentence about it
+- **Why it matters:** were the 54 rows errors, or real zero-depth samples?
+  If real, dropping them raises the mean
+- **Suggestion or question:** say how many were dropped and why. If zero
+  depth is possible here, keep them
+
+A **place** they can find, an **observation** they can check, a
+**reason**, a **way forward**. About the work, not the person.
+
+## Step 1: Can You See It?
+
+Open your reviewee's repository on github.com.
+
+- **404?** You never accepted the invitation:
+  [github.com/notifications](https://github.com/notifications)
+- Nothing there? They re-send it: **Settings > Collaborators**
+
+## Step 2: Clone Fresh (10 min)
+
+New folder **outside** your project and course folders, e.g.
+`Desktop/review`.
+
+:::: {.columns}
+::: {.column width="50%"}
+**GitHub Desktop**
+
+1. **File > Clone Repository**
+2. **GitHub.com** tab, pick theirs
+3. **Local path:** the new folder
+4. **Clone**, then open it in Positron
+:::
+::: {.column width="50%"}
+**Positron**
+
+1. github.com: **Code**, copy HTTPS
+2. **New Folder from Git**
+3. Paste, choose the new folder
+:::
+::::
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## You Can Push To Their Repo. Don't.
+
+- Rendering rewrites `report.html` in your copy
+- Desktop and Positron will offer to commit it
+- **Do not commit. Do not push.** The Issue is the whole review
+- Delete the folder when the Issue is filed
+
+## Step 3: Render, No Edits (20 min)
+
+1. Open the folder. **Restart R**
+2. Open `report.qmd`, **Render**. Do not edit any file
+3. Fill in **Reproducibility check** in the template
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~`You see`, ~`Do this`,
+  "`there is no package called`", "`install.packages()`, render again, note it",
+  "Any other error", "Copy the **exact** message. Read their `report.html`",
+  "No data, README says why", "Get the file from the author, put in `data/raw/`"
+) |>
+  slide_table()
+```
+
+```{r}
+#| echo: false
+countdown(minutes = 20)
+```
+
+## The Template
+
+Copy it from the book (copy button, top right of the block).
+
+- **Reproducibility check:** cloned, rendered, data, paths, README
+- **Checklist spot-check:** present / missing / unclear
+- **Three comments:** cleaning, a figure, the interpretation
+- **One thing that works well**, **one science question**, **top priority**
+
+Write it in a text file first. GitHub does not save a half-written Issue.
+
+## Break (10 min)
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## Checklist Spot-Check (15 min)
+
+Against the **final report checklist**, mark each line present / missing /
+unclear.
+
+It is a **draft**. "Missing" is expected. Honest beats kind: they need to
+know before Dec 16, not after.
+
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
+
+## Three Comments (45 min)
+
+- One on a **cleaning decision**
+- One on a **figure**
+- One on the **interpretation**: does the text claim more than the data
+  show?
+
+Each: **Where / What I saw / Why it matters / Suggestion or question**.
+I am coming round to read drafts.
+
+```{r}
+#| echo: false
+countdown(minutes = 45)
+```
+
+## File It (15 min)
+
+1. Their repo: **Issues > New issue**
+2. Title: `Peer review: <your name>`
+3. Paste; **Preview**; **Create**
+4. Copy the Issue address > Canvas **Peer Review: Giving**
+
+```{r}
+#| echo: false
+countdown(minutes = 15)
+```
+
+## Your Own Review
+
+Check **Issues** on **your** repository.
+
+- **Read it.** Do not answer yet: that is Dec 7
+- One comment = change it, or decline with a reason
+- Commits say `refs #1`; the last says `closes #1`
+
+## What Is Next
+
+- **Wed Dec 2, 11:59 PM:** review Issue filed, URL on Canvas
+- **Mon Dec 7 (last class):** revision workshop, respond and fix
+- **Sun Dec 13:** every comment answered; Issue closed by a commit
+- **Wed Dec 16, 11:59 PM:** final push + **`v1.0` tag**
+
+## Before You Leave
+
+- [ ] Review Issue filed (or saved in a text file to finish by Dec 2)
+- [ ] Nothing committed or pushed from the review folder
+- [ ] Review folder deleted (once filed)
+- [ ] Read the review on your own repository

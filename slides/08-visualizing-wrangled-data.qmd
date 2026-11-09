@@ -31,6 +31,9 @@ slide_table <- function(df) {
     ) |>
     opt_row_striping()
 }
+
+# Project timeline table, shared by every deck; pass this class's date.
+source("../R/project_timeline.R")
 ```
 
 ## Slide Accessibility Note
@@ -57,6 +60,13 @@ slide_table <- function(df) {
 
 - **Proposal due Sun Nov 15**, 11:59 PM
 - **Draft due Sun Nov 29:** needs **3 figures**. Today is practice for them.
+
+## Your Project: Where We Are {.smaller}
+
+```{r}
+#| echo: false
+project_timeline("2026-11-09")
+```
 
 ## Get Today's Files: Pull
 
@@ -148,6 +158,9 @@ lake_catch <- fishing |>
   summarize(catch = sum(values, na.rm = TRUE), .groups = "drop")
 ```
 
+`lake_totals` is the list of five total-row names, given complete in
+Section 1 of your script.
+
 **CHECK:** `nrow(lake_catch)` **12047**; `trout` has **606** rows.
 
 ::: {.notes}
@@ -209,6 +222,7 @@ labs(
 )
 ```
 
+- `x = NULL` removes the axis title: years need no label
 - The project rubric checks **units on every axis**
 - A title that **states the finding** beats "Lake trout by year"
 
@@ -256,7 +270,7 @@ tibble::tribble(
   "a number over time", "`geom_line()`", "catch by year",
   "one number per category", "`geom_col()`", "total catch by lake",
   "distribution of one number", "`geom_histogram()`, `geom_boxplot()`", "fish per stocking event",
-  "two numbers", "`geom_point()`", "stocked vs caught (try at home)"
+  "two numbers", "`geom_point()`", "fish stocked vs catch"
 ) |>
   slide_table()
 ```
@@ -367,9 +381,19 @@ tibble::tribble(
 
 **Before and after every join:** `nrow()`.
 
-## The Keys Do Not Match
+## The Keys Do Not Match {.smaller}
 
-Catch says `"Michigan"`. Stocking says `"MI"`. Fix with a lookup table:
+Catch says `"Michigan"`. Stocking says `"MI"`. First, one row per lake
+and year, renaming the code column as you group:
+
+```r
+stock_trout <- stocked |>
+  filter(species == "LAT") |>
+  group_by(lake_code = lake, year) |>
+  summarize(fish_stocked = sum(no_stocked), .groups = "drop")
+```
+
+Then a lookup table adds the full lake name:
 
 ```r
 lake_key <- tibble(
@@ -415,9 +439,12 @@ count is how you catch it.
 
 ## Did Catch Come Back?
 
-![](../assets/m08/trout-catch-vs-stocking.png){fig-alt="Grid of line charts, 1950 to 2015. Top row: lake trout catch in thousands of pounds for each of five lakes. Bottom row: lake trout stocked in millions. Huron and Michigan catch rises after stocking climbs in the 1970s and 1980s. Superior catch drops in the late 1950s, then holds while stocking falls after 2000." height=430}
+![](../assets/m08/trout-catch-vs-stocking.png){fig-alt="Grid of line charts, 1950 to 2015. Top row: lake trout catch in thousands of pounds for each of five lakes. Bottom row: lake trout stocked in millions. Huron and Michigan catch rises after stocking climbs in the 1970s and 1980s. Superior catch drops in the late 1950s, then holds while stocking falls after 2000." height=340}
 
 `pivot_longer()` (Module 06) + `facet_grid(measure ~ lake, scales = "free_y")`
+
+Warning *Removed 37 rows containing missing values*: years with no
+stocking record. A warning, not an error.
 
 ## Your Project: One Figure Today (10 min)
 
@@ -426,7 +453,8 @@ In your **project** repo, `report.qmd`:
 ```{{r}}
 #| label: fig-trout
 #| fig-cap: "Lake trout catch fell to near zero in Lakes Michigan and Huron by 1955."
-#| fig-alt: "Line chart of lake trout catch by lake, 1867-2015."
+#| fig-alt: "Line chart of lake trout catch, 1867 to 2015, one line
+#|   per lake. Michigan, Huron and Superior drop sharply after 1945."
 ggplot(trout, aes(x = year, y = catch, color = lake)) + geom_line()
 ```
 
