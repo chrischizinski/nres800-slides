@@ -137,7 +137,7 @@
     "href": "slides/08-visualizing-wrangled-data.html#your-project-where-we-are",
     "title": "Module 08: Visualizing Wrangled Data",
     "section": "Your Project: Where We Are",
-    "text": "Your Project: Where We Are\n\n\n\n\n\n\n\n\n\nWhen\nProject step\n\n\n\n\n☑ Done\nMon Oct 26\nCreate your project repo; invite the instructor and your reviewer\n\n\n☑ Done\nMon Nov 2\nData audit: import, clean_names(), column types, missing values\n\n\n▶ This week\nMon Nov 9\nFirst figure in report.qmd, with fig-cap and fig-alt\n\n\n▶ This week\nSun Nov 15\nProposal due (rendered and pushed)\n\n\n☐ To do\nMon Nov 23\nProject workshop: draft checklist, fresh-clone render test\n\n\n☐ To do\nSun Nov 29\nDraft due: every section started, 3 figures\n\n\n☐ To do\nMon Nov 30\nPeer review in class: clone, render, start the review Issue\n\n\n☐ To do\nWed Dec 2\nReview Issue filed on your peer’s repo\n\n\n☐ To do\nMon Dec 7\nRevision workshop (last class)\n\n\n☐ To do\nSun Dec 13\nReply to every comment on the review Issue\n\n\n☐ To do\nWed Dec 16\nFinal due: last push plus the v1.0 tag"
+    "text": "Your Project: Where We Are\n\n\n\n\n\n\n\n\n\nWhen\nProject step\n\n\n\n\n☑ Done\nMon Oct 26\nCreate your project repo; invite the instructor and your reviewer\n\n\n☑ Done\nMon Nov 2\nData audit: import, clean_names(), column types, missing values\n\n\n▶ This week\nMon Nov 9\nFirst figure in report.qmd, with fig-cap and fig-alt\n\n\n▶ This week\nSun Nov 15\nProposal due (rendered and pushed)\n\n\n☐ To do\nMon Nov 16\nOne summary table and one inline number in report.qmd\n\n\n☐ To do\nMon Nov 23\nProject workshop: draft checklist, fresh-clone render test\n\n\n☐ To do\nSun Nov 29\nDraft due: every section started, 3 figures\n\n\n☐ To do\nMon Nov 30\nPeer review in class: clone, render, start the review Issue\n\n\n☐ To do\nWed Dec 2\nReview Issue filed on your peer’s repo\n\n\n☐ To do\nMon Dec 7\nRevision workshop (last class)\n\n\n☐ To do\nSun Dec 13\nReply to every comment on the review Issue\n\n\n☐ To do\nWed Dec 16\nFinal due: last push plus the v1.0 tag"
   },
   {
     "objectID": "slides/08-visualizing-wrangled-data.html#get-todays-files-pull",
@@ -1111,6 +1111,13 @@
     "title": "Module 09: Text, Categories, and Dates",
     "section": "Today",
     "text": "Today\n\n\nText: split, trim, NA\n\n\n-&gt;\n\n\nCategories: choose, order\n\n\n-&gt;\n\n\nDates: pull out a part\n\n\n-&gt;\n\n\nYour report: a table, a number\n\n\n\nA short module: the last 40 minutes are your project draft.\n\n\nNo Assignment 09. Assignment 08 due Sun Nov 22\nDraft due Sun Nov 29. Nov 23 is a project workshop"
+  },
+  {
+    "objectID": "slides/09-text-categories-dates.html#your-project-where-we-are",
+    "href": "slides/09-text-categories-dates.html#your-project-where-we-are",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Your Project: Where We Are",
+    "text": "Your Project: Where We Are\n\n\n\n\n\n\n\n\n\nWhen\nProject step\n\n\n\n\n☑ Done\nMon Oct 26\nCreate your project repo; invite the instructor and your reviewer\n\n\n☑ Done\nMon Nov 2\nData audit: import, clean_names(), column types, missing values\n\n\n☑ Done\nMon Nov 9\nFirst figure in report.qmd, with fig-cap and fig-alt\n\n\n☑ Done\nSun Nov 15\nProposal due (rendered and pushed)\n\n\n▶ This week\nMon Nov 16\nOne summary table and one inline number in report.qmd\n\n\n☐ To do\nMon Nov 23\nProject workshop: draft checklist, fresh-clone render test\n\n\n☐ To do\nSun Nov 29\nDraft due: every section started, 3 figures\n\n\n☐ To do\nMon Nov 30\nPeer review in class: clone, render, start the review Issue\n\n\n☐ To do\nWed Dec 2\nReview Issue filed on your peer’s repo\n\n\n☐ To do\nMon Dec 7\nRevision workshop (last class)\n\n\n☐ To do\nSun Dec 13\nReply to every comment on the review Issue\n\n\n☐ To do\nWed Dec 16\nFinal due: last push plus the v1.0 tag"
   },
   {
     "objectID": "slides/09-text-categories-dates.html#get-todays-files-pull",
