@@ -66,6 +66,43 @@ source("../R/project_timeline.R")
 project_timeline("2026-11-16")
 ```
 
+## Your Project Files: Proposal vs Report {.smaller}
+
+:::: {.columns}
+::: {.column width="48%"}
+- **`proposal.qmd` is finished.** Graded on your Nov 15 push. No new work in it.
+- **`report.qmd` gets all project work from now on:** last week's figure, today's table, the Nov 29 draft. Root of the project repo, next to `proposal.qmd`.
+- Figure went into the proposal last week? **Copy** it into `report.qmd`.
+- Today's table and number: **not graded**, a step toward the draft.
+:::
+::: {.column width="52%"}
+**No `report.qmd`?** New file in the repo root, paste, render, push:
+
+````markdown
+---
+title: "Your project title"
+format: html
+---
+
+```{{r}}
+#| label: setup
+#| message: false
+library(tidyverse)
+library(here)
+library(gt)
+my_data <- read_csv(here("data", "raw", "your_file.csv"))
+```
+
+## Introduction
+## Data and Methods
+## Results
+## Interpretation
+````
+
+Full starter: Canvas Module 09 page.
+:::
+::::
+
 ## Get Today's Files: Pull
 
 I added two files to your **Module 05** repo on GitHub:
