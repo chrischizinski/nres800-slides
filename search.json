@@ -1120,6 +1120,13 @@
     "text": "Your Project: Where We Are\n\n\n\n\n\n\n\n\n\nWhen\nProject step\n\n\n\n\n☑ Done\nMon Oct 26\nCreate your project repo; invite the instructor and your reviewer\n\n\n☑ Done\nMon Nov 2\nData audit: import, clean_names(), column types, missing values\n\n\n☑ Done\nMon Nov 9\nFirst figure in report.qmd, with fig-cap and fig-alt\n\n\n☑ Done\nSun Nov 15\nProposal due (rendered and pushed)\n\n\n▶ This week\nMon Nov 16\nOne summary table and one inline number in report.qmd\n\n\n☐ To do\nMon Nov 23\nProject workshop: draft checklist, fresh-clone render test\n\n\n☐ To do\nSun Nov 29\nDraft due: every section started, 3 figures\n\n\n☐ To do\nMon Nov 30\nPeer review in class: clone, render, start the review Issue\n\n\n☐ To do\nWed Dec 2\nReview Issue filed on your peer’s repo\n\n\n☐ To do\nMon Dec 7\nRevision workshop (last class)\n\n\n☐ To do\nSun Dec 13\nReply to every comment on the review Issue\n\n\n☐ To do\nWed Dec 16\nFinal due: last push plus the v1.0 tag"
   },
   {
+    "objectID": "slides/09-text-categories-dates.html#your-project-files-proposal-vs-report",
+    "href": "slides/09-text-categories-dates.html#your-project-files-proposal-vs-report",
+    "title": "Module 09: Text, Categories, and Dates",
+    "section": "Your Project Files: Proposal vs Report",
+    "text": "Your Project Files: Proposal vs Report\n\n\n\nproposal.qmd is finished. Graded on your Nov 15 push. No new work in it.\nreport.qmd gets all project work from now on: last week’s figure, today’s table, the Nov 29 draft. Root of the project repo, next to proposal.qmd.\nFigure went into the proposal last week? Copy it into report.qmd.\nToday’s table and number: not graded, a step toward the draft.\n\n\nNo report.qmd? New file in the repo root, paste, render, push:\n---\ntitle: \"Your project title\"\nformat: html\n---\n\n```{r}\n#| label: setup\n#| message: false\nlibrary(tidyverse)\nlibrary(here)\nlibrary(gt)\nmy_data &lt;- read_csv(here(\"data\", \"raw\", \"your_file.csv\"))\n```\n\n## Introduction\n## Data and Methods\n## Results\n## Interpretation\nFull starter: Canvas Module 09 page."
+  },
+  {
     "objectID": "slides/09-text-categories-dates.html#get-todays-files-pull",
     "href": "slides/09-text-categories-dates.html#get-todays-files-pull",
     "title": "Module 09: Text, Categories, and Dates",
