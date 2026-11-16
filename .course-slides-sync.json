@@ -29,6 +29,7 @@
     "scripts/week_06_follow_along.R",
     "scripts/week_08_follow_along.R",
     "scripts/week_09_follow_along.R",
+    "scripts/workshop_nov23_follow_along.R",
     "slides/01-the-whole-game.qmd",
     "slides/02-objects-debugging.qmd",
     "slides/03-importing-data.qmd",
@@ -38,6 +39,7 @@
     "slides/08-visualizing-wrangled-data.qmd",
     "slides/09-text-categories-dates.qmd",
     "slides/10-peer-review.qmd",
+    "slides/workshop-nov23.qmd",
     "styles/pp.scss",
     "styles/slide-extras.css"
   ]

@@ -1,0 +1,257 @@
+---
+title: "Project Workshop: Draft Check, Plus purrr"
+subtitle: "Find what breaks before your reviewer does."
+author: "Chris Chizinski"
+lang: en
+footer: "[NRES 800 Fall 2026 GitHub repository](https://github.com/chrischizinski/nres800-slides)"
+format:
+  revealjs:
+    theme: ../styles/pp.scss
+    css: ../styles/slide-extras.css
+    transition: fade
+    slide-number: true
+    incremental: false
+    embed-resources: true
+---
+
+```{r}
+#| include: false
+library(gt)
+library(countdown)
+
+# One table style for every slide table (instructor convention: gt tables).
+slide_table <- function(df) {
+  gt(df) |>
+    fmt_markdown(columns = everything()) |>
+    tab_options(
+      table.font.size = px(24),
+      column_labels.font.weight = "bold",
+      table.width = pct(100),
+      data_row.padding = px(6)
+    ) |>
+    opt_row_striping()
+}
+
+# Project timeline table, shared by every deck; pass this class's date.
+source("../R/project_timeline.R")
+```
+
+## Slide Accessibility Note
+- **Images:** diagrams are HTML text with labels; there are no figures.
+- **Speaker Notes:** These slides follow the workshop follow-along script
+  `class/workshop_nov23_follow_along.R` and the course book sections on the
+  draft and on purrr.
+
+## Today
+
+::: {.diagram-flow aria-label="Today's plan: a self-check against the draft checklist, then a fresh-clone test of your project, then 20 minutes of purrr, then work time on your draft"}
+<div class="diagram-node">Self-check (10)</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Fresh clone (20)</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">purrr (20)</div>
+<div class="diagram-arrow" aria-hidden="true">-&gt;</div>
+<div class="diagram-node">Draft work (90)</div>
+:::
+
+<p class="diagram-caption">Render problems first, new material second, your draft the rest of the day.</p>
+
+- **Draft due Sun Nov 29**, 11:59 PM: push `report.qmd`, submit its address
+  on the Canvas assignment **Project Draft**
+- Nothing today is graded except the push (participation)
+
+## Your Project: Where We Are {.smaller}
+
+```{r}
+#| echo: false
+project_timeline("2026-11-23")
+```
+
+## Self-Check (10 min)
+
+Open the **Project Draft** assignment on Canvas. For each checklist line,
+mark it **done**, **started**, or **missing**.
+
+- All project work is in **`report.qmd`**, not `proposal.qmd`
+- No `report.qmd` yet? The starter is in the course book, **Your Project
+  Repository > Start report.qmd**. Do that now
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
+
+## Fresh-Clone Test (20 min) {.smaller}
+
+Clone **your own** project into a new, empty folder (Desktop is fine).
+
+:::: {.columns}
+::: {.column width="50%"}
+**GitHub Desktop**
+
+1. **File > Clone Repository**
+2. Pick your project; **Local path** = the new folder
+3. **Clone**, then open that folder in Positron
+:::
+::: {.column width="50%"}
+**Positron**
+
+1. On github.com: **Code**, copy the HTTPS address
+2. **New Folder from Git**, paste, pick the new folder
+:::
+::::
+
+Restart R, render `report.qmd`, write down the **first error**. Fix it in
+your **original** folder, commit, push, pull into the test folder, try
+again. Delete the test folder when it renders.
+
+```{r}
+#| echo: false
+countdown(minutes = 20)
+```
+
+## What Usually Breaks
+
+```{r}
+#| echo: false
+tibble::tribble(
+  ~`You see`, ~`Usual cause`, ~`Fix`,
+  "`cannot open file` / `does not exist`", "Data never committed, or a typed-out path", "Commit `data/raw/`; use `here()`",
+  "`object not found`", "Made in the Console, not in the report", "Add the code to a chunk; Restart R; render",
+  "`there is no package called`", "Package not loaded at the top", "`library()` in the setup chunk; list it in the README",
+  "`here()` points to the wrong folder", "No `.Rproj` at the repo root", "Commit the `.Rproj` file"
+) |>
+  slide_table()
+```
+
+## Get Today's File: Pull
+
+I added `class/workshop_nov23_follow_along.R` to your **Module 05** repo.
+`class/data/fishing.csv` is already there from Module 05.
+
+:::: {.columns}
+::: {.column width="50%"}
+**GitHub Desktop**
+
+1. Commit anything changed
+2. **Fetch origin**
+3. **Pull origin**
+:::
+::: {.column width="50%"}
+**Positron**
+
+1. Source Control: commit anything changed
+2. **...** menu > **Pull**
+:::
+::::
+
+Report still not rendering? **Skip purrr** and keep fixing. It is all in the book.
+
+<a class="script-download" href="../scripts/workshop_nov23_follow_along.R" download style="background-color: #d00000 !important; color: #fff !important;">Download the workshop follow-along script (.R)</a>
+
+## The Copy-Paste Problem
+
+```r
+trout |>
+  filter(lake == "Erie") |>
+  ggplot(aes(x = year, y = catch)) +
+  geom_line() +
+  labs(title = "Erie", y = "Catch (thousand lb)")
+```
+
+...and the same block **four more times**, changing one word.
+
+- Five copies = five places to fix a typo
+- `facet_wrap()` enough? Use it (Module 08)
+- **`map()`** is for **separate** results: figures, files, models
+
+## map(): Do The Same Thing To Each
+
+```r
+map(c(2, 5, 10), \(x) x * 100)
+```
+
+- **Things:** `c(2, 5, 10)`
+- **What to do with each:** `\(x) x * 100` ("for each `x`, do this")
+- **Returns:** a **list**, one element per thing: 200, 500, 1000
+- `map_dbl()` when every answer is one number
+
+## One Figure Per Lake (6 min) {.smaller}
+
+```r
+lakes <- sort(unique(trout$lake))
+
+trout_plots <- map(lakes, \(one_lake) {
+  trout |>
+    filter(lake == one_lake) |>
+    ggplot(aes(x = year, y = catch)) +
+    geom_line() +
+    labs(title = one_lake, y = "Catch (thousand lb)")
+})
+
+names(trout_plots) <- lakes
+trout_plots$Michigan
+```
+
+The block inside `{ }` **is** the copy-paste block, with `"Erie"` replaced
+by `one_lake`. **CHECK:** `length(trout_plots)` is **5**.
+
+```{r}
+#| echo: false
+countdown(minutes = 6)
+```
+
+## Many Files, One Table (6 min) {.smaller}
+
+Data often arrive as **one file per site, year, or lake**.
+
+```r
+files <- list.files(lake_folder, full.names = TRUE)
+
+all_lakes <- files |>
+  set_names(basename) |>
+  map(\(f) read_csv(f, show_col_types = FALSE)) |>
+  list_rbind(names_to = "file")
+```
+
+- `names_to = "file"` records which file each row came from
+- **CHECK:** 6 files, **12047** rows, the same as `lake_catch`
+- Always compare the row count to what you expect
+
+```{r}
+#| echo: false
+countdown(minutes = 6)
+```
+
+## Your Project
+
+- Does your report repeat a block for each **site, species, year, or file**?
+- Write the block once, find the word that changes, `map()` over it
+- Counts toward **Beyond the course** ("a small function that replaces
+  repeated code"): add a **What I explored** note
+- Not required. A draft that renders matters more
+
+## Draft Work Time (90 min, break included)
+
+- Put your **name and question** on the help list. Render failures first
+- `report.qmd` renders after **Restart R**, from a fresh clone?
+- Every section started? **3 figures**, a table, an inline value?
+
+```{r}
+#| echo: false
+countdown(minutes = 90)
+```
+
+## What Is Next
+
+- **Sun Nov 29, 11:59 PM:** draft pushed; address of `report.qmd` on the
+  Canvas assignment **Project Draft**
+- **Mon Nov 30:** peer review in class. Your reviewer clones and renders
+  your draft
+- Reviewer still cannot see your repo? **Settings > Collaborators** today
+
+## Before You Leave
+
+- [ ] Fresh-clone test done; first error fixed
+- [ ] **Commit and push `class/`** in your **Module 05** repo
+- [ ] **Commit and push** your **project** repo
